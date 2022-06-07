@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {Text, View, StyleSheet, Alert} from 'react-native';
 
 import Button from './components/Button';
 
@@ -7,12 +7,7 @@ const Consumer = () => {
   const handlePress = () => Alert.alert('Simple Button pressed');
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flex: 3,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.headingContainer}>
         <Text style={styles.test}>Helper</Text>
       </View>
       <View style={styles.subContainer}>
@@ -32,10 +27,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#1D1D1D',
     flexDirection: 'column',
   },
+  headingContainer: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   subContainer: {
     flex: 2,
     alignItems: 'center',
-    // justifyContent: 'center',
   },
   test: {
     color: 'white',
