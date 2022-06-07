@@ -22,15 +22,14 @@ const Consumer = () => {
       <View style={styles.subContainer}>
         <Text style={styles.buttonText}>What you are looking for?</Text>
         <TouchableOpacity
+          onPress={handlePress}
           style={[
             styles.button,
             {
               marginTop: 50,
             },
           ]}>
-          <Text style={styles.buttonText} onPress={handlePress}>
-            Consruction
-          </Text>
+          <Text style={styles.buttonText}>Consruction</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.subContainer}>
