@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 
 const Consumer = () => {
+  const handlePress = () => Alert.alert('Simple Button pressed');
   return (
     <View
       style={[
@@ -13,15 +14,30 @@ const Consumer = () => {
       <View
         style={{
           flex: 3,
-          backgroundColor: 'red',
           justifyContent: 'center',
           alignItems: 'center',
-          //   color: 'white',
         }}>
-        <Text>Hello, world!</Text>
+        <Text style={styles.test}>Helper</Text>
       </View>
-      <View style={{flex: 2, backgroundColor: 'darkorange'}}></View>
-      <View style={{flex: 2, backgroundColor: 'green'}} />
+      <View style={styles.subContainer}>
+        <Text style={styles.buttonText}>What you are looking for?</Text>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              marginTop: 50,
+            },
+          ]}>
+          <Text style={styles.buttonText} onPress={handlePress}>
+            Consruction
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.subContainer}>
+        <TouchableOpacity style={styles.button} onPress={handlePress}>
+          <Text style={styles.buttonText}>Event</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -29,7 +45,28 @@ const Consumer = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 20,
+    backgroundColor: '#1D1D1D',
+  },
+  subContainer: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  test: {
+    color: 'white',
+    fontSize: 60,
+  },
+  button: {
+    backgroundColor: '#652C9E',
+    height: 100,
+    width: 500,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 30,
   },
 });
 
