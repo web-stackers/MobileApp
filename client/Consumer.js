@@ -6,13 +6,7 @@ import Button from './components/Button';
 const Consumer = () => {
   const handlePress = () => Alert.alert('Simple Button pressed');
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          flexDirection: 'column',
-        },
-      ]}>
+    <View style={styles.container}>
       <View
         style={{
           flex: 3,
@@ -22,23 +16,11 @@ const Consumer = () => {
         <Text style={styles.test}>Helper</Text>
       </View>
       <View style={styles.subContainer}>
-        <Text style={styles.buttonText}>What you are looking for?</Text>
-        <TouchableOpacity
-          onPress={handlePress}
-          style={[
-            styles.button,
-            {
-              marginTop: 50,
-            },
-          ]}>
-          <Text style={styles.buttonText}>Consruction</Text>
-        </TouchableOpacity>
+        <Text style={styles.subHeading}>What you are looking for?</Text>
+        <Button onPress={handlePress} title="Construction" />
       </View>
       <View style={styles.subContainer}>
-        {/* <Button onPress={handlePress} Text="Event" /> */}
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Event</Text>
-        </TouchableOpacity>
+        <Button onPress={handlePress} title="Event" />
       </View>
     </View>
   );
@@ -48,27 +30,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1D1D1D',
+    flexDirection: 'column',
   },
   subContainer: {
     flex: 2,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   test: {
     color: 'white',
     fontSize: 60,
   },
-  button: {
-    backgroundColor: '#652C9E',
-    height: 100,
-    width: 500,
-
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
+  subHeading: {
     color: 'white',
     fontSize: 30,
+    marginBottom: 30,
   },
 });
 

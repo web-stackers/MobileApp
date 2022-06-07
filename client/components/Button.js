@@ -1,13 +1,11 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Button = (onPress, text) => {
+const Button = ({onPress, title, marginTop}) => {
   return (
     <View>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText} onPress={onPress}>
-          {text}
-        </Text>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Text style={styles.buttonText}>{title}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -20,6 +18,7 @@ const styles = StyleSheet.create({
     width: 500,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 30,
   },
   buttonText: {
     color: 'white',
