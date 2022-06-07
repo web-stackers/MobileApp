@@ -14,15 +14,17 @@ const Button = ({onPress, title, marginTop}) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#652C9E',
-    height: 100,
-    width: 500,
+    height: 80,
+    width: 400,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 20,
   },
   buttonText: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 25,
   },
 });
 

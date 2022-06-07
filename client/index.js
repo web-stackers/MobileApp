@@ -5,5 +5,5 @@ import ConsumerForm from './screens/consumer/ConsumerForm';
 import {name as appName} from './app.json';
 
 // AppRegistry.registerComponent(appName, () => App);
-AppRegistry.registerComponent(appName, () => Consumer);
-// AppRegistry.registerComponent(appName, () => ConsumerForm);
+// AppRegistry.registerComponent(appName, () => Consumer);
+AppRegistry.registerComponent(appName, () => ConsumerForm);
