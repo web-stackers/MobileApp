@@ -1,6 +1,8 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 
+import Button from './components/Button';
+
 const Consumer = () => {
   const handlePress = () => Alert.alert('Simple Button pressed');
   return (
@@ -33,6 +35,7 @@ const Consumer = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.subContainer}>
+        {/* <Button onPress={handlePress} Text="Event" /> */}
         <TouchableOpacity style={styles.button} onPress={handlePress}>
           <Text style={styles.buttonText}>Event</Text>
         </TouchableOpacity>

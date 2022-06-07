@@ -1,11 +1,11 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 
-const Button = (onClick, text, height) => {
+const Button = (onPress, text) => {
   return (
     <View>
-      <TouchableOpacity {styles.button} >
-        <Text style={styles.buttonText} onPress={onClick}>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText} onPress={onPress}>
           {text}
         </Text>
       </TouchableOpacity>
@@ -16,7 +16,7 @@ const Button = (onClick, text, height) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#652C9E',
-    height: {height},
+    height: 100,
     width: 500,
     alignItems: 'center',
     justifyContent: 'center',
