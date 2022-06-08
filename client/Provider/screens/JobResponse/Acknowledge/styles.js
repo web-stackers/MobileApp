@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: Dimensions.get('window').height,
         alignItems: 'center',
-        marginTop: 150
+        marginTop: 300
     },
     title: {
         color: '#fff',

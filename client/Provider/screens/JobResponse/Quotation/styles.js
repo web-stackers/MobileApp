@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#121212',
         alignItems: 'center',
-        justifyContent: 'center',
         width: '100%',
         height: Dimensions.get('window').height,
     },
@@ -15,10 +14,11 @@ const styles = StyleSheet.create({
         bottom: 25
     },
     quotationDoc: {
-        height: 470,
+        height: 500,
         width: '90%',
         backgroundColor: '#DADADA',
-        marginTop: -100
+        marginTop: 25,
+        alignItems: 'center'
     }
 });
 

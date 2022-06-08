@@ -26,7 +26,7 @@ const QuotationDetails = ({navigation}) => {
                 <Sbutton
                     type='primary'
                     text='Next'
-                    onPress={() => navigation.push('Quotation Form')}
+                    onPress={() => navigation.push('Quotation Preview')}
                 />
             </View>
             

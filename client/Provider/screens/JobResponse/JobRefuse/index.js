@@ -8,6 +8,16 @@ const JobRefusePage = ({navigation}) => {
 
     return ( 
         <View style={styles.container}>
+            <View style={styles.message}>
+                <Text style={styles.title}>
+                    Please provide a reason for refusing this job
+                </Text>
+                <Image
+                    style={styles.JRefusePic}
+                    source={require('../../../../assets/images/JRefuse.jpg')}
+                />
+            </View>
+
             <View style={styles.btngrp}>
                 <Sbutton
                     type='primary'

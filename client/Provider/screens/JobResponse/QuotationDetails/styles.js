@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#121212',
         alignItems: 'center',
-        justifyContent: 'center',
         width: '100%',
         height: Dimensions.get('window').height,
     },
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
     QPic: {
         height: 180,
         width: 270,
-        marginTop: 0
+        marginTop: 150
     },
     caption: {
         color: '#fff',

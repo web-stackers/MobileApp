@@ -8,7 +8,7 @@ const Quotation = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.quotationDoc}>
-        <Text>Hello</Text>
+        <Text>Quotation</Text>
       </View>
 
       <View style={styles.btngrp}>
