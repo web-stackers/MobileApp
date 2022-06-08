@@ -1,11 +1,8 @@
-/**
- * @format
- */
-
 import {AppRegistry} from 'react-native';
 import Consumer from './Consumer';
 import Provider from './Provider';
 import App from './App';
+import ConsumerForm from './screens/consumer/ConsumerForm';
 import {name as appName} from './app.json';
 
 // AppRegistry.registerComponent(appName, () => App);
