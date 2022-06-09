@@ -1,7 +1,7 @@
 import {AppRegistry} from 'react-native';
-import CategorySelector from './consumer/screens/JobRequest/CategorySelector';
-import QuotationDetails from './consumer/screens/JobRequest/QuotationDetails';
-import JobDetails from './consumer/screens/JobRequest/JobDetails';
+// import CategorySelector from './consumer/screens/JobRequest/CategorySelector';
+// import QuotationDetails from './consumer/screens/JobRequest/QuotationDetails';
+// import JobDetails from './consumer/screens/JobRequest/JobDetails';
 import Provider from './Provider';
 import Consumer from './Consumer';
 import App from './App';
