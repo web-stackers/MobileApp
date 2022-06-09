@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 28,
     marginBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   JRefusePic: {
     height: 150,

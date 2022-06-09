@@ -9,7 +9,7 @@ const QuotationRefuse = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.message}>
         <Text style={styles.title}>
-          Please provide a reason for refusing this job
+          Please provide a reason for refusing this Quotation
         </Text>
         <Image
           style={styles.JRefusePic}
