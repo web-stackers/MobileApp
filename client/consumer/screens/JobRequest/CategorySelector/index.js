@@ -5,7 +5,8 @@ import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
 
 const CategorySelector = ({navigation}) => {
-  const handlePress = () => navigation.navigate('JobDetails');
+  const ConstructionPress = () => navigation.navigate('JobDetails');
+  const EventPress = () => navigation.navigate('QuotationDetails');
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
@@ -13,10 +14,10 @@ const CategorySelector = ({navigation}) => {
       </View>
       <View style={styles.subContainer}>
         <Text style={styles.subHeading}>What you are looking for?</Text>
-        <StouchableOpacity onPress={handlePress} title="Construction" />
+        <StouchableOpacity onPress={ConstructionPress} title="Construction" />
       </View>
       <View style={styles.subContainer}>
-        <StouchableOpacity onPress={handlePress} title="Event" />
+        <StouchableOpacity onPress={EventPress} title="Event" />
       </View>
     </View>
   );

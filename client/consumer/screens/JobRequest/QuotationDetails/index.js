@@ -5,7 +5,8 @@ import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation}) => {
-  const handlePress = () => navigation.navigate('CategorySelector');
+  const handleAccept = () => navigation.navigate('CategorySelector');
+  const handleReject = () => navigation.navigate('CategorySelector');
   return (
     <View style={styles.container}>
       <Image
@@ -22,8 +23,8 @@ const QuotationDetails = ({navigation}) => {
       <Text style={styles.subContent}>Approximated Duration:</Text>
 
       <View style={styles.btngrp}>
-        <Sbutton type="primary" text="Accept" onPress={handlePress} />
-        <Sbutton type="secondary" text="Refuse" onPress={handlePress} />
+        <Sbutton type="primary" text="Accept" onPress={handleAccept} />
+        <Sbutton type="secondary" text="Refuse" onPress={handleReject} />
       </View>
     </View>
   );
