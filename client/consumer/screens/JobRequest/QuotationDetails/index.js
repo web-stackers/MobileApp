@@ -34,7 +34,7 @@ const QuotationDetails = ({navigation}) => {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('QuotationAcknowledge'),
+          onPress: () => navigation.navigate('QuotationRefuse'),
         },
       ],
     );
