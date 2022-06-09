@@ -4,7 +4,7 @@ import {View, Text, Image} from 'react-native';
 import styles from './styles';
 import Sbutton from '../Sbutton';
 
-const Acknowledge = ({title, subtitle, handlePress}) => {
+const Sacknowledge = ({title, subtitle, onPress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.message}>
@@ -17,10 +17,10 @@ const Acknowledge = ({title, subtitle, handlePress}) => {
       </View>
 
       <View style={styles.doneButton}>
-        <Sbutton type="primary" text="Done" onPress={handlePress} />
+        <Sbutton type="primary" text="Done" onPress={onPress} />
       </View>
     </View>
   );
 };
 
-export default Acknowledge;
+export default Sacknowledge;

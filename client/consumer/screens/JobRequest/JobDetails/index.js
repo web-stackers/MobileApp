@@ -9,7 +9,7 @@ import DatePicker from 'react-native-datepicker';
 import Sheader from '../../../../components/Sheader';
 
 const JobDetails = ({navigation}) => {
-  const handleSubmit = () => navigation.navigate('QuotationDetails');
+  const handleSubmit = () => navigation.navigate('JobAcknowledge');
   const handleCancel = () => navigation.navigate('CategorySelector');
   const [inputs, setInputs] = useState('');
 
