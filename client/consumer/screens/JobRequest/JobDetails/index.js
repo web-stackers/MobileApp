@@ -11,10 +11,10 @@ import {
 
 import DatePicker from 'react-native-datepicker';
 
-import Header from '../../components/Header';
-import Button from '../../components/Button';
+import Header from '../../../../components/Header';
+import StouchableOpacity from '../../../../components/StouchableOpacity';
 
-const ConsumerForm = () => {
+const JobDetails = () => {
   const handlePress = () => Alert.alert('Form submitted');
   const [inputs, setInputs] = useState('');
 
@@ -30,7 +30,7 @@ const ConsumerForm = () => {
           value={inputs}
         />
       </SafeAreaView>
-      <Button onPress={handlePress} title="Submit" />
+      <StouchableOpacity onPress={handlePress} title="Submit" />
     </View>
   );
 };
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ConsumerForm;
+export default JobDetails;

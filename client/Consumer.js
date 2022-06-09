@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import JobResponseStackScreen from './Provider//stacks/JobResponseStack';
+import JobRequestStackScreen from './consumer//stacks/JobRequestStack';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <JobResponseStackScreen />
+      <JobRequestStackScreen />
     </NavigationContainer>
   );
 };

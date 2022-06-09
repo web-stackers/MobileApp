@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, View, StyleSheet, Alert} from 'react-native';
 
-import Button from '../../components/Button';
+import StouchableOpacity from '../../../../components/StouchableOpacity';
 
-const Consumer = () => {
+const CategorySelector = () => {
   const handlePress = () => Alert.alert('Simple Button pressed');
   return (
     <View style={styles.container}>
@@ -12,10 +12,10 @@ const Consumer = () => {
       </View>
       <View style={styles.subContainer}>
         <Text style={styles.subHeading}>What you are looking for?</Text>
-        <Button onPress={handlePress} title="Construction" />
+        <StouchableOpacity onPress={handlePress} title="Construction" />
       </View>
       <View style={styles.subContainer}>
-        <Button onPress={handlePress} title="Event" />
+        <StouchableOpacity onPress={handlePress} title="Event" />
       </View>
     </View>
   );
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Consumer;
+export default CategorySelector;
