@@ -11,7 +11,7 @@ import {
 
 import DatePicker from 'react-native-datepicker';
 
-import Header from '../../../../components/Header';
+import Sheader from '../../../../components/Sheader';
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 
 const JobDetails = () => {
@@ -20,7 +20,7 @@ const JobDetails = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Search for provider"></Header>
+      <Sheader title="Search for provider"></Sheader>
       <SafeAreaView>
         <Text style={styles.text}>When you want the work to be done?</Text>
         <TextInput

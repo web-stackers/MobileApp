@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import styles from './styles';
 
 const Sheader = ({title}) => {
   return (
@@ -8,18 +9,5 @@ const Sheader = ({title}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    height: 60,
-    padding: 15,
-    backgroundColor: '#652C9E',
-  },
-  text: {
-    color: 'white',
-    fontSize: 23,
-    textAlign: 'center',
-  },
-});
 
 export default Sheader;
