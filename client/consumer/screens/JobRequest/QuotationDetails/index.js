@@ -15,6 +15,8 @@ const QuotationDetails = ({navigation}) => {
 
       <Text style={styles.content}>Quotation Details</Text>
       <Text style={styles.subContent}>Job Type:</Text>
+      <Text style={styles.subContent}>Job Requested Date:</Text>
+      <Text style={styles.subContent}>Job Requested Time:</Text>
       <Text style={styles.subContent}>Provider Name:</Text>
       <Text style={styles.subContent}>Quotation Amount:</Text>
       <Text style={styles.subContent}>Approximated Duration:</Text>

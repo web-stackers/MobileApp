@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
     marginTop: 40,
-    marginBottom: 40,
+    marginBottom: 30,
     alignSelf: 'center',
   },
   subContent: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   btngrp: {
     width: '100%',
     position: 'absolute',
-    bottom: 35,
+    bottom: 15,
     alignSelf: 'center',
   },
   JDetailsPic: {
