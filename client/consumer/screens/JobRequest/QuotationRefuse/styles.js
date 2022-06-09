@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   JRefusePic: {
     height: 150,
     width: 150,
+    marginBottom: 50,
   },
 });
 

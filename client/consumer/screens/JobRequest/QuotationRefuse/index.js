@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
+
+import StextArea from '../../../../components/FormComponents/StextArea';
 
 const QuotationRefuse = ({navigation}) => {
   return (
@@ -15,6 +17,7 @@ const QuotationRefuse = ({navigation}) => {
           style={styles.JRefusePic}
           source={require('../../../../assets/images/JRefuse.jpg')}
         />
+        <StextArea></StextArea>
       </View>
 
       <View style={styles.btngrp}>
