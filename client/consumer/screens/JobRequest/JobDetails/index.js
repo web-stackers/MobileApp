@@ -38,6 +38,7 @@ const JobDetails = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#1D1D1D',
+    flex: 1,
   },
   input: {
     height: 50,
