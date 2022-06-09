@@ -10,10 +10,7 @@ const JobResponseStack = createNativeStackNavigator();
 
 const JobResponseStackScreen = () => (
   <JobResponseStack.Navigator>
-    <JobResponseStack.Screen 
-      name="Job Details" 
-      component={JobDetails} 
-    />
+    <JobResponseStack.Screen name="Job Details" component={JobDetails} />
 
     <JobResponseStack.Screen
       name="Quotation"
@@ -21,19 +18,16 @@ const JobResponseStackScreen = () => (
       title="Job Quotation"
     />
 
-    <JobResponseStack.Screen 
-      name="Refuse Job" 
-      component={JobRefuse} 
+    <JobResponseStack.Screen
+      name="Refuse Job"
+      component={JobRefuse}
       options={{
         header: () => null,
       }}
     />
 
-    <JobResponseStack.Screen 
-      name="Quotation Preview" 
-      component={Quotation} 
-    />
-    
+    <JobResponseStack.Screen name="Quotation Preview" component={Quotation} />
+
     <JobResponseStack.Screen
       name="Acknowledgement"
       component={Acknowledge}

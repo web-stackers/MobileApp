@@ -4,8 +4,8 @@ import {Text, View, Alert} from 'react-native';
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
 
-const CategorySelector = () => {
-  const handlePress = () => Alert.alert('Simple Button pressed');
+const CategorySelector = ({navigation}) => {
+  const handlePress = () => navigation.navigate('JobDetails');
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
