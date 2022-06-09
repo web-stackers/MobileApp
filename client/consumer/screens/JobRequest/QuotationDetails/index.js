@@ -5,7 +5,7 @@ import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation}) => {
-  const handlePress = () => Alert.alert('Simple Button pressed');
+  const handlePress = () => navigation.navigate('CategorySelector');
   return (
     <View style={styles.container}>
       <Image

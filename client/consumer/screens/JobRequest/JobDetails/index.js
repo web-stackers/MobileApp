@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, Alert, SafeAreaView, TextInput, Button} from 'react-native';
+import {Text, View, SafeAreaView, TextInput, Button} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -7,10 +7,10 @@ import Sbutton from '../../../../components/Sbutton';
 import DatePicker from 'react-native-datepicker';
 
 import Sheader from '../../../../components/Sheader';
-import StouchableOpacity from '../../../../components/StouchableOpacity';
 
-const JobDetails = () => {
-  const handlePress = () => Alert.alert('Form submitted');
+const JobDetails = ({navigation}) => {
+  const handleSubmit = () => navigation.navigate('QuotationDetails');
+  const handleCancel = () => navigation.navigate('CategorySelector');
   const [inputs, setInputs] = useState('');
 
   return (
@@ -26,8 +26,8 @@ const JobDetails = () => {
         />
       </SafeAreaView>
       <View style={styles.btngrp}>
-        <Sbutton type="primary" text="Submit" onPress={handlePress} />
-        <Sbutton type="secondary" text="Cancel" onPress={handlePress} />
+        <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
+        <Sbutton type="secondary" text="Cancel" onPress={handleCancel} />
       </View>
     </View>
   );

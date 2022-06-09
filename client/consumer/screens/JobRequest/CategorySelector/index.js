@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Alert} from 'react-native';
+import {Text, View} from 'react-native';
 
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';

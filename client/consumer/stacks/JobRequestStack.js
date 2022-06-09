@@ -11,13 +11,24 @@ const JobRequestStackScreen = () => (
     <JobRequestStack.Screen
       name="CategorySelector"
       component={CategorySelector}
+      options={{
+        header: () => null,
+      }}
     />
-    <JobRequestStack.Screen name="JobDetails" component={JobDetails} />
+    <JobRequestStack.Screen
+      name="JobDetails"
+      component={JobDetails}
+      options={{
+        header: () => null,
+      }}
+    />
 
     <JobRequestStack.Screen
-      name="Quotation"
+      name="QuotationDetails"
       component={QuotationDetails}
-      title="Job Quotation"
+      options={{
+        header: () => null,
+      }}
     />
   </JobRequestStack.Navigator>
 );
