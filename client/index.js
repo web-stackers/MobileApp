@@ -8,6 +8,6 @@ import {name as appName} from './app.json';
 
 // AppRegistry.registerComponent(appName, () => App);
 // AppRegistry.registerComponent(appName, () => CategorySelector);
-AppRegistry.registerComponent(appName, () => QuotationDetails);
+ AppRegistry.registerComponent(appName, () => QuotationDetails);
 // AppRegistry.registerComponent(appName, () => JobDetails);
 // AppRegistry.registerComponent(appName, () => Provider);
