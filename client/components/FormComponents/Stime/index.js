@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
 import SdateButton from '../SdateButton';
 
-const Sdate = ({title}) => {
+const Stime = ({title}) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
@@ -13,10 +13,9 @@ const Sdate = ({title}) => {
         modal
         open={open}
         date={date}
-        mode="date"
+        mode="time"
         title={title}
         theme="dark"
-        minimumDate={new Date()}
         onConfirm={date => {
           setOpen(false);
           setDate(date);
@@ -29,4 +28,4 @@ const Sdate = ({title}) => {
   );
 };
 
-export default Sdate;
+export default Stime;

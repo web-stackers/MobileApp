@@ -5,6 +5,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     flex: 1,
   },
+  sideContainer: {
+    flexDirection: 'row',
+  },
+  sideSubContainer: {
+    flex: 1,
+  },
   input: {
     height: 50,
     margin: 12,
@@ -18,12 +24,15 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     marginLeft: 20,
+    marginBottom: 20,
   },
   subtext: {
     color: 'grey',
     fontSize: 20,
-    marginLeft: 20,
-    marginTop: 20,
+    marginLeft: 40,
+    marginTop: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
   btngrp: {
     width: '100%',
