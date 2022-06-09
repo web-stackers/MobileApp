@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1D1D1D',
+    backgroundColor: '#121212',
     flex: 1,
   },
   input: {
@@ -17,6 +17,13 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 20,
+    marginLeft: 20,
+  },
+  subtext: {
+    color: 'grey',
+    fontSize: 20,
+    marginLeft: 20,
+    marginTop: 20,
   },
   btngrp: {
     width: '100%',
