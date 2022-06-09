@@ -1,13 +1,8 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Alert,
-  SafeAreaView,
-  TextInput,
-  // Button,
-} from 'react-native';
+import {Text, View, Alert, SafeAreaView, TextInput, Button} from 'react-native';
+
+import styles from './styles';
+import Sbutton from '../../../../components/Sbutton';
 
 import DatePicker from 'react-native-datepicker';
 
@@ -30,29 +25,12 @@ const JobDetails = () => {
           value={inputs}
         />
       </SafeAreaView>
-      <StouchableOpacity onPress={handlePress} title="Submit" />
+      <View style={styles.btngrp}>
+        <Sbutton type="primary" text="Submit" onPress={handlePress} />
+        <Sbutton type="secondary" text="Cancel" onPress={handlePress} />
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#1D1D1D',
-    flex: 1,
-  },
-  input: {
-    height: 50,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderColor: 'white',
-    color: 'white',
-    fontSize: 20,
-  },
-  text: {
-    color: 'white',
-    fontSize: 20,
-  },
-});
 
 export default JobDetails;
