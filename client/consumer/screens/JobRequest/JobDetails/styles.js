@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 20,
-    marginLeft: 20,
+    marginLeft: 15,
     marginBottom: 20,
   },
   subtext: {
     color: 'grey',
     fontSize: 20,
-    marginLeft: 40,
+    marginLeft: 30,
     marginTop: 5,
     alignSelf: 'center',
     justifyContent: 'center',

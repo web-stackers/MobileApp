@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     padding: 5,
+    margin: 15,
   },
   textArea: {
     height: 150,
