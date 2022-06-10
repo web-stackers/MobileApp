@@ -40,6 +40,16 @@ const styles = StyleSheet.create({
     bottom: 35,
     alignSelf: 'center',
   },
+  inputAndroid: {
+    color: 'white',
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'white',
+    borderRadius: 8,
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
 });
 
 export default styles;
