@@ -5,7 +5,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import Sdate from '../../../../components/FormComponents/Sdate';
-import StextArea from '../../../../components/FormComponents/StextArea';
+import StextInput from '../../../../components/FormComponents/StextInput';
 import Sheader from '../../../../components/Sheader';
 
 const JobDetails = ({navigation}) => {
@@ -51,7 +51,7 @@ const JobDetails = ({navigation}) => {
 
         <Sdate title="Select Job Requesting Date and Time" />
         <Text style={styles.text}>Description about the issue?</Text>
-        <StextArea></StextArea>
+        <StextInput label="Job Description" multiline={true} />
       </SafeAreaView>
       <View style={styles.btngrp}>
         <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
