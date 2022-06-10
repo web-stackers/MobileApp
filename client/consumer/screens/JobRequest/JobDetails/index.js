@@ -1,18 +1,33 @@
 import React, {useState} from 'react';
-import {Text, View, SafeAreaView, TextInput, Button} from 'react-native';
+import {Text, View, SafeAreaView, Alert} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import Sdate from '../../../../components/FormComponents/Sdate';
-import Stime from '../../../../components/FormComponents/Stime';
 import StextArea from '../../../../components/FormComponents/StextArea';
 import Sheader from '../../../../components/Sheader';
 
 const JobDetails = ({navigation}) => {
   const handleSubmit = () => navigation.navigate('JobAcknowledge');
-  const handleCancel = () => navigation.navigate('CategorySelector');
   const [jobType, setJobType] = useState('');
+
+  const AlertCancel = () =>
+    Alert.alert(
+      'Cancel',
+      'Are you sure to go back to home page? It will leads to discard of information',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('CategorySelector'),
+        },
+      ],
+    );
 
   return (
     <View style={styles.container}>
@@ -40,7 +55,7 @@ const JobDetails = ({navigation}) => {
       </SafeAreaView>
       <View style={styles.btngrp}>
         <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
-        <Sbutton type="secondary" text="Cancel" onPress={handleCancel} />
+        <Sbutton type="secondary" text="Cancel" onPress={AlertCancel} />
       </View>
     </View>
   );
