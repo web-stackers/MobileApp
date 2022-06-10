@@ -9,7 +9,7 @@ import {name as appName} from './app.json';
 export default function Main() {
   return (
     <PaperProvider>
-      <Consumer />
+      <Provider />
     </PaperProvider>
   );
 }
