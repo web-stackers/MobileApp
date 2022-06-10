@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View, Alert} from 'react-native';
+import {Text, View} from 'react-native';
 
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
 
-const CategorySelector = () => {
-  const handlePress = () => Alert.alert('Simple Button pressed');
+const CategorySelector = ({navigation}) => {
+  const ConstructionPress = () => navigation.navigate('JobDetails');
+  const EventPress = () => navigation.navigate('QuotationDetails');
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
@@ -13,10 +14,10 @@ const CategorySelector = () => {
       </View>
       <View style={styles.subContainer}>
         <Text style={styles.subHeading}>What you are looking for?</Text>
-        <StouchableOpacity onPress={handlePress} title="Construction" />
+        <StouchableOpacity onPress={ConstructionPress} title="Construction" />
       </View>
       <View style={styles.subContainer}>
-        <StouchableOpacity onPress={handlePress} title="Event" />
+        <StouchableOpacity onPress={EventPress} title="Event" />
       </View>
     </View>
   );

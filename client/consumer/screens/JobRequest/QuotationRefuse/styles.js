@@ -5,34 +5,31 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121212',
     alignItems: 'center',
-    justifyContent: 'center',
     width: '100%',
     height: Dimensions.get('window').height,
+  },
+  btngrp: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 25,
   },
   message: {
     width: '100%',
     height: Dimensions.get('window').height,
     alignItems: 'center',
-    marginTop: 300,
+    marginTop: 80,
   },
   title: {
     color: '#fff',
     fontSize: 28,
-    marginBottom: 82,
+    marginBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  subtitle: {
-    color: '#fff',
-    fontSize: 20,
-  },
-  tick: {
+  JRefusePic: {
     height: 150,
     width: 150,
-    marginBottom: 85,
-  },
-  doneButton: {
-    position: 'absolute',
-    bottom: 50,
-    width: '100%',
+    marginBottom: 50,
   },
 });
 

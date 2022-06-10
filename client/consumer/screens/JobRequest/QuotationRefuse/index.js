@@ -1,41 +1,39 @@
 import React from 'react';
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
-const JobRefusePage = ({navigation}) => {
+import StextArea from '../../../../components/FormComponents/StextArea';
+
+const QuotationRefuse = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.message}>
         <Text style={styles.title}>
-          Please provide a reason for refusing this job
+          Please provide a reason for refusing this Quotation
         </Text>
         <Image
           style={styles.JRefusePic}
           source={require('../../../../assets/images/JRefuse.jpg')}
         />
+        <StextArea></StextArea>
       </View>
 
       <View style={styles.btngrp}>
         <Sbutton
           type="primary"
           text="Confirm"
-          onPress={() =>
-            navigation.push('Acknowledgement', {
-              title: 'Informed the Customer !',
-              subtitle: 'Provided the reason to the customer',
-            })
-          }
+          onPress={() => navigation.navigate('CategorySelector')}
         />
         <Sbutton
           type="secondary"
           text="Cancel"
-          onPress={() => navigation.navigate('Job Details')}
+          onPress={() => navigation.navigate('CategorySelector')}
         />
       </View>
     </View>
   );
 };
 
-export default JobRefusePage;
+export default QuotationRefuse;

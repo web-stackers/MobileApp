@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
   subtitle: {
     color: '#fff',
     fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tick: {
     height: 150,
