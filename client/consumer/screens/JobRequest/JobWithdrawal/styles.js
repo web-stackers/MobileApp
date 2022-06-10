@@ -13,6 +13,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 25,
   },
+  textField: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 350,
+  },
   message: {
     width: '100%',
     height: Dimensions.get('window').height,
@@ -22,7 +27,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 28,
-    marginBottom: 50,
+    // marginBottom: 50,
   },
   JRefusePic: {
     height: 150,

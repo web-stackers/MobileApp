@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, Image, Alert} from 'react-native';
+import {View, Text, Image, Alert} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -44,7 +44,9 @@ const JobWithdrawal = ({navigation}) => {
           style={styles.JRefusePic}
           source={require('../../../../assets/images/JRefuse.jpg')}
         />
-        <StextInput></StextInput>
+      </View>
+      <View style={styles.textField}>
+        <StextInput label="Reason" multiline={true} />
       </View>
 
       <View style={styles.btngrp}>
