@@ -3,6 +3,7 @@ import {View, Text, TextInput, Image, Alert} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
+import StextInput from '../../../../components/FormComponents/StextInput';
 
 const JobWithdrawal = ({navigation}) => {
   const AlertAccept = () =>
@@ -43,6 +44,7 @@ const JobWithdrawal = ({navigation}) => {
           style={styles.JRefusePic}
           source={require('../../../../assets/images/JRefuse.jpg')}
         />
+        <StextInput></StextInput>
       </View>
 
       <View style={styles.btngrp}>
