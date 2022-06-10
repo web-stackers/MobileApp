@@ -5,23 +5,24 @@ import QuotationDetails from '../screens/JobResponse/QuotationDetails';
 import JobRefuse from '../screens/JobResponse/JobRefuse';
 import Quotation from '../screens/JobResponse/Quotation';
 import Acknowledge from '../screens/JobResponse/Acknowledge';
+import JobWithdrawal from '../screens/PostJobActions/JobWithdrawal'
 
-const JobResponseStack = createNativeStackNavigator();
+const JobStack = createNativeStackNavigator();
 
-const JobResponseStackScreen = () => (
-  <JobResponseStack.Navigator>
-    <JobResponseStack.Screen 
+const JobStackScreen = () => (
+  <JobStack.Navigator>
+    <JobStack.Screen 
       name="Job Details" 
       component={JobDetails} 
     />
 
-    <JobResponseStack.Screen
+    <JobStack.Screen
       name="Quotation"
       component={QuotationDetails}
       title="Job Quotation"
     />
 
-    <JobResponseStack.Screen 
+    <JobStack.Screen 
       name="Refuse Job" 
       component={JobRefuse} 
       options={{
@@ -29,19 +30,24 @@ const JobResponseStackScreen = () => (
       }}
     />
 
-    <JobResponseStack.Screen 
+    <JobStack.Screen 
       name="Quotation Preview" 
       component={Quotation} 
     />
     
-    <JobResponseStack.Screen
+    <JobStack.Screen
       name="Acknowledgement"
       component={Acknowledge}
       options={{
         header: () => null,
       }}
     />
-  </JobResponseStack.Navigator>
+
+    <JobStack.Screen 
+      name="Job Withdrawal" 
+      component={JobWithdrawal} 
+    />
+  </JobStack.Navigator>
 );
 
-export default JobResponseStackScreen;
+export default JobStackScreen;

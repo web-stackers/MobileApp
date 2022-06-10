@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#121212',
         width: '100%',
-        height: Dimensions.get('window').height,
     },
     content: {
         color: '#fff',
@@ -15,9 +14,8 @@ const styles = StyleSheet.create({
     },
     btngrp: {
         width: '100%',
-        position: 'absolute',
-        bottom: 25,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: 25
     },
     JDetailsPic: {
         height: 180,

@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import JobResponseStackScreen from './Provider/stacks/JobResponseStack';
+import JobStackScreen from './Provider/stacks/JobStack';
 
-const App = () => {
+const Provider = () => {
   return (
     <NavigationContainer>
-      <JobResponseStackScreen />
+      <JobStackScreen />
     </NavigationContainer>
   );
 };
 
-export default App;
+export default Provider;

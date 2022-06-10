@@ -4,13 +4,13 @@ import { View, Text, TextInput, Image } from 'react-native';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
-const JobRefusePage = ({navigation}) => {
+const JobWithdrawal = ({navigation}) => {
 
-    return ( 
+    return (
         <View style={styles.container}>
             <View style={styles.message}>
                 <Text style={styles.title}>
-                    Provide a reason for refusing this job
+                    Provide a reason for withdrawing from job
                 </Text>
                 <Image
                     style={styles.JRefusePic}
@@ -27,17 +27,17 @@ const JobRefusePage = ({navigation}) => {
                         subtitle: "Provided the reason to the customer"
                     })}
                 />
-                <Sbutton
+                {/* <Sbutton
                     type='secondary'
                     text='Cancel' 
-                    onPress={() => navigation.navigate('Job Details')}
-                />
+                    onPress={() => navigation.navigate('')}
+                /> */}
             </View>
             
         </View>
-     );
+    )
 }
  
-export default JobRefusePage;
+export default JobWithdrawal;
 
 
