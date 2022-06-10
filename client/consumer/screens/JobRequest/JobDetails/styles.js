@@ -5,12 +5,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     flex: 1,
   },
-  sideContainer: {
-    flexDirection: 'row',
-  },
-  sideSubContainer: {
-    flex: 1,
-  },
+
   input: {
     height: 50,
     margin: 12,
@@ -25,6 +20,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 15,
     marginBottom: 20,
+  },
+  selectText: {
+    color: 'white',
+    fontSize: 20,
+    marginLeft: 15,
   },
   subtext: {
     color: 'grey',

@@ -19,7 +19,7 @@ const JobDetails = ({navigation}) => {
       <Sheader title="Search for provider"></Sheader>
       <SafeAreaView>
         <View>
-          <Text style={styles.text}>
+          <Text style={styles.selectText}>
             {jobType ? `Job Type: ${jobType}` : 'Please select a Job Type'}
           </Text>
           <RNPickerSelect
@@ -33,23 +33,8 @@ const JobDetails = ({navigation}) => {
           />
         </View>
         <Text style={styles.text}>When you want the work to be done?</Text>
-        <View style={styles.sideContainer}>
-          <View style={styles.sideSubContainer}>
-            <Text style={styles.subtext}>Date</Text>
-          </View>
-          <View style={styles.sideSubContainer}>
-            <Sdate title="Select Job Requesting Date" />
-          </View>
-        </View>
 
-        <View style={styles.sideContainer}>
-          <View style={styles.sideSubContainer}>
-            <Text style={styles.subtext}>Time</Text>
-          </View>
-          <View style={styles.sideSubContainer}>
-            <Stime title="Select Job Requesting Time" />
-          </View>
-        </View>
+        <Sdate title="Select Job Requesting Date and Time" />
         <Text style={styles.text}>Description about the issue?</Text>
         <StextArea></StextArea>
       </SafeAreaView>

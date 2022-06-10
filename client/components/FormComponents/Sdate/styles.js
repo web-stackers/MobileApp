@@ -2,22 +2,26 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 260,
-    width: '30%',
+    width: '60%',
     padding: 5,
     height: 100,
   },
-  button: {
-    padding: 7,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#652C9E',
-  },
-  text: {
+
+  dateText: {
     fontSize: 18,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    color: 'white',
+    color: 'grey',
+    marginLeft: 30,
+    marginBottom: 15,
+  },
+
+  dateSubText: {
+    fontSize: 16,
+    textTransform: 'uppercase',
+    color: 'grey',
+    marginLeft: 50,
+    marginBottom: 20,
   },
 });
 
