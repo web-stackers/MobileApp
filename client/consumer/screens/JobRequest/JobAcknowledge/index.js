@@ -7,7 +7,7 @@ const JobAcknowledge = ({navigation}) => {
     <Sacknowledge
       title="Job Requested"
       subtitle="Your request has been successfully send for that service provider. He will reply you soon. Thank you for using our service."
-      onPress={() => navigation.navigate('CategorySelector')}></Sacknowledge>
+      onPress={() => navigation.navigate('JobWithdrawal')}></Sacknowledge>
   );
 };
 
