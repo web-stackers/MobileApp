@@ -1,16 +1,15 @@
 import * as React from 'react';
 import {TextInput} from 'react-native-paper';
 
-const StextInput = ({label, multiline}) => {
-  const [text, setText] = React.useState('');
-
+const StextInput = ({label, multiline, error, value, onChangeText}) => {
   return (
     <TextInput
       label={label}
-      value={text}
+      value={value}
       mode="outlined"
       multiline={multiline}
-      onChangeText={text => setText(text)}
+      error={error}
+      onChangeText={onChangeText}
     />
   );
 };
