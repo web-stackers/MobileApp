@@ -13,13 +13,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
     borderBottomColor: 'white',
   },
+  image: {
+    flex: 1,
+    width: 450,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   subContainer: {
     flex: 3,
     alignItems: 'center',
   },
   test: {
     color: 'white',
-    fontSize: 80,
+    fontSize: 120,
   },
   subHeading: {
     color: 'white',

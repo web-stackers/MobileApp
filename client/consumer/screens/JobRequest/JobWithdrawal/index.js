@@ -16,7 +16,7 @@ const JobWithdrawal = ({navigation}) => {
     } else {
       Alert.alert(
         'Withdrawal Request',
-        'Are you sure to arise an withdrawal request? Please be mind that, arising withdrawal requests unnecessarily leads to ban you from using an app',
+        'Are you sure to arise an withdrawal request? Please be mind that, unnecessary withdrawal requests lead for banning you from using an app',
         [
           {
             text: 'Cancel',
