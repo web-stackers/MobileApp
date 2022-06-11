@@ -23,22 +23,11 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   description: {
+    marginTop: 10,
     marginBottom: 10,
     marginLeft: 5,
   },
-  selectText: {
-    color: 'white',
-    fontSize: 20,
-    marginLeft: 15,
-  },
-  subtext: {
-    color: 'grey',
-    fontSize: 20,
-    marginLeft: 30,
-    marginTop: 5,
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
+
   containerStyle: {
     margin: 10,
   },
@@ -47,17 +36,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 35,
     alignSelf: 'center',
-  },
-
-  inputAndroid: {
-    color: 'white',
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'white',
-    borderRadius: 8,
-    paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
 

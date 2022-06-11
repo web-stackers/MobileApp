@@ -6,6 +6,7 @@ import Sbutton from '../../../../components/Sbutton';
 import Sdate from '../../../../components/FormComponents/Sdate';
 import StextInput from '../../../../components/FormComponents/StextInput';
 import Sheader from '../../../../components/Sheader';
+import Sselect from '../../../../components/FormComponents/Sselect';
 
 import {DarkTheme, Surface, ThemeProvider} from 'react-native-paper';
 import DropDown from 'react-native-paper-dropdown';
@@ -52,23 +53,14 @@ const JobDetails = ({navigation}) => {
     <View style={styles.container}>
       <Sheader title="Search for provider"></Sheader>
       <SafeAreaView>
-        <ThemeProvider theme={DarkTheme}>
-          <Surface style={styles.containerStyle}>
-            <SafeAreaView>
-              <DropDown
-                label={'Job Type'}
-                mode={'outlined'}
-                visible={showDropDown}
-                showDropDown={() => setShowDropDown(true)}
-                onDismiss={() => setShowDropDown(false)}
-                value={jobType}
-                setValue={setJobType}
-                list={jobList}
-              />
-              <View style={styles.spacerStyle} />
-            </SafeAreaView>
-          </Surface>
-        </ThemeProvider>
+        <View style={styles.containerStyle}>
+          <Sselect
+            jobList={jobList}
+            jobType={jobType}
+            setJobType={setJobType}
+          />
+        </View>
+
         <View style={styles.description}>
           <Text style={styles.text}>Description about the issue?</Text>
           <StextInput label="Job Description" multiline={true} />
