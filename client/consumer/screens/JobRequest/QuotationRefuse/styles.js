@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
     width: 150,
     marginBottom: 50,
   },
+  textField: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 300,
+  },
 });
 
 export default styles;

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
-import StextArea from '../../../../components/FormComponents/StextArea';
+import StextInput from '../../../../components/FormComponents/StextInput';
 
 const QuotationRefuse = ({navigation}) => {
+  const [text, setText] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.message}>
@@ -17,7 +18,15 @@ const QuotationRefuse = ({navigation}) => {
           style={styles.JRefusePic}
           source={require('../../../../assets/images/JRefuse.jpg')}
         />
-        <StextArea></StextArea>
+      </View>
+
+      <View style={styles.textField}>
+        <StextInput
+          label="Reason"
+          multiline={true}
+          value={text}
+          onChangeText={text => setText(text)}
+        />
       </View>
 
       <View style={styles.btngrp}>
