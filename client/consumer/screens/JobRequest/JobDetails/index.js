@@ -8,11 +8,7 @@ import StextInput from '../../../../components/FormComponents/StextInput';
 import Sheader from '../../../../components/Sheader';
 import Sselect from '../../../../components/FormComponents/Sselect';
 
-import {DarkTheme, Surface, ThemeProvider} from 'react-native-paper';
-import DropDown from 'react-native-paper-dropdown';
-
 const JobDetails = ({navigation}) => {
-  const [showDropDown, setShowDropDown] = useState(false);
   const [jobType, setJobType] = useState('');
 
   const jobList = [
