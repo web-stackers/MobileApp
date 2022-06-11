@@ -26,7 +26,7 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
-  const handleSubmit = () => navigation.navigate('JobAcknowledge');
+  const handleSubmit = () => navigation.navigate('NoProviders');
 
   const AlertCancel = () =>
     Alert.alert(

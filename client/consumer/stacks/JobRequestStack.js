@@ -8,6 +8,7 @@ import WithdrawalAcknowledge from '../screens/JobRequest/WithdrawalAcknowledge';
 import QuotationDetails from '../screens/JobRequest/QuotationDetails';
 import QuotationRefuse from '../screens/JobRequest/QuotationRefuse';
 import CategorySelector from '../screens/JobRequest/CategorySelector';
+import NoProviders from '../screens/JobRequest/NoProviders';
 
 const JobRequestStack = createNativeStackNavigator();
 
@@ -39,6 +40,14 @@ const JobRequestStackScreen = () => (
     <JobRequestStack.Screen
       name="JobWithdrawal"
       component={JobWithdrawal}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobRequestStack.Screen
+      name="NoProviders"
+      component={NoProviders}
       options={{
         header: () => null,
       }}
