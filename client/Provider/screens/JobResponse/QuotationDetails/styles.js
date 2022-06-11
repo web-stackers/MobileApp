@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -6,23 +6,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#121212',
         alignItems: 'center',
         width: '100%',
-        height: Dimensions.get('window').height,
     },
     quotationForm: {
         alignItems: 'center',
-        position: 'absolute',
-        bottom: 25
+        width: '95%',
+        flex: 1,
+        justifyContent: 'space-between',
+        marginBottom: 25
     },
     QPic: {
         height: 180,
         width: 270,
-        marginTop: 150
+        marginTop: 80,
+        marginBottom: 40
     },
     caption: {
         color: '#fff',
         fontSize: 22,
-        marginTop: 55,
-        margin: 50,
+        marginTop: 50,
+        margin: 40,
         textAlign: 'center'
     }
 });

@@ -19,6 +19,7 @@ const JobRefusePage = ({navigation}) => {
 
       <View style={styles.btngrp}>
         <Sbutton
+          primary={true}
           text="Confirm"
           onPress={() =>
             navigation.push('Acknowledgement', {

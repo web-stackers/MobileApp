@@ -13,7 +13,7 @@ const Quotation = ({navigation}) => {
 
       <View style={styles.btngrp}>
         <Sbutton
-          type="primary"
+          primary={true}
           text="Send quotation"
           onPress={() =>
             navigation.push('Acknowledgement', {

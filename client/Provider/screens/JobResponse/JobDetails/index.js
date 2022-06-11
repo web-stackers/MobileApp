@@ -19,8 +19,9 @@ const JobDetails = ({navigation}) => {
 
       <View style={styles.btngrp}>
         <Sbutton
+          primary={true}
           text="Accept"
-          onPress={() => navigation.push('Quotation')}
+          onPress={() => navigation.push('Quotation Details')}
         />
         <Sbutton
           text="Refuse"

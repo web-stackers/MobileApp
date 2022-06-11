@@ -13,15 +13,22 @@ const QuotationDetails = ({navigation}) => {
         source={require('../../../../assets/images/QPic.png')}
       />
 
-      <Text style={styles.caption}>
-        Enter the estimated amount and time duration to complete the job. It
-        will be sent to the customer
-      </Text>
-
       <View style={styles.quotationForm}>
-        <Stextbox />
-        <Stextbox />
+        <Stextbox 
+          label="Enter the required time"
+        />
+
+        <Stextbox 
+          label="Enter estimated amount"
+        />
+
+        <Text style={styles.caption}>
+          Enter the estimated amount and time duration to complete the job. It
+          will be sent to the customer
+        </Text>
+        
         <Sbutton
+          primary={true}
           text="Next"
           onPress={() => navigation.push('Quotation Preview')}
         />

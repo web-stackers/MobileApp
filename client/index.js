@@ -9,15 +9,14 @@ import {name as appName} from './app.json';
 
 const theme = {
   ...DefaultTheme,
-  /* dark: true,
-  mode: 'adaptive', */
   roundness: 0,
   colors: {
     ...DefaultTheme.colors,
     primary: '#652C9E',
     accent: '#1F2221',
     background: '#121212',
-    text: 'white'
+    text: 'white',
+    placeholder: '#797D7F'
   },
 
 };

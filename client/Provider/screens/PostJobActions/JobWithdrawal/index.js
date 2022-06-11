@@ -20,7 +20,7 @@ const JobWithdrawal = ({navigation}) => {
 
             <View style={styles.btngrp}>
                 <Sbutton
-                    type='primary'
+                    primary={true}
                     text='Confirm' 
                     onPress={() => navigation.push('Acknowledgement', {
                         title: "Informed the Customer !",

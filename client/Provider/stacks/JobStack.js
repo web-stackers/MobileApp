@@ -12,10 +12,13 @@ const JobStack = createNativeStackNavigator();
 
 const JobStackScreen = () => (
   <JobStack.Navigator>
-    <JobStack.Screen name="Job Details" component={JobDetails} />
+    <JobStack.Screen 
+      name="Job Details" 
+      component={JobDetails} 
+    />
 
     <JobStack.Screen
-      name="Quotation"
+      name="Quotation Details"
       component={QuotationDetails}
       title="Job Quotation"
     />
@@ -28,7 +31,10 @@ const JobStackScreen = () => (
       }}
     />
 
-    <JobStack.Screen name="Quotation Preview" component={Quotation} />
+    <JobStack.Screen 
+      name="Quotation Preview" 
+      component={Quotation} 
+    />
 
     <JobStack.Screen
       name="Acknowledgement"
@@ -38,7 +44,10 @@ const JobStackScreen = () => (
       }}
     />
 
-    <JobStack.Screen name="Job Withdrawal" component={JobWithdrawal} />
+    <JobStack.Screen 
+      name="Job Withdrawal" 
+      component={JobWithdrawal} 
+    />
   </JobStack.Navigator>
 );
 
