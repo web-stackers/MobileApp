@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   btngrp: {
-    width: '100%',
+    width: '95%',
     position: 'absolute',
     bottom: 15,
     alignSelf: 'center',

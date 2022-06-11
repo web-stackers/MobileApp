@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   btngrp: {
-    width: '100%',
+    width: '95%',
     position: 'absolute',
     bottom: 35,
     alignSelf: 'center',
