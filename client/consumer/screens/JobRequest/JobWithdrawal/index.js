@@ -33,17 +33,21 @@ const JobWithdrawal = ({navigation}) => {
   };
 
   const AlertCancel = () =>
-    Alert.alert('Cancel', 'Are you sure to leave this page? ', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => navigation.navigate('CategorySelector'),
-      },
-    ]);
+    Alert.alert(
+      'Cancel',
+      'Are you sure to leave this page? Your withdrawal request will not be send to the admin',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('CategorySelector'),
+        },
+      ],
+    );
   return (
     <View style={styles.container}>
       <View style={styles.message}>
@@ -56,6 +60,9 @@ const JobWithdrawal = ({navigation}) => {
         />
       </View>
       <View style={styles.textField}>
+        <Text style={styles.subtitle}>
+          Please note that, your reason will be send to the admin.
+        </Text>
         <StextInput
           label="Reason"
           multiline={true}

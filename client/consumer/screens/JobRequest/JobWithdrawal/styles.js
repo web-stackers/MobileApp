@@ -16,17 +16,28 @@ const styles = StyleSheet.create({
   textField: {
     width: '100%',
     position: 'absolute',
-    bottom: 350,
+    bottom: 280,
   },
   message: {
     width: '100%',
     height: Dimensions.get('window').height,
     alignItems: 'center',
     marginTop: 80,
+    marginLeft: 10,
   },
   title: {
     color: '#fff',
     fontSize: 28,
+    justifyContent: 'center',
+    alignContent: 'center',
+    // marginBottom: 50,
+  },
+  subtitle: {
+    color: '#fff',
+    fontSize: 15,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginLeft: 20,
     // marginBottom: 50,
   },
   JRefusePic: {
