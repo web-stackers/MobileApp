@@ -72,8 +72,8 @@ const JobWithdrawal = ({navigation}) => {
       </View>
 
       <View style={styles.btngrp}>
-        <Sbutton type="primary" text="Confirm" onPress={handleSubmit} />
-        <Sbutton type="secondary" text="Cancel" onPress={AlertCancel} />
+        <Sbutton primary={true} text="Confirm" onPress={handleSubmit} />
+        <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
     </View>
   );

@@ -76,8 +76,12 @@ const JobDetails = ({navigation}) => {
           <StextInput label="Job Description" multiline={true} />
         </SafeAreaView>
         <View style={styles.btngrp}>
-          <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
-          <Sbutton type="secondary" text="Cancel" onPress={AlertCancel} />
+          <Sbutton
+            primary={true}
+            text="Search Provider"
+            onPress={handleSubmit}
+          />
+          <Sbutton text="Cancel" onPress={AlertCancel} />
         </View>
       </View>
     </ThemeProvider>

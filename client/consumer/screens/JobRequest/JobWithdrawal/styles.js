@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   textField: {
     width: '100%',
     position: 'absolute',
-    bottom: 280,
+    bottom: 268,
   },
   message: {
     width: '100%',
@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     marginLeft: 20,
+    marginBottom: 18,
+    position: 'relative',
   },
   JRefusePic: {
     height: 150,
