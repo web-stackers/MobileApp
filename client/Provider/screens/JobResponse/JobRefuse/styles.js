@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     alignItems: 'center',
     width: '100%',
-    height: Dimensions.get('window').height,
   },
   btngrp: {
     width: '95%',
@@ -15,19 +14,27 @@ const styles = StyleSheet.create({
   },
   message: {
     width: '100%',
-    height: Dimensions.get('window').height,
     alignItems: 'center',
-    marginTop: 80,
+    marginTop: 60,
   },
   title: {
-    color: '#fff',
     fontSize: 28,
     marginBottom: 50,
+    textAlign: 'center'
   },
   JRefusePic: {
     height: 150,
     width: 150,
+    marginBottom: 50
   },
+  reasons: {
+    padding: 5
+  },
+  radioButton: {
+    display:'flex',
+    flexDirection:'row',
+    alignItems: 'center',
+  }
 });
 
 export default styles;
