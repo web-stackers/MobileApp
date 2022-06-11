@@ -14,7 +14,7 @@ const JobWithdrawal = ({navigation}) => {
                 </Text>
                 <Image
                     style={styles.JRefusePic}
-                    source={require('../../../../assets/images/JRefuse.jpg')}
+                    source={require('../../../../assets/images/JRefuse.png')}
                 />
             </View>
 

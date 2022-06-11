@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Image} from 'react-native';
+import { RadioButton, Text } from 'react-native-paper';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
+import StextBox from '../../../../components/StextBox';
 
 const JobRefusePage = ({navigation}) => {
+  const [value, setValue] = React.useState("");
+
   return (
     <View style={styles.container}>
       <View style={styles.message}>
@@ -13,9 +17,35 @@ const JobRefusePage = ({navigation}) => {
         </Text>
         <Image
           style={styles.JRefusePic}
-          source={require('../../../../assets/images/JRefuse.jpg')}
+          source={require('../../../../assets/images/JRefuse.png')}
         />
       </View>
+
+      <RadioButton.Group
+        onValueChange={newValue=>setValue(newValue)}
+        value={value}
+        style={styles.reasons}
+      >
+        <View style={styles.radioButton}>
+          <RadioButton value="one" />
+          <Text>Requested for wrong skill set</Text>
+        </View>
+        <View style={styles.radioButton}>
+          <RadioButton value="two" />
+          <Text>Unavailable on requested day</Text>
+        </View>
+        <View style={styles.radioButton}>
+          <RadioButton value="three" />
+          <Text>Not clear about the request</Text>
+        </View>
+        <View style={styles.radioButton}>
+          <RadioButton value="four" />
+          <Text>Other</Text>
+        </View>
+        <StextBox 
+          label="Enter the reason"
+        />
+      </RadioButton.Group>
 
       <View style={styles.btngrp}>
         <Sbutton

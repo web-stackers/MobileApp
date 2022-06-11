@@ -10,7 +10,7 @@ const JobDetails = ({navigation}) => {
     <ScrollView style={styles.container}>
       <Image
         style={styles.JDetailsPic}
-        source={require('../../../../assets/images/JDetails.jpg')}
+        source={require('../../../../assets/images/JDetails.png')}
       />
 
       <Text style={styles.content}>Job Description</Text>
