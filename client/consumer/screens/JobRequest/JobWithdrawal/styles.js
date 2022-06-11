@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     justifyContent: 'center',
     alignContent: 'center',
-    // marginBottom: 50,
   },
   subtitle: {
     color: '#fff',
@@ -38,7 +37,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     marginLeft: 20,
-    // marginBottom: 50,
   },
   JRefusePic: {
     height: 150,
