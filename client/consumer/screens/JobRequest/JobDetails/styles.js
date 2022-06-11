@@ -19,8 +19,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     marginLeft: 15,
-    marginBottom: 20,
-    marginTop: 40,
+    marginBottom: 10,
+    marginTop: 15,
+  },
+  description: {
+    marginBottom: 10,
+    marginLeft: 5,
   },
   selectText: {
     color: 'white',
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   containerStyle: {
-    margin: 15,
+    margin: 10,
   },
   btngrp: {
     width: '95%',
@@ -44,6 +48,7 @@ const styles = StyleSheet.create({
     bottom: 35,
     alignSelf: 'center',
   },
+
   inputAndroid: {
     color: 'white',
     fontSize: 16,

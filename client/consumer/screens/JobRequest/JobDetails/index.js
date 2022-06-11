@@ -49,12 +49,12 @@ const JobDetails = ({navigation}) => {
     );
 
   return (
-    <ThemeProvider theme={DarkTheme}>
-      <View style={styles.container}>
-        <Sheader title="Search for provider"></Sheader>
-        <SafeAreaView>
+    <View style={styles.container}>
+      <Sheader title="Search for provider"></Sheader>
+      <SafeAreaView>
+        <ThemeProvider theme={DarkTheme}>
           <Surface style={styles.containerStyle}>
-            <SafeAreaView style={styles.safeContainerStyle}>
+            <SafeAreaView>
               <DropDown
                 label={'Job Type'}
                 mode={'outlined'}
@@ -68,23 +68,21 @@ const JobDetails = ({navigation}) => {
               <View style={styles.spacerStyle} />
             </SafeAreaView>
           </Surface>
-
-          <Text style={styles.text}>When you want the work to be done?</Text>
-
-          <Sdate title="Select Job Requesting Date and Time" />
+        </ThemeProvider>
+        <View style={styles.description}>
           <Text style={styles.text}>Description about the issue?</Text>
           <StextInput label="Job Description" multiline={true} />
-        </SafeAreaView>
-        <View style={styles.btngrp}>
-          <Sbutton
-            primary={true}
-            text="Search Provider"
-            onPress={handleSubmit}
-          />
-          <Sbutton text="Cancel" onPress={AlertCancel} />
         </View>
+      </SafeAreaView>
+      <Text style={styles.text}>When you want the work to be done?</Text>
+
+      <Sdate title="Select Job Requesting Date and Time" />
+
+      <View style={styles.btngrp}>
+        <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />
+        <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
-    </ThemeProvider>
+    </View>
   );
 };
 
