@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     height: 55,
     padding: 15,
     backgroundColor: '#652C9E',
-    marginBottom: 20,
+    marginBottom: 50,
   },
   text: {
     color: 'white',

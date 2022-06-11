@@ -12,25 +12,24 @@ import DropDown from 'react-native-paper-dropdown';
 
 const JobDetails = ({navigation}) => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const [gender, setGender] = useState('');
+  const [jobType, setJobType] = useState('');
 
-  const genderList = [
+  const jobList = [
     {
-      label: 'Male',
-      value: 'male',
+      label: 'Plumber',
+      value: 'Plumber',
     },
     {
-      label: 'Female',
-      value: 'female',
+      label: 'Painter',
+      value: 'Painter',
     },
     {
-      label: 'Others',
-      value: 'others',
+      label: 'Carpender',
+      value: 'Carpender',
     },
   ];
 
   const handleSubmit = () => navigation.navigate('JobAcknowledge');
-  const [jobType, setJobType] = useState('');
 
   const AlertCancel = () =>
     Alert.alert(
@@ -57,14 +56,14 @@ const JobDetails = ({navigation}) => {
           <Surface style={styles.containerStyle}>
             <SafeAreaView style={styles.safeContainerStyle}>
               <DropDown
-                label={'Gender'}
+                label={'Job Type'}
                 mode={'outlined'}
                 visible={showDropDown}
                 showDropDown={() => setShowDropDown(true)}
                 onDismiss={() => setShowDropDown(false)}
-                value={gender}
-                setValue={setGender}
-                list={genderList}
+                value={jobType}
+                setValue={setJobType}
+                list={jobList}
               />
               <View style={styles.spacerStyle} />
             </SafeAreaView>

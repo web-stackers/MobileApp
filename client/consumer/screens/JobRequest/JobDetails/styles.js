@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 15,
     marginBottom: 20,
+    marginTop: 40,
   },
   selectText: {
     color: 'white',
@@ -33,6 +34,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignSelf: 'center',
     justifyContent: 'center',
+  },
+  containerStyle: {
+    margin: 15,
   },
   btngrp: {
     width: '100%',
