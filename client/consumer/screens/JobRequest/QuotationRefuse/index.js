@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Alert} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -8,6 +8,30 @@ import StextInput from '../../../../components/FormComponents/StextInput';
 
 const QuotationRefuse = ({navigation}) => {
   const [text, setText] = useState('');
+  const handleSubmit = () => {
+    if (text === '') {
+      Alert.alert(
+        'Reason for Refusal',
+        'Please provide a reason, why you want to refuse the quotation.',
+      );
+    } else {
+      Alert.alert(
+        'Rejection of Quotation',
+        'Are you sure to submit the reason?',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('CategorySelector'),
+          },
+        ],
+      );
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.message}>
@@ -30,11 +54,7 @@ const QuotationRefuse = ({navigation}) => {
       </View>
 
       <View style={styles.btngrp}>
-        <Sbutton
-          type="primary"
-          text="Confirm"
-          onPress={() => navigation.navigate('CategorySelector')}
-        />
+        <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
         <Sbutton
           type="secondary"
           text="Cancel"
