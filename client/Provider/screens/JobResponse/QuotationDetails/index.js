@@ -14,19 +14,15 @@ const QuotationDetails = ({navigation}) => {
       />
 
       <View style={styles.quotationForm}>
-        <Stextbox 
-          label="Enter the required time"
-        />
+        <Stextbox label="Enter the required time" />
 
-        <Stextbox 
-          label="Enter estimated amount"
-        />
+        <Stextbox label="Enter estimated amount" />
 
         <Text style={styles.caption}>
           Enter the estimated amount and time duration to complete the job. It
           will be sent to the customer
         </Text>
-        
+
         <Sbutton
           primary={true}
           text="Next"

@@ -1,22 +1,22 @@
 import React from 'react';
-import { TextInput } from 'react-native-paper';
-import { useTheme } from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 
 import styles from './styles';
 
 const StextBox = ({label, props}) => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   const [text, setText] = React.useState('');
 
   return (
-    <TextInput 
-      mode= 'outlined'
-      outlineColor='#797D7F'
+    <TextInput
+      mode="outlined"
+      outlineColor="#797D7F"
       activeOutlineColor={colors.primary}
-      style={styles.input} 
+      style={styles.input}
       placeholder={label}
-      onChangeText={text => setText(text)} 
-      value={text} 
+      onChangeText={text => setText(text)}
+      value={text}
     />
   );
 };
