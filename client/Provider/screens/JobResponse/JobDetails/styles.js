@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   btngrp: {
-    width: '100%',
+    width: '95%',
     alignSelf: 'center',
     marginTop: 25,
+    marginBottom: 15
   },
   JDetailsPic: {
     height: 180,

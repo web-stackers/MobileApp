@@ -22,7 +22,6 @@ const QuotationDetails = ({navigation}) => {
         <Stextbox />
         <Stextbox />
         <Sbutton
-          type="primary"
           text="Next"
           onPress={() => navigation.push('Quotation Preview')}
         />

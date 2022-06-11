@@ -1,21 +1,20 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View} from 'react-native';
+import { Button, Text } from 'react-native-paper';
 
 import styles from './styles';
 
-const Sbutton = ({type, text, onPress}) => {
-  const bgColor = type === 'primary' ? '#652C9E' : '#1F2221';
-  const textColor = '#FFF';
+const Sbutton = ({ text, onPress}) => {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        style={[styles.button, {backgroundColor: bgColor}]}
-        onPress={onPress}>
-        <Text style={[styles.text, {color: textColor}]}>{text}</Text>
-      </Pressable>
+      <Button mode="contained" onPress={onPress} style={styles.button}>
+        <Text style={styles.text}>{text}</Text>
+      </Button>
     </View>
-  );
+  )
+
+  
 };
 
 export default Sbutton;

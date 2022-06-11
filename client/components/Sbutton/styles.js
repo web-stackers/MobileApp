@@ -3,17 +3,15 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    padding: 5,
+    padding: 4,
   },
   button: {
-    padding: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 5,
+    width: '100%'
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    textTransform: 'uppercase',
   },
 });
 

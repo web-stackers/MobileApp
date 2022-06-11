@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   doneButton: {
     position: 'absolute',
     bottom: 50,
-    width: '100%',
+    width: '95%',
   },
 });
 

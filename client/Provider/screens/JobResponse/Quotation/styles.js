@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     btngrp: {
-        width: '100%',
+        width: '95%',
         position: 'absolute',
         bottom: 25
     },

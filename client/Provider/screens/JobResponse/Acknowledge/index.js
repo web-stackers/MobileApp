@@ -18,7 +18,6 @@ const Acknowledge = ({route, navigation}) => {
 
       <View style={styles.doneButton}>
         <Sbutton
-          type="primary"
           text="Done"
           onPress={() => navigation.navigate('Job Details')}
         />

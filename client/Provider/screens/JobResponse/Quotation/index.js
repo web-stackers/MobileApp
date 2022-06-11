@@ -23,7 +23,6 @@ const Quotation = ({navigation}) => {
           }
         />
         <Sbutton
-          type="secondary"
           text="Cancel"
           onPress={() => navigation.navigate('Job Details')}
         />
