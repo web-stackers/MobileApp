@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, SafeAreaView, Alert} from 'react-native';
 import {Linking} from 'react-native';
 
@@ -16,6 +16,7 @@ const JobDetails = ({navigation}) => {
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
+  const [jobTypeList, setJobTypeList] = useState([]);
 
   const jobList = [
     {
@@ -31,6 +32,17 @@ const JobDetails = ({navigation}) => {
       value: 'Carpender',
     },
   ];
+
+  const getJobTYpes = () => {
+    axios.get('http://10.0.2.2:5000/jobTypeCategory').then(response => {
+      console.log(response.data);
+      setJobTypeList(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getJobTYpes();
+  }, []);
 
   const handleSubmit = () => {
     if (jobType === '') {
