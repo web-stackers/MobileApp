@@ -4,33 +4,13 @@ import {Text, View, SafeAreaView, Alert} from 'react-native';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import StextInput from '../../../../components/FormComponents/StextInput';
+import StextBox from '../../../../components/StextBox';
 import Sheader from '../../../../components/Sheader';
 import Sselect from '../../../../components/FormComponents/Sselect';
+import Sdate from '../../../../components/FormComponents/Sdate';
 
-import RNDateTimePicker from '@react-native-community/datetimepicker';
 const JobDetails = ({navigation}) => {
   const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-    setShow(false);
-    setDate(currentDate);
-  };
-
-  const showMode = currentMode => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-  };
-
-  const showTimepicker = () => {
-    showMode('time');
-  };
   const [jobType, setJobType] = useState('');
 
   const jobList = [
@@ -81,31 +61,13 @@ const JobDetails = ({navigation}) => {
 
         <View style={styles.description}>
           <Text style={styles.text}>Description about the issue?</Text>
+          {/* <StextBox label="Job Description" /> */}
           <StextInput label="Job Description" multiline={true} />
         </View>
       </SafeAreaView>
       <Text style={styles.text}>When you want the work to be done?</Text>
 
-      <View>
-        <View>
-          <Sbutton onPress={showDatepicker} text="Show date picker" />
-        </View>
-        <View>
-          <Sbutton onPress={showTimepicker} text="Show time picker" />
-        </View>
-        <Text style={styles.text}>selected: {date.toLocaleString()}</Text>
-        {show && (
-          <RNDateTimePicker
-            minimumDate={new Date()}
-            themeVariant="dark"
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            onChange={onChange}
-          />
-        )}
-      </View>
+      <Sdate date={date} setDate={setDate} />
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />

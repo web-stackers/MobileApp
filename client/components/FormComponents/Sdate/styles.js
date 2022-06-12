@@ -6,22 +6,12 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 100,
   },
-
-  dateText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    color: 'grey',
-    marginLeft: 30,
-    marginBottom: 15,
-  },
-
-  dateSubText: {
-    fontSize: 16,
-    textTransform: 'uppercase',
-    color: 'grey',
-    marginLeft: 50,
-    marginBottom: 20,
+  text: {
+    color: 'white',
+    fontSize: 20,
+    marginLeft: 15,
+    marginBottom: 10,
+    marginTop: 15,
   },
 });
 
