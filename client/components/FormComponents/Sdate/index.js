@@ -9,6 +9,9 @@ const Sdate = ({date, setDate}) => {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
+  const thisYear = new Date().getFullYear();
+  const maxWorkDate = new Date().setFullYear(thisYear + 2);
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
@@ -39,6 +42,7 @@ const Sdate = ({date, setDate}) => {
       {show && (
         <RNDateTimePicker
           minimumDate={new Date()}
+          maximumDate={maxWorkDate}
           themeVariant="dark"
           testID="dateTimePicker"
           value={date}
