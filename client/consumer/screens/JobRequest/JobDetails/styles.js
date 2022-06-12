@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
   },
   btngrp: {
     width: '95%',
-    position: 'absolute',
-    bottom: 35,
+    marginBottom: 10,
     alignSelf: 'center',
   },
 });

@@ -29,7 +29,23 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
-  const handleSubmit = () => navigation.navigate('NoProviders');
+  // const handleSubmit = () => navigation.navigate('NoProviders');
+
+  const handleSubmit = () => {
+    if (jobType === '') {
+      Alert.alert(
+        'Job Type cannot be empty',
+        'Please select what kind of service you need from the dropdown menu',
+      );
+    } else if (description === '') {
+      Alert.alert(
+        'Description cannot be empty',
+        'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
+      );
+    } else {
+      navigation.navigate('NoProviders');
+    }
+  };
 
   const AlertCancel = () =>
     Alert.alert(
