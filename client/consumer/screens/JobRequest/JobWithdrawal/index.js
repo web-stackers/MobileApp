@@ -65,15 +65,14 @@ const JobWithdrawal = ({navigation}) => {
         </Text>
         <StextInput
           label="Reason"
-          multiline={true}
           value={text}
           onChangeText={text => setText(text)}
         />
       </View>
 
       <View style={styles.btngrp}>
-        <Sbutton type="primary" text="Confirm" onPress={handleSubmit} />
-        <Sbutton type="secondary" text="Cancel" onPress={AlertCancel} />
+        <Sbutton primary={true} text="Confirm" onPress={handleSubmit} />
+        <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
     </View>
   );

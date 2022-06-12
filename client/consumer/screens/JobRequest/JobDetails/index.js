@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 import {Text, View, SafeAreaView, Alert} from 'react-native';
+import {Linking} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
-import Sdate from '../../../../components/FormComponents/Sdate';
 import StextInput from '../../../../components/FormComponents/StextInput';
 import Sheader from '../../../../components/Sheader';
-
-import {DarkTheme, Surface, ThemeProvider} from 'react-native-paper';
-import DropDown from 'react-native-paper-dropdown';
+import Sselect from '../../../../components/FormComponents/Sselect';
+import Sdate from '../../../../components/FormComponents/Sdate';
 
 const JobDetails = ({navigation}) => {
-  const [showDropDown, setShowDropDown] = useState(false);
+  const [date, setDate] = useState(new Date());
   const [jobType, setJobType] = useState('');
+  const [description, setDescription] = useState('');
 
   const jobList = [
     {
@@ -29,7 +29,23 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
-  const handleSubmit = () => navigation.navigate('JobAcknowledge');
+  // const handleSubmit = () => navigation.navigate('NoProviders');
+
+  const handleSubmit = () => {
+    if (jobType === '') {
+      Alert.alert(
+        'Job Type cannot be empty',
+        'Please select what kind of service you need from the dropdown menu',
+      );
+    } else if (description === '') {
+      Alert.alert(
+        'Description cannot be empty',
+        'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
+      );
+    } else {
+      navigation.navigate('NoProviders');
+    }
+  };
 
   const AlertCancel = () =>
     Alert.alert(
@@ -49,38 +65,41 @@ const JobDetails = ({navigation}) => {
     );
 
   return (
-    <ThemeProvider theme={DarkTheme}>
-      <View style={styles.container}>
-        <Sheader title="Search for provider"></Sheader>
-        <SafeAreaView>
-          <Surface style={styles.containerStyle}>
-            <SafeAreaView style={styles.safeContainerStyle}>
-              <DropDown
-                label={'Job Type'}
-                mode={'outlined'}
-                visible={showDropDown}
-                showDropDown={() => setShowDropDown(true)}
-                onDismiss={() => setShowDropDown(false)}
-                value={jobType}
-                setValue={setJobType}
-                list={jobList}
-              />
-              <View style={styles.spacerStyle} />
-            </SafeAreaView>
-          </Surface>
-
-          <Text style={styles.text}>When you want the work to be done?</Text>
-
-          <Sdate title="Select Job Requesting Date and Time" />
-          <Text style={styles.text}>Description about the issue?</Text>
-          <StextInput label="Job Description" multiline={true} />
-        </SafeAreaView>
-        <View style={styles.btngrp}>
-          <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
-          <Sbutton type="secondary" text="Cancel" onPress={AlertCancel} />
+    <View style={styles.container}>
+      <Sheader title="Search for provider"></Sheader>
+      <SafeAreaView>
+        <View style={styles.containerStyle}>
+          <Sselect
+            jobList={jobList}
+            jobType={jobType}
+            setJobType={setJobType}
+          />
         </View>
+
+        <View style={styles.description}>
+          <Text style={styles.text}>Description about the issue?</Text>
+          <StextInput
+            label="Job Description"
+            value={description}
+            onChangeText={description => setDescription(description)}
+          />
+        </View>
+      </SafeAreaView>
+      <Text style={styles.text}>When you want the work to be done?</Text>
+
+      <Sdate date={date} setDate={setDate} />
+
+      <Text
+        style={styles.linkText}
+        onPress={() => Linking.openURL('http://google.com')}>
+        Change workplace location
+      </Text>
+
+      <View style={styles.btngrp}>
+        <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />
+        <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
-    </ThemeProvider>
+    </View>
   );
 };
 

@@ -55,8 +55,8 @@ const QuotationDetails = ({navigation}) => {
       <Text style={styles.subContent}>Approximated Duration:</Text>
 
       <View style={styles.btngrp}>
-        <Sbutton type="primary" text="Accept" onPress={AlertAccept} />
-        <Sbutton type="secondary" text="Refuse" onPress={AlertReject} />
+        <Sbutton primary={true} text="Accept" onPress={AlertAccept} />
+        <Sbutton text="Refuse" onPress={AlertReject} />
       </View>
     </View>
   );

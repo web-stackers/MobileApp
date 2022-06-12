@@ -54,9 +54,8 @@ const QuotationRefuse = ({navigation}) => {
       </View>
 
       <View style={styles.btngrp}>
-        <Sbutton type="primary" text="Submit" onPress={handleSubmit} />
+        <Sbutton primary={true} text="Submit" onPress={handleSubmit} />
         <Sbutton
-          type="secondary"
           text="Cancel"
           onPress={() => navigation.navigate('CategorySelector')}
         />

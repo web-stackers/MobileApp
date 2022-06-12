@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   input: {
-    height: 50,
+    height: 100,
     width: 400,
-    margin: 5,
+    margin: 7,
     borderWidth: 1,
     padding: 2,
     color: 'white',

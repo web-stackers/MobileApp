@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 10,
   },
   tick: {
     height: 150,
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   doneButton: {
     position: 'absolute',
     bottom: 50,
-    width: '100%',
+    width: '95%',
   },
 });
 

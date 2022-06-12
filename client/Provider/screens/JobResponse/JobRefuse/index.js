@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Image} from 'react-native';
-import { RadioButton, Text } from 'react-native-paper';
+import {RadioButton, Text} from 'react-native-paper';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
-import StextBox from '../../../../components/StextBox';
+import StextBox from '../../../../components/FormComponents/StextBox';
 
 const JobRefusePage = ({navigation}) => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState('');
 
   return (
     <View style={styles.container}>
@@ -22,10 +22,9 @@ const JobRefusePage = ({navigation}) => {
       </View>
 
       <RadioButton.Group
-        onValueChange={newValue=>setValue(newValue)}
+        onValueChange={newValue => setValue(newValue)}
         value={value}
-        style={styles.reasons}
-      >
+        style={styles.reasons}>
         <View style={styles.radioButton}>
           <RadioButton value="one" />
           <Text>Requested for wrong skill set</Text>
@@ -42,9 +41,7 @@ const JobRefusePage = ({navigation}) => {
           <RadioButton value="four" />
           <Text>Other</Text>
         </View>
-        <StextBox 
-          label="Enter the reason"
-        />
+        <StextBox label="Enter the reason" />
       </RadioButton.Group>
 
       <View style={styles.btngrp}>

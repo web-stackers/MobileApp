@@ -19,40 +19,30 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     marginLeft: 15,
-    marginBottom: 20,
-    marginTop: 40,
+    marginBottom: 8,
+    marginTop: 8,
   },
-  selectText: {
-    color: 'white',
-    fontSize: 20,
+  linkText: {
+    color: 'blue',
+    fontSize: 24,
     marginLeft: 15,
+    marginBottom: 8,
+    marginTop: 8,
   },
-  subtext: {
-    color: 'grey',
-    fontSize: 20,
-    marginLeft: 30,
-    marginTop: 5,
-    alignSelf: 'center',
-    justifyContent: 'center',
+
+  description: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 5,
   },
+
   containerStyle: {
-    margin: 15,
+    margin: 10,
   },
   btngrp: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 35,
+    width: '95%',
+    marginBottom: 10,
     alignSelf: 'center',
-  },
-  inputAndroid: {
-    color: 'white',
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'white',
-    borderRadius: 8,
-    paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
 

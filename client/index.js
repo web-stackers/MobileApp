@@ -16,15 +16,14 @@ const theme = {
     accent: '#1F2221',
     background: '#121212',
     text: 'white',
-    placeholder: '#797D7F'
+    placeholder: '#797D7F',
   },
-
 };
 
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Provider />
+      <Consumer />
     </PaperProvider>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TextInput, Image} from 'react-native';
 
 import styles from './styles';
-import Stextbox from '../../../../components/StextBox';
+import StextBox from '../../../../components/FormComponents/StextBox';
 import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation}) => {
@@ -14,19 +14,15 @@ const QuotationDetails = ({navigation}) => {
       />
 
       <View style={styles.quotationForm}>
-        <Stextbox 
-          label="Enter the required time"
-        />
+        <StextBox label="Enter the required time" />
 
-        <Stextbox 
-          label="Enter estimated amount"
-        />
+        <StextBox label="Enter estimated amount" />
 
         <Text style={styles.caption}>
           Enter the estimated amount and time duration to complete the job. It
           will be sent to the customer
         </Text>
-        
+
         <Sbutton
           primary={true}
           text="Next"

@@ -17,7 +17,7 @@ const Sacknowledge = ({title, subtitle, onPress}) => {
       </View>
 
       <View style={styles.doneButton}>
-        <Sbutton type="primary" text="Done" onPress={onPress} />
+        <Sbutton primary={true} text="Done" onPress={onPress} />
       </View>
     </View>
   );
