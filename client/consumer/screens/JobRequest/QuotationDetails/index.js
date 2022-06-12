@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView, Text, Image, Alert} from 'react-native';
 
 import styles from './styles';
@@ -6,8 +6,24 @@ import Sbutton from '../../../../components/Sbutton';
 import ScheckBox from '../../../../components/ScheckBox';
 import Sheader from '../../../../components/Sheader';
 
+import axios from 'axios';
+
 const QuotationDetails = ({navigation}) => {
-  const [checked, setChecked] = React.useState(false);
+  const [quotations, setQuotations] = useState([]);
+  const [checked, setChecked] = useState(false);
+
+  const getQuotations = () => {
+    axios
+      .get('http://10.0.2.2:5000/jobTypeCategory/627677245ef6e55d7f9bc96c')
+      .then(response => {
+        console.log(response.data);
+        setQuotations(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getQuotations();
+  }, []);
 
   const handleAccept = () => {
     if (checked === false) {
