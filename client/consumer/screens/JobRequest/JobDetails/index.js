@@ -16,7 +16,7 @@ const JobDetails = ({navigation}) => {
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
-  const [jobTypeLists, setJobTypeList] = useState([]);
+  const [jobTypeLists, setJobTypeLists] = useState([]);
 
   const jobList = [
     {
@@ -38,7 +38,7 @@ const JobDetails = ({navigation}) => {
       .get('http://10.0.2.2:5000/jobTypeCategory/constructionJobs')
       .then(response => {
         console.log(response.data);
-        setJobTypeList(response.data);
+        setJobTypeLists(response.data);
       });
   };
 
@@ -102,7 +102,6 @@ const JobDetails = ({navigation}) => {
             setJobType={setJobType}
           />
         </View>
-
         <View style={styles.description}>
           <Text style={styles.text}>Description about the issue?</Text>
           <StextInput
