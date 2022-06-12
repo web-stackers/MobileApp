@@ -96,8 +96,8 @@ const JobDetails = ({navigation}) => {
         <Text style={styles.text}>selected: {date.toLocaleString()}</Text>
         {show && (
           <RNDateTimePicker
+            minimumDate={new Date()}
             themeVariant="dark"
-            textColor="red"
             testID="dateTimePicker"
             value={date}
             mode={mode}
