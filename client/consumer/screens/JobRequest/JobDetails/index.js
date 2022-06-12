@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, SafeAreaView, Alert} from 'react-native';
+import {Linking} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -71,6 +72,12 @@ const JobDetails = ({navigation}) => {
       <Text style={styles.text}>When you want the work to be done?</Text>
 
       <Sdate date={date} setDate={setDate} />
+
+      <Text
+        style={styles.linkText}
+        onPress={() => Linking.openURL('http://google.com')}>
+        Change workplace location
+      </Text>
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />
