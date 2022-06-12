@@ -9,8 +9,11 @@ import Sheader from '../../../../components/Sheader';
 import Sselect from '../../../../components/FormComponents/Sselect';
 import Sdate from '../../../../components/FormComponents/Sdate';
 
+// import Job from '../../../../services/Job';
+import axios from 'axios';
+
 const JobDetails = ({navigation}) => {
-  const [date, setDate] = useState(new Date());
+  const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
 
@@ -29,8 +32,6 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
-  // const handleSubmit = () => navigation.navigate('NoProviders');
-
   const handleSubmit = () => {
     if (jobType === '') {
       Alert.alert(
@@ -43,7 +44,19 @@ const JobDetails = ({navigation}) => {
         'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
       );
     } else {
-      navigation.navigate('NoProviders');
+      axios
+        .post('http://10.0.2.2:5000/job', {
+          jobType,
+          description,
+          requestedTime,
+        })
+        .then(function (response) {
+          console.log(response);
+          navigation.navigate('NoProviders');
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
 
@@ -87,7 +100,7 @@ const JobDetails = ({navigation}) => {
       </SafeAreaView>
       <Text style={styles.text}>When you want the work to be done?</Text>
 
-      <Sdate date={date} setDate={setDate} />
+      <Sdate date={requestedTime} setDate={setrequestedTime} />
 
       <Text
         style={styles.linkText}
