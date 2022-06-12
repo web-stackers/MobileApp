@@ -65,7 +65,6 @@ const JobWithdrawal = ({navigation}) => {
         </Text>
         <StextInput
           label="Reason"
-          multiline={true}
           value={text}
           onChangeText={text => setText(text)}
         />

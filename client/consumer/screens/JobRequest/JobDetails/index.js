@@ -4,7 +4,6 @@ import {Text, View, SafeAreaView, Alert} from 'react-native';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import StextInput from '../../../../components/FormComponents/StextInput';
-import StextBox from '../../../../components/StextBox';
 import Sheader from '../../../../components/Sheader';
 import Sselect from '../../../../components/FormComponents/Sselect';
 import Sdate from '../../../../components/FormComponents/Sdate';
@@ -12,6 +11,7 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 const JobDetails = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [jobType, setJobType] = useState('');
+  const [description, setDescription] = useState('');
 
   const jobList = [
     {
@@ -61,8 +61,11 @@ const JobDetails = ({navigation}) => {
 
         <View style={styles.description}>
           <Text style={styles.text}>Description about the issue?</Text>
-          {/* <StextBox label="Job Description" /> */}
-          <StextInput label="Job Description" multiline={true} />
+          <StextInput
+            label="Job Description"
+            value={description}
+            onChangeText={description => setDescription(description)}
+          />
         </View>
       </SafeAreaView>
       <Text style={styles.text}>When you want the work to be done?</Text>
