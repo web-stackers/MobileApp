@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {View, ScrollView, Text, Image, Alert} from 'react-native';
 
@@ -14,10 +15,14 @@ const QuotationDetails = ({navigation}) => {
 
   const getQuotations = () => {
     axios
-      .get('http://10.0.2.2:5000/jobTypeCategory/627677245ef6e55d7f9bc96c')
+      // .get('http://10.0.2.2:5000/jobTypeCategory/62a0191bcaf1a28365d1e7fc')
+      .get('http://10.0.2.2:5000/jobAssignment/6213638f657adfba60a68786')
+      // .get(
+      //   'http://10.0.2.2:5000/job/user/userQuotation/621341023987d49e1f22f7a8',
+      // )
       .then(response => {
-        console.log(response.data);
         setQuotations(response.data);
+        console.log(quotations);
       });
   };
 
@@ -75,10 +80,14 @@ const QuotationDetails = ({navigation}) => {
         source={require('../../../../assets/images/JDetails.png')}
       />
 
-      <Text style={styles.subContent}>Job Type:</Text>
-      <Text style={styles.subContent}>Job Requested Date:</Text>
-      <Text style={styles.subContent}>Job Requested Time:</Text>
-      <Text style={styles.subContent}>Provider Name:</Text>
+      <Text style={styles.subContent}>Job Type: {quotations._id} </Text>
+      <Text style={styles.subContent}>
+        Job Requested Date: {quotations.state}
+      </Text>
+      <Text style={styles.subContent}>
+        Provider Name:
+        {/* {quotations.provider[0].name.fName} */}
+      </Text>
       <Text style={styles.subContent}>Quotation Amount:</Text>
       <Text style={styles.subContent}>Approximated Duration:</Text>
 
