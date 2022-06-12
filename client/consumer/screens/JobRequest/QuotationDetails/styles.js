@@ -20,16 +20,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 10,
   },
+
   btngrp: {
     width: '95%',
-    position: 'absolute',
-    bottom: 15,
+    marginTop: 25,
+    marginBottom: 15,
     alignSelf: 'center',
   },
   JDetailsPic: {
     height: 180,
     width: 270,
     marginTop: 50,
+    marginBottom: 50,
     alignSelf: 'center',
   },
 });
