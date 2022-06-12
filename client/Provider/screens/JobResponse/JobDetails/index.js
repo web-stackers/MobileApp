@@ -7,7 +7,7 @@ import Sbutton from '../../../../components/Sbutton';
 import ScheckBox from '../../../../components/ScheckBox';
 
 const JobDetails = ({navigation}) => {
-  const [checked, setChecked] = React.useState(false);
+  const [read, setRead] = React.useState(false);
 
   return (
     <ScrollView style={styles.container}>
@@ -23,17 +23,19 @@ const JobDetails = ({navigation}) => {
       <View style={styles.btngrp}>
 
         <ScheckBox
-          checked={checked}
-          setChecked={setChecked} 
+          checked={read}
+          setChecked={setRead} 
           text='I have read and understood the problem and requirements of above request'
         />
 
         <Sbutton
           primary={true}
+          disabled={!read}
           text="Accept"
           onPress={() => navigation.push('Quotation Details')}
         />
         <Sbutton
+          disabled={!read}
           text="Refuse"
           onPress={() => navigation.push('Refuse Job')}
         />

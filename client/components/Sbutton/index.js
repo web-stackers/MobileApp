@@ -5,7 +5,7 @@ import {useTheme} from 'react-native-paper';
 
 import styles from './styles';
 
-const Sbutton = ({primary, text, onPress}) => {
+const Sbutton = ({primary, text, onPress, disabled}) => {
   const {colors} = useTheme();
 
   return (
@@ -14,7 +14,9 @@ const Sbutton = ({primary, text, onPress}) => {
         mode="contained"
         onPress={onPress}
         style={styles.button}
-        color={primary ? colors.primary : colors.accent}>
+        disabled={disabled}
+        color={primary ? colors.primary : colors.accent}
+      >
         <Text style={styles.text}>{text}</Text>
       </Button>
     </View>

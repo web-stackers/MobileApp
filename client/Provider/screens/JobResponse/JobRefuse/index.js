@@ -5,9 +5,12 @@ import {RadioButton, Text} from 'react-native-paper';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import StextBox from '../../../../components/FormComponents/StextBox';
+import StextInput from '../../../../components/FormComponents/StextInput';
+import SradioButton from '../../../../components/SradioButton';
 
 const JobRefusePage = ({navigation}) => {
   const [value, setValue] = React.useState('');
+  const [reason, setReason] = React.useState('');
 
   return (
     <View style={styles.container}>
@@ -25,23 +28,29 @@ const JobRefusePage = ({navigation}) => {
         onValueChange={newValue => setValue(newValue)}
         value={value}
         style={styles.reasons}>
-        <View style={styles.radioButton}>
-          <RadioButton value="one" />
-          <Text>Requested for wrong skill set</Text>
-        </View>
-        <View style={styles.radioButton}>
-          <RadioButton value="two" />
-          <Text>Unavailable on requested day</Text>
-        </View>
-        <View style={styles.radioButton}>
-          <RadioButton value="three" />
-          <Text>Not clear about the request</Text>
-        </View>
-        <View style={styles.radioButton}>
-          <RadioButton value="four" />
-          <Text>Other</Text>
-        </View>
-        <StextBox label="Enter the reason" />
+
+        <SradioButton
+          value='one'
+          text='Requested for wrong skill set' 
+        />
+        <SradioButton
+          value='two'
+          text='Unavailable on requested day' 
+        />
+        <SradioButton
+          value='three'
+          text='Not clear about the request' 
+        />
+        <SradioButton
+          value='four'
+          text='Other' 
+        />
+        <StextBox
+          value={reason}
+          onChangeText={(value) => setReason(value)}
+          disabled={!(value==='four')}
+          placeholder="Enter the reason" 
+        />
       </RadioButton.Group>
 
       <View style={styles.btngrp}>

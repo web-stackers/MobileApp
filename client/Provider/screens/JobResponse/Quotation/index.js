@@ -23,6 +23,7 @@ const Quotation = ({navigation}) => {
 
         <Sbutton
           primary={true}
+          disabled={!checked}
           text="Send quotation"
           onPress={() =>
             navigation.push('Acknowledgement', {
@@ -33,6 +34,7 @@ const Quotation = ({navigation}) => {
         />
 
         <Sbutton
+          disabled={!checked}
           text="Cancel"
           onPress={() => navigation.navigate('Job Details')}
         />
