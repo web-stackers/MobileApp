@@ -16,7 +16,7 @@ const JobDetails = ({navigation}) => {
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
-  const [jobTypeList, setJobTypeList] = useState([]);
+  const [jobTypeLists, setJobTypeList] = useState([]);
 
   const jobList = [
     {
@@ -34,10 +34,12 @@ const JobDetails = ({navigation}) => {
   ];
 
   const getJobTYpes = () => {
-    axios.get('http://10.0.2.2:5000/jobTypeCategory').then(response => {
-      console.log(response.data);
-      setJobTypeList(response.data);
-    });
+    axios
+      .get('http://10.0.2.2:5000/jobTypeCategory/constructionJobs')
+      .then(response => {
+        console.log(response.data);
+        setJobTypeList(response.data);
+      });
   };
 
   useEffect(() => {
