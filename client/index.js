@@ -6,6 +6,9 @@ import * as React from 'react';
 import Consumer from './Consumer';
 import App from './App';
 import {name as appName} from './app.json';
+import {enableLatestRenderer} from 'react-native-maps';
+
+// enableLatestRenderer();
 
 const theme = {
   ...DefaultTheme,
@@ -28,4 +31,4 @@ export default function Main() {
   );
 }
 
-AppRegistry.registerComponent(appName, () => Main);
+AppRegistry.registerComponent(appName, () => Main.enableLatestRenderer());
