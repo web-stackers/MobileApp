@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
   },
+  map: {
+    width: '100%',
+    height: '70%',
+  },
 });
 
 export default styles;

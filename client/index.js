@@ -31,4 +31,4 @@ export default function Main() {
   );
 }
 
-AppRegistry.registerComponent(appName, () => Main.enableLatestRenderer());
+AppRegistry.registerComponent(appName, () => Main);
