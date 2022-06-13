@@ -19,8 +19,8 @@ const JobDetails = ({navigation}) => {
   const [jobTypeLists, setJobTypeLists] = useState([]);
   const [providerLocation, setProviderLocation] = useState([]);
 
-  let lat = 9.6615;
-  let longi = 80.0255;
+  // let lat = 9.6615;
+  // let longi = 80.0255;
 
   const jobList = [
     {
@@ -49,9 +49,11 @@ const JobDetails = ({navigation}) => {
       });
   };
 
+  //consumerID->62132b7bc4afd22e5fc49677
+
   const getProviderLocation = () => {
     axios
-      .get('http://10.0.2.2:5000/consumer/address/62132b7bc4afd22e5fc49677')
+      .get('http://10.0.2.2:5000/consumer/address/62132c85c4afd22e5fc49685')
       .then(response => {
         console.log(response.data);
         setProviderLocation(response.data);
@@ -142,7 +144,12 @@ const JobDetails = ({navigation}) => {
 
       <Text
         style={styles.linkText}
-        onPress={() => navigation.navigate('Map', {lat, longi})}>
+        onPress={() =>
+          navigation.navigate('Map', {
+            lat: providerLocation.address.latitude,
+            longi: providerLocation.address.longitude,
+          })
+        }>
         Change workplace location
       </Text>
 
