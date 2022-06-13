@@ -12,7 +12,8 @@ const Map = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <Sheader title="Map"></Sheader>
-      {/* <Text style={styles.text}>{lat}</Text> */}
+      <Text style={styles.text}>{lat}</Text>
+      <Text style={styles.text}>{longi}</Text>
       <MapView
         style={styles.map}
         initialRegion={{
