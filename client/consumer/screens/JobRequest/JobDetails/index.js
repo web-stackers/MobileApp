@@ -71,7 +71,7 @@ const JobDetails = ({navigation}) => {
   //62767b3215fa33d500a00559
   const getProviders = () => {
     axios
-      .get('http://10.0.2.2:5000/provider/jobType/62767b3215fa33d500a00559')
+      .get('http://10.0.2.2:5000/provider/jobType/627677045ef6e55d7f9bc966')
       .then(response => {
         console.log(response.data);
         setProvidersList(response.data);

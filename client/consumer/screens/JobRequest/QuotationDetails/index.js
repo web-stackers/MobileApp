@@ -17,14 +17,14 @@ const QuotationDetails = ({navigation, route}) => {
   const getQuotations = () => {
     axios
       .get('http://10.0.2.2:5000/jobAssignment/6213638f657adfba60a68786')
-      // .get(
-      //   'http://10.0.2.2:5000/job/user/userQuotation/621341023987d49e1f22f7a8',
-      // )
       .then(response => {
+        console.log(response.data);
         setQuotations(response.data);
         console.log(quotations);
         console.log(quotations.quotation.amount);
-        console.log(quotations.quotation.approximatedDuration.days);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
@@ -50,7 +50,19 @@ const QuotationDetails = ({navigation, route}) => {
           },
           {
             text: 'OK',
-            onPress: () => navigation.navigate('QuotationAcknowledge'),
+            onPress: () => {
+              axios
+                .patch(
+                  'http://10.0.2.2:5000/jobAssignment/quotationAccepted/6213638f657adfba60a68786',
+                )
+                .then(response => {
+                  console.log(response.data);
+                  navigation.navigate('QuotationAcknowledge');
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+            },
           },
         ],
       );
@@ -69,7 +81,19 @@ const QuotationDetails = ({navigation, route}) => {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('QuotationRefuse'),
+          onPress: () => {
+            axios
+              .patch(
+                'http://10.0.2.2:5000/jobAssignment/quotationRejected/6213638f657adfba60a68786',
+              )
+              .then(response => {
+                console.log(response.data);
+                navigation.navigate('QuotationRefuse');
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
         },
       ],
     );

@@ -69,11 +69,7 @@ const SearchProvider = ({navigation, route}) => {
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
-        <Sbutton
-          text="View Profile"
-          onPress={handleView}
-          //   onPress={navigation.navigate('CategorySelector')}
-        />
+        <Sbutton text="View Profile" onPress={handleView} />
       </View>
     </ScrollView>
   );
