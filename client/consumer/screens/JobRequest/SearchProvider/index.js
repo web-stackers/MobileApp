@@ -33,8 +33,19 @@ const SearchProvider = ({navigation, route}) => {
                 requestedTime,
               })
               .then(function (response) {
-                console.log(response);
-                navigation.navigate('JobAcknowledge');
+                console.log(response.data);
+                console.log(response.data._id);
+                axios
+                  .post('http://10.0.2.2:5000/jobAssignment', {
+                    jobId: response.data._id,
+                  })
+                  .then(function (response) {
+                    console.log(response.data);
+                    navigation.navigate('JobAcknowledge');
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
               })
               .catch(function (error) {
                 console.log(error);
