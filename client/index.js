@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import {AppRegistry} from 'react-native';
-import Provider from './Provider';
+// import Provider from './Provider';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import * as React from 'react';
 import Consumer from './Consumer';
@@ -21,13 +21,13 @@ const theme = {
     text: 'white',
     placeholder: '#797D7F',
   },
-  dark: true
+  dark: true,
 };
 
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Provider />
+      <Consumer />
     </PaperProvider>
   );
 }
