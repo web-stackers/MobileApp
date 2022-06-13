@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import JobDetails from '../screens/JobResponse/JobDetails';
 import QuotationDetails from '../screens/JobResponse/QuotationDetails';
 import JobRefuse from '../screens/JobResponse/JobRefuse';
-import Quotation from '../screens/JobResponse/Quotation';
+import QuotationPreview from '../screens/JobResponse/QuotationPreview';
 import Acknowledge from '../screens/JobResponse/Acknowledge';
 import JobWithdrawal from '../screens/PostJobActions/JobWithdrawal';
 
@@ -33,7 +33,7 @@ const JobStackScreen = () => (
 
     <JobStack.Screen 
       name="Quotation Preview" 
-      component={Quotation} 
+      component={QuotationPreview} 
     />
 
     <JobStack.Screen

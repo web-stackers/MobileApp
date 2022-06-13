@@ -3,12 +3,10 @@ import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
 import StextBox from '../../../../components/FormComponents/StextBox';
-import Sdate from '../../../../components/FormComponents/Sdate';
 import DateTimePicker from '../../../../components/DateTimePicker';
 import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation}) => {
-  const [time, setTime] = React.useState('');
   const [date, setDate] = React.useState(new Date());
   const [amount, setAmount] = React.useState('');
 
@@ -36,7 +34,10 @@ const QuotationDetails = ({navigation}) => {
         <Sbutton
           primary={true}
           text="Next"
-          onPress={() => navigation.push('Quotation Preview')}
+          onPress={() => navigation.push('Quotation Preview', {
+            completeTime:`${date}`,
+            amount:`${amount}`
+          })}
         />
       </View>
     </View>

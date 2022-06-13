@@ -18,6 +18,7 @@ const JobDetails = ({navigation}) => {
   const [description, setDescription] = useState('');
   const [jobTypeLists, setJobTypeLists] = useState([]);
   const [providerLocation, setProviderLocation] = useState([]);
+  const [providersList, setProvidersList] = useState([]);
 
   // let lat = 9.6615;
   // let longi = 80.0255;
@@ -37,7 +38,7 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
-  //Get all jobs under construction category
+  //Get all jobtypes and their ids under construction category
   const getJobTYpes = () => {
     axios
       .get('http://10.0.2.2:5000/jobTypeCategory/constructionJobs')
@@ -65,21 +66,24 @@ const JobDetails = ({navigation}) => {
       });
   };
 
-  // const getProviders = () => {
-  //   axios
-  //     .get('http://10.0.2.2:5000/consumer/address/62132c85c4afd22e5fc49685')
-  //     .then(response => {
-  //       console.log(response.data);
-  //       setProviderLocation(response.data);
-  //       console.log(providerLocation.address.latitude);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
+  //job Type : 627677045ef6e55d7f9bc966,
+  //627676e75ef6e55d7f9bc961
+  //62767b3215fa33d500a00559
+  const getProviders = () => {
+    axios
+      .get('http://10.0.2.2:5000/provider/jobType/62767b3215fa33d500a00559')
+      .then(response => {
+        console.log(response.data);
+        setProvidersList(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     getProviderLocation();
+    getProviders();
     getJobTYpes();
   }, []);
 
@@ -98,20 +102,18 @@ const JobDetails = ({navigation}) => {
         'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
       );
     } else {
-      // navigation.navigate('NoProviders');
-      axios
-        .post('http://10.0.2.2:5000/job', {
-          jobType,
-          description,
-          requestedTime,
-        })
-        .then(function (response) {
-          console.log(response);
-          navigation.navigate('NoProviders');
-        })
-        .catch(function (error) {
-          console.log(error);
+      if (providersList.length > 0) {
+        navigation.navigate('SearchProvider', {
+          jobType: jobType,
+          description: description,
+          requestedTime: requestedTime,
+          providersList: providersList,
+          lat: providerLocation.address.latitude,
+          longi: providerLocation.address.longitude,
         });
+      } else {
+        navigation.navigate('NoProviders');
+      }
     }
   };
 
