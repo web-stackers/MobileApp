@@ -9,13 +9,13 @@ import Sheader from '../../../../components/Sheader';
 
 import axios from 'axios';
 
-const QuotationDetails = ({navigation}) => {
+const QuotationDetails = ({navigation, route}) => {
+  const {jobTypeSelect} = route.params;
   const [quotations, setQuotations] = useState([]);
   const [checked, setChecked] = useState(false);
 
   const getQuotations = () => {
     axios
-      // .get('http://10.0.2.2:5000/jobTypeCategory/62a0191bcaf1a28365d1e7fc')
       .get('http://10.0.2.2:5000/jobAssignment/6213638f657adfba60a68786')
       // .get(
       //   'http://10.0.2.2:5000/job/user/userQuotation/621341023987d49e1f22f7a8',
@@ -82,7 +82,7 @@ const QuotationDetails = ({navigation}) => {
         source={require('../../../../assets/images/JDetails.png')}
       />
 
-      <Text style={styles.subContent}>Job Type: {quotations._id} </Text>
+      <Text style={styles.subContent}>Job Type: {jobTypeSelect} </Text>
       {/* <Text style={styles.subContent}>
         Job Requested Date: {quotations.state}
       </Text>

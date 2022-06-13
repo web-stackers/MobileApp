@@ -5,8 +5,10 @@ import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
 
 const CategorySelector = ({navigation}) => {
+  const jobTypeSelect = 'Mason';
   const ConstructionPress = () => navigation.navigate('JobDetails');
-  const EventPress = () => navigation.navigate('QuotationDetails');
+  const EventPress = () =>
+    navigation.navigate('QuotationDetails', {jobTypeSelect});
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
