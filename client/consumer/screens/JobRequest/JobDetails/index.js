@@ -115,9 +115,7 @@ const JobDetails = ({navigation}) => {
 
       <Sdate date={requestedTime} setDate={setrequestedTime} />
 
-      <Text
-        style={styles.linkText}
-        onPress={() => Linking.openURL('http://google.com')}>
+      <Text style={styles.linkText} onPress={() => navigation.navigate('Map')}>
         Change workplace location
       </Text>
 
