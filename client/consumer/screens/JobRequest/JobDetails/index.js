@@ -103,6 +103,9 @@ const JobDetails = ({navigation}) => {
         jobType: jobType,
         description: description,
         requestedTime: requestedTime,
+        providersList: providersList,
+        lat: providerLocation.address.latitude,
+        longi: providerLocation.address.longitude,
       });
     }
   };

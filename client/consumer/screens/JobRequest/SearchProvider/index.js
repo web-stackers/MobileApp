@@ -10,9 +10,11 @@ import Sheader from '../../../../components/Sheader';
 import axios from 'axios';
 
 const SearchProvider = ({navigation, route}) => {
-  const {jobType, description, requestedTime} = route.params;
+  const {jobType, description, requestedTime, providersList, lat, longi} =
+    route.params;
   console.log(jobType);
   console.log(requestedTime);
+  console.log(providersList);
   const AlertRequest = () =>
     Alert.alert(
       'Sending Request',
@@ -28,9 +30,11 @@ const SearchProvider = ({navigation, route}) => {
           onPress: () => {
             axios
               .post('http://10.0.2.2:5000/job', {
-                jobType,
-                description,
-                requestedTime,
+                jobType: jobType,
+                description: description,
+                requestedTime: requestedTime,
+                longitude: longi,
+                latitude: lat,
               })
               .then(function (response) {
                 console.log(response.data);
