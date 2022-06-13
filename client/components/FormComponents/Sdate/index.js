@@ -31,14 +31,10 @@ const Sdate = ({date, setDate}) => {
     showMode('time');
   };
   return (
-    <View>
-      <View>
-        <Sbutton onPress={showDatepicker} text="Show date picker" />
-      </View>
-      <View>
-        <Sbutton onPress={showTimepicker} text="Show time picker" />
-      </View>
-      <Text style={styles.text}>selected: {date.toLocaleString()}</Text>
+    <View style={styles.container}>
+      <Sbutton onPress={showDatepicker} text="Select Date" />
+      <Sbutton onPress={showTimepicker} text="Select Time" />
+      <Text style={styles.text}>Selected : {date.toLocaleString()}</Text>
       {show && (
         <RNDateTimePicker
           minimumDate={new Date()}
