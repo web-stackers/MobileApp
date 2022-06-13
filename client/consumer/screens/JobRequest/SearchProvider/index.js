@@ -15,6 +15,7 @@ const SearchProvider = ({navigation, route}) => {
   console.log(jobType);
   console.log(requestedTime);
   console.log(providersList);
+  console.log(providersList.length);
   const AlertRequest = () =>
     Alert.alert(
       'Sending Request',
