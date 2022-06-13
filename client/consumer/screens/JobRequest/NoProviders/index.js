@@ -24,7 +24,11 @@ const NoProviders = ({navigation}) => {
         <Sbutton
           primary={true}
           text="Done"
-          onPress={() => navigation.navigate('JobWithdrawal')}
+          onPress={() =>
+            navigation.navigate('JobWithdrawal', {
+              id: '6213638f657adfba60a68786',
+            })
+          }
         />
       </View>
     </View>
