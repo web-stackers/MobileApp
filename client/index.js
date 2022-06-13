@@ -6,6 +6,7 @@ import * as React from 'react';
 import Consumer from './Consumer';
 import App from './App';
 import {name as appName} from './app.json';
+import Common from './Common';
 
 const theme = {
   ...DefaultTheme,
@@ -23,7 +24,7 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Consumer />
+      <Common />
     </PaperProvider>
   );
 }
