@@ -37,6 +37,7 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
+  //Get all jobs under construction category
   const getJobTYpes = () => {
     axios
       .get('http://10.0.2.2:5000/jobTypeCategory/constructionJobs')
@@ -50,7 +51,7 @@ const JobDetails = ({navigation}) => {
   };
 
   //consumerID->62132b7bc4afd22e5fc49677
-
+  //Fetch consumer address
   const getProviderLocation = () => {
     axios
       .get('http://10.0.2.2:5000/consumer/address/62132c85c4afd22e5fc49685')
@@ -63,6 +64,19 @@ const JobDetails = ({navigation}) => {
         console.log(error);
       });
   };
+
+  // const getProviders = () => {
+  //   axios
+  //     .get('http://10.0.2.2:5000/consumer/address/62132c85c4afd22e5fc49685')
+  //     .then(response => {
+  //       console.log(response.data);
+  //       setProviderLocation(response.data);
+  //       console.log(providerLocation.address.latitude);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   useEffect(() => {
     getProviderLocation();
