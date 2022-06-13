@@ -83,19 +83,19 @@ const QuotationDetails = ({navigation, route}) => {
       />
 
       <Text style={styles.subContent}>Job Type: {jobTypeSelect} </Text>
-      {/* <Text style={styles.subContent}>
-        Job Requested Date: {quotations.state}
-      </Text>
-      <Text style={styles.subContent}>Provider Name:</Text> */}
+
       <Text style={styles.subContent}>
-        Quotation Amount: {quotations.quotation.amount}
+        Quotation Amount:
+        {/* {quotations.quotation.amount} */}
       </Text>
       <Text style={styles.subContent}>Approximated Duration</Text>
       <Text style={styles.subSubContent}>
-        Days: {quotations.quotation.approximatedDuration.days}
+        Days:
+        {/* {quotations.quotation.approximatedDuration.days} */}
       </Text>
       <Text style={styles.subSubContent}>
-        minutes: {quotations.quotation.approximatedDuration.minutes}
+        minutes:
+        {/* {quotations.quotation.approximatedDuration.minutes} */}
       </Text>
 
       <View style={styles.btngrp}>
