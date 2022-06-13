@@ -66,9 +66,12 @@ const JobDetails = ({navigation}) => {
       });
   };
 
+  //job Type : 627677045ef6e55d7f9bc966,
+  //627676e75ef6e55d7f9bc961
+  //62767b3215fa33d500a00559
   const getProviders = () => {
     axios
-      .get('http://10.0.2.2:5000/provider/jobType/6220e2ca5e554dac97b48938')
+      .get('http://10.0.2.2:5000/provider/jobType/62767b3215fa33d500a00559')
       .then(response => {
         console.log(response.data);
         setProvidersList(response.data);
@@ -99,14 +102,18 @@ const JobDetails = ({navigation}) => {
         'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
       );
     } else {
-      navigation.navigate('SearchProvider', {
-        jobType: jobType,
-        description: description,
-        requestedTime: requestedTime,
-        providersList: providersList,
-        lat: providerLocation.address.latitude,
-        longi: providerLocation.address.longitude,
-      });
+      if (providersList.length > 0) {
+        navigation.navigate('SearchProvider', {
+          jobType: jobType,
+          description: description,
+          requestedTime: requestedTime,
+          providersList: providersList,
+          lat: providerLocation.address.latitude,
+          longi: providerLocation.address.longitude,
+        });
+      } else {
+        navigation.navigate('NoProviders');
+      }
     }
   };
 
