@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   content: {
     color: '#fff',
     fontSize: 22,
-    marginTop: 40,
+    marginTop: 25,
     marginLeft: 15,
   },
   btngrp: {

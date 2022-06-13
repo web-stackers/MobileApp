@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     marginBottom: 50
   },
   reasons: {
-    padding: 5
+    padding: 5,
+    width: '95%'
   },
   radioButton: {
     display:'flex',

@@ -22,6 +22,7 @@ const theme = {
     text: 'white',
     placeholder: '#797D7F',
   },
+  dark: true,
 };
 
 export default function Main() {

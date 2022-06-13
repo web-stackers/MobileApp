@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     marginLeft: 15,
-    marginBottom: 8,
+    marginBottom: 10,
     marginTop: 8,
   },
   linkText: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginLeft: 15,
     marginBottom: 8,
-    marginTop: 8,
+    marginTop: 15,
   },
 
   description: {
