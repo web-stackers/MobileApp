@@ -99,20 +99,20 @@ const JobDetails = ({navigation}) => {
         'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
       );
     } else {
-      // navigation.navigate('NoProviders');
-      axios
-        .post('http://10.0.2.2:5000/job', {
-          jobType,
-          description,
-          requestedTime,
-        })
-        .then(function (response) {
-          console.log(response);
-          navigation.navigate('NoProviders');
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      navigation.navigate('SearchProvider');
+      // axios
+      //   .post('http://10.0.2.2:5000/job', {
+      //     jobType,
+      //     description,
+      //     requestedTime,
+      //   })
+      //   .then(function (response) {
+      //     console.log(response);
+      //     navigation.navigate('NoProviders');
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
     }
   };
 
