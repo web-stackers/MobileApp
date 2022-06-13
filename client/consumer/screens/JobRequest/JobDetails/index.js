@@ -17,6 +17,10 @@ const JobDetails = ({navigation}) => {
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
   const [jobTypeLists, setJobTypeLists] = useState([]);
+  const [providerLocation, setProviderLocation] = useState([]);
+
+  let lat = 9.6615;
+  let longi = 80.0255;
 
   const jobList = [
     {
@@ -39,12 +43,32 @@ const JobDetails = ({navigation}) => {
       .then(response => {
         console.log(response.data);
         setJobTypeLists(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const getProviderLocation = () => {
+    axios
+      .get('http://10.0.2.2:5000/consumer/address/62132b7bc4afd22e5fc49677')
+      .then(response => {
+        console.log(response.data);
+        setProviderLocation(response.data);
+        console.log(providerLocation.address.latitude);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
   useEffect(() => {
+    getProviderLocation();
     getJobTYpes();
   }, []);
+
+  // lat = providerLocation.address.latitude;
+  // longi = providerLocation.address.longitude;
 
   const handleSubmit = () => {
     if (jobType === '') {
@@ -58,6 +82,7 @@ const JobDetails = ({navigation}) => {
         'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
       );
     } else {
+      // navigation.navigate('NoProviders');
       axios
         .post('http://10.0.2.2:5000/job', {
           jobType,
@@ -117,7 +142,7 @@ const JobDetails = ({navigation}) => {
 
       <Text
         style={styles.linkText}
-        onPress={() => Linking.openURL('http://google.com')}>
+        onPress={() => navigation.navigate('Map', {lat, longi})}>
         Change workplace location
       </Text>
 

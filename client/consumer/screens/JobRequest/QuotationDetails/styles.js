@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 10,
   },
+  subSubContent: {
+    color: '#fff',
+    fontSize: 20,
+    marginTop: 20,
+    marginLeft: 120,
+  },
 
   btngrp: {
     width: '95%',

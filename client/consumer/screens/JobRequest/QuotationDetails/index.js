@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {View, ScrollView, Text, Image, Alert} from 'react-native';
 
@@ -8,16 +9,22 @@ import Sheader from '../../../../components/Sheader';
 
 import axios from 'axios';
 
-const QuotationDetails = ({navigation}) => {
+const QuotationDetails = ({navigation, route}) => {
+  const {jobTypeSelect} = route.params;
   const [quotations, setQuotations] = useState([]);
   const [checked, setChecked] = useState(false);
 
   const getQuotations = () => {
     axios
-      .get('http://10.0.2.2:5000/jobTypeCategory/627677245ef6e55d7f9bc96c')
+      .get('http://10.0.2.2:5000/jobAssignment/6213638f657adfba60a68786')
+      // .get(
+      //   'http://10.0.2.2:5000/job/user/userQuotation/621341023987d49e1f22f7a8',
+      // )
       .then(response => {
-        console.log(response.data);
         setQuotations(response.data);
+        console.log(quotations);
+        console.log(quotations.quotation.amount);
+        console.log(quotations.quotation.approximatedDuration.days);
       });
   };
 
@@ -75,12 +82,21 @@ const QuotationDetails = ({navigation}) => {
         source={require('../../../../assets/images/JDetails.png')}
       />
 
-      <Text style={styles.subContent}>Job Type:</Text>
-      <Text style={styles.subContent}>Job Requested Date:</Text>
-      <Text style={styles.subContent}>Job Requested Time:</Text>
-      <Text style={styles.subContent}>Provider Name:</Text>
-      <Text style={styles.subContent}>Quotation Amount:</Text>
-      <Text style={styles.subContent}>Approximated Duration:</Text>
+      <Text style={styles.subContent}>Job Type: {jobTypeSelect} </Text>
+      {/* <Text style={styles.subContent}>
+        Job Requested Date: {quotations.state}
+      </Text>
+      <Text style={styles.subContent}>Provider Name:</Text> */}
+      <Text style={styles.subContent}>
+        Quotation Amount: {quotations.quotation.amount}
+      </Text>
+      <Text style={styles.subContent}>Approximated Duration</Text>
+      <Text style={styles.subSubContent}>
+        Days: {quotations.quotation.approximatedDuration.days}
+      </Text>
+      <Text style={styles.subSubContent}>
+        minutes: {quotations.quotation.approximatedDuration.minutes}
+      </Text>
 
       <View style={styles.btngrp}>
         <ScheckBox
