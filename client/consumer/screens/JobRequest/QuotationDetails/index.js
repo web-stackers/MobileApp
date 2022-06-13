@@ -23,6 +23,8 @@ const QuotationDetails = ({navigation}) => {
       .then(response => {
         setQuotations(response.data);
         console.log(quotations);
+        console.log(quotations.quotation.amount);
+        console.log(quotations.quotation.approximatedDuration.days);
       });
   };
 
@@ -81,15 +83,20 @@ const QuotationDetails = ({navigation}) => {
       />
 
       <Text style={styles.subContent}>Job Type: {quotations._id} </Text>
-      <Text style={styles.subContent}>
+      {/* <Text style={styles.subContent}>
         Job Requested Date: {quotations.state}
       </Text>
+      <Text style={styles.subContent}>Provider Name:</Text> */}
       <Text style={styles.subContent}>
-        Provider Name:
-        {/* {quotations.provider[0].name.fName} */}
+        Quotation Amount: {quotations.quotation.amount}
       </Text>
-      <Text style={styles.subContent}>Quotation Amount:</Text>
-      <Text style={styles.subContent}>Approximated Duration:</Text>
+      <Text style={styles.subContent}>Approximated Duration</Text>
+      <Text style={styles.subSubContent}>
+        Days: {quotations.quotation.approximatedDuration.days}
+      </Text>
+      <Text style={styles.subSubContent}>
+        minutes: {quotations.quotation.approximatedDuration.minutes}
+      </Text>
 
       <View style={styles.btngrp}>
         <ScheckBox
