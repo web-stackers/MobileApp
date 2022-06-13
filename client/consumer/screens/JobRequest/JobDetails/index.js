@@ -43,22 +43,28 @@ const JobDetails = ({navigation}) => {
       .then(response => {
         console.log(response.data);
         setJobTypeLists(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
   const getProviderLocation = () => {
     axios
-      .get('http://10.0.2.2:5000/provider/address/629f77da0d2903e52b176866')
+      .get('http://10.0.2.2:5000/consumer/address/62132b7bc4afd22e5fc49677')
       .then(response => {
         console.log(response.data);
         setProviderLocation(response.data);
         console.log(providerLocation.address.latitude.$numberDecimal);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
   useEffect(() => {
-    getJobTYpes();
     getProviderLocation();
+    getJobTYpes();
   }, []);
 
   // lat = providerLocation.address.latitude.$numberDecimal;
