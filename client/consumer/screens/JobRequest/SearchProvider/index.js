@@ -9,7 +9,9 @@ import Sheader from '../../../../components/Sheader';
 
 import axios from 'axios';
 
-const SearchProvider = ({navigation}) => {
+const SearchProvider = ({navigation, route}) => {
+  const {jobType, description, requestedTime} = route.params;
+  console.log(jobType);
   const AlertRequest = () =>
     Alert.alert(
       'Sending Request',
