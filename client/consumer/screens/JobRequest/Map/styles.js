@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121212',
     width: '100%',
-    // alignItems: 'center',
   },
   text: {
     color: 'white',
@@ -13,6 +12,12 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '70%',
+  },
+  btngrp: {
+    width: '95%',
+    marginBottom: 1,
+    marginTop: 20,
+    alignSelf: 'center',
   },
 });
 
