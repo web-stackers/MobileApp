@@ -59,8 +59,8 @@ const JobRefusePage = ({navigation}) => {
           text="Confirm"
           onPress={() =>
             navigation.push('Acknowledgement', {
-              title: 'Informed the Customer !',
-              subtitle: 'Provided the reason to the customer',
+              title: 'Withdrawal request sent !',
+              subtitle: 'Withdrawal request under review. You will receive an email of the results.',
             })
           }
         />

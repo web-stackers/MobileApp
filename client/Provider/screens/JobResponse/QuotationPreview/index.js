@@ -4,15 +4,17 @@ import {View, Text} from 'react-native';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import ScheckBox from '../../../../components/ScheckBox';
+import Quotation from '../../../../components/Quotation';
 
-const Quotation = ({navigation}) => {
+const QuotationPreview = ({navigation, route}) => {
   const [checked, setChecked] = React.useState(false);
 
   return (
     <View style={styles.container}>
-      <View style={styles.quotationDoc}>
-        <Text>Quotation</Text>
-      </View>
+      <Quotation 
+        completeTime={route.params.completeTime}
+        amount={route.params.amount}
+      />
 
       <View style={styles.btngrp}>
         <ScheckBox
@@ -43,4 +45,4 @@ const Quotation = ({navigation}) => {
   );
 };
 
-export default Quotation;
+export default QuotationPreview;
