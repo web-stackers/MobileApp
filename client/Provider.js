@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import JobStackScreen from './provider/stacks/JobStack';
+import JobStackScreen from './Provider/stacks/JobStack';
 
 const Provider = () => {
   return (
