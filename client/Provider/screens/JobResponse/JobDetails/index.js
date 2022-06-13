@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import { Text } from 'react-native-paper';
+
+import axios from 'axios';
+import Job from '../../../../services/Job';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import ScheckBox from '../../../../components/ScheckBox';
 
 const JobDetails = ({navigation}) => {
-  const [read, setRead] = React.useState(false);
+  const [read, setRead] = useState(false);
+  const [job, setJob] = useState();
+
+  const id = '621341023987d49e1f22f7a8';
+
+  /* const getJobDetails = async () => {
+    await axios.get('http://10.0.2.2:5000/job/621341023987d49e1f22f7a8')
+      .then(response => {
+        setJob(response.data);
+        //console.log(response.data);
+        console.log(job);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }; */
+
+  const getJob = () => {
+    Job.fetchJob(id)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+  };
+
+  useEffect(() => {
+    getJob();
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
