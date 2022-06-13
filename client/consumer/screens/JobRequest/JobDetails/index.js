@@ -55,7 +55,7 @@ const JobDetails = ({navigation}) => {
       .then(response => {
         console.log(response.data);
         setProviderLocation(response.data);
-        console.log(providerLocation.address.latitude.$numberDecimal);
+        console.log(providerLocation.address.latitude);
       })
       .catch(function (error) {
         console.log(error);
@@ -67,8 +67,8 @@ const JobDetails = ({navigation}) => {
     getJobTYpes();
   }, []);
 
-  // lat = providerLocation.address.latitude.$numberDecimal;
-  // longi = providerLocation.address.longitude.$numberDecimal;
+  // lat = providerLocation.address.latitude;
+  // longi = providerLocation.address.longitude;
 
   const handleSubmit = () => {
     if (jobType === '') {
