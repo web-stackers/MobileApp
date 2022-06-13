@@ -12,6 +12,7 @@ import axios from 'axios';
 const SearchProvider = ({navigation, route}) => {
   const {jobType, description, requestedTime} = route.params;
   console.log(jobType);
+  console.log(requestedTime);
   const AlertRequest = () =>
     Alert.alert(
       'Sending Request',
@@ -24,26 +25,27 @@ const SearchProvider = ({navigation, route}) => {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('JobAcknowledge'),
+          onPress: () => {
+            axios
+              .post('http://10.0.2.2:5000/job', {
+                jobType,
+                description,
+                requestedTime,
+              })
+              .then(function (response) {
+                console.log(response);
+                navigation.navigate('JobAcknowledge');
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
         },
       ],
     );
 
   const handleView = () => {
     navigation.navigate('NoProviders');
-    // axios
-    //   .post('http://10.0.2.2:5000/job', {
-    //     jobType,
-    //     description,
-    //     requestedTime,
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //     navigation.navigate('NoProviders');
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   };
 
   return (

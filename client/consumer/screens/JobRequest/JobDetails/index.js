@@ -104,19 +104,6 @@ const JobDetails = ({navigation}) => {
         description: description,
         requestedTime: requestedTime,
       });
-      // axios
-      //   .post('http://10.0.2.2:5000/job', {
-      //     jobType,
-      //     description,
-      //     requestedTime,
-      //   })
-      //   .then(function (response) {
-      //     console.log(response);
-      //     navigation.navigate('NoProviders');
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
     }
   };
 
