@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 28,
-    marginBottom: 82,
+    marginBottom: 50,
   },
   subtitle: {
     color: '#fff',
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   tick: {
-    height: 150,
-    width: 150,
-    marginBottom: 85,
+    height: 250,
+    width: 250,
+    marginBottom: 55,
   },
   doneButton: {
     position: 'absolute',

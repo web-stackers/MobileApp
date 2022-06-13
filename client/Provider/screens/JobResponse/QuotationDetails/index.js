@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
-import Stextbox from '../../../../components/StextBox';
+import StextBox from '../../../../components/FormComponents/StextBox';
 import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation}) => {
+  const [time, setTime] = React.useState('');
+  const [amount, setAmount] = React.useState('');
+
   return (
     <View style={styles.container}>
       <Image
@@ -14,9 +17,17 @@ const QuotationDetails = ({navigation}) => {
       />
 
       <View style={styles.quotationForm}>
-        <Stextbox label="Enter the required time" />
+        <StextBox 
+          placeholder="Enter the required time"
+          value={time}
+          onChangeText={(value) => setTime(value)}
+        />
 
-        <Stextbox label="Enter estimated amount" />
+        <StextBox 
+          placeholder="Enter estimated amount in Rs" 
+          value={amount}
+          onChangeText={(value) => setAmount(value)}
+        />
 
         <Text style={styles.caption}>
           Enter the estimated amount and time duration to complete the job. It

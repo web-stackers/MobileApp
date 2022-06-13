@@ -11,7 +11,7 @@ const NoProviders = ({navigation}) => {
         <Text style={styles.title}>No Results Found</Text>
         <Image
           style={styles.tick}
-          source={require('../../../../assets/images/JRefuse.png')}
+          source={require('../../../../assets/images/wrong.png')}
         />
         <Text style={styles.subtitle}>
           We are sorry to inform you that, on your specific job type, no service
@@ -24,7 +24,7 @@ const NoProviders = ({navigation}) => {
         <Sbutton
           primary={true}
           text="Done"
-          onPress={() => navigation.navigate('CategorySelector')}
+          onPress={() => navigation.navigate('JobWithdrawal')}
         />
       </View>
     </View>

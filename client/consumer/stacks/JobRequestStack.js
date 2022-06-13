@@ -9,6 +9,7 @@ import QuotationDetails from '../screens/JobRequest/QuotationDetails';
 import QuotationRefuse from '../screens/JobRequest/QuotationRefuse';
 import CategorySelector from '../screens/JobRequest/CategorySelector';
 import NoProviders from '../screens/JobRequest/NoProviders';
+import Map from '../screens/JobRequest/Map';
 
 const JobRequestStack = createNativeStackNavigator();
 
@@ -32,6 +33,14 @@ const JobRequestStackScreen = () => (
     <JobRequestStack.Screen
       name="JobAcknowledge"
       component={JobAcknowledge}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobRequestStack.Screen
+      name="Map"
+      component={Map}
       options={{
         header: () => null,
       }}

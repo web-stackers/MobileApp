@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -6,12 +6,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#121212',
         alignItems: 'center',
         width: '100%',
-        height: Dimensions.get('window').height,
     },
     btngrp: {
         width: '95%',
         position: 'absolute',
-        bottom: 25
+        bottom: 25,
     },
     quotationDoc: {
         height: 500,

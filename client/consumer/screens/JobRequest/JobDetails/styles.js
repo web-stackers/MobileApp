@@ -19,9 +19,17 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     marginLeft: 15,
-    marginBottom: 10,
-    marginTop: 15,
+    marginBottom: 8,
+    marginTop: 8,
   },
+  linkText: {
+    color: 'blue',
+    fontSize: 24,
+    marginLeft: 15,
+    marginBottom: 8,
+    marginTop: 8,
+  },
+
   description: {
     marginTop: 10,
     marginBottom: 10,
@@ -33,8 +41,7 @@ const styles = StyleSheet.create({
   },
   btngrp: {
     width: '95%',
-    position: 'absolute',
-    bottom: 35,
+    marginBottom: 10,
     alignSelf: 'center',
   },
 });
