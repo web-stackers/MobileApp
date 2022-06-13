@@ -7,6 +7,7 @@ import Consumer from './Consumer';
 import App from './App';
 import {name as appName} from './app.json';
 import {enableLatestRenderer} from 'react-native-maps';
+import Common from './Common';
 
 // enableLatestRenderer();
 
@@ -26,7 +27,7 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Consumer />
+      <Common />
     </PaperProvider>
   );
 }
