@@ -58,6 +58,7 @@ const JobDetails = ({navigation}) => {
         'Please provide a small description about the service you need. So that service provide can able to get a clear understanding',
       );
     } else {
+      // navigation.navigate('NoProviders');
       axios
         .post('http://10.0.2.2:5000/job', {
           jobType,
@@ -115,7 +116,9 @@ const JobDetails = ({navigation}) => {
 
       <Sdate date={requestedTime} setDate={setrequestedTime} />
 
-      <Text style={styles.linkText} onPress={() => navigation.navigate('Map')}>
+      <Text
+        style={styles.linkText}
+        onPress={() => navigation.navigate('Map', {jobType})}>
         Change workplace location
       </Text>
 

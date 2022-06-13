@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121212',
     width: '100%',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   text: {
     color: 'white',

@@ -5,10 +5,23 @@ import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import Sheader from '../../../../components/Sheader';
 
-const Map = ({navigation}) => {
+const Map = ({navigation, route}) => {
+  const {jobType} = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Map</Text>
+      <Sheader title="Map"></Sheader>
+      <Text style={styles.text}>{jobType}</Text>
+      <View style={styles.btngrp}>
+        <Sbutton
+          primary={true}
+          text="Set Location"
+          onPress={() => navigation.navigate('QuotationAcknowledge')}
+        />
+        <Sbutton
+          text="Go Back"
+          onPress={() => navigation.navigate('JobDetails')}
+        />
+      </View>
     </View>
   );
 };
