@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native-paper';
 import {View, ScrollView, Image} from 'react-native';
+import styles from './styles';
 
 const ComplaintsCategory = ({navigation}) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>ComplaintsCategory</Text>
         </View>
     )
