@@ -18,6 +18,9 @@ const JobDetails = ({navigation}) => {
   const [description, setDescription] = useState('');
   const [jobTypeLists, setJobTypeLists] = useState([]);
 
+  const lat = 6.9271;
+  const longi = 79.8612;
+
   const jobList = [
     {
       label: 'Plumber',
@@ -118,7 +121,7 @@ const JobDetails = ({navigation}) => {
 
       <Text
         style={styles.linkText}
-        onPress={() => navigation.navigate('Map', {jobType})}>
+        onPress={() => navigation.navigate('Map', {lat, longi})}>
         Change workplace location
       </Text>
 
