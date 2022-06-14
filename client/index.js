@@ -29,7 +29,7 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Consumer />
+      <Common />
     </PaperProvider>
   );
 }
