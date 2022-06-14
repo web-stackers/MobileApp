@@ -1,8 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ComplaintsCategory from '../screens/ComplaintsCategory';
-import ProviderAbsent from '../screens/ComplaintsCategory/CategoryOne';
 import Complaints from '../screens/Complaints/index';
+import ComplaintsCategory from '../screens/ComplaintsCategory';
 
 const JobFeedbackStack = createNativeStackNavigator();
 
@@ -14,13 +13,11 @@ const JobFeedbackStackScreen = () => (
     />
 
     <JobFeedbackStack.Screen
-      name="Provider is absent"
-      component={ProviderAbsent}
-    />
-
-    <JobFeedbackStack.Screen
-      name="Complains Category"
+      name="Complaint Category"
       component={ComplaintsCategory}
+      options={{
+        header: () => null,
+      }}
     />
   </JobFeedbackStack.Navigator>
 );
