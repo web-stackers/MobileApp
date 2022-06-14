@@ -52,7 +52,11 @@ const ComplaintsCategory = ({route, navigation}) => {
         <StextInput label="You may enter your specific queries here" />
       </View>
       <View style={styles.btngrp}>
-        <Sbutton primary={true} text="Submit" />
+        <Sbutton
+          primary={true}
+          text="Submit"
+          onPress={() => navigation.navigate('Acknowledge')}
+        />
       </View>
     </ScrollView>
   );
