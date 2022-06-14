@@ -2,8 +2,8 @@ import React from 'react';
 import {Text} from 'react-native-paper';
 import {View, ScrollView} from 'react-native';
 import styles from './styles';
-import StextInput from '../../../components/FormComponents/StextInput';
-import Sbutton from '../../../components/Sbutton';
+import StextInput from '../../../../components/FormComponents/StextInput';
+import Sbutton from '../../../../components/Sbutton';
 
 const ComplaintsCategory = ({route, navigation}) => {
   const complaintBy = route.params.by;

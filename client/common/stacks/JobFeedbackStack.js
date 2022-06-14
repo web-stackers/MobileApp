@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Complaints from '../screens/Complaints/index';
-import ComplaintsCategory from '../screens/ComplaintsCategory';
+import Complaints from '../screens/Complaints/Complaints/index';
+import ComplaintsCategory from '../screens/Complaints/ComplaintsCategory/index';
 
 const JobFeedbackStack = createNativeStackNavigator();
 
