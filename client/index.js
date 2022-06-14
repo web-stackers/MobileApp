@@ -4,6 +4,7 @@ import {AppRegistry} from 'react-native';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import * as React from 'react';
 import Consumer from './Consumer';
+import Provider from './Provider';
 import App from './App';
 import {name as appName} from './app.json';
 import {enableLatestRenderer} from 'react-native-maps';
