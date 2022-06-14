@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import {AppRegistry} from 'react-native';
-// import Provider from './Provider';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import * as React from 'react';
 import Consumer from './Consumer';
@@ -29,7 +28,7 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Common />
+      <Consumer />
     </PaperProvider>
   );
 }
