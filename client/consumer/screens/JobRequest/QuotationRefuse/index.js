@@ -3,10 +3,12 @@ import {View, Text, Image, Alert} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
-
 import StextInput from '../../../../components/FormComponents/StextInput';
 
-const QuotationRefuse = ({navigation}) => {
+import axios from 'axios';
+
+const QuotationRefuse = ({navigation, route}) => {
+  const {id} = route.params;
   const [text, setText] = useState('');
   const handleSubmit = () => {
     if (text === '') {
@@ -26,7 +28,20 @@ const QuotationRefuse = ({navigation}) => {
           },
           {
             text: 'OK',
-            onPress: () => navigation.navigate('CategorySelector'),
+            onPress: () => {
+              axios
+                .patch(
+                  'http://10.0.2.2:5000/jobAssignment/quotationRejected/6213638f657adfba60a68786',
+                  {reason: text},
+                )
+                .then(response => {
+                  console.log(response.data);
+                  navigation.navigate('CategorySelector');
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+            },
           },
         ],
       );

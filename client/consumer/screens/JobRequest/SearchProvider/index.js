@@ -15,6 +15,7 @@ const SearchProvider = ({navigation, route}) => {
   console.log(jobType);
   console.log(requestedTime);
   console.log(providersList);
+  console.log(providersList.length);
   const AlertRequest = () =>
     Alert.alert(
       'Sending Request',
@@ -69,11 +70,7 @@ const SearchProvider = ({navigation, route}) => {
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
-        <Sbutton
-          text="View Profile"
-          onPress={handleView}
-          //   onPress={navigation.navigate('CategorySelector')}
-        />
+        <Sbutton text="View Profile" onPress={handleView} />
       </View>
     </ScrollView>
   );
