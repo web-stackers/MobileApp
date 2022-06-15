@@ -7,15 +7,18 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   content: {
-    color: '#fff',
-    fontSize: 22,
-    marginTop: 25,
-    marginLeft: 15,
+    padding: 5,
+    marginTop: 40,
+    width: '95%',
+    alignSelf: 'center',
+    fontSize: 20,
+    //marginLeft: 15,
+    lineHeight: 50
   },
   btngrp: {
     width: '95%',
     alignSelf: 'center',
-    marginTop: 25,
+    marginTop: 5,
     marginBottom: 15
   },
   JDetailsPic: {
@@ -24,14 +27,14 @@ const styles = StyleSheet.create({
     marginTop: 50,
     alignSelf: 'center',
   },
-  spacerStyle: {
+/*   spacerStyle: {
     marginBottom: 15,
   },
   safeContainerStyle: {
     flex: 1,
     margin: 20,
     justifyContent: 'center',
-  },
+  }, */
 });
 
 export default styles;
