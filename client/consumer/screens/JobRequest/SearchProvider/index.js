@@ -66,12 +66,12 @@ const SearchProvider = ({navigation, route}) => {
     navigation.navigate('NoProviders');
   };
 
-  const Item = ({fname, lname, rating}) => (
+  const Item = ({fname, lname, rating, qualification}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Qualification:</Text>
+      <Text style={styles.subtitle}>Qualification: {qualification}</Text>
       <Text style={styles.subtitle}>
         Rating: {rating ? rating : 'No ratings yet'}
       </Text>
@@ -88,6 +88,7 @@ const SearchProvider = ({navigation, route}) => {
       fname={item.name.fName}
       lname={item.name.lName}
       rating={item.totalRating / item.ratingCount}
+      qualification={item.qualification}
     />
   );
 

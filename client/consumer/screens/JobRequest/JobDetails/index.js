@@ -75,9 +75,6 @@ const JobDetails = ({navigation, route}) => {
     getProviders();
   }, []);
 
-  // lat = providerLocation.address.latitude;
-  // longi = providerLocation.address.longitude;
-
   const handleSubmit = () => {
     if (jobType === '') {
       Alert.alert(
