@@ -20,6 +20,7 @@ const ProviderJobProfile = ({navigation, route}) => {
     qualification,
     workYear,
     dob,
+    ratingCount,
   } = route.params;
 
   console.log(jobType);
@@ -96,6 +97,7 @@ const ProviderJobProfile = ({navigation, route}) => {
         <Text style={styles.subtitle}>
           Rating: {rating ? rating : 'No ratings yet'}
         </Text>
+        <Text style={styles.subtitle}>Rating Count: {ratingCount}</Text>
       </View>
 
       <View style={styles.btngrp}>

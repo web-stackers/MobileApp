@@ -72,6 +72,7 @@ const SearchProvider = ({navigation, route}) => {
     qualification,
     workYear,
     dob,
+    ratingCount,
   ) => {
     console.log('Dob');
     console.log(dob);
@@ -88,10 +89,20 @@ const SearchProvider = ({navigation, route}) => {
       qualification: qualification,
       workYear: workYear,
       dob: dob,
+      ratingCount: ratingCount,
     });
   };
 
-  const Item = ({fname, lname, rating, qualification, id, workYear, dob}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    qualification,
+    id,
+    workYear,
+    dob,
+    ratingCount,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -110,7 +121,16 @@ const SearchProvider = ({navigation, route}) => {
         <Sbutton
           text="View Profile"
           onPress={() =>
-            handleView(id, fname, lname, rating, qualification, workYear, dob)
+            handleView(
+              id,
+              fname,
+              lname,
+              rating,
+              qualification,
+              workYear,
+              dob,
+              ratingCount,
+            )
           }
         />
       </View>
@@ -126,6 +146,7 @@ const SearchProvider = ({navigation, route}) => {
       id={item._id}
       workYear={item.workStartedYear}
       dob={item.DOB}
+      ratingCount={item.ratingCount}
     />
   );
 
