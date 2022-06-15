@@ -64,13 +64,18 @@ const SearchProvider = ({navigation, route}) => {
       ],
     );
 
-  const handleView = () => {
+  const handleView = (id, fname, lname, rating, qualification) => {
     navigation.navigate('ProviderJobProfile', {
       jobType: jobType,
       description: description,
       requestedTime: requestedTime,
       lat: lat,
       longi: longi,
+      id: id,
+      fname: fname,
+      lname: lname,
+      rating: rating,
+      qualification: qualification,
     });
   };
 
@@ -90,7 +95,10 @@ const SearchProvider = ({navigation, route}) => {
           text="Send Request"
           onPress={() => AlertRequest(id)}
         />
-        <Sbutton text="View Profile" onPress={handleView} />
+        <Sbutton
+          text="View Profile"
+          onPress={() => handleView(id, fname, lname, rating, qualification)}
+        />
       </View>
     </View>
   );

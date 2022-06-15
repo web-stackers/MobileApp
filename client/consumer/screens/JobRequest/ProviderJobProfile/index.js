@@ -7,7 +7,18 @@ import Sbutton from '../../../../components/Sbutton';
 import axios from 'axios';
 
 const ProviderJobProfile = ({navigation, route}) => {
-  const {jobType, description, requestedTime, lat, longi} = route.params;
+  const {
+    jobType,
+    description,
+    requestedTime,
+    lat,
+    longi,
+    id,
+    fname,
+    lname,
+    rating,
+    qualification,
+  } = route.params;
 
   console.log(jobType);
   console.log(requestedTime);
@@ -36,6 +47,7 @@ const ProviderJobProfile = ({navigation, route}) => {
                 requestedTime: requestedTime,
                 longitude: longi,
                 latitude: lat,
+                providerId: id,
               })
               .then(function (response) {
                 console.log(response.data);
@@ -43,6 +55,7 @@ const ProviderJobProfile = ({navigation, route}) => {
                 axios
                   .post('http://10.0.2.2:5000/jobAssignment', {
                     jobId: response.data._id,
+                    providerId: id,
                   })
                   .then(function (response) {
                     console.log(response.data);
@@ -62,16 +75,20 @@ const ProviderJobProfile = ({navigation, route}) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Name</Text>
+        <Text style={styles.title}>
+          {fname} {lname}
+        </Text>
         <Image
           style={styles.image}
           source={require('../../../../assets/images/profile.jpg')}
         />
       </View>
       <View>
-        <Text style={styles.subtitle}>Work Started Year</Text>
-        <Text style={styles.subtitle}>Qualification</Text>
-        <Text style={styles.subtitle}>Rating</Text>
+        <Text style={styles.subtitle}>Work Started Year: </Text>
+        <Text style={styles.subtitle}>Qualification: {qualification}</Text>
+        <Text style={styles.subtitle}>
+          Rating: {rating ? rating : 'No ratings yet'}
+        </Text>
       </View>
 
       <View style={styles.btngrp}>
