@@ -10,7 +10,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const SearchProvider = ({navigation, route}) => {
-  const {jobType, description, requestedTime, providersList, lat, longi} =
+  const {jobType, description, requestedTime, providersList, lat, longi, CID} =
     route.params;
 
   console.log(jobType);
@@ -31,6 +31,8 @@ const SearchProvider = ({navigation, route}) => {
         {
           text: 'OK',
           onPress: () => {
+            console.log('provider Id');
+            console.log(id);
             axios
               .post('http://10.0.2.2:5000/job', {
                 jobType: jobType,
@@ -39,6 +41,7 @@ const SearchProvider = ({navigation, route}) => {
                 longitude: longi,
                 latitude: lat,
                 providerId: id,
+                consumerId: CID,
               })
               .then(function (response) {
                 console.log(response.data);
@@ -82,6 +85,7 @@ const SearchProvider = ({navigation, route}) => {
       requestedTime: requestedTime,
       lat: lat,
       longi: longi,
+      CID: CID,
       id: id,
       fname: fname,
       lname: lname,

@@ -24,6 +24,7 @@ const JobDetails = ({navigation, route}) => {
 
   // let lat = 9.6615;
   // let longi = 80.0255;
+  let ConsumerID = '62132b7bc4afd22e5fc49677';
 
   const jobList = [
     {
@@ -95,6 +96,7 @@ const JobDetails = ({navigation, route}) => {
           providersList: providersList,
           lat: providerLocation.address.latitude,
           longi: providerLocation.address.longitude,
+          CID: ConsumerID,
         });
       } else {
         navigation.navigate('NoProviders');
@@ -149,6 +151,7 @@ const JobDetails = ({navigation, route}) => {
           navigation.navigate('Map', {
             lat: providerLocation.address.latitude,
             longi: providerLocation.address.longitude,
+            CID: ConsumerID,
           })
         }>
         Change workplace location
