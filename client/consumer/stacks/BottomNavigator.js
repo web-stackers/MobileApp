@@ -4,6 +4,7 @@
 
 // import HomeScreen from '../screens/HomeScreen';
 // import SettingStack from './SettingStack';
+// import JobRequestStackScreen from './JobRequestStack';
 
 // const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,21 @@
 //           tabBarIcon: ({color, size}) => (
 //             <MaterialCommunityIcons name="home" color={color} size={size} />
 //           ),
+//         }}
+//       />
+//       <Tab.Screen
+//         name="Jobs"
+//         component={JobRequestStackScreen}
+//         options={{
+//           tabBarLabel: 'Jobs',
+//           tabBarIcon: ({color, size}) => (
+//             <MaterialCommunityIcons
+//               name="table-search"
+//               color={color}
+//               size={size}
+//             />
+//           ),
+//           headerShown: false,
 //         }}
 //       />
 //       <Tab.Screen

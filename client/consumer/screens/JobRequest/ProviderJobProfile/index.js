@@ -13,6 +13,7 @@ const ProviderJobProfile = ({navigation, route}) => {
     requestedTime,
     lat,
     longi,
+    CID,
     id,
     fname,
     lname,
@@ -51,6 +52,7 @@ const ProviderJobProfile = ({navigation, route}) => {
                 longitude: longi,
                 latitude: lat,
                 providerId: id,
+                consumerId: CID,
               })
               .then(function (response) {
                 console.log(response.data);

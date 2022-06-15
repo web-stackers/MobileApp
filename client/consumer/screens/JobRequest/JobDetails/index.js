@@ -15,6 +15,8 @@ const JobDetails = ({navigation, route}) => {
   const {construction} = route.params;
   console.log('Construction');
   console.log(construction);
+  console.log(construction[0]);
+  console.log(construction.length);
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
@@ -24,21 +26,18 @@ const JobDetails = ({navigation, route}) => {
 
   // let lat = 9.6615;
   // let longi = 80.0255;
+  let ConsumerID = '62132b7bc4afd22e5fc49677';
 
-  const jobList = [
-    {
-      label: 'Plumber',
-      value: 'Plumber',
-    },
-    {
-      label: 'Painter',
-      value: 'Painter',
-    },
-    {
-      label: 'Carpender',
-      value: 'Carpender',
-    },
-  ];
+  var newList = [];
+  for (let i = 0; i < construction.length; i++) {
+    newList = newList.concat({
+      label: construction[i].jobType,
+      value: construction[i]._id,
+    });
+
+    console.log('new list');
+    console.log(newList);
+  }
 
   //consumerID->62132b7bc4afd22e5fc49677
   //Fetch consumer address
@@ -60,7 +59,7 @@ const JobDetails = ({navigation, route}) => {
   //62767b3215fa33d500a00559
   const getProviders = () => {
     axios
-      .get('http://10.0.2.2:5000/provider/jobType/627676e75ef6e55d7f9bc961')
+      .get('http://10.0.2.2:5000/provider/jobType/jobType')
       .then(response => {
         console.log(response.data);
         setProvidersList(response.data);
@@ -95,6 +94,7 @@ const JobDetails = ({navigation, route}) => {
           providersList: providersList,
           lat: providerLocation.address.latitude,
           longi: providerLocation.address.longitude,
+          CID: ConsumerID,
         });
       } else {
         navigation.navigate('NoProviders');
@@ -125,7 +125,7 @@ const JobDetails = ({navigation, route}) => {
       <SafeAreaView>
         <View style={styles.containerStyle}>
           <Sselect
-            jobList={jobList}
+            jobList={newList}
             jobType={jobType}
             setJobType={setJobType}
           />
@@ -149,6 +149,7 @@ const JobDetails = ({navigation, route}) => {
           navigation.navigate('Map', {
             lat: providerLocation.address.latitude,
             longi: providerLocation.address.longitude,
+            CID: ConsumerID,
           })
         }>
         Change workplace location

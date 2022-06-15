@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import EditAccount from '../screens/AccountScreen/EditAccount';
 import SignOut from '../screens/AccountScreen/SignOut';
-import SettingsScreen from '../screens/AccountScreen/SettingsScreen';
+import SettingsScreen from '../screens/AccountScreen/SettingScreen';
 
 const SettingStack = createNativeStackNavigator();
 
