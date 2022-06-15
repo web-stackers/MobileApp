@@ -1,23 +1,28 @@
+/* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121212',
-    width: '100%',
+    // marginTop: StatusBar.currentHeight || 0,
   },
-  text: {
+  item: {
+    backgroundColor: '#424447',
+    padding: 20,
+    marginVertical: 15,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
     color: 'white',
+    textAlign: 'center',
+    marginTop: 2,
+    marginBottom: 10,
   },
-  map: {
-    width: '100%',
-    height: '70%',
-  },
-  btngrp: {
-    width: '95%',
-    marginBottom: 1,
-    marginTop: 20,
-    alignSelf: 'center',
+  subtitle: {
+    fontSize: 20,
+    color: 'white',
   },
 });
 

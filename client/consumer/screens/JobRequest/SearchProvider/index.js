@@ -1,21 +1,47 @@
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Text, Image, Alert} from 'react-native';
 
-import styles from './styles';
-import Sbutton from '../../../../components/Sbutton';
-import ScheckBox from '../../../../components/ScheckBox';
-import Sheader from '../../../../components/Sheader';
+import React, {useState, useEffect} from 'react';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  Alert,
+  Image,
+  // StatusBar,
+} from 'react-native';
 
 import axios from 'axios';
+
+import Sheader from '../../../../components/Sheader';
+import Sbutton from '../../../../components/Sbutton';
+import styles from './styles';
 
 const SearchProvider = ({navigation, route}) => {
   const {jobType, description, requestedTime, providersList, lat, longi} =
     route.params;
+
   console.log(jobType);
   console.log(requestedTime);
   console.log(providersList);
   console.log(providersList.length);
+
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+
   const AlertRequest = () =>
     Alert.alert(
       'Sending Request',
@@ -64,15 +90,30 @@ const SearchProvider = ({navigation, route}) => {
     navigation.navigate('NoProviders');
   };
 
-  return (
-    <ScrollView style={styles.container}>
-      <Sheader title="Choose one provider"></Sheader>
+  const Item = ({title}) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>Qualification:</Text>
+      <Text style={styles.subtitle}>Rating:</Text>
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
         <Sbutton text="View Profile" onPress={handleView} />
       </View>
-    </ScrollView>
+    </View>
+  );
+
+  const renderItem = ({item}) => <Item title={item.title} />;
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Sheader title="Choose one provider"></Sheader>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+    </SafeAreaView>
   );
 };
 
