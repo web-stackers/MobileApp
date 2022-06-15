@@ -1,10 +1,64 @@
 import React from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, Alert, ScrollView} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
-const ProviderJobProfile = ({navigation}) => {
+import axios from 'axios';
+
+const ProviderJobProfile = ({navigation, route}) => {
+  const {jobType, description, requestedTime, lat, longi} = route.params;
+
+  console.log(jobType);
+  console.log(requestedTime);
+
+  const GoBack = () => {
+    navigation.pop(1);
+  };
+
+  const AlertRequest = () =>
+    Alert.alert(
+      'Sending Request',
+      'Are you sure to send the request for that provider?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            axios
+              .post('http://10.0.2.2:5000/job', {
+                jobType: jobType,
+                description: description,
+                requestedTime: requestedTime,
+                longitude: longi,
+                latitude: lat,
+              })
+              .then(function (response) {
+                console.log(response.data);
+                console.log(response.data._id);
+                axios
+                  .post('http://10.0.2.2:5000/jobAssignment', {
+                    jobId: response.data._id,
+                  })
+                  .then(function (response) {
+                    console.log(response.data);
+                    navigation.navigate('JobAcknowledge');
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
+        },
+      ],
+    );
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -21,8 +75,8 @@ const ProviderJobProfile = ({navigation}) => {
       </View>
 
       <View style={styles.btngrp}>
-        <Sbutton primary={true} text="Send Request" />
-        <Sbutton text="Go Back" />
+        <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
+        <Sbutton text="Go Back" onPress={GoBack} />
       </View>
     </ScrollView>
   );

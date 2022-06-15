@@ -63,7 +63,13 @@ const SearchProvider = ({navigation, route}) => {
     );
 
   const handleView = () => {
-    navigation.navigate('ProviderJobProfile');
+    navigation.navigate('ProviderJobProfile', {
+      jobType: jobType,
+      description: description,
+      requestedTime: requestedTime,
+      lat: lat,
+      longi: longi,
+    });
   };
 
   const Item = ({fname, lname, rating, qualification}) => (
