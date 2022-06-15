@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     quotationDoc: {
-        height: 500,
+        height: '68%',
         width: '90%',
         backgroundColor: '#DADADA',
         marginTop: 25,

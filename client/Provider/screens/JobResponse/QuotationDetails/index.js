@@ -6,8 +6,10 @@ import StextBox from '../../../../components/FormComponents/StextBox';
 import DateTimePicker from '../../../../components/DateTimePicker';
 import Sbutton from '../../../../components/Sbutton';
 
-const QuotationDetails = ({navigation}) => {
-  const [date, setDate] = React.useState(new Date());
+const QuotationDetails = ({navigation, route}) => {
+  const {job} = route.params.job;
+  //console.log(job.requestedTime);
+  const [date, setDate] = React.useState(new Date(job.requestedTime));
   const [amount, setAmount] = React.useState('');
 
   return (
