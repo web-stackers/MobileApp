@@ -18,7 +18,7 @@ const SearchProvider = ({navigation, route}) => {
   console.log(providersList);
   console.log(providersList.length);
 
-  const AlertRequest = () =>
+  const AlertRequest = id =>
     Alert.alert(
       'Sending Request',
       'Are you sure to send the request for that provider?',
@@ -38,6 +38,7 @@ const SearchProvider = ({navigation, route}) => {
                 requestedTime: requestedTime,
                 longitude: longi,
                 latitude: lat,
+                providerId: id,
               })
               .then(function (response) {
                 console.log(response.data);
@@ -45,6 +46,7 @@ const SearchProvider = ({navigation, route}) => {
                 axios
                   .post('http://10.0.2.2:5000/jobAssignment', {
                     jobId: response.data._id,
+                    providerId: id,
                   })
                   .then(function (response) {
                     console.log(response.data);
@@ -72,7 +74,7 @@ const SearchProvider = ({navigation, route}) => {
     });
   };
 
-  const Item = ({fname, lname, rating, qualification}) => (
+  const Item = ({fname, lname, rating, qualification, id}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -83,7 +85,11 @@ const SearchProvider = ({navigation, route}) => {
       </Text>
 
       <View style={styles.btngrp}>
-        <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
+        <Sbutton
+          primary={true}
+          text="Send Request"
+          onPress={() => AlertRequest(id)}
+        />
         <Sbutton text="View Profile" onPress={handleView} />
       </View>
     </View>
@@ -95,6 +101,7 @@ const SearchProvider = ({navigation, route}) => {
       lname={item.name.lName}
       rating={item.totalRating / item.ratingCount}
       qualification={item.qualification}
+      id={item._id}
     />
   );
 
