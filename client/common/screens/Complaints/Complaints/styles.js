@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 
   box: {
-    backgroundColor: 'rgba(100, 100, 100, 0.7)',
+    backgroundColor: '#652C9E',
     marginTop: 25,
     paddingTop: 20,
     paddingBottom: 20,
