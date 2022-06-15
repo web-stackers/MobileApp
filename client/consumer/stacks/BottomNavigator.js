@@ -32,7 +32,11 @@ const BottomNavigator = () => {
         options={{
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="table-search" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="table-search"
+              color={color}
+              size={size}
+            />
           ),
           headerShown: false,
         }}
