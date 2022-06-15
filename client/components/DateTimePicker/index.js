@@ -9,6 +9,7 @@ import styles from './styles'
 const DateTimePicker = ({date, setDate}) => {
     const { colors } = useTheme();
     const [open, setOpen] = useState(false)
+    const maxDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()+30, 0);
 
     return (
         <View style={styles.container}>
@@ -21,6 +22,8 @@ const DateTimePicker = ({date, setDate}) => {
                 modal
                 open={open}
                 date={date}
+                minimumDate={date}
+                maximumDate={maxDate}
                 onConfirm={(date) => {
                     setOpen(false)
                     setDate(date)

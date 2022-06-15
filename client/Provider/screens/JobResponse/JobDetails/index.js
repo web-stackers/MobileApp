@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import { Text } from 'react-native-paper';
+import dateFormat from "dateformat";
 
 import axios from 'axios';
 import Job from '../../../../services/Job';
@@ -53,7 +54,8 @@ const JobDetails = ({navigation}) => {
           <Text>Photos{"\n"}</Text>
           <Text>{job.description}{"\n"}</Text>
           <Text>Required Visit Time{"\n"}</Text>
-          <Text>{job.description}{"\n"}</Text>
+          <Text>Date : {dateFormat(job.requestedTime, "fullDate")}{"\n"}</Text>
+          <Text>Time : {dateFormat(job.requestedTime, "hh:MM TT")}{"\n"}</Text>
           <Text>Location</Text>
         </Text>}
       
@@ -69,7 +71,9 @@ const JobDetails = ({navigation}) => {
           primary={true}
           disabled={!read}
           text="Accept"
-          onPress={() => navigation.push('Quotation Details')}
+          onPress={() => navigation.push('Quotation Details', {
+            job: {job}
+          })}
         />
         <Sbutton
           disabled={!read}
