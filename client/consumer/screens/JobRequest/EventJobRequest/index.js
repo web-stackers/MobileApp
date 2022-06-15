@@ -11,12 +11,12 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 // import Job from '../../../../services/Job';
 import axios from 'axios';
 
-const JobDetails = ({navigation, route}) => {
-  const {construction} = route.params;
+const EventJobRequest = ({navigation, route}) => {
+  const {event} = route.params;
   console.log('Construction');
-  console.log(construction);
-  console.log(construction[0]);
-  console.log(construction.length);
+  console.log(event);
+  console.log(event[0]);
+  console.log(event.length);
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
@@ -29,10 +29,10 @@ const JobDetails = ({navigation, route}) => {
   let ConsumerID = '62132b7bc4afd22e5fc49677';
 
   var newList = [];
-  for (let i = 0; i < construction.length; i++) {
+  for (let i = 0; i < event.length; i++) {
     newList = newList.concat({
-      label: construction[i].jobType,
-      value: construction[i]._id,
+      label: event[i].jobType,
+      value: event[i]._id,
     });
 
     console.log('new list');
@@ -58,6 +58,9 @@ const JobDetails = ({navigation, route}) => {
   //627676e75ef6e55d7f9bc961
   //62767b3215fa33d500a00559
   const getProviders = () => {
+    // if (jobType !== '') {
+    console.log('jobType');
+    console.log(jobType);
     axios
       .get('http://10.0.2.2:5000/provider/jobType/627676e75ef6e55d7f9bc961')
       .then(response => {
@@ -67,6 +70,7 @@ const JobDetails = ({navigation, route}) => {
       .catch(function (error) {
         console.log(error);
       });
+    // }
   };
 
   useEffect(() => {
@@ -163,4 +167,4 @@ const JobDetails = ({navigation, route}) => {
   );
 };
 
-export default JobDetails;
+export default EventJobRequest;

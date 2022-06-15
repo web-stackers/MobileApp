@@ -12,6 +12,7 @@ import NoProviders from '../screens/JobRequest/NoProviders';
 import Map from '../screens/JobRequest/Map';
 import SearchProvider from '../screens/JobRequest/SearchProvider';
 import ProviderJobProfile from '../screens/JobRequest/ProviderJobProfile';
+import EventJobRequest from '../screens/JobRequest/EventJobRequest';
 
 const JobRequestStack = createNativeStackNavigator();
 
@@ -27,6 +28,14 @@ const JobRequestStackScreen = () => (
     <JobRequestStack.Screen
       name="JobDetails"
       component={JobDetails}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobRequestStack.Screen
+      name="EventJobRequest"
+      component={EventJobRequest}
       options={{
         header: () => null,
       }}

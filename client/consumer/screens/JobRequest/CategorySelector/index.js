@@ -49,7 +49,9 @@ const CategorySelector = ({navigation}) => {
       construction: constructionList,
     });
   const EventPress = () =>
-    navigation.navigate('QuotationDetails', {jobTypeSelect});
+    navigation.navigate('EventJobRequest', {
+      event: eventList,
+    });
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
