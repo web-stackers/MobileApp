@@ -29,10 +29,7 @@ const Map = ({navigation, route}) => {
           text="Set Location"
           onPress={() => navigation.navigate('QuotationAcknowledge')}
         />
-        <Sbutton
-          text="Go Back"
-          onPress={() => navigation.navigate('JobDetails')}
-        />
+        <Sbutton text="Go Back" onPress={() => navigation.pop(1)} />
       </View>
     </View>
   );
