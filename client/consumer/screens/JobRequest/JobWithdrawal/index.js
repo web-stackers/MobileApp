@@ -63,7 +63,7 @@ const JobWithdrawal = ({navigation, route}) => {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('CategorySelector'),
+          onPress: () => navigation.navigate('QuotationDetails'),
         },
       ],
     );

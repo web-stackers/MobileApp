@@ -12,7 +12,7 @@ import axios from 'axios';
 const QuotationDetails = ({navigation, route}) => {
   // const id = '6213638f657adfba60a68786';
   // const id = '62136a04657adfba60a68788';
-  const {jobTypeSelect} = route.params;
+  // const {jobTypeSelect} = route.params;
   const [quotations, setQuotations] = useState([]);
   const [checked, setChecked] = useState(false);
 
@@ -110,7 +110,10 @@ const QuotationDetails = ({navigation, route}) => {
         source={require('../../../../assets/images/JDetails.png')}
       />
 
-      <Text style={styles.subContent}>Job Type: {jobTypeSelect} </Text>
+      <Text style={styles.subContent}>
+        Job Type:
+        {/* {jobTypeSelect}  */}
+      </Text>
 
       <Text style={styles.subContent}>
         Quotation Amount:

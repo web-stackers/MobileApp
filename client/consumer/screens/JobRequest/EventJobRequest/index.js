@@ -62,7 +62,7 @@ const EventJobRequest = ({navigation, route}) => {
     console.log('jobType');
     console.log(jobType);
     axios
-      .get('http://10.0.2.2:5000/provider/jobType/627676e75ef6e55d7f9bc961')
+      .get('http://10.0.2.2:5000/provider/jobType/627677045ef6e55d7f9bc966')
       .then(response => {
         console.log(response.data);
         setProvidersList(response.data);
