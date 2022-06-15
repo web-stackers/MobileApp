@@ -18,6 +18,7 @@ const ProviderJobProfile = ({navigation, route}) => {
     lname,
     rating,
     qualification,
+    workYear,
   } = route.params;
 
   console.log(jobType);
@@ -84,7 +85,9 @@ const ProviderJobProfile = ({navigation, route}) => {
         />
       </View>
       <View>
-        <Text style={styles.subtitle}>Work Started Year: </Text>
+        <Text style={styles.subtitle}>
+          Work Started Year: {workYear.substring(0, 4)}
+        </Text>
         <Text style={styles.subtitle}>Qualification: {qualification}</Text>
         <Text style={styles.subtitle}>
           Rating: {rating ? rating : 'No ratings yet'}
