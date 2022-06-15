@@ -1,16 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  Alert,
-  Image,
-  // StatusBar,
-} from 'react-native';
+import {SafeAreaView, View, FlatList, Text, Alert, Image} from 'react-native';
 
 import axios from 'axios';
 
@@ -26,21 +17,6 @@ const SearchProvider = ({navigation, route}) => {
   console.log(requestedTime);
   console.log(providersList);
   console.log(providersList.length);
-
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
 
   const AlertRequest = () =>
     Alert.alert(
@@ -90,11 +66,15 @@ const SearchProvider = ({navigation, route}) => {
     navigation.navigate('NoProviders');
   };
 
-  const Item = ({title}) => (
+  const Item = ({fname, lname, rating}) => (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>
+        {fname} {lname}
+      </Text>
       <Text style={styles.subtitle}>Qualification:</Text>
-      <Text style={styles.subtitle}>Rating:</Text>
+      <Text style={styles.subtitle}>
+        Rating: {rating ? rating : 'No ratings yet'}
+      </Text>
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
@@ -103,13 +83,19 @@ const SearchProvider = ({navigation, route}) => {
     </View>
   );
 
-  const renderItem = ({item}) => <Item title={item.title} />;
+  const renderItem = ({item}) => (
+    <Item
+      fname={item.name.fName}
+      lname={item.name.lName}
+      rating={item.totalRating / item.ratingCount}
+    />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <Sheader title="Choose one provider"></Sheader>
       <FlatList
-        data={DATA}
+        data={providersList}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
