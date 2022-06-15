@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  ScrollView,
-  View,
-  Pressable,
-} from 'react-native';
+import {Text, ScrollView, View, Pressable} from 'react-native';
 import styles from './styles';
 
 const Complaints = ({navigation}) => {
@@ -17,26 +12,30 @@ const Complaints = ({navigation}) => {
   const providerComplaintCategory = [
     {
       id: 0,
-      name: 'Consumer is not available at the given location',
+      name: 'Consumer was not present in the place',
     },
     {
       id: 1,
-      name: 'Payment is not fully paid as in Quotation',
+      name: 'Paid less',
     },
     {
       id: 2,
-      name: 'Other issues',
+      name: 'Asked to do additional work',
+    },
+    {
+      id: 3,
+      name: 'Other',
     },
   ];
 
   const consumerComplaintCategory = [
     {
       id: 0,
-      name: 'Provider is absent',
+      name: 'Provider was absent',
     },
     {
       id: 1,
-      name: 'Provider is late',
+      name: 'Provider was late',
     },
     {
       id: 2,
@@ -78,7 +77,13 @@ const Complaints = ({navigation}) => {
           <Pressable
             key={category.id}
             style={styles.list}
-            onPress={() => navigation.push('Provider is absent')}>
+            onPress={() =>
+              navigation.push('Complaint Category', {
+                by: complaintBy,
+                title: category.name,
+                id: category.id,
+              })
+            }>
             <Text style={styles.text}>{category.name}</Text>
           </Pressable>
         ))}

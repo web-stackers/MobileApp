@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, SafeAreaView, Alert} from 'react-native';
-import {Linking} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -12,11 +11,14 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 // import Job from '../../../../services/Job';
 import axios from 'axios';
 
-const JobDetails = ({navigation}) => {
+const JobDetails = ({navigation, route}) => {
+  const {construction} = route.params;
+  console.log('Construction');
+  console.log(construction);
+
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
-  const [jobTypeLists, setJobTypeLists] = useState([]);
   const [providerLocation, setProviderLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
 
@@ -38,19 +40,6 @@ const JobDetails = ({navigation}) => {
     },
   ];
 
-  //Get all jobtypes and their ids under construction category
-  const getJobTYpes = () => {
-    axios
-      .get('http://10.0.2.2:5000/jobTypeCategory/constructionJobs')
-      .then(response => {
-        console.log(response.data);
-        setJobTypeLists(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   //consumerID->62132b7bc4afd22e5fc49677
   //Fetch consumer address
   const getProviderLocation = () => {
@@ -71,7 +60,7 @@ const JobDetails = ({navigation}) => {
   //62767b3215fa33d500a00559
   const getProviders = () => {
     axios
-      .get('http://10.0.2.2:5000/provider/jobType/62767b3215fa33d500a00559')
+      .get('http://10.0.2.2:5000/provider/jobType/627676e75ef6e55d7f9bc961')
       .then(response => {
         console.log(response.data);
         setProvidersList(response.data);
@@ -84,11 +73,7 @@ const JobDetails = ({navigation}) => {
   useEffect(() => {
     getProviderLocation();
     getProviders();
-    getJobTYpes();
   }, []);
-
-  // lat = providerLocation.address.latitude;
-  // longi = providerLocation.address.longitude;
 
   const handleSubmit = () => {
     if (jobType === '') {
