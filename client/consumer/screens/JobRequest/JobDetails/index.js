@@ -15,6 +15,8 @@ const JobDetails = ({navigation, route}) => {
   const {construction} = route.params;
   console.log('Construction');
   console.log(construction);
+  console.log(construction[0]);
+  console.log(construction.length);
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
@@ -26,20 +28,16 @@ const JobDetails = ({navigation, route}) => {
   // let longi = 80.0255;
   let ConsumerID = '62132b7bc4afd22e5fc49677';
 
-  const jobList = [
-    {
-      label: 'Plumber',
-      value: 'Plumber',
-    },
-    {
-      label: 'Painter',
-      value: 'Painter',
-    },
-    {
-      label: 'Carpender',
-      value: 'Carpender',
-    },
-  ];
+  var newList = [];
+  for (let i = 0; i < construction.length; i++) {
+    newList = newList.concat({
+      label: construction[i].jobType,
+      value: construction[i]._id,
+    });
+
+    console.log('new list');
+    console.log(newList);
+  }
 
   //consumerID->62132b7bc4afd22e5fc49677
   //Fetch consumer address
@@ -127,7 +125,7 @@ const JobDetails = ({navigation, route}) => {
       <SafeAreaView>
         <View style={styles.containerStyle}>
           <Sselect
-            jobList={jobList}
+            jobList={newList}
             jobType={jobType}
             setJobType={setJobType}
           />
