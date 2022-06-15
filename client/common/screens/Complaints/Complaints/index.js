@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, ScrollView, View, Pressable} from 'react-native';
 import styles from './styles';
+import axios from 'axios';
 
 const Complaints = ({navigation}) => {
   //   const jobId = navigation.getParam('jobId');
@@ -8,6 +9,10 @@ const Complaints = ({navigation}) => {
 
   const complaintBy = 'Consumer';
   const jobId = '621341023987d49e1f22f7a8';
+
+  const [job, setJob] = useState([]);
+  const [name, setName] = useState([]);
+  const [complaintTo, setComplaintTo] = useState('Provider');
 
   const providerComplaintCategory = [
     {
@@ -53,21 +58,66 @@ const Complaints = ({navigation}) => {
 
   const displayList = () => {
     if (complaintBy === 'Consumer') {
-      return providerComplaintCategory;
-    } else {
       return consumerComplaintCategory;
+    } else {
+      setComplaintTo('Consumer');
+      return providerComplaintCategory;
     }
   };
 
   const categories = displayList();
 
+  // Fetch particular job
+  const getJob = () => {
+    axios
+      .get(`http://10.0.2.2:5000/job/${jobId}`)
+      .then(response => {
+        setJob(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  // Fetch user name
+  const getName = () => {
+    if (complaintBy === 'Consumer') {
+      // const id = job.providerId;
+      const id = '62a06e2bafddf297d7b90069';
+
+      axios
+        .get(`http://10.0.2.2:5000/provider/get/provider/name/${id}`)
+        .then(response => {
+          setName(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      // const id = job.consumerId;
+      const id = '62132b7bc4afd22e5fc49677';
+      axios
+        .get(`http://10.0.2.2:5000/consumer/get/consumer/name/${id}`)
+        .then(response => {
+          setName(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getJob();
+    getName();
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.box}>
         <Text style={styles.boxText}>
-          Job Finished {'\n\n'}
-          Job type {'\n\n'}
-          {complaintBy} Name: name
+          Job Type - {job.jobType} {'\n\n'}
+          {complaintTo} Name - {name.fName} {name.lName}
         </Text>
       </View>
       <Text style={styles.content}>Choose the category</Text>
@@ -82,6 +132,7 @@ const Complaints = ({navigation}) => {
                 by: complaintBy,
                 title: category.name,
                 id: category.id,
+                jobId: jobId,
               })
             }>
             <Text style={styles.text}>{category.name}</Text>
