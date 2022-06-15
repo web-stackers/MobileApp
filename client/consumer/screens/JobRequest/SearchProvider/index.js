@@ -64,9 +64,17 @@ const SearchProvider = ({navigation, route}) => {
       ],
     );
 
-  const handleView = (id, fname, lname, rating, qualification, workYear) => {
-    console.log('work year');
-    console.log(workYear);
+  const handleView = (
+    id,
+    fname,
+    lname,
+    rating,
+    qualification,
+    workYear,
+    dob,
+  ) => {
+    console.log('Dob');
+    console.log(dob);
     navigation.navigate('ProviderJobProfile', {
       jobType: jobType,
       description: description,
@@ -79,10 +87,11 @@ const SearchProvider = ({navigation, route}) => {
       rating: rating,
       qualification: qualification,
       workYear: workYear,
+      dob: dob,
     });
   };
 
-  const Item = ({fname, lname, rating, qualification, id, workYear}) => (
+  const Item = ({fname, lname, rating, qualification, id, workYear, dob}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -101,7 +110,7 @@ const SearchProvider = ({navigation, route}) => {
         <Sbutton
           text="View Profile"
           onPress={() =>
-            handleView(id, fname, lname, rating, qualification, workYear)
+            handleView(id, fname, lname, rating, qualification, workYear, dob)
           }
         />
       </View>
@@ -116,6 +125,7 @@ const SearchProvider = ({navigation, route}) => {
       qualification={item.qualification}
       id={item._id}
       workYear={item.workStartedYear}
+      dob={item.DOB}
     />
   );
 

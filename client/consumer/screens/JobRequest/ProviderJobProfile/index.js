@@ -19,6 +19,7 @@ const ProviderJobProfile = ({navigation, route}) => {
     rating,
     qualification,
     workYear,
+    dob,
   } = route.params;
 
   console.log(jobType);
@@ -85,6 +86,9 @@ const ProviderJobProfile = ({navigation, route}) => {
         />
       </View>
       <View>
+        <Text style={styles.subtitle}>
+          Date of Birth: {dob.substring(0, 10)}
+        </Text>
         <Text style={styles.subtitle}>
           Work Started Year: {workYear.substring(0, 4)}
         </Text>
