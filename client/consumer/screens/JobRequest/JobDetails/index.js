@@ -8,15 +8,10 @@ import Sheader from '../../../../components/Sheader';
 import Sselect from '../../../../components/FormComponents/Sselect';
 import Sdate from '../../../../components/FormComponents/Sdate';
 
-// import Job from '../../../../services/Job';
 import axios from 'axios';
 
 const JobDetails = ({navigation, route}) => {
   const {construction} = route.params;
-  console.log('Construction');
-  console.log(construction);
-  console.log(construction[0]);
-  console.log(construction.length);
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
@@ -34,9 +29,6 @@ const JobDetails = ({navigation, route}) => {
       label: construction[i].jobType,
       value: construction[i]._id,
     });
-
-    console.log('new list');
-    console.log(newList);
   }
 
   //consumerID->62132b7bc4afd22e5fc49677
@@ -58,8 +50,13 @@ const JobDetails = ({navigation, route}) => {
   //627676e75ef6e55d7f9bc961
   //62767b3215fa33d500a00559
   const getProviders = () => {
+    console.log(
+      'Function call..................................................',
+    );
+    console.log('jobType');
+    console.log(jobType);
     axios
-      .get('http://10.0.2.2:5000/provider/jobType/627676e75ef6e55d7f9bc961')
+      .get(`http://10.0.2.2:5000/provider/jobType/${jobType}`)
       .then(response => {
         console.log(response.data);
         setProvidersList(response.data);
@@ -73,6 +70,12 @@ const JobDetails = ({navigation, route}) => {
     getProviderLocation();
     getProviders();
   }, []);
+
+  useEffect(() => {
+    if (jobType !== '') {
+      getProviders();
+    }
+  }, [jobType]);
 
   const handleSubmit = () => {
     if (jobType === '') {
