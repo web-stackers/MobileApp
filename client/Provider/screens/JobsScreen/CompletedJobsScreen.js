@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, FlatList, SafeAreaView} from 'react-native';
-import styles from '../../../components/Styles';
 import {List, Button} from 'react-native-paper';
 
 const CompletedJobsScreen = ({navigation}) => {
