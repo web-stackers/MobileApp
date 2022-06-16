@@ -4,16 +4,16 @@ import Complaints from '../screens/Complaints/Complaints/index';
 import ComplaintsCategory from '../screens/Complaints/ComplaintsCategory/index';
 import Acknowledge from '../screens/Complaints/Acknowledge';
 
-const JobFeedbackStack = createNativeStackNavigator();
+const ComplaintStack = createNativeStackNavigator();
 
-const JobFeedbackStackScreen = () => (
-  <JobFeedbackStack.Navigator>
-    <JobFeedbackStack.Screen
+const ComplaintStackScreen = () => (
+  <ComplaintStack.Navigator>
+    <ComplaintStack.Screen
       name="Let us know your issues"
       component={Complaints}
     />
 
-    <JobFeedbackStack.Screen
+    <ComplaintStack.Screen
       name="Complaint Category"
       component={ComplaintsCategory}
       options={{
@@ -21,14 +21,14 @@ const JobFeedbackStackScreen = () => (
       }}
     />
 
-    <JobFeedbackStack.Screen
+    <ComplaintStack.Screen
       name="Acknowledge"
       component={Acknowledge}
       options={{
         header: () => null,
       }}
     />
-  </JobFeedbackStack.Navigator>
+  </ComplaintStack.Navigator>
 );
 
-export default JobFeedbackStackScreen;
+export default ComplaintStackScreen;
