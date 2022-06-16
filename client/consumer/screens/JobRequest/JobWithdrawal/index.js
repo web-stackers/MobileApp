@@ -8,7 +8,7 @@ import StextInput from '../../../../components/FormComponents/StextInput';
 import axios from 'axios';
 
 const JobWithdrawal = ({navigation, route}) => {
-  const {id} = route.params;
+  const {JAID} = route.params;
   const [text, setText] = useState('');
   const handleSubmit = () => {
     if (text === '') {
@@ -31,7 +31,7 @@ const JobWithdrawal = ({navigation, route}) => {
             onPress: () => {
               axios
                 .patch(
-                  'http://10.0.2.2:5000/jobAssignment/withdrawlPending/6213638f657adfba60a68786',
+                  `http://10.0.2.2:5000/jobAssignment/withdrawlPending/${JAID}`,
                   {
                     arisedBy: 'consumer',
                     reason: text,

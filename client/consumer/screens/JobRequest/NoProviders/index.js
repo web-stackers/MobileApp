@@ -26,7 +26,7 @@ const NoProviders = ({navigation}) => {
           text="Done"
           onPress={() =>
             navigation.navigate('JobWithdrawal', {
-              id: '6213638f657adfba60a68786',
+              JAID: '6213638f657adfba60a68786',
             })
           }
         />

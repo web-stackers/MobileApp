@@ -19,8 +19,6 @@ const JobDetails = ({navigation, route}) => {
   const [providerLocation, setProviderLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
 
-  // let ConsumerID = '62132b7bc4afd22e5fc49677';
-
   var newList = [];
   for (let i = 0; i < construction.length; i++) {
     newList = newList.concat({
@@ -117,7 +115,7 @@ const JobDetails = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <Sheader title="Search for provider"></Sheader>
+      <Sheader title="Search for provider" />
       <SafeAreaView>
         <View style={styles.containerStyle}>
           <Sselect
