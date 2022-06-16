@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Alert} from 'react-native';
+import {View, Text, Image, Alert, ScrollView} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -84,7 +84,7 @@ const JobWithdrawal = ({navigation, route}) => {
       ],
     );
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.message}>
         <Text style={styles.title}>
           Provide a reason for withdrawing from job
@@ -109,7 +109,7 @@ const JobWithdrawal = ({navigation, route}) => {
         <Sbutton primary={true} text="Confirm" onPress={handleSubmit} />
         <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
