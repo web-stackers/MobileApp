@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text, Alert, Image} from 'react-native';
+import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
 
 import axios from 'axios';
 
@@ -13,10 +13,7 @@ const SearchProvider = ({navigation, route}) => {
   const {jobType, description, requestedTime, providersList, lat, longi, CID} =
     route.params;
 
-  console.log(jobType);
-  console.log(requestedTime);
-  console.log(providersList);
-  console.log(providersList.length);
+  // const [documentList, setDocumentList] = useState([]);
 
   const AlertRequest = id =>
     Alert.alert(
@@ -79,6 +76,18 @@ const SearchProvider = ({navigation, route}) => {
   ) => {
     console.log('Dob');
     console.log(dob);
+    // axios
+    //   .get(`http://10.0.2.2:5000/provider/pic/${id}`)
+    //   .then(response => {
+    //     console.log(
+    //       'Document list......................................................................................................',
+    //     );
+    //     console.log(response.data[0]);
+    //     setDocumentList(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
     navigation.navigate('ProviderJobProfile', {
       jobType: jobType,
       description: description,

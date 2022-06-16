@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, Alert, ScrollView} from 'react-native';
-import {Buffer} from 'buffer';
+// import {Buffer} from 'buffer';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -31,6 +31,13 @@ const ProviderJobProfile = ({navigation, route}) => {
   const GoBack = () => {
     navigation.pop(1);
   };
+
+  // let base64String = false;
+  // let mimetype = '';
+
+  // let buffer = profilePicture.data;
+  // base64String = Buffer.from(buffer).toString('base64');
+  // mimetype = profilePicture.contentType;
 
   const AlertRequest = () =>
     Alert.alert(
