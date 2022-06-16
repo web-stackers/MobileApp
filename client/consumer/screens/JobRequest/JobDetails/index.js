@@ -11,7 +11,7 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 import axios from 'axios';
 
 const JobDetails = ({navigation, route}) => {
-  const {construction, CID} = route.params;
+  const {job, CID} = route.params;
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
@@ -20,10 +20,10 @@ const JobDetails = ({navigation, route}) => {
   const [providersList, setProvidersList] = useState([]);
 
   var newList = [];
-  for (let i = 0; i < construction.length; i++) {
+  for (let i = 0; i < job.length; i++) {
     newList = newList.concat({
-      label: construction[i].jobType,
-      value: construction[i]._id,
+      label: job[i].jobType,
+      value: job[i]._id,
     });
   }
 
