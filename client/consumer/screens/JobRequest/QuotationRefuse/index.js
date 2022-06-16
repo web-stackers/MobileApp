@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Alert} from 'react-native';
+import {View, Text, Image, Alert, ScrollView} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -31,7 +31,7 @@ const QuotationRefuse = ({navigation, route}) => {
             onPress: () => {
               axios
                 .patch(
-                  'http://10.0.2.2:5000/jobAssignment/quotationRejected/6213638f657adfba60a68786',
+                  `http://10.0.2.2:5000/jobAssignment/quotationRejected/${JAID}`,
                   {reason: text},
                 )
                 .then(response => {
@@ -48,7 +48,7 @@ const QuotationRefuse = ({navigation, route}) => {
     }
   };
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.message}>
         <Text style={styles.title}>
           Please provide a reason for refusing this Quotation
@@ -75,7 +75,7 @@ const QuotationRefuse = ({navigation, route}) => {
           onPress={() => navigation.navigate('CategorySelector')}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

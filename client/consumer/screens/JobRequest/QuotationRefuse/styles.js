@@ -1,40 +1,37 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121212',
-    alignItems: 'center',
     width: '100%',
-    height: Dimensions.get('window').height,
   },
   btngrp: {
     width: '95%',
-    position: 'absolute',
-    bottom: 25,
+    marginTop: 120,
+    alignSelf: 'center',
   },
   message: {
     width: '100%',
-    height: Dimensions.get('window').height,
-    alignItems: 'center',
-    marginTop: 80,
+    marginTop: 70,
   },
   title: {
     color: '#fff',
     fontSize: 28,
     marginBottom: 50,
-    alignItems: 'center',
+    marginLeft: 50,
     justifyContent: 'center',
   },
   JRefusePic: {
     height: 150,
     width: 150,
-    marginBottom: 50,
+    marginBottom: 20,
+    marginLeft: 130,
   },
   textField: {
     width: '100%',
-    position: 'absolute',
-    bottom: 300,
+    marginTop: 20,
+    marginLeft: 8,
   },
 });
 
