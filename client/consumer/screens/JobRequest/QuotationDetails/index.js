@@ -10,29 +10,14 @@ import Sheader from '../../../../components/Sheader';
 import axios from 'axios';
 
 const QuotationDetails = ({navigation, route}) => {
-  const JAID = '6213638f657adfba60a68786';
-  // const JAID = '62136a04657adfba60a68788';
-  // const {jobTypeSelect} = route.params;
-  const [quotations, setQuotations] = useState([]);
+  console.log(
+    'Check JA is passed....................................................................',
+  );
+  const {JA} = route.params;
+  console.log(JA);
+  const JAID = JA._id;
+
   const [checked, setChecked] = useState(false);
-
-  const getQuotations = () => {
-    axios
-      .get('http://10.0.2.2:5000/jobAssignment/6213638f657adfba60a68786')
-      .then(response => {
-        console.log(response.data);
-        setQuotations(response.data);
-        console.log(quotations);
-        console.log(quotations.quotation.amount);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    getQuotations();
-  }, []);
 
   const handleAccept = () => {
     if (checked === false) {
@@ -86,12 +71,12 @@ const QuotationDetails = ({navigation, route}) => {
           onPress: () => {
             axios
               .patch(
-                'http://10.0.2.2:5000/jobAssignment/quotationRejected/6213638f657adfba60a68786',
+                `http://10.0.2.2:5000/jobAssignment/quotationRejected/${JAID}`,
               )
               .then(response => {
                 console.log(response.data);
                 navigation.navigate('QuotationRefuse', {
-                  id: '6213638f657adfba60a68786',
+                  JAID: JAID,
                 });
               })
               .catch(function (error) {
@@ -104,7 +89,7 @@ const QuotationDetails = ({navigation, route}) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Sheader title="Quotation Details"></Sheader>
+      <Sheader title="Quotation Details" />
       <Image
         style={styles.JDetailsPic}
         source={require('../../../../assets/images/JDetails.png')}
@@ -117,7 +102,7 @@ const QuotationDetails = ({navigation, route}) => {
 
       <Text style={styles.subContent}>
         Quotation Amount:
-        {/* {quotations.quotation.amount} */}
+        {JA.quotation.amount}
       </Text>
       <Text style={styles.subContent}>Approximated Duration</Text>
       <Text style={styles.subSubContent}>

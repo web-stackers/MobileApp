@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Alert} from 'react-native';
+import {View, Text, Image, Alert, ScrollView} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -51,6 +51,8 @@ const JobWithdrawal = ({navigation, route}) => {
     }
   };
 
+  const [quotations, setQuotations] = useState([]);
+
   const AlertCancel = () =>
     Alert.alert(
       'Cancel',
@@ -63,12 +65,26 @@ const JobWithdrawal = ({navigation, route}) => {
         },
         {
           text: 'OK',
-          onPress: () => navigation.navigate('QuotationDetails'),
+          onPress: () => {
+            axios
+              .get(`http://10.0.2.2:5000/jobAssignment/${JAID}`)
+              .then(response => {
+                console.log(response.data);
+                setQuotations(response.data);
+                console.log(quotations);
+                navigation.navigate('QuotationDetails', {
+                  JA: response.data,
+                });
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          },
         },
       ],
     );
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.message}>
         <Text style={styles.title}>
           Provide a reason for withdrawing from job
@@ -93,7 +109,7 @@ const JobWithdrawal = ({navigation, route}) => {
         <Sbutton primary={true} text="Confirm" onPress={handleSubmit} />
         <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
