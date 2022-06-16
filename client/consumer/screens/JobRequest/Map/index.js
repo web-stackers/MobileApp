@@ -8,6 +8,7 @@ import Sheader from '../../../../components/Sheader';
 import axios from 'axios';
 
 import MapView from 'react-native-maps';
+import {Marker} from 'react-native-maps';
 
 const Map = ({navigation, route}) => {
   const {lat, longi, CID} = route.params;
@@ -50,8 +51,13 @@ const Map = ({navigation, route}) => {
           longitude: longi,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}
-      />
+        }}>
+        <Marker
+          coordinate={{latitude: lat, longitude: longi}}
+          title={'Your default workplace location'}
+        />
+      </MapView>
+
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
