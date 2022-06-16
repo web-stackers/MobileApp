@@ -112,7 +112,7 @@ const EventJobRequest = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <Sheader title="Search for provider"></Sheader>
+      <Sheader title="Search for provider" />
       <SafeAreaView>
         <View style={styles.containerStyle}>
           <Sselect

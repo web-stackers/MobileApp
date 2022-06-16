@@ -10,7 +10,7 @@ const NoProviders = ({navigation}) => {
       <View style={styles.message}>
         <Text style={styles.title}>No Results Found</Text>
         <Image
-          style={styles.tick}
+          style={styles.wrong}
           source={require('../../../../assets/images/wrong.png')}
         />
         <Text style={styles.subtitle}>

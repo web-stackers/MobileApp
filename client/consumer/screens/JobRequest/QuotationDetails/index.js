@@ -10,8 +10,8 @@ import Sheader from '../../../../components/Sheader';
 import axios from 'axios';
 
 const QuotationDetails = ({navigation, route}) => {
-  // const id = '6213638f657adfba60a68786';
-  // const id = '62136a04657adfba60a68788';
+  const JAID = '6213638f657adfba60a68786';
+  // const JAID = '62136a04657adfba60a68788';
   // const {jobTypeSelect} = route.params;
   const [quotations, setQuotations] = useState([]);
   const [checked, setChecked] = useState(false);
@@ -55,7 +55,7 @@ const QuotationDetails = ({navigation, route}) => {
             onPress: () => {
               axios
                 .patch(
-                  'http://10.0.2.2:5000/jobAssignment/quotationAccepted/6213638f657adfba60a68786',
+                  `http://10.0.2.2:5000/jobAssignment/quotationAccepted/${JAID}`,
                 )
                 .then(response => {
                   console.log(response.data);

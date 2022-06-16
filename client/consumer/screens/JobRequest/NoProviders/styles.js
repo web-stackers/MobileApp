@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('window').height,
     alignItems: 'center',
-    marginTop: 300,
+    marginTop: 200,
   },
   title: {
     color: '#fff',
@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
   },
-  tick: {
+  wrong: {
     height: 250,
     width: 250,
-    marginBottom: 55,
+    marginBottom: 40,
   },
   doneButton: {
     position: 'absolute',
-    bottom: 50,
+    bottom: 100,
     width: '95%',
   },
 });
