@@ -8,7 +8,7 @@ import StextInput from '../../../../components/FormComponents/StextInput';
 import axios from 'axios';
 
 const QuotationRefuse = ({navigation, route}) => {
-  const {id} = route.params;
+  const {JAID} = route.params;
   const [text, setText] = useState('');
   const handleSubmit = () => {
     if (text === '') {
