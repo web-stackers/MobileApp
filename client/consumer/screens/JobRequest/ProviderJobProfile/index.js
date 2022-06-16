@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, Alert, ScrollView} from 'react-native';
+import {Buffer} from 'buffer';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';

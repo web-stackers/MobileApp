@@ -68,7 +68,7 @@ const JobDetails = ({navigation, route}) => {
 
   useEffect(() => {
     getProviderLocation();
-    getProviders();
+    // getProviders();
   }, []);
 
   useEffect(() => {

@@ -16,6 +16,7 @@
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "dateformat": "^5.0.3",
     "pod-install": "^0.1.36",
     "react": "17.0.2",
