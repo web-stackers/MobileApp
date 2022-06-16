@@ -66,9 +66,9 @@ const ComplaintsCategory = ({route, navigation}) => {
 
   const displayDescription = () => {
     if (complaintBy === 'Consumer') {
-      return providerCategoryDescription;
-    } else {
       return consumerCategoryDescription;
+    } else {
+      return providerCategoryDescription;
     }
   };
 
