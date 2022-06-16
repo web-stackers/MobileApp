@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import RatingsAndReviews from '../screens/ratingsAndReviews';
+import RatingsAndReviews from '../screens/RatingsAndReviews';
 
 const RatingsAndReviewsStack = createNativeStackNavigator();
 
