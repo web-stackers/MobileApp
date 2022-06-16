@@ -142,7 +142,9 @@ const EventJobRequest = ({navigation, route}) => {
 
       <Sdate date={requestedTime} setDate={setrequestedTime} />
 
-      <Sbutton primary={true} text="Change Location" onPress={handleMap} />
+      <View style={styles.btnMap}>
+        <Sbutton text="Change Location" onPress={handleMap} />
+      </View>
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />

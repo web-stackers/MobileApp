@@ -113,6 +113,14 @@ const JobDetails = ({navigation, route}) => {
       ],
     );
 
+  const handleMap = () => {
+    navigation.navigate('Map', {
+      lat: providerLocation.address.latitude,
+      longi: providerLocation.address.longitude,
+      CID: CID,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Sheader title="Search for provider" />
@@ -137,17 +145,9 @@ const JobDetails = ({navigation, route}) => {
 
       <Sdate date={requestedTime} setDate={setrequestedTime} />
 
-      <Text
-        style={styles.linkText}
-        onPress={() =>
-          navigation.navigate('Map', {
-            lat: providerLocation.address.latitude,
-            longi: providerLocation.address.longitude,
-            CID: CID,
-          })
-        }>
-        Change workplace location
-      </Text>
+      <View style={styles.btnMap}>
+        <Sbutton text="Change Location" onPress={handleMap} />
+      </View>
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />
