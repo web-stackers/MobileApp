@@ -53,6 +53,7 @@ const Map = ({navigation, route}) => {
           longitudeDelta: 0.0421,
         }}>
         <Marker
+          // draggable
           coordinate={{latitude: lat, longitude: longi}}
           title={'Your default workplace location'}
         />

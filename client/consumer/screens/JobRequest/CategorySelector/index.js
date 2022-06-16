@@ -8,7 +8,9 @@ import styles from './styles';
 import axios from 'axios';
 
 const CategorySelector = ({navigation}) => {
-  const jobTypeSelect = 'Mason';
+  //consumerID->62132b7bc4afd22e5fc49677
+  //consumerID->62132c85c4afd22e5fc49685
+  let consumerID = '62132c85c4afd22e5fc49685';
 
   const [constructionList, setConstructionList] = useState([]);
   const [eventList, setEventList] = useState([]);
@@ -47,10 +49,12 @@ const CategorySelector = ({navigation}) => {
   const ConstructionPress = () =>
     navigation.navigate('JobDetails', {
       construction: constructionList,
+      CID: consumerID,
     });
   const EventPress = () =>
     navigation.navigate('EventJobRequest', {
       event: eventList,
+      CID: consumerID,
     });
   return (
     <View style={styles.container}>

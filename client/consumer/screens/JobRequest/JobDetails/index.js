@@ -11,7 +11,7 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 import axios from 'axios';
 
 const JobDetails = ({navigation, route}) => {
-  const {construction} = route.params;
+  const {construction, CID} = route.params;
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
@@ -19,9 +19,7 @@ const JobDetails = ({navigation, route}) => {
   const [providerLocation, setProviderLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
 
-  // let lat = 9.6615;
-  // let longi = 80.0255;
-  let ConsumerID = '62132b7bc4afd22e5fc49677';
+  // let ConsumerID = '62132b7bc4afd22e5fc49677';
 
   var newList = [];
   for (let i = 0; i < construction.length; i++) {
@@ -31,24 +29,20 @@ const JobDetails = ({navigation, route}) => {
     });
   }
 
-  //consumerID->62132b7bc4afd22e5fc49677
   //Fetch consumer address
   const getProviderLocation = () => {
+    console.log(CID);
     axios
-      .get('http://10.0.2.2:5000/consumer/address/62132c85c4afd22e5fc49685')
+      .get(`http://10.0.2.2:5000/consumer/address/${CID}`)
       .then(response => {
         console.log(response.data);
         setProviderLocation(response.data);
-        console.log(providerLocation.address.latitude);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
-  //job Type : 627677045ef6e55d7f9bc966,
-  //627676e75ef6e55d7f9bc961
-  //62767b3215fa33d500a00559
   const getProviders = () => {
     console.log(
       'Function call..................................................',
@@ -68,7 +62,6 @@ const JobDetails = ({navigation, route}) => {
 
   useEffect(() => {
     getProviderLocation();
-    // getProviders();
   }, []);
 
   useEffect(() => {
@@ -97,7 +90,7 @@ const JobDetails = ({navigation, route}) => {
           providersList: providersList,
           lat: providerLocation.address.latitude,
           longi: providerLocation.address.longitude,
-          CID: ConsumerID,
+          CID: CID,
         });
       } else {
         navigation.navigate('NoProviders');
@@ -152,7 +145,7 @@ const JobDetails = ({navigation, route}) => {
           navigation.navigate('Map', {
             lat: providerLocation.address.latitude,
             longi: providerLocation.address.longitude,
-            CID: ConsumerID,
+            CID: CID,
           })
         }>
         Change workplace location
