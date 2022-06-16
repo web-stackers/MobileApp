@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Text, Alert} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -26,13 +26,10 @@ const Map = ({navigation, route}) => {
         {
           text: 'OK',
           onPress: () => {
-            axios.patch(
-              'http://10.0.2.2:5000/consumer/addressUpdate/62132b7bc4afd22e5fc49677',
-              {
-                longitude: longi,
-                latitude: lat,
-              },
-            );
+            axios.patch(`http://10.0.2.2:5000/consumer/addressUpdate/${CID}`, {
+              longitude: longi,
+              latitude: lat,
+            });
             navigation.pop(1);
           },
         },
@@ -41,9 +38,7 @@ const Map = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <Sheader title="Map"></Sheader>
-      {/* <Text style={styles.text}>{lat}</Text>
-      <Text style={styles.text}>{longi}</Text> */}
+      <Sheader title="Map" />
       <MapView
         style={styles.map}
         initialRegion={{
