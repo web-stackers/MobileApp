@@ -11,17 +11,13 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 import axios from 'axios';
 
 const EventJobRequest = ({navigation, route}) => {
-  const {event} = route.params;
+  const {event, CID} = route.params;
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
   const [providerLocation, setProviderLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
-
-  // let lat = 9.6615;
-  // let longi = 80.0255;
-  let ConsumerID = '62132b7bc4afd22e5fc49677';
 
   var newList = [];
   for (let i = 0; i < event.length; i++) {
@@ -31,30 +27,23 @@ const EventJobRequest = ({navigation, route}) => {
     });
   }
 
-  //consumerID->62132b7bc4afd22e5fc49677
   //Fetch consumer address
   const getProviderLocation = () => {
     axios
-      .get('http://10.0.2.2:5000/consumer/address/62132c85c4afd22e5fc49685')
+      .get(`http://10.0.2.2:5000/consumer/address/${CID}`)
       .then(response => {
         console.log(response.data);
         setProviderLocation(response.data);
-        console.log(providerLocation.address.latitude);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
-  //job Type : 627677045ef6e55d7f9bc966,
-  //627676e75ef6e55d7f9bc961
-  //62767b3215fa33d500a00559
   const getProviders = () => {
     console.log(
       'Function call..................................................',
     );
-    console.log('jobType');
-    console.log(jobType);
     axios
       .get(`http://10.0.2.2:5000/provider/jobType/${jobType}`)
       .then(response => {
@@ -68,7 +57,6 @@ const EventJobRequest = ({navigation, route}) => {
 
   useEffect(() => {
     getProviderLocation();
-    getProviders();
   }, []);
 
   useEffect(() => {
@@ -97,7 +85,7 @@ const EventJobRequest = ({navigation, route}) => {
           providersList: providersList,
           lat: providerLocation.address.latitude,
           longi: providerLocation.address.longitude,
-          CID: ConsumerID,
+          CID: CID,
         });
       } else {
         navigation.navigate('NoProviders');
@@ -152,7 +140,7 @@ const EventJobRequest = ({navigation, route}) => {
           navigation.navigate('Map', {
             lat: providerLocation.address.latitude,
             longi: providerLocation.address.longitude,
-            CID: ConsumerID,
+            CID: CID,
           })
         }>
         Change workplace location
