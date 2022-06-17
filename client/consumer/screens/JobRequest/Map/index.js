@@ -42,9 +42,6 @@ const Map = ({navigation, route}) => {
   const onMarkerDragEnd = coord => {
     newLat = coord.latitude;
     newLongi = coord.longitude;
-    console.log('Marker position................');
-    console.log(newLat);
-    console.log(parseFloat(coord.latitude));
   };
 
   return (
