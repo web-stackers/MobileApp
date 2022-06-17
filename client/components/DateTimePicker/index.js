@@ -6,7 +6,7 @@ import { useTheme, Text } from 'react-native-paper'
 import Sbutton from '../Sbutton'
 import styles from './styles'
 
-const DateTimePicker = ({date, setDate}) => {
+const DateTimePicker = ({date, setDate, reqDate}) => {
     const { colors } = useTheme();
     const [open, setOpen] = useState(false)
     const maxDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()+30, 0);
@@ -15,7 +15,7 @@ const DateTimePicker = ({date, setDate}) => {
         <View style={styles.container}>
             <Sbutton 
                 text="Select date and time"
-                onPress={() => setOpen(true)}
+                onPress={() => {setOpen(true); setDate(reqDate);}}
             />
             <Text style={styles.text}>Selected : {date.toLocaleString()}</Text>
             <DatePicker

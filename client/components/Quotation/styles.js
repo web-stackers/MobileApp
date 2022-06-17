@@ -2,11 +2,21 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     quotationDoc: {
+        padding: 15,
         height: '68%',
         width: '90%',
         backgroundColor: '#DADADA',
         marginTop: 25,
-        alignItems: 'center'
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        textAlign: 'center'
+    },
+    detail: {
+        fontSize: 20,
+        lineHeight: 30,
+        fontWeight: 'bold'
     }
 });
 
