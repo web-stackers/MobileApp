@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, Alert} from 'react-native';
 import {RadioButton, Text} from 'react-native-paper';
 
 import styles from './styles';
@@ -10,6 +10,28 @@ import SradioButton from '../../../../components/SradioButton';
 const JobRefusePage = ({navigation}) => {
   const [value, setValue] = React.useState('');
   const [reason, setReason] = React.useState('');
+  const [otherReason, setOtherReason] = React.useState('');
+
+  const texts = [
+    'Requested for wrong skill set',
+    'Unavailable on requested day',
+    'Not clear about the request' ,
+    'Other'
+  ]
+
+  const validateReason = () => {
+    if (reason==='' || value === 3 && otherReason==='') {
+      Alert.alert(
+        'Reason for refusal',
+        'Please provide the reason for refusing this job',
+      );
+    } else {
+        navigation.push('Acknowledgement', {
+          title: 'Informed the customer !',
+          subtitle: 'Customer has been informed about the refusal of job request.',
+        })
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -25,44 +47,39 @@ const JobRefusePage = ({navigation}) => {
 
       <View style={styles.reasons}>
         <RadioButton.Group
-          onValueChange={newValue => setValue(newValue)}
+          onValueChange={newValue => {setValue(newValue); setReason(texts[newValue]);}}
           value={value}
         >
           <SradioButton
-            value='one'
-            text='Requested for wrong skill set' 
+            value={0}
+            text={texts[0]}
           />
           <SradioButton
-            value='two'
-            text='Unavailable on requested day' 
+            value={1}
+            text={texts[1]}
           />
           <SradioButton
-            value='three'
-            text='Not clear about the request' 
+            value={2}
+            text={texts[2]}
           />
           <SradioButton
-            value='four'
-            text='Other' 
+            value={3}
+            text={texts[3]} 
           />
         </RadioButton.Group>
-          <StextBox
-            value={reason}
-            onChangeText={(value) => setReason(value)}
-            disabled={!(value==='four')}
-            placeholder="Enter the reason" 
-          />
+        <StextBox
+          value={otherReason}
+          onChangeText={(value) => setOtherReason(value)}
+          disabled={!(value===3)}
+          placeholder="Enter the reason" 
+        />
       </View>
 
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
           text="Confirm"
-          onPress={() =>
-            navigation.push('Acknowledgement', {
-              title: 'Withdrawal request sent !',
-              subtitle: 'Withdrawal request under review. You will receive an email of the results.',
-            })
-          }
+          onPress={() => validateReason()}
         />
         <Sbutton
           text="Cancel"

@@ -8,12 +8,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: Dimensions.get('window').height,
+    padding: 10,
   },
   message: {
     width: '100%',
     height: Dimensions.get('window').height,
     alignItems: 'center',
-    marginTop: 300,
+    marginTop: 280,
   },
   title: {
     color: '#fff',
