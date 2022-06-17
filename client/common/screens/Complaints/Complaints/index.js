@@ -117,7 +117,7 @@ const Complaints = ({navigation}) => {
       <View style={styles.box}>
         <Text style={styles.boxText}>
           Job Type - {job.jobType} {'\n\n'}
-          {complaintTo} Name - {name.fName} {name.lName}
+          {complaintTo} Name - {name.fName}
         </Text>
       </View>
       <Text style={styles.content}>Choose the category</Text>
