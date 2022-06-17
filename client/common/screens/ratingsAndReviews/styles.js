@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
 
   inBox: {
     backgroundColor: 'rgba(137, 137, 137, 0.2)',
-    marginTop: 15,
-    height: 400,
+    marginTop: 25,
+    height: 350,
     width: '90%',
   },
 
-  textInputView: {alignItems: 'center'},
+  textInputView: {alignItems: 'center', marginTop:30},
 
   textInput: {width: '90%', height: 120},
 
@@ -45,14 +45,13 @@ const styles = StyleSheet.create({
   },
 
   bottomContent: {
-    marginTop: 10,
+    marginTop: 30,
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#652C9E',
+    color: 'white',
   },
 
   starView: {
-    marginTop: 20,
+    marginTop: 25,
   },
 });
 

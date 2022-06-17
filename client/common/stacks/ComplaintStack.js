@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Complaints from '../screens/Complaints/Complaints/index';
 import ComplaintsCategory from '../screens/Complaints/ComplaintsCategory/index';
 import Acknowledge from '../screens/Complaints/Acknowledge';
+import HomeScreen from '../screens/HomeScreen';
 
 const ComplaintStack = createNativeStackNavigator();
 
@@ -24,6 +25,14 @@ const ComplaintStackScreen = () => (
     <ComplaintStack.Screen
       name="Acknowledge"
       component={Acknowledge}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <ComplaintStack.Screen
+      name="Home"
+      component={HomeScreen}
       options={{
         header: () => null,
       }}
