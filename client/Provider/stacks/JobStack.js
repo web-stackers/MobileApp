@@ -47,6 +47,9 @@ const JobStackScreen = () => (
     <JobStack.Screen 
       name="Job Withdrawal" 
       component={JobWithdrawal} 
+      options={{
+        header: () => null,
+      }}
     />
   </JobStack.Navigator>
 );
