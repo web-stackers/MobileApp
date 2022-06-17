@@ -13,7 +13,7 @@ const QuotationDetails = ({navigation, route}) => {
   console.log(
     'Check JA is passed....................................................................',
   );
-  const {JA} = route.params;
+  const {JA, JobType} = route.params;
   console.log(JA);
   const JAID = JA._id;
 
@@ -96,7 +96,7 @@ const QuotationDetails = ({navigation, route}) => {
       />
 
       <Text style={styles.subContent}>
-        Job Type:
+        Job Type: {JobType}
         {/* {jobTypeSelect}  */}
       </Text>
 

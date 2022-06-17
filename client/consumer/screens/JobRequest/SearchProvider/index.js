@@ -50,7 +50,8 @@ const SearchProvider = ({navigation, route}) => {
                   })
                   .then(function (response) {
                     console.log(response.data);
-                    navigation.navigate('JobAcknowledge');
+                    navigation.navigate('PhotoUpload');
+                    // navigation.navigate('JobAcknowledge');
                   })
                   .catch(function (error) {
                     console.log(error);
