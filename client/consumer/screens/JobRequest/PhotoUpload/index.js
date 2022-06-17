@@ -1,13 +1,55 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Alert} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import Sheader from '../../../../components/Sheader';
 
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
+
+import axios from 'axios';
 
 const PhotoUpload = ({navigation}) => {
+  const [file, setFile] = useState('');
+  const options = {
+    title: 'Select Image',
+    type: 'library',
+    options: {
+      maxHeight: 200,
+      maxWidth: 200,
+      selectionLimit: 1,
+      mediaType: 'photo',
+      includeBase64: false,
+    },
+  };
+
+  const openGallery = async () => {
+    const image = await launchImageLibrary(options);
+    console.log('image calling.............................');
+    console.log(image.assets[0]);
+    setFile(image.assets[0]);
+    const formData = new FormData();
+    formData.append('file', file);
+    // formData.append('file', {
+    //   uri: image.assets[0].uri,
+    //   type: image.assets[0].type,
+    //   name: image.assets[0].fileName,
+    // });
+    try {
+      const res = await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (err) {
+      if (err.response.status === 500) {
+        console.log('There was a problem with the server');
+      } else {
+        console.log(err.response.data.msg);
+      }
+    }
+  };
+
   const handleSkip = () => {
     navigation.navigate('JobAcknowledge');
   };
@@ -38,11 +80,12 @@ const PhotoUpload = ({navigation}) => {
         />
         <Text style={styles.title}>
           You can able to upload a photo related to your job for more clear
-          information
+          information. (if you want you can skip this step also)
         </Text>
       </View>
       <View style={styles.btngrp}>
-        <Sbutton primary={true} text="Upload" onPress={handleUpload} />
+        <Sbutton primary={true} text="Upload" onPress={openGallery} />
+        {/* <Sbutton primary={true} text="Upload" onPress={handleUpload} /> */}
         <Sbutton text="Skip" onPress={handleSkip} />
       </View>
     </View>
