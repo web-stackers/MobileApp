@@ -4,6 +4,7 @@ import {View, Text, Image, Alert, ScrollView} from 'react-native';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import StextInput from '../../../../components/FormComponents/StextInput';
+import Sheader from '../../../../components/Sheader';
 
 import axios from 'axios';
 
@@ -85,6 +86,7 @@ const JobWithdrawal = ({navigation, route}) => {
     );
   return (
     <ScrollView style={styles.container}>
+      <Sheader title="Requesting for Withdrawal of Job" />
       <View style={styles.message}>
         <Text style={styles.title}>
           Provide a reason for withdrawing from job

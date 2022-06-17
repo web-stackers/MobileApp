@@ -9,23 +9,24 @@ const styles = StyleSheet.create({
   },
   btngrp: {
     width: '95%',
-    marginTop: 70,
+    marginTop: 40,
     alignSelf: 'center',
   },
   textField: {
     width: '100%',
+    marginLeft: 10,
   },
   message: {
     width: '100%',
-    marginTop: 80,
-    marginLeft: 10,
+    marginTop: 25,
+    marginLeft: 15,
   },
   title: {
     color: '#fff',
     fontSize: 28,
     marginLeft: 5,
     justifyContent: 'center',
-    marginBottom: 50,
+    marginBottom: 40,
   },
   subtitle: {
     color: '#fff',
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     marginLeft: 100,
-    marginBottom: 80,
+    marginBottom: 60,
   },
 });
 
