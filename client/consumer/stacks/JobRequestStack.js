@@ -14,6 +14,7 @@ import Map from '../screens/JobRequest/Map';
 import SearchProvider from '../screens/JobRequest/SearchProvider';
 import ProviderJobProfile from '../screens/JobRequest/ProviderJobProfile';
 import ProviderMap from '../screens/JobRequest/ProviderMap';
+import PhotoUpload from '../screens/JobRequest/PhotoUpload';
 
 const JobRequestStack = createNativeStackNavigator();
 
@@ -37,6 +38,14 @@ const JobRequestStackScreen = () => (
     <JobRequestStack.Screen
       name="JobAcknowledge"
       component={JobAcknowledge}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobRequestStack.Screen
+      name="PhotoUpload"
+      component={PhotoUpload}
       options={{
         header: () => null,
       }}
