@@ -13,7 +13,7 @@ const QuotationDetails = ({navigation, route}) => {
   console.log(
     'Check JA is passed....................................................................',
   );
-  const {JA} = route.params;
+  const {JA, JobType} = route.params;
   console.log(JA);
   const JAID = JA._id;
 
@@ -96,31 +96,29 @@ const QuotationDetails = ({navigation, route}) => {
       />
 
       <Text style={styles.subContent}>
-        Job Type:
+        Job Type: {JobType}
         {/* {jobTypeSelect}  */}
       </Text>
 
       <Text style={styles.subContent}>
-        Quotation Amount:
-        {JA.quotation.amount}
+        Quotation Amount: {JA.quotation.amount}
       </Text>
-      <Text style={styles.subContent}>Approximated Duration</Text>
-      <Text style={styles.subSubContent}>
-        Days:
-        {/* {quotations.quotation.approximatedDuration.days} */}
+      <Text style={styles.subContent}>
+        Estimated Time: {'  '}
+        {JA.quotation.estimatedTime.substring(11, 16)}
+        {'         '}
+        {JA.quotation.estimatedTime.substring(0, 10)}
       </Text>
-      <Text style={styles.subSubContent}>
-        minutes:
-        {/* {quotations.quotation.approximatedDuration.minutes} */}
-      </Text>
-
-      <View style={styles.btngrp}>
+      <View style={styles.checkBox}>
         <ScheckBox
-          style={styles.checkBox}
+          // style={styles.checkBox}
           checked={checked}
           setChecked={setChecked}
           text="I have read and understood the problem and requirements of above request"
         />
+      </View>
+
+      <View style={styles.btngrp}>
         <Sbutton primary={true} text="Accept" onPress={handleAccept} />
         <Sbutton text="Refuse" onPress={AlertReject} />
       </View>

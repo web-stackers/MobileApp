@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 import {AppRegistry} from 'react-native';
-// import Provider from './Provider';
+import Provider from './Provider';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import * as React from 'react';
-// import Provider from './Provider';
 import Consumer from './Consumer';
 import App from './App';
 import {name as appName} from './app.json';

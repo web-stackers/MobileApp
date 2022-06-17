@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 120,
   },
-
+  checkBox: {
+    marginTop: 60,
+  },
   btngrp: {
     width: '95%',
     marginTop: 25,

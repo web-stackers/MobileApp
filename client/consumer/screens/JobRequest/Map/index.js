@@ -13,6 +13,9 @@ import {Marker} from 'react-native-maps';
 const Map = ({navigation, route}) => {
   const {lat, longi, CID} = route.params;
 
+  let newLat = lat;
+  let newLongi = longi;
+
   const handleSetLocation = () =>
     Alert.alert(
       'Set new workplace location',
@@ -27,14 +30,19 @@ const Map = ({navigation, route}) => {
           text: 'OK',
           onPress: () => {
             axios.patch(`http://10.0.2.2:5000/consumer/addressUpdate/${CID}`, {
-              longitude: longi,
-              latitude: lat,
+              longitude: newLongi,
+              latitude: newLat,
             });
             navigation.pop(1);
           },
         },
       ],
     );
+
+  const onMarkerDragEnd = coord => {
+    newLat = coord.latitude;
+    newLongi = coord.longitude;
+  };
 
   return (
     <View style={styles.container}>
@@ -48,9 +56,13 @@ const Map = ({navigation, route}) => {
           longitudeDelta: 0.0421,
         }}>
         <Marker
-          // draggable
+          draggable
           coordinate={{latitude: lat, longitude: longi}}
           title={'Your default workplace location'}
+          onDragEnd={e => {
+            console.log(e.nativeEvent.coordinate);
+            onMarkerDragEnd(e.nativeEvent.coordinate);
+          }}
         />
       </MapView>
 

@@ -8,12 +8,14 @@ import Quotation from '../../../../components/Quotation';
 
 const QuotationPreview = ({navigation, route}) => {
   const [checked, setChecked] = React.useState(false);
+  const {job} = route.params.job;
 
   return (
     <View style={styles.container}>
       <Quotation 
         completeTime={route.params.completeTime}
         amount={route.params.amount}
+        job={job}
       />
 
       <View style={styles.btngrp}>

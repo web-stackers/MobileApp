@@ -44,6 +44,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'center',
   },
+  btnMap: {
+    width: '65%',
+    marginLeft: 1,
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

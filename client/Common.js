@@ -6,8 +6,8 @@ import RatingsAndReviewsStackScreen from './common/stacks/RatingsAndReviewsStack
 const Common = () => {
   return (
     <NavigationContainer>
-      {/* <ComplaintStackScreen /> */}
-      <RatingsAndReviewsStackScreen />
+      <ComplaintStackScreen />
+      {/* <RatingsAndReviewsStackScreen /> */}
     </NavigationContainer>
   );
 };

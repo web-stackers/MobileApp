@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import JobDetails from '../screens/JobRequest/JobDetails';
@@ -12,7 +13,8 @@ import NoProviders from '../screens/JobRequest/NoProviders';
 import Map from '../screens/JobRequest/Map';
 import SearchProvider from '../screens/JobRequest/SearchProvider';
 import ProviderJobProfile from '../screens/JobRequest/ProviderJobProfile';
-import EventJobRequest from '../screens/JobRequest/EventJobRequest';
+import ProviderMap from '../screens/JobRequest/ProviderMap';
+import PhotoUpload from '../screens/JobRequest/PhotoUpload';
 
 const JobRequestStack = createNativeStackNavigator();
 
@@ -34,16 +36,24 @@ const JobRequestStackScreen = () => (
     />
 
     <JobRequestStack.Screen
-      name="EventJobRequest"
-      component={EventJobRequest}
+      name="JobAcknowledge"
+      component={JobAcknowledge}
       options={{
         header: () => null,
       }}
     />
 
     <JobRequestStack.Screen
-      name="JobAcknowledge"
-      component={JobAcknowledge}
+      name="PhotoUpload"
+      component={PhotoUpload}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobRequestStack.Screen
+      name="ProviderMap"
+      component={ProviderMap}
       options={{
         header: () => null,
       }}

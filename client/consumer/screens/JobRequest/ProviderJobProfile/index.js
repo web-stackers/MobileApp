@@ -23,6 +23,8 @@ const ProviderJobProfile = ({navigation, route}) => {
     workYear,
     dob,
     ratingCount,
+    providerLat,
+    providerLongi,
   } = route.params;
 
   console.log(jobType);
@@ -72,7 +74,7 @@ const ProviderJobProfile = ({navigation, route}) => {
                   })
                   .then(function (response) {
                     console.log(response.data);
-                    navigation.navigate('JobAcknowledge');
+                    navigation.navigate('PhotoUpload');
                   })
                   .catch(function (error) {
                     console.log(error);
@@ -85,6 +87,14 @@ const ProviderJobProfile = ({navigation, route}) => {
         },
       ],
     );
+
+  const handleMap = () => {
+    navigation.navigate('ProviderMap', {
+      lat: providerLat,
+      longi: providerLongi,
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -111,6 +121,7 @@ const ProviderJobProfile = ({navigation, route}) => {
       </View>
 
       <View style={styles.btngrp}>
+        <Sbutton text="View Provider Location" onPress={handleMap} />
         <Sbutton primary={true} text="Send Request" onPress={AlertRequest} />
         <Sbutton text="Go Back" onPress={GoBack} />
       </View>

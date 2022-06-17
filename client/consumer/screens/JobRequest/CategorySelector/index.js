@@ -48,12 +48,12 @@ const CategorySelector = ({navigation}) => {
 
   const ConstructionPress = () =>
     navigation.navigate('JobDetails', {
-      construction: constructionList,
+      job: constructionList,
       CID: consumerID,
     });
   const EventPress = () =>
-    navigation.navigate('EventJobRequest', {
-      event: eventList,
+    navigation.navigate('JobDetails', {
+      job: eventList,
       CID: consumerID,
     });
   return (

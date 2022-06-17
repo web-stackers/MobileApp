@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -6,27 +6,35 @@ const styles = StyleSheet.create({
         backgroundColor: '#121212',
         alignItems: 'center',
         width: '100%',
-        height: Dimensions.get('window').height,
     },
     btngrp: {
-        width: '100%',
+        width: '95%',
         position: 'absolute',
         bottom: 25
     },
     message: {
         width: '100%',
-        height: Dimensions.get('window').height,
         alignItems: 'center',
-        marginTop: 80
+        marginTop: 60,
     },
     title: {
-        color: '#fff',
         fontSize: 28,
-        marginBottom: 50
+        marginBottom: 50,
+        textAlign: 'center'
     },
     JRefusePic: {
         height: 150,
         width: 150,
+        marginBottom: 50
+    },
+    reasons: {
+        padding: 5,
+        width: '95%'
+    },
+      radioButton: {
+        display:'flex',
+        flexDirection:'row',
+        alignItems: 'center',
     }
 });
 

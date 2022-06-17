@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {Text, View, SafeAreaView, Alert} from 'react-native';
 
@@ -11,30 +12,32 @@ import Sdate from '../../../../components/FormComponents/Sdate';
 import axios from 'axios';
 
 const JobDetails = ({navigation, route}) => {
-  const {construction, CID} = route.params;
+  const {job, CID} = route.params;
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
-  const [providerLocation, setProviderLocation] = useState([]);
+  const [consumerLocation, setConsumerLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
 
   var newList = [];
-  for (let i = 0; i < construction.length; i++) {
+  for (let i = 0; i < job.length; i++) {
     newList = newList.concat({
-      label: construction[i].jobType,
-      value: construction[i]._id,
+      label: job[i].jobType,
+      value: job[i]._id,
     });
   }
 
   //Fetch consumer address
-  const getProviderLocation = () => {
-    console.log(CID);
+  const getConsumerLocation = () => {
+    console.log(
+      'Get provider location..................................................',
+    );
     axios
       .get(`http://10.0.2.2:5000/consumer/address/${CID}`)
       .then(response => {
         console.log(response.data);
-        setProviderLocation(response.data);
+        setConsumerLocation(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -45,8 +48,6 @@ const JobDetails = ({navigation, route}) => {
     console.log(
       'Function call..................................................',
     );
-    console.log('jobType');
-    console.log(jobType);
     axios
       .get(`http://10.0.2.2:5000/provider/jobType/${jobType}`)
       .then(response => {
@@ -58,8 +59,19 @@ const JobDetails = ({navigation, route}) => {
       });
   };
 
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getConsumerLocation();
+      // The screen is focused
+      // Call any action
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+
   useEffect(() => {
-    getProviderLocation();
+    getConsumerLocation();
   }, []);
 
   useEffect(() => {
@@ -86,8 +98,8 @@ const JobDetails = ({navigation, route}) => {
           description: description,
           requestedTime: requestedTime,
           providersList: providersList,
-          lat: providerLocation.address.latitude,
-          longi: providerLocation.address.longitude,
+          lat: consumerLocation.address.latitude,
+          longi: consumerLocation.address.longitude,
           CID: CID,
         });
       } else {
@@ -113,6 +125,14 @@ const JobDetails = ({navigation, route}) => {
       ],
     );
 
+  const handleMap = () => {
+    navigation.navigate('Map', {
+      lat: consumerLocation.address.latitude,
+      longi: consumerLocation.address.longitude,
+      CID: CID,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Sheader title="Search for provider" />
@@ -137,17 +157,9 @@ const JobDetails = ({navigation, route}) => {
 
       <Sdate date={requestedTime} setDate={setrequestedTime} />
 
-      <Text
-        style={styles.linkText}
-        onPress={() =>
-          navigation.navigate('Map', {
-            lat: providerLocation.address.latitude,
-            longi: providerLocation.address.longitude,
-            CID: CID,
-          })
-        }>
-        Change workplace location
-      </Text>
+      <View style={styles.btnMap}>
+        <Sbutton text="Change Location" onPress={handleMap} />
+      </View>
 
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />

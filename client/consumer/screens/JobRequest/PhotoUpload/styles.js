@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -9,32 +8,21 @@ const styles = StyleSheet.create({
   },
   btngrp: {
     width: '95%',
-    marginTop: 40,
+    marginBottom: 10,
     alignSelf: 'center',
-  },
-  textField: {
-    width: '100%',
-    marginLeft: 10,
   },
   message: {
     width: '100%',
-    marginTop: 25,
+    marginTop: 60,
     marginLeft: 15,
   },
   title: {
     color: '#fff',
-    fontSize: 28,
-    marginLeft: 5,
+    fontSize: 19,
+    marginLeft: 3,
+    marginRight: 23,
     justifyContent: 'center',
     marginBottom: 40,
-  },
-  subtitle: {
-    color: '#fff',
-    fontSize: 15,
-    justifyContent: 'center',
-    marginLeft: 20,
-    marginBottom: 10,
-    position: 'relative',
   },
   JRefusePic: {
     height: 150,

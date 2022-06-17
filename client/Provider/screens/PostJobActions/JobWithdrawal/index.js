@@ -1,16 +1,43 @@
 import React from 'react';
-import { View, Text, TextInput, Image } from 'react-native';
+import { View, Image, Alert } from 'react-native';
+import {RadioButton, Text} from 'react-native-paper';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
+import StextBox from '../../../../components/FormComponents/StextBox';
+import SradioButton from '../../../../components/SradioButton';
 
 const JobWithdrawal = ({navigation}) => {
+    const [value, setValue] = React.useState('');
+    const [reason, setReason] = React.useState('');
+    const [otherReason, setOtherReason] = React.useState('');
+
+    const texts = [
+        'Need more than the estimated time' ,
+        'Costs more than the estimated amount',
+        'Unavailable on requested day',
+        'Other'
+    ]
+
+    const validateReason = () => {
+        if (value === 3 && otherReason==='') {
+          Alert.alert(
+            'Reason for withdrawal',
+            'Please provide the reason for withdrawing from this job',
+          );
+        } else {
+            navigation.push('Acknowledgement', {
+              title: 'Withdrawal request sent !',
+              subtitle: 'Withdrawal request under review. You will receive an email of the results.',
+            })
+        }
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.message}>
                 <Text style={styles.title}>
-                    Provide a reason for withdrawing from job
+                    Please provide a reason for withdrawing from this job
                 </Text>
                 <Image
                     style={styles.JRefusePic}
@@ -18,22 +45,47 @@ const JobWithdrawal = ({navigation}) => {
                 />
             </View>
 
+            <View style={styles.reasons}>
+                <RadioButton.Group
+                    onValueChange={newValue => {setValue(newValue); setReason(texts[newValue]);}}
+                    value={value}
+                >
+                    <SradioButton
+                        value={0}
+                        text={texts[0]}
+                    />
+                    <SradioButton
+                        value={1}
+                        text={texts[1]}
+                    />
+                    <SradioButton
+                        value={2}
+                        text={texts[2]}
+                    />
+                    <SradioButton
+                        value={3}
+                        text={texts[3]} 
+                    />
+                </RadioButton.Group>
+                <StextBox
+                    value={otherReason}
+                    onChangeText={(value) => setOtherReason(value)}
+                    disabled={!(value===3)}
+                    placeholder="Enter the reason" 
+                />
+            </View>
+
             <View style={styles.btngrp}>
                 <Sbutton
                     primary={true}
-                    text='Confirm' 
-                    onPress={() => navigation.push('Acknowledgement', {
-                        title: "Informed the Customer !",
-                        subtitle: "Provided the reason to the customer"
-                    })}
+                    text="Confirm"
+                    onPress={() => validateReason()}
                 />
-                {/* <Sbutton
-                    type='secondary'
-                    text='Cancel' 
-                    onPress={() => navigation.navigate('')}
-                /> */}
+                <Sbutton
+                    text="Cancel"
+                    onPress={() => navigation.navigate('Job Details')}
+                />
             </View>
-            
         </View>
     )
 }

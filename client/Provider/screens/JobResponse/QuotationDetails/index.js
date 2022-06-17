@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Alert} from 'react-native';
 
 import styles from './styles';
 import StextBox from '../../../../components/FormComponents/StextBox';
@@ -8,9 +8,30 @@ import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation, route}) => {
   const {job} = route.params.job;
-  //console.log(job.requestedTime);
   const [date, setDate] = React.useState(new Date(job.requestedTime));
+  const reqDate = new Date(job.requestedTime);
   const [amount, setAmount] = React.useState('');
+
+  const validateDetails = () => {
+    if (amount === ''||/^0/.test(amount)) {
+      Alert.alert(
+        'Amount cannot be empty or zero',
+        'Please enter an estimated amount to finish the job',
+      );
+    } else if (/\D/.test(amount)) {
+      Alert.alert(
+        'Invalid input for amount',
+        'Amount can contain only numbers. Please enter rounded up amount',
+      );
+      setAmount('');
+    } else {
+        navigation.push('Quotation Preview', {
+          completeTime:`${date}`,
+          amount:`${amount}`,
+          job:{job}
+      })
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -20,7 +41,7 @@ const QuotationDetails = ({navigation, route}) => {
       />
 
       <View style={styles.quotationForm}>
-        <DateTimePicker date={date} setDate={setDate} />
+        <DateTimePicker date={date} setDate={setDate} reqDate={reqDate} />
 
         <StextBox 
           placeholder="Enter estimated amount in Rs" 
@@ -36,10 +57,7 @@ const QuotationDetails = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="Next"
-          onPress={() => navigation.push('Quotation Preview', {
-            completeTime:`${date}`,
-            amount:`${amount}`
-          })}
+          onPress={() => validateDetails()}
         />
       </View>
     </View>
