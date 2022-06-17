@@ -5,6 +5,8 @@ import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import Sheader from '../../../../components/Sheader';
 
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
 const PhotoUpload = ({navigation}) => {
   const handleSkip = () => {
     navigation.navigate('JobAcknowledge');
