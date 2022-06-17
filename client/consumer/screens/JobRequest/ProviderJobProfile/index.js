@@ -74,7 +74,7 @@ const ProviderJobProfile = ({navigation, route}) => {
                   })
                   .then(function (response) {
                     console.log(response.data);
-                    navigation.navigate('JobAcknowledge');
+                    navigation.navigate('PhotoUpload');
                   })
                   .catch(function (error) {
                     console.log(error);

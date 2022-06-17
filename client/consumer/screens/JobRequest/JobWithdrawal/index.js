@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {View, Text, Image, Alert, ScrollView} from 'react-native';
 
@@ -74,6 +75,7 @@ const JobWithdrawal = ({navigation, route}) => {
                 setQuotations(response.data);
                 console.log(quotations);
                 navigation.navigate('QuotationDetails', {
+                  JobType: 'Mason',
                   JA: response.data,
                 });
               })
