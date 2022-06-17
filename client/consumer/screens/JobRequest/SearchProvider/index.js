@@ -73,6 +73,8 @@ const SearchProvider = ({navigation, route}) => {
     workYear,
     dob,
     ratingCount,
+    providerLat,
+    providerLongi,
   ) => {
     console.log('Dob');
     console.log(dob);
@@ -103,6 +105,8 @@ const SearchProvider = ({navigation, route}) => {
       workYear: workYear,
       dob: dob,
       ratingCount: ratingCount,
+      providerLat: providerLat,
+      providerLongi: providerLongi,
     });
   };
 
@@ -115,6 +119,8 @@ const SearchProvider = ({navigation, route}) => {
     workYear,
     dob,
     ratingCount,
+    providerLat,
+    providerLongi,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -143,6 +149,8 @@ const SearchProvider = ({navigation, route}) => {
               workYear,
               dob,
               ratingCount,
+              providerLat,
+              providerLongi,
             )
           }
         />
@@ -160,6 +168,8 @@ const SearchProvider = ({navigation, route}) => {
       workYear={item.workStartedYear}
       dob={item.DOB}
       ratingCount={item.ratingCount}
+      providerLat={item.address.latitude}
+      providerLongi={item.address.longitude}
     />
   );
 
