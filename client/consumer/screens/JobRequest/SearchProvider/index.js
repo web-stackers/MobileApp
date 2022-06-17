@@ -175,7 +175,7 @@ const SearchProvider = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Sheader title="Choose one provider"></Sheader>
+      <Sheader title="Choose one provider" />
       <FlatList
         data={providersList}
         renderItem={renderItem}
