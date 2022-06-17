@@ -16,7 +16,7 @@ const JobDetails = ({navigation, route}) => {
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
   const [description, setDescription] = useState('');
-  const [providerLocation, setProviderLocation] = useState([]);
+  const [consumerLocation, setConsumerLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
 
   var newList = [];
@@ -28,7 +28,7 @@ const JobDetails = ({navigation, route}) => {
   }
 
   //Fetch consumer address
-  const getProviderLocation = () => {
+  const getConsumerLocation = () => {
     console.log(
       'Get provider location..................................................',
     );
@@ -36,7 +36,7 @@ const JobDetails = ({navigation, route}) => {
       .get(`http://10.0.2.2:5000/consumer/address/${CID}`)
       .then(response => {
         console.log(response.data);
-        setProviderLocation(response.data);
+        setConsumerLocation(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -60,7 +60,7 @@ const JobDetails = ({navigation, route}) => {
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getProviderLocation();
+      getConsumerLocation();
       // The screen is focused
       // Call any action
     });
@@ -70,7 +70,7 @@ const JobDetails = ({navigation, route}) => {
   }, [navigation]);
 
   useEffect(() => {
-    getProviderLocation();
+    getConsumerLocation();
   }, []);
 
   useEffect(() => {
@@ -97,8 +97,8 @@ const JobDetails = ({navigation, route}) => {
           description: description,
           requestedTime: requestedTime,
           providersList: providersList,
-          lat: providerLocation.address.latitude,
-          longi: providerLocation.address.longitude,
+          lat: consumerLocation.address.latitude,
+          longi: consumerLocation.address.longitude,
           CID: CID,
         });
       } else {
@@ -126,8 +126,8 @@ const JobDetails = ({navigation, route}) => {
 
   const handleMap = () => {
     navigation.navigate('Map', {
-      lat: providerLocation.address.latitude,
-      longi: providerLocation.address.longitude,
+      lat: consumerLocation.address.latitude,
+      longi: consumerLocation.address.longitude,
       CID: CID,
     });
   };
