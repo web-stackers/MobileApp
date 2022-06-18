@@ -22,7 +22,7 @@ const Acknowledge = ({navigation}) => {
         <Sbutton
           primary={true}
           text="Done"
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('JobScreen')}
         />
       </View>
     </View>

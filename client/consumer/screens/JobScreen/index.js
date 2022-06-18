@@ -31,8 +31,20 @@ const JobScreen = ({navigation}) => {
       <Text style={styles.subtitle}>This is a job screen</Text>
       <Sbutton primary={true} text="View Quotation" onPress={viewQuotation} />
       <Sbutton primary={true} text="Withdrawal Request" />
-      <Sbutton primary={true} text="Make Complaint" />
-      <Sbutton primary={true} text="Make rating and review" />
+      <Sbutton
+        primary={true}
+        text="Make Complaint"
+        onPress={() => {
+          navigation.navigate('Let us know your issues');
+        }}
+      />
+      <Sbutton
+        primary={true}
+        text="Make rating and review"
+        onPress={() => {
+          navigation.navigate('Ratings and Reviews');
+        }}
+      />
     </View>
   );
 };

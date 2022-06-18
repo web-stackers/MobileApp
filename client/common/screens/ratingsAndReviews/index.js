@@ -75,7 +75,7 @@ const RatingsAndReviews = ({navigation}) => {
           rating: starRating,
         })
         .then(function (response) {
-          navigation.navigate('Home');
+          navigation.navigate('JobScreen');
         })
         .catch(function (error) {
           console.log(error);
@@ -88,7 +88,7 @@ const RatingsAndReviews = ({navigation}) => {
          
         })
         .then(function (response) {
-          navigation.navigate('Home');
+          navigation.navigate('JobScreen');
         })
         .catch(function (error) {
           console.log(error);
@@ -101,7 +101,7 @@ const RatingsAndReviews = ({navigation}) => {
           review: reviews,
         })
         .then(function (response) {
-          navigation.navigate('Home');
+          navigation.navigate('JobScreen');
         })
         .catch(function (error) {
           console.log(error);
@@ -149,7 +149,7 @@ const RatingsAndReviews = ({navigation}) => {
           <Button
             title=" May be later "
             color="rgba(52, 52, 52, 0.8)"
-            onPress={() => navigation.push('Home')}
+            onPress={() => navigation.push('JobScreen')}
           />
         </View>
       </View>
