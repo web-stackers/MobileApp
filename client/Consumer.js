@@ -1,16 +1,14 @@
 import React from 'react';
 
+import ConsumerNavigation from './consumer/stacks/ConsumerNavigation';
 import {NavigationContainer} from '@react-navigation/native';
-import JobRequestStackScreen from './consumer/stacks/JobRequestStack';
-import BottomNavigator from './consumer/stacks/BottomNavigator';
 
-const App = () => {
+const Consumer = () => {
   return (
-    <NavigationContainer>
-      <JobRequestStackScreen />
-      {/* <BottomNavigator /> */}
-    </NavigationContainer>
+    // <NavigationContainer>
+    <ConsumerNavigation />
+    // </NavigationContainer>
   );
 };
 
-export default App;
+export default Consumer;

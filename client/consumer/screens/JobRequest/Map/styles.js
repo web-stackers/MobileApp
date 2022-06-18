@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: '70%',
+    height: '67%',
   },
   btngrp: {
     width: '95%',

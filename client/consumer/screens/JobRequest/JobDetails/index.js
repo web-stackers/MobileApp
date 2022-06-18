@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {Text, View, SafeAreaView, Alert} from 'react-native';
+import {Text, View, SafeAreaView, Alert, ScrollView} from 'react-native';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -154,7 +154,7 @@ const JobDetails = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Sheader title="Search for provider" />
       <SafeAreaView>
         <View style={styles.containerStyle}>
@@ -185,7 +185,7 @@ const JobDetails = ({navigation, route}) => {
         <Sbutton primary={true} text="Search Provider" onPress={handleSubmit} />
         <Sbutton text="Cancel" onPress={AlertCancel} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

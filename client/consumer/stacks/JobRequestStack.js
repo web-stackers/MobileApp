@@ -3,11 +3,6 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import JobDetails from '../screens/JobRequest/JobDetails';
 import JobAcknowledge from '../screens/JobRequest/JobAcknowledge';
-import JobWithdrawal from '../screens/JobRequest/JobWithdrawal';
-import QuotationAcknowledge from '../screens/JobRequest/QuotationAcknowledge';
-import WithdrawalAcknowledge from '../screens/JobRequest/WithdrawalAcknowledge';
-import QuotationDetails from '../screens/JobRequest/QuotationDetails';
-import QuotationRefuse from '../screens/JobRequest/QuotationRefuse';
 import CategorySelector from '../screens/JobRequest/CategorySelector';
 import NoProviders from '../screens/JobRequest/NoProviders';
 import Map from '../screens/JobRequest/Map';
@@ -84,48 +79,8 @@ const JobRequestStackScreen = () => (
     />
 
     <JobRequestStack.Screen
-      name="JobWithdrawal"
-      component={JobWithdrawal}
-      options={{
-        header: () => null,
-      }}
-    />
-
-    <JobRequestStack.Screen
       name="NoProviders"
       component={NoProviders}
-      options={{
-        header: () => null,
-      }}
-    />
-
-    <JobRequestStack.Screen
-      name="QuotationDetails"
-      component={QuotationDetails}
-      options={{
-        header: () => null,
-      }}
-    />
-
-    <JobRequestStack.Screen
-      name="QuotationAcknowledge"
-      component={QuotationAcknowledge}
-      options={{
-        header: () => null,
-      }}
-    />
-
-    <JobRequestStack.Screen
-      name="QuotationRefuse"
-      component={QuotationRefuse}
-      options={{
-        header: () => null,
-      }}
-    />
-
-    <JobRequestStack.Screen
-      name="WithdrawalAcknowledge"
-      component={WithdrawalAcknowledge}
       options={{
         header: () => null,
       }}

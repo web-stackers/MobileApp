@@ -7,7 +7,8 @@ const QuotationAcknowledge = ({navigation}) => {
     <Sacknowledge
       title="Job Withdrawal Requested"
       subtitle="Your request has been successfully send for Admin. He will reply you soon. Thank you for using our service."
-      onPress={() => navigation.navigate('CategorySelector')}></Sacknowledge>
+      // onPress={() => navigation.navigate('CategorySelector')}
+    />
   );
 };
 

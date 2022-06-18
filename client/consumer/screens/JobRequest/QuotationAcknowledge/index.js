@@ -7,7 +7,7 @@ const QuotationAcknowledge = ({navigation}) => {
     <Sacknowledge
       title="Quotation Accepted"
       subtitle="You have accepted the quotation. We will inform the service provider. Thank you for using our service"
-      onPress={() => navigation.navigate('CategorySelector')}
+      onPress={() => navigation.navigate('JobScreen')}
     />
   );
 };
