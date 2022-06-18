@@ -16,6 +16,7 @@ const JobDetails = ({navigation, route}) => {
 
   const [requestedTime, setrequestedTime] = useState(new Date());
   const [jobType, setJobType] = useState('');
+  const [jobTypeName, setJobTypeName] = useState('');
   const [description, setDescription] = useState('');
   const [consumerLocation, setConsumerLocation] = useState([]);
   const [providersList, setProvidersList] = useState([]);
@@ -59,6 +60,21 @@ const JobDetails = ({navigation, route}) => {
       });
   };
 
+  const getJobTypeName = () => {
+    console.log(
+      'Function call..................................................',
+    );
+    axios
+      .get(`http://10.0.2.2:5000/jobTypeCategory/${jobType}`)
+      .then(response => {
+        console.log(response.data);
+        setJobTypeName(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       getConsumerLocation();
@@ -77,6 +93,7 @@ const JobDetails = ({navigation, route}) => {
   useEffect(() => {
     if (jobType !== '') {
       getProviders();
+      getJobTypeName();
     }
   }, [jobType]);
 
@@ -93,8 +110,11 @@ const JobDetails = ({navigation, route}) => {
       );
     } else {
       if (providersList.length > 0) {
+        console.log(jobTypeName.jobType);
         navigation.navigate('SearchProvider', {
-          jobType: jobType,
+          // jobType: jobType,
+          jobType: jobTypeName.jobType,
+          // jobTypeName: jobTypeName.jobType,
           description: description,
           requestedTime: requestedTime,
           providersList: providersList,
