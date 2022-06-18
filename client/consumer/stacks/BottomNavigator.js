@@ -1,59 +1,55 @@
-// import * as React from 'react';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as React from 'react';
+import {BottomNavigation, Text} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
 
-// import HomeScreen from '../screens/HomeScreen';
-// import SettingStack from './SettingStack';
-// import JobRequestStackScreen from './JobRequestStack';
+import JobRequestStackScreen from './JobRequestStack';
+import JobScreen from '../screens/JobScreen';
+import SettingsScreen from '../screens/AccountScreen/SettingScreen';
 
-// const Tab = createBottomTabNavigator();
+const HomeRoute = () => {
+  return (
+    <NavigationContainer>
+      <JobRequestStackScreen />
+    </NavigationContainer>
+  );
+};
+const JobRoute = () => {
+  return (
+    <NavigationContainer>
+      <JobScreen />
+    </NavigationContainer>
+  );
+};
 
-// const BottomNavigator = () => {
-//   return (
-//     <Tab.Navigator
-//       initialRouteName="Home"
-//       screenOptions={{
-//         tabBarActiveTintColor: '#652C9E',
-//         backgroundColor: '#652C9E',
-//       }}>
-//       <Tab.Screen
-//         name="Home"
-//         component={HomeScreen}
-//         options={{
-//           tabBarLabel: 'Home',
-//           tabBarIcon: ({color, size}) => (
-//             <MaterialCommunityIcons name="home" color={color} size={size} />
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="Jobs"
-//         component={JobRequestStackScreen}
-//         options={{
-//           tabBarLabel: 'Jobs',
-//           tabBarIcon: ({color, size}) => (
-//             <MaterialCommunityIcons
-//               name="table-search"
-//               color={color}
-//               size={size}
-//             />
-//           ),
-//           headerShown: false,
-//         }}
-//       />
-//       <Tab.Screen
-//         name="Profile"
-//         component={SettingStack}
-//         options={{
-//           tabBarLabel: 'Profile',
-//           tabBarIcon: ({color, size}) => (
-//             <MaterialCommunityIcons name="account" color={color} size={size} />
-//           ),
-//           headerShown: false,
-//         }}
-//       />
-//     </Tab.Navigator>
-//   );
-// };
+const ProfileRoute = () => {
+  return (
+    <NavigationContainer>
+      <SettingsScreen />
+    </NavigationContainer>
+  );
+};
 
-// export default BottomNavigator;
+const BottomNavigator = () => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    {key: 'home', title: 'Home'},
+    {key: 'jobs', title: 'Jobs'},
+    {key: 'profile', title: 'Profile'},
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    home: HomeRoute,
+    jobs: JobRoute,
+    profile: ProfileRoute,
+  });
+
+  return (
+    <BottomNavigation
+      navigationState={{index, routes}}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
+  );
+};
+
+export default BottomNavigator;
