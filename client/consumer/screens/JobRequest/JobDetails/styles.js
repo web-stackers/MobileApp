@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 15,
     marginBottom: 10,
-    marginTop: 8,
+    marginTop: 15,
   },
   linkText: {
     color: 'blue',
@@ -43,11 +43,13 @@ const styles = StyleSheet.create({
     width: '95%',
     marginBottom: 10,
     alignSelf: 'center',
+    marginTop: 30,
   },
   btnMap: {
-    width: '65%',
+    width: '95%',
+    marginTop: 25,
     marginLeft: 1,
-    marginBottom: 10,
+    marginBottom: 1,
     alignSelf: 'center',
   },
 });
