@@ -1,9 +1,9 @@
 import React from 'react';
 
-import BottomNavigator from './Provider/stacks/BottomNavigator';
+import ProviderNavigation from './Provider/stacks/ProviderNavigation';
 
 const Provider = () => {
-  return <BottomNavigator />;
+  return <ProviderNavigation />;
 };
 
 export default Provider;
