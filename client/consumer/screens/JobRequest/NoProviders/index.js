@@ -24,11 +24,11 @@ const NoProviders = ({navigation}) => {
         <Sbutton
           primary={true}
           text="Done"
-          onPress={() =>
-            navigation.navigate('JobWithdrawal', {
-              JAID: '6213638f657adfba60a68786',
-            })
-          }
+          // onPress={() =>
+          //   navigation.navigate('JobWithdrawal', {
+          //     JAID: '6213638f657adfba60a68786',
+          //   })
+          // }
         />
       </View>
     </View>
