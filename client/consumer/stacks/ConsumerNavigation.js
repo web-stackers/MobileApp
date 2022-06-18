@@ -1,19 +1,34 @@
 import * as React from 'react';
 import {BottomNavigation, Text} from 'react-native-paper';
 
+import {NavigationContainer} from '@react-navigation/native';
+
 import JobRequestStackScreen from './JobRequestStack';
 import JobStackScreen from './JobStack';
 import SettingsScreen from '../screens/AccountScreen/SettingScreen';
+import JobScreen from '../screens/JobScreen';
 
 const HomeRoute = () => {
-  return <JobRequestStackScreen />;
+  return (
+    <NavigationContainer>
+      <JobRequestStackScreen />
+    </NavigationContainer>
+  );
 };
 const JobRoute = () => {
-  return <JobStackScreen />;
+  return (
+    <NavigationContainer>
+      <JobStackScreen />
+    </NavigationContainer>
+  );
 };
 
 const ProfileRoute = () => {
-  return <SettingsScreen />;
+  return (
+    <NavigationContainer>
+      <SettingsScreen />
+    </NavigationContainer>
+  );
 };
 
 const ConsumerNavigation = () => {

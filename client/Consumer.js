@@ -5,9 +5,9 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const Consumer = () => {
   return (
-    <NavigationContainer>
-      <ConsumerNavigation />
-    </NavigationContainer>
+    // <NavigationContainer>
+    <ConsumerNavigation />
+    // </NavigationContainer>
   );
 };
 

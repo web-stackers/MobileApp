@@ -3,7 +3,7 @@ import {AppRegistry} from 'react-native';
 import Provider from './Provider';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import * as React from 'react';
-// import Consumer from './Consumer';
+import Consumer from './Consumer';
 import App from './App';
 import {name as appName} from './app.json';
 import {enableLatestRenderer} from 'react-native-maps';
@@ -28,7 +28,7 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Provider />
+      <Consumer />
     </PaperProvider>
   );
 }
