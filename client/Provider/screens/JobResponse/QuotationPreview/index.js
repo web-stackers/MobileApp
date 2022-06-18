@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import axios from 'axios';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -9,6 +10,22 @@ import Quotation from '../../../../components/Quotation';
 const QuotationPreview = ({navigation, route}) => {
   const [checked, setChecked] = React.useState(false);
   const {job} = route.params.job;
+
+  const handleSubmit = () => {
+    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/62136a04657adfba60a68788`, {
+      estimatedTime: route.params.completeTime,
+      amount: route.params.amount,
+    })
+    .then((response) => {
+      navigation.push('Acknowledgement', {
+        title: 'Quotation Sent !',
+        subtitle: "Please wait for the customer's response",
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -29,12 +46,7 @@ const QuotationPreview = ({navigation, route}) => {
           primary={true}
           disabled={!checked}
           text="Send quotation"
-          onPress={() =>
-            navigation.push('Acknowledgement', {
-              title: 'Quotation Sent !',
-              subtitle: "Please wait for the customer's response",
-            })
-          }
+          onPress={() => handleSubmit()}
         />
 
         <Sbutton

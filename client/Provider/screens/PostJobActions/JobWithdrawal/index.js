@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Alert } from 'react-native';
 import {RadioButton, Text} from 'react-native-paper';
+import axios from 'axios';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -20,16 +21,25 @@ const JobWithdrawal = ({navigation}) => {
     ]
 
     const validateReason = () => {
-        if (value === 3 && otherReason==='') {
+        if (reason==='' || value === 3 && otherReason==='') {
           Alert.alert(
             'Reason for withdrawal',
             'Please provide the reason for withdrawing from this job',
           );
         } else {
-            navigation.push('Acknowledgement', {
-              title: 'Withdrawal request sent !',
-              subtitle: 'Withdrawal request under review. You will receive an email of the results.',
+            axios.patch(`http://10.0.2.2:5000/jobAssignment/withdrawlPending/62136a04657adfba60a68788`, {
+                arisedBy: 'provider',
+                reason: value===3? otherReason: reason,
             })
+            .then((response) => {
+                navigation.push('Acknowledgement', {
+                  title: 'Withdrawal request sent !',
+                  subtitle: 'Withdrawal request under review. You will receive an email of the results.',
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         }
     }
 

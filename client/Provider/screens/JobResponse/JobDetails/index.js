@@ -21,7 +21,6 @@ const JobDetails = ({navigation}) => {
       .get('http://10.0.2.2:5000/job/621341023987d49e1f22f7a8')
       .then(response => {
         setJob(response.data);
-        //console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -94,7 +93,7 @@ const JobDetails = ({navigation}) => {
         <Sbutton
           disabled={!read}
           text="Refuse"
-          onPress={() => navigation.push('Refuse Job')}
+          onPress={() => navigation.push('Job Withdrawal')}
         />
       </View>
     </ScrollView>

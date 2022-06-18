@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Image, Alert} from 'react-native';
 import {RadioButton, Text} from 'react-native-paper';
+import axios from 'axios';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -26,12 +27,20 @@ const JobRefusePage = ({navigation}) => {
         'Please provide the reason for refusing this job',
       );
     } else {
-        navigation.push('Acknowledgement', {
-          title: 'Informed the customer !',
-          subtitle: 'Customer has been informed about the refusal of job request.',
+        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/62136a04657adfba60a68788`, {
+            reason: value===3? otherReason: reason,
         })
+        .then((response) => {
+            navigation.push('Acknowledgement', {
+              title: 'Informed the customer !',
+              subtitle: 'Customer has been informed about the refusal of job request.',
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
-  }
+  } 
 
   return (
     <View style={styles.container}>
