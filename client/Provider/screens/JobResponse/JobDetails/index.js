@@ -4,7 +4,7 @@ import {Text} from 'react-native-paper';
 import dateFormat from 'dateformat';
 
 import axios from 'axios';
-import Job from '../../../../services/Job';
+// import Job from '../../../../services/Job';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
