@@ -27,7 +27,7 @@ const JobRefusePage = ({navigation}) => {
         'Please provide the reason for refusing this job',
       );
     } else {
-        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/62136a04657adfba60a68788`, {
+        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/62136a2d657adfba60a6878a`, {
             reason: value===3? otherReason: reason,
         })
         .then((response) => {

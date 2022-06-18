@@ -32,9 +32,9 @@ const ProfileRoute = () => {
 const ProviderNavigation = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'home', title: 'Home'},
-    {key: 'jobs', title: 'Jobs'},
-    {key: 'profile', title: 'Profile'},
+    {key: 'home', title: 'Home', icon: 'home',},
+    {key: 'jobs', title: 'Jobs', icon: 'application'},
+    {key: 'profile', title: 'Profile', icon: 'account'},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({

@@ -27,7 +27,7 @@ const JobWithdrawal = ({navigation}) => {
             'Please provide the reason for withdrawing from this job',
           );
         } else {
-            axios.patch(`http://10.0.2.2:5000/jobAssignment/withdrawlPending/62136a04657adfba60a68788`, {
+            axios.patch(`http://10.0.2.2:5000/jobAssignment/withdrawlPending/62136a2d657adfba60a6878a`, {
                 arisedBy: 'provider',
                 reason: value===3? otherReason: reason,
             })

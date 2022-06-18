@@ -1,11 +1,16 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View, Image } from 'react-native';
 import { Text } from 'react-native-paper';
+
+import styles from './styles';
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>This is the home screen</Text>
+    <View style={styles.container}>
+      <Image
+        style={styles.logo}
+        source={require('../../../assets/images/logo.png')}
+      />
     </View>
   );
 };

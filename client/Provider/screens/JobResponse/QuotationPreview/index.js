@@ -12,7 +12,7 @@ const QuotationPreview = ({navigation, route}) => {
   const {job} = route.params.job;
 
   const handleSubmit = () => {
-    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/62136a04657adfba60a68788`, {
+    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/62136a2d657adfba60a6878a`, {
       estimatedTime: route.params.completeTime,
       amount: route.params.amount,
     })
