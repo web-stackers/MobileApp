@@ -10,7 +10,8 @@ import {launchImageLibrary} from 'react-native-image-picker';
 
 import axios from 'axios';
 
-const PhotoUpload = ({navigation}) => {
+const PhotoUpload = ({navigation, route}) => {
+  const {jobId} = route.params;
   const [file, setFile] = useState('');
   const options = {
     title: 'Select Image',
