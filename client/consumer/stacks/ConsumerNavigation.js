@@ -2,14 +2,14 @@ import * as React from 'react';
 import {BottomNavigation, Text} from 'react-native-paper';
 
 import JobRequestStackScreen from './JobRequestStack';
-import JobScreen from '../screens/JobScreen';
+import JobStackScreen from './JobStack';
 import SettingsScreen from '../screens/AccountScreen/SettingScreen';
 
 const HomeRoute = () => {
   return <JobRequestStackScreen />;
 };
 const JobRoute = () => {
-  return <JobScreen />;
+  return <JobStackScreen />;
 };
 
 const ProfileRoute = () => {
