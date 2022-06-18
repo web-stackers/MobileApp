@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Alert} from 'react-native';
 
@@ -28,13 +29,33 @@ const PhotoUpload = ({navigation}) => {
     console.log('image calling.............................');
     console.log(image.assets[0]);
     setFile(image.assets[0]);
+  };
+  //   const formData = new FormData();
+  //   formData.append('file', {
+  //     uri: image.assets[0].uri,
+  //     type: image.assets[0].type,
+  //     name: image.assets[0].fileName,
+  //   });
+  //   try {
+  //     const res = await axios.post('/upload', formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     });
+  //   } catch (err) {
+  //     if (err.response.status === 500) {
+  //       console.log('There was a problem with the server');
+  //     } else {
+  //       console.log(err.response.data.msg);
+  //     }
+  //   }
+  // };
+
+  const handleUpload = async () => {
+    console.log('Upload calling.............................');
+    console.log(file);
     const formData = new FormData();
     formData.append('file', file);
-    // formData.append('file', {
-    //   uri: image.assets[0].uri,
-    //   type: image.assets[0].type,
-    //   name: image.assets[0].fileName,
-    // });
     try {
       const res = await axios.post('/upload', formData, {
         headers: {
@@ -54,21 +75,21 @@ const PhotoUpload = ({navigation}) => {
     navigation.navigate('JobAcknowledge');
   };
 
-  const handleUpload = () => {
-    Alert.alert('Upload Photo', 'Are you sure to upload this image?', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => {
-          navigation.navigate('JobAcknowledge');
-        },
-      },
-    ]);
-  };
+  // const handleUpload = () => {
+  //   Alert.alert('Upload Photo', 'Are you sure to upload this image?', [
+  //     {
+  //       text: 'Cancel',
+  //       onPress: () => console.log('Cancel Pressed'),
+  //       style: 'cancel',
+  //     },
+  //     {
+  //       text: 'OK',
+  //       onPress: () => {
+  //         navigation.navigate('JobAcknowledge');
+  //       },
+  //     },
+  //   ]);
+  // };
 
   return (
     <View style={styles.container}>
@@ -85,7 +106,7 @@ const PhotoUpload = ({navigation}) => {
       </View>
       <View style={styles.btngrp}>
         <Sbutton primary={true} text="Upload" onPress={openGallery} />
-        {/* <Sbutton primary={true} text="Upload" onPress={handleUpload} /> */}
+        <Sbutton primary={true} text="Upload" onPress={handleUpload} />
         <Sbutton text="Skip" onPress={handleSkip} />
       </View>
     </View>

@@ -10,7 +10,7 @@ const Sdate = ({date, setDate}) => {
   const [show, setShow] = useState(false);
 
   const thisYear = new Date().getFullYear();
-  const maxWorkDate = new Date().setFullYear(thisYear + 2);
+  const maxWorkDate = new Date().setFullYear(thisYear + 1);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
