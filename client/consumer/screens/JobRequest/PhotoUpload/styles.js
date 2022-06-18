@@ -12,9 +12,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   message: {
-    width: '100%',
+    width: '90%',
     marginTop: 60,
-    marginLeft: 15,
+    marginLeft: 25,
+    marginRight: 15,
+  },
+  upload: {
+    marginBottom: 20,
   },
   title: {
     color: '#fff',
@@ -22,8 +26,16 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     marginRight: 23,
     justifyContent: 'center',
-    marginBottom: 40,
+    marginBottom: 100,
   },
+  // pictureName: {
+  //   color: '#fff',
+  //   fontSize: 19,
+  //   marginLeft: 3,
+  //   marginRight: 23,
+  //   justifyContent: 'center',
+  //   marginBottom: 10,
+  // },
   JRefusePic: {
     height: 150,
     width: 150,
