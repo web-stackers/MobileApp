@@ -9,6 +9,14 @@ import WithdrawalAcknowledge from '../screens/JobRequest/WithdrawalAcknowledge';
 import QuotationDetails from '../screens/JobRequest/QuotationDetails';
 import QuotationRefuse from '../screens/JobRequest/QuotationRefuse';
 
+// Complaints
+import Complaints from '../../common/screens/Complaints/Complaints';
+import ComplaintsCategory from '../../common/screens/Complaints/ComplaintsCategory';
+import Acknowledge from '../../common/screens/Complaints/Acknowledge';
+
+// Ratings and reviews
+import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
+
 const JobStack = createNativeStackNavigator();
 
 const JobStackScreen = () => (
@@ -55,6 +63,32 @@ const JobStackScreen = () => (
     <JobStack.Screen
       name="WithdrawalAcknowledge"
       component={WithdrawalAcknowledge}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobStack.Screen name="Let us know your issues" component={Complaints} />
+
+    <JobStack.Screen
+      name="Complaint Category"
+      component={ComplaintsCategory}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobStack.Screen
+      name="Acknowledge"
+      component={Acknowledge}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobStack.Screen
+      name="Ratings and Reviews"
+      component={RatingsAndReviews}
       options={{
         header: () => null,
       }}
