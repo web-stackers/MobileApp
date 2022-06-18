@@ -29,6 +29,7 @@ const ProfileRoute = () => {
   );
 };
 
+// Bottom navigation component for Provider
 const ProviderNavigation = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([

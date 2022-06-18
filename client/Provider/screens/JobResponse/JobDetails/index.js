@@ -17,6 +17,7 @@ const JobDetails = ({navigation}) => {
 
   const id = '621341023987d49e1f22f7a8';
 
+  // Function to get job details
   const getJob = async () => {
     await axios
       .get('http://10.0.2.2:5000/job/621341023987d49e1f22f7a8')
@@ -74,8 +75,8 @@ const JobDetails = ({navigation}) => {
         </Text>
       )}
 
+      {/* Map to show location */}
       <View style={styles.map}>
-        {/* <Map /> */}
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
       

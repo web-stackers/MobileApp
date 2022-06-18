@@ -10,7 +10,7 @@ import JobWithdrawal from '../screens/PostJobActions/JobWithdrawal';
 
 const JobStack = createNativeStackNavigator();
 
-
+// Stack for job related pages
 const JobStackScreen = () => (
   <JobStack.Navigator
     screenOptions={{

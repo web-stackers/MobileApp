@@ -4,6 +4,7 @@ import { Text } from 'react-native-paper';
 
 import styles from './styles';
 
+// Home screen
 const HomeScreen = () => {
   return (
     <View style={styles.container}>

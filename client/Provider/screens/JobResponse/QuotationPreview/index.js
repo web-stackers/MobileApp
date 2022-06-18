@@ -11,6 +11,7 @@ const QuotationPreview = ({navigation, route}) => {
   const [checked, setChecked] = React.useState(false);
   const {job} = route.params.job;
 
+  // Function to post quotation to the database
   const handleSubmit = () => {
     axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/62136a2d657adfba60a6878a`, {
       estimatedTime: route.params.completeTime,

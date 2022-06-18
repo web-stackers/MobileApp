@@ -20,6 +20,7 @@ const JobWithdrawal = ({navigation}) => {
         'Other'
     ]
 
+    // Function to validate reason and post to database
     const validateReason = () => {
         if (reason==='' || value === 3 && otherReason==='') {
           Alert.alert(
