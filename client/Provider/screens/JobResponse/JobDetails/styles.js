@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     width: '95%',
     alignSelf: 'center',
     fontSize: 20,
-    //marginLeft: 15,
     lineHeight: 50
   },
   btngrp: {
@@ -27,14 +26,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
     alignSelf: 'center',
   },
-/*   spacerStyle: {
-    marginBottom: 15,
+  map: {
+    width: '90%',
+    height: 400,
+    alignSelf: 'center'
   },
-  safeContainerStyle: {
-    flex: 1,
-    margin: 20,
-    justifyContent: 'center',
-  }, */
 });
 
 export default styles;

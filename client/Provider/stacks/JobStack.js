@@ -10,8 +10,16 @@ import JobWithdrawal from '../screens/PostJobActions/JobWithdrawal';
 
 const JobStack = createNativeStackNavigator();
 
+
 const JobStackScreen = () => (
-  <JobStack.Navigator>
+  <JobStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#1F2221'
+      },
+      headerTintColor: '#fff'
+    }}
+  >
     <JobStack.Screen 
       name="Job Details" 
       component={JobDetails} 

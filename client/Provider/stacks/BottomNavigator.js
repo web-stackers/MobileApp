@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BottomNavigation, Text } from 'react-native-paper';
+import { BottomNavigation } from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 
 import HomeScreen from '../screens/Home';

@@ -9,6 +9,7 @@ import Job from '../../../../services/Job';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 import ScheckBox from '../../../../components/ScheckBox';
+import Map from '../../../../components/Map';
 
 const JobDetails = ({navigation}) => {
   const [read, setRead] = useState(false);
@@ -73,6 +74,11 @@ const JobDetails = ({navigation}) => {
         </Text>
       )}
 
+      <View style={styles.map}>
+        {/* <Map /> */}
+        {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
+      </View>
+      
       <View style={styles.btngrp}>
         <ScheckBox
           checked={read}
@@ -93,7 +99,7 @@ const JobDetails = ({navigation}) => {
         <Sbutton
           disabled={!read}
           text="Refuse"
-          onPress={() => navigation.push('Job Withdrawal')}
+          onPress={() => navigation.push('Refuse Job')}
         />
       </View>
     </ScrollView>
