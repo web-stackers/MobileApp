@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   btngrp: {
     width: '95%',
-    marginTop: 40,
+    marginTop: 30,
     alignSelf: 'center',
   },
   textField: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginLeft: 5,
     justifyContent: 'center',
-    marginBottom: 40,
+    marginBottom: 35,
   },
   subtitle: {
     color: '#fff',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     marginLeft: 100,
-    marginBottom: 60,
+    marginBottom: 57,
   },
 });
 

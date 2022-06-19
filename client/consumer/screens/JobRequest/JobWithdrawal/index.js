@@ -53,8 +53,6 @@ const JobWithdrawal = ({navigation, route}) => {
     }
   };
 
-  const [quotations, setQuotations] = useState([]);
-
   const AlertCancel = () =>
     Alert.alert(
       'Cancel',
@@ -68,20 +66,7 @@ const JobWithdrawal = ({navigation, route}) => {
         {
           text: 'OK',
           onPress: () => {
-            axios
-              .get(`http://10.0.2.2:5000/jobAssignment/${JAID}`)
-              .then(response => {
-                console.log(response.data);
-                setQuotations(response.data);
-                console.log(quotations);
-                navigation.navigate('QuotationDetails', {
-                  JobType: 'Mason',
-                  JA: response.data,
-                });
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            navigation.navigate('JobScreen');
           },
         },
       ],
