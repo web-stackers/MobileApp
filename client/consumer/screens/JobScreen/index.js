@@ -40,7 +40,6 @@ const JobScreen = ({navigation}) => {
         }
       />
 
-      <Sbutton primary={true} text="Withdrawal Request" />
       <Sbutton
         primary={true}
         text="Make Complaint"
