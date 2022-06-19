@@ -184,6 +184,10 @@ const SearchProvider = ({navigation, route}) => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
+      <Sbutton
+        text="Go Home"
+        onPress={() => navigation.navigate('CategorySelector')}
+      />
     </SafeAreaView>
   );
 };

@@ -25,11 +25,6 @@ const NoProviders = ({navigation}) => {
           primary={true}
           text="Done"
           onPress={() => navigation.navigate('CategorySelector')}
-          // onPress={() =>
-          //   navigation.navigate('JobWithdrawal', {
-          //     JAID: '6213638f657adfba60a68786',
-          //   })
-          // }
         />
       </View>
     </View>

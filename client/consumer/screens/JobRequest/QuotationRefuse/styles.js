@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   btngrp: {
     width: '95%',
-    marginTop: 120,
+    marginTop: 80,
     alignSelf: 'center',
   },
   message: {

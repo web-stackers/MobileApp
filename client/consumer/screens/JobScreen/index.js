@@ -30,7 +30,15 @@ const JobScreen = ({navigation}) => {
     <View style={styles.container}>
       <Text style={styles.subtitle}>This is a job screen</Text>
       <Sbutton primary={true} text="View Quotation" onPress={viewQuotation} />
-      <Sbutton primary={true} text="Withdrawal Request" />
+      <Sbutton
+        primary={true}
+        text="Withdrawal Request"
+        onPress={() =>
+          navigation.navigate('JobWithdrawal', {
+            JAID: JAID,
+          })
+        }
+      />
       <Sbutton primary={true} text="Make Complaint" />
       <Sbutton primary={true} text="Make rating and review" />
     </View>
