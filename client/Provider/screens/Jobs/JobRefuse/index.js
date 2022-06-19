@@ -35,6 +35,7 @@ const JobRefusePage = ({navigation}) => {
             navigation.push('Acknowledgement', {
               title: 'Informed the customer !',
               subtitle: 'Customer has been informed about the refusal of job request.',
+              routeTo: "Job Details"
             })
         })
         .catch(function (error) {

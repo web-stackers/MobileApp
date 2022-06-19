@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
-import Sbutton from '../../../../components/Sbutton';
+import Sbutton from '../../../components/Sbutton';
 
 const Acknowledge = ({route, navigation}) => {
   return (
@@ -11,7 +11,7 @@ const Acknowledge = ({route, navigation}) => {
         <Text style={styles.title}>{route.params.title}</Text>
         <Image
           style={styles.tick}
-          source={require('../../../../assets/images/tick.png')}
+          source={require('../../../assets/images/tick.png')}
         />
         <Text style={styles.subtitle}>{route.params.subtitle}</Text>
       </View>
@@ -20,7 +20,7 @@ const Acknowledge = ({route, navigation}) => {
         <Sbutton
           primary={true}
           text="Done"
-          onPress={() => navigation.navigate('Job Details')}
+          onPress={() => navigation.navigate(route.params.routeTo)}
         />
       </View>
     </View>

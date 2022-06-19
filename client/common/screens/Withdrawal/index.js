@@ -4,11 +4,11 @@ import {RadioButton, Text} from 'react-native-paper';
 import axios from 'axios';
 
 import styles from './styles';
-import Sbutton from '../../../../components/Sbutton';
-import StextBox from '../../../../components/FormComponents/StextBox';
-import SradioButton from '../../../../components/SradioButton';
+import Sbutton from '../../../components/Sbutton';
+import StextBox from '../../../components/FormComponents/StextBox';
+import SradioButton from '../../../components/SradioButton';
 
-const JobWithdrawal = ({navigation}) => {
+const Withdrawal = ({navigation, route}) => {
     const [value, setValue] = React.useState('');
     const [reason, setReason] = React.useState('');
     const [otherReason, setOtherReason] = React.useState('');
@@ -29,13 +29,14 @@ const JobWithdrawal = ({navigation}) => {
           );
         } else {
             axios.patch(`http://10.0.2.2:5000/jobAssignment/withdrawlPending/62136a2d657adfba60a6878a`, {
-                arisedBy: 'provider',
+                arisedBy: route.params.arisedBy,
                 reason: value===3? otherReason: reason,
             })
             .then((response) => {
                 navigation.push('Acknowledgement', {
                   title: 'Withdrawal request sent !',
                   subtitle: 'Withdrawal request under review. You will receive an email of the results.',
+                  routeTo: 'Job Details'
                 })
             })
             .catch(function (error) {
@@ -52,7 +53,7 @@ const JobWithdrawal = ({navigation}) => {
                 </Text>
                 <Image
                     style={styles.JRefusePic}
-                    source={require('../../../../assets/images/JRefuse.png')}
+                    source={require('../../../assets/images/JRefuse.png')}
                 />
             </View>
 
@@ -94,13 +95,13 @@ const JobWithdrawal = ({navigation}) => {
                 />
                 <Sbutton
                     text="Cancel"
-                    onPress={() => navigation.navigate('Job Details')}
+                    onPress={() => navigation.navigate(route.params.routeTo)}
                 />
             </View>
         </View>
     )
 }
  
-export default JobWithdrawal;
+export default Withdrawal;
 
 

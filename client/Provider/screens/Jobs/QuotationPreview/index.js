@@ -21,6 +21,7 @@ const QuotationPreview = ({navigation, route}) => {
       navigation.push('Acknowledgement', {
         title: 'Quotation Sent !',
         subtitle: "Please wait for the customer's response",
+        routeTo: "Job Details"
       })
     })
     .catch(function (error) {

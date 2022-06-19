@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
   map: {
     width: '90%',
     height: 400,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: 10
   },
 });
 

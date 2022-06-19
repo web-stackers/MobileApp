@@ -15,6 +15,8 @@ const JobDetails = ({navigation}) => {
   const [read, setRead] = useState(false);
   const [job, setJob] = useState();
 
+  const [state, setState] = useState("Request pending");
+
   const id = '621341023987d49e1f22f7a8';
 
   // Function to get job details
@@ -80,7 +82,7 @@ const JobDetails = ({navigation}) => {
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
       
-      <View style={styles.btngrp}>
+      {state==='Request pending' && <View style={styles.btngrp}>
         <ScheckBox
           checked={read}
           setChecked={setRead}
@@ -102,7 +104,38 @@ const JobDetails = ({navigation}) => {
           text="Refuse"
           onPress={() => navigation.push('Refuse Job')}
         />
-      </View>
+      </View>}
+
+      {state==='Job Pending' && <View style={styles.btngrp}>
+        <ScheckBox
+          checked={read}
+          setChecked={setRead}
+          text="I wish to withdraw from this job"
+        />
+
+        <Sbutton
+          primary={true}
+          disabled={!read}
+          text="Withdraw"
+          onPress={() => navigation.push('Job Withdrawal', {
+            arisedBy: 'provider',
+            routeTo: 'Job Details'
+          })}
+        />
+      </View>}
+
+      {state==='Job completed' && <View style={styles.btngrp}>
+        <Sbutton
+          primary={true}
+          text="Give Rating and Review"
+          onPress={() => navigation.push('Rating and Review')}
+        />
+        <Sbutton
+          primary={true}
+          text="Make Complaint"
+          onPress={() => navigation.push('Complaint')}
+        />
+      </View>}
     </ScrollView>
   );
 };
