@@ -31,36 +31,64 @@ const SearchProvider = ({navigation, route}) => {
             console.log('provider Id');
             console.log(id);
             axios
-              .post('http://10.0.2.2:5000/job', {
-                jobType: jobType,
-                description: description,
-                requestedTime: requestedTime,
-                longitude: longi,
-                latitude: lat,
-                providerId: id,
-                consumerId: CID,
-              })
-              .then(function (response) {
+              .get(
+                `http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`,
+              )
+              .then(response => {
+                console.log(
+                  'Check whether provider availability is checked..............................................................',
+                );
                 console.log(response.data);
-                console.log(response.data._id);
-                axios
-                  .post('http://10.0.2.2:5000/jobAssignment', {
-                    jobId: response.data._id,
-                    providerId: id,
-                  })
-                  .then(function (response) {
-                    console.log(response.data);
-                    navigation.navigate('PhotoUpload', {
-                      jobId: response.data.jobId,
+                if (!response.data) {
+                  axios
+                    .post('http://10.0.2.2:5000/job', {
+                      jobType: jobType,
+                      description: description,
+                      requestedTime: requestedTime,
+                      longitude: longi,
+                      latitude: lat,
+                      providerId: id,
+                      consumerId: CID,
+                    })
+                    .then(function (response) {
+                      console.log(response.data);
+                      console.log(response.data._id);
+                      axios
+                        .post('http://10.0.2.2:5000/jobAssignment', {
+                          jobId: response.data._id,
+                          providerId: id,
+                        })
+                        .then(function (response) {
+                          console.log(response.data);
+                          navigation.navigate('PhotoUpload', {
+                            jobId: response.data.jobId,
+                          });
+                          // navigation.navigate('JobAcknowledge');
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
+                    })
+                    .catch(function (error) {
+                      console.log(error);
                     });
-                    // navigation.navigate('JobAcknowledge');
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-              })
-              .catch(function (error) {
-                console.log(error);
+                } else {
+                  Alert.alert(
+                    'Provider not available',
+                    'We are sorry to inform that, your requested provider will not be available on your requested date. You can able to make schedule on another day',
+                    [
+                      {
+                        text: 'Cancel',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'Request another date',
+                        onPress: () => navigation.pop(1),
+                      },
+                    ],
+                  );
+                }
               });
           },
         },

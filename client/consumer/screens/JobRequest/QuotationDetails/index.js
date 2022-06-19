@@ -108,6 +108,7 @@ const QuotationDetails = ({navigation, route}) => {
         {JA.quotation.estimatedTime.substring(11, 16)}
         {'         '}
         {JA.quotation.estimatedTime.substring(0, 10)}
+        {/* {JA.quotation.estimatedTime} */}
       </Text>
       <View style={styles.checkBox}>
         <ScheckBox

@@ -7,7 +7,9 @@ import Sbutton from '../../../components/Sbutton';
 import axios from 'axios';
 
 const JobScreen = ({navigation}) => {
-  const JAID = '6213638f657adfba60a68786';
+  const JAID = '62adc5b33691613070a28406';
+  //62adc5b33691613070a28406
+  //6213638f657adfba60a68786
   const [quotations, setQuotations] = useState([]);
   const viewQuotation = () => {
     axios
