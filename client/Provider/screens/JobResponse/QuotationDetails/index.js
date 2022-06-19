@@ -12,6 +12,7 @@ const QuotationDetails = ({navigation, route}) => {
   const reqDate = new Date(job.requestedTime);
   const [amount, setAmount] = React.useState('');
 
+  // Function to validate quotation details and navigate to quotation preview
   const validateDetails = () => {
     if (amount === ''||/^0/.test(amount)) {
       Alert.alert(

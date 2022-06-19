@@ -9,15 +9,9 @@ const styles = StyleSheet.create({
     },
     btngrp: {
         width: '95%',
-        marginTop: 15
+        marginTop: 15,
+        marginBottom: 15
     },
-    quotationDoc: {
-        height: 500,
-        width: '90%',
-        backgroundColor: '#DADADA',
-        marginTop: 25,
-        alignItems: 'center'
-    }
 });
 
 export default styles;
