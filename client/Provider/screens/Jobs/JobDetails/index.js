@@ -53,6 +53,7 @@ const JobDetails = ({navigation}) => {
 
       {job && (
         <View style={styles.content}>
+<<<<<<< HEAD
           <DetailField
             field="Job Description"
             detail={job.description}
@@ -66,6 +67,21 @@ const JobDetails = ({navigation}) => {
             detail={dateFormat(job.requestedTime, 'fullDate')}
           />
           <DetailField
+=======
+          <DetailField 
+            field="Job Description"
+            detail={job.description}
+          />
+          <DetailField 
+            field="Photos"
+            detail={job.description}
+          />
+          <DetailField 
+            field="Date"
+            detail={dateFormat(job.requestedTime, 'fullDate')}
+          />
+          <DetailField 
+>>>>>>> 88fb1fa1d64e49d3799b5b0401f7badcb158fe5c
             field="Time"
             detail={dateFormat(job.requestedTime, 'hh:MM TT')}
           />
@@ -77,7 +93,11 @@ const JobDetails = ({navigation}) => {
         <Text style={styles.field}>Location</Text>
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 88fb1fa1d64e49d3799b5b0401f7badcb158fe5c
       {state==='Request pending' && <View style={styles.btngrp}>
         <ScheckBox
           checked={read}
