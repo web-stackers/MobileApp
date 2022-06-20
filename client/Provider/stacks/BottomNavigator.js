@@ -1,20 +1,31 @@
 import * as React from 'react';
+import { useTheme } from 'react-native-paper';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import JobStack from './JobStackScreen';
-import HomeScreen from '../screens/HomeScreen';
+import JobStackScreen from './JobStack';
+import HomeScreen from '../screens/Home';
 import SettingStack from './SettingStack';
 
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
+  const {colors} = useTheme();
+  
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#652C9E',
-        backgroundColor: '#652C9E',
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: '#B295CE',
+        tabBarStyle:{
+          backgroundColor:colors.primary,
+          height: 55,
+          paddingBottom: 5,
+        },
+        tabBarLabelStyle: {
+          fontSize: 14
+        }
       }}>
       <Tab.Screen
         name="Home"
@@ -24,11 +35,12 @@ const BottomNavigator = () => {
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
+          headerShown: false
         }}
       />
       <Tab.Screen
         name="Jobs"
-        component={JobStack}
+        component={JobStackScreen}
         options={{
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (

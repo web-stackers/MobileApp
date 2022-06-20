@@ -22,7 +22,7 @@ const JobHistoryScreen = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(`http://10.0.2.2:5000/job/user/userjobs/consumer/62132b7bc4afd22e5fc49677`)
+      .get(`http://10.0.2.2:5000/job/user/userjobs/both/1`)
       .then(response => {
         console.log(response.data);
         setJobs(response.data);

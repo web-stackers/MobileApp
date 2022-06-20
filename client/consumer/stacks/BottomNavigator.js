@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTheme } from 'react-native-paper';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -10,31 +11,31 @@ import JobHistoryStackScreen from './JobHistoryStack';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
+  const {colors} = useTheme();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#652C9E',
-        backgroundColor: '#652C9E',
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: '#B295CE',
+        tabBarStyle:{
+          backgroundColor:colors.primary,
+          height: 55,
+          paddingBottom: 5,
+        },
+        tabBarLabelStyle: {
+          fontSize: 14
+        }
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={JobRequestStackScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Jobs"
-        component={JobRequestStackScreen}
-        options={{
-          tabBarLabel: 'Jobs',
-          tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
-              name="table-search"
+              name="home"
               color={color}
               size={size}
             />
@@ -44,13 +45,13 @@ const BottomNavigator = () => {
       />
 
       <Tab.Screen
-        name="History"
+        name="Jobs"
         component={JobHistoryStackScreen}
         options={{
-          tabBarLabel: 'History',
+          tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
-              name="table-search"
+              name="application"
               color={color}
               size={size}
             />

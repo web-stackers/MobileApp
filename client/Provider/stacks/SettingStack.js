@@ -11,13 +11,15 @@ import SettingsScreen from '../screens/AccountScreen/SettingScreen';
 const SettingStack = createNativeStackNavigator();
 
 const screenOptionStyle = {
-  headerTintColor: 'white',
-  headerBackTitle: 'Back',
+  headerStyle: {
+    backgroundColor: '#3b3d3e'
+  },
+  headerTintColor: '#fff'
 };
 
 const SettingStackScreen = () => {
   return (
-    <SettingStack.Navigator initialscreenOptions={screenOptionStyle}>
+    <SettingStack.Navigator screenOptions={screenOptionStyle}>
       <SettingStack.Screen name="Settings" component={SettingsScreen} options={{ tabBarLabel: 'Settings' }}/>
       <SettingStack.Screen name="Edit Account" component={EditAccount} />
       <SettingStack.Screen name="Sign Out" component={SignOut} />

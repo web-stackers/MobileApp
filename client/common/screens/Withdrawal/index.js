@@ -76,22 +76,14 @@ const Withdrawal = ({navigation, route}) => {
                     />
                     <SradioButton
                         value={3}
-<<<<<<< HEAD
-                        text={texts[3]}
-=======
                         text={texts[3]} 
->>>>>>> 88fb1fa1d64e49d3799b5b0401f7badcb158fe5c
                     />
                 </RadioButton.Group>
                 <StextBox
                     value={otherReason}
                     onChangeText={(value) => setOtherReason(value)}
                     disabled={!(value===3)}
-<<<<<<< HEAD
-                    placeholder="Enter the reason"
-=======
                     placeholder="Enter the reason" 
->>>>>>> 88fb1fa1d64e49d3799b5b0401f7badcb158fe5c
                 />
             </View>
 
@@ -109,13 +101,7 @@ const Withdrawal = ({navigation, route}) => {
         </View>
     )
 }
-<<<<<<< HEAD
-
-export default Withdrawal;
-
-=======
  
 export default Withdrawal;
 
 
->>>>>>> 88fb1fa1d64e49d3799b5b0401f7badcb158fe5c
