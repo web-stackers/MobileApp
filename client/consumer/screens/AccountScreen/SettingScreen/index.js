@@ -1,5 +1,6 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, SafeAreaView} from 'react-native';
 import {
   Avatar,
@@ -10,10 +11,33 @@ import {
 } from 'react-native-paper';
 
 import styles from './styles';
+import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SettingsScreen = ({navigation}) => {
+const SettingsScreen = ({navigation, route}) => {
+  /* const {type, CID} =
+    route.params; */
+  const [user, setUser] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getUser = async () => {
+    await axios
+      .get('http://10.0.2.2:5000/consumer/62132b7bc4afd22e5fc49677')
+      .then(response => {
+        setUser(response.data);
+        console.log(response.data);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <SafeAreaView style={styles.flexContainer}>
       <View style={styles.userInfoSection}>
@@ -34,9 +58,11 @@ const SettingsScreen = ({navigation}) => {
                   color: '#FFFFFF',
                 },
               ]}>
-              Vinoth Velu
+              {/* {user._id} */}
+              {user.name?.fName + ' ' || ''}
+              {user.name?.lName || ''}
             </Title>
-            <Caption style={styles.caption}> Consumer </Caption>
+            <Caption style={styles.caption}>Service Consumer </Caption>
           </View>
         </View>
       </View>
@@ -50,12 +76,14 @@ const SettingsScreen = ({navigation}) => {
         </View>
         <View style={styles.row}>
           <Icon name="phone" color="#652C9E" size={20} />
-          <Text style={{color: '#FFF777', marginLeft: 20}}>0762985633</Text>
+          <Text style={{color: '#FFF777', marginLeft: 20}}>
+            {user.contact?.mobile || ''}
+          </Text>
         </View>
         <View style={styles.row}>
           <Icon name="email" color="#652C9E" size={20} />
           <Text style={{color: '#FFF777', marginLeft: 20}}>
-            vellummyilumvinoth1999@email.com
+            {user.contact?.email || ''}
           </Text>
         </View>
       </View>
@@ -70,8 +98,8 @@ const SettingsScreen = ({navigation}) => {
             },
           ]}>
           <Title style={{color: '#FFFFFF'}}>
-            {' '}
-            4 <Icon name="star" color="#652C9E" size={22} />{' '}
+            {user.totalRating / user.ratingCount || 0}
+            <Icon name="star" color="#652C9E" size={22} />{' '}
           </Title>
           <Caption style={{fontSize: 16, fontWeight: 'bold', color: '#FFFFFF'}}>
             Rating
@@ -89,12 +117,16 @@ const SettingsScreen = ({navigation}) => {
       </View>
 
       <View style={styles.menuWrapper}>
-        <TouchableRipple onPress={() => navigation.navigate('Edit Account')}>
+        <TouchableRipple
+          onPress={() => {
+            navigation.navigate('Edit Account');
+          }}>
           <View style={styles.menuItem}>
             <Icon name="pencil" color="#652C9E" size={25} />
             <Text style={styles.menuItemText}>Edit Account</Text>
           </View>
         </TouchableRipple>
+
         <TouchableRipple onPress={() => navigation.navigate('Sign Out')}>
           <View style={styles.menuItem}>
             <Icon name="power" color="#652C9E" size={25} />

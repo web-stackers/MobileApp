@@ -1,9 +1,16 @@
 import React from 'react';
 
-import ProviderNavigation from './Provider/stacks/ProviderNavigation';
+import {NavigationContainer} from '@react-navigation/native';
+import JobStackScreen from './Provider/stacks/JobStack';
+import BottomNavigator from './Provider/stacks/BottomNavigator';
 
 const Provider = () => {
-  return <ProviderNavigation />;
+  return (
+    <NavigationContainer>
+      {/* <JobStackScreen /> */}
+      <BottomNavigator />
+    </NavigationContainer>
+  );
 };
 
 export default Provider;

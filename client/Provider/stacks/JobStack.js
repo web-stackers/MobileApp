@@ -1,12 +1,14 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import JobDetails from '../screens/JobResponse/JobDetails';
-import QuotationDetails from '../screens/JobResponse/QuotationDetails';
-import JobRefuse from '../screens/JobResponse/JobRefuse';
-import QuotationPreview from '../screens/JobResponse/QuotationPreview';
-import Acknowledge from '../screens/JobResponse/Acknowledge';
-import JobWithdrawal from '../screens/PostJobActions/JobWithdrawal';
+import JobDetails from '../screens/Jobs/JobDetails';
+import QuotationDetails from '../screens/Jobs/QuotationDetails';
+import JobRefuse from '../screens/Jobs/JobRefuse';
+import QuotationPreview from '../screens/Jobs/QuotationPreview';
+import Acknowledge from '../../common/screens/Acknowledge';
+import Withdrawal from '../../common/screens/Withdrawal';
+import Complaints from '../../common/screens/Complaints/Complaints';
+import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
 
 const JobStack = createNativeStackNavigator();
 
@@ -15,14 +17,14 @@ const JobStackScreen = () => (
   <JobStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1F2221'
+        backgroundColor: '#3b3d3e'
       },
       headerTintColor: '#fff'
     }}
   >
-    <JobStack.Screen 
-      name="Job Details" 
-      component={JobDetails} 
+    <JobStack.Screen
+      name="Job Details"
+      component={JobDetails}
     />
 
     <JobStack.Screen
@@ -39,9 +41,9 @@ const JobStackScreen = () => (
       }}
     />
 
-    <JobStack.Screen 
-      name="Quotation Preview" 
-      component={QuotationPreview} 
+    <JobStack.Screen
+      name="Quotation Preview"
+      component={QuotationPreview}
     />
 
     <JobStack.Screen
@@ -52,12 +54,22 @@ const JobStackScreen = () => (
       }}
     />
 
-    <JobStack.Screen 
-      name="Job Withdrawal" 
-      component={JobWithdrawal} 
+    <JobStack.Screen
+      name="Job Withdrawal"
+      component={Withdrawal}
       options={{
         header: () => null,
       }}
+    />
+
+    <JobStack.Screen
+      name="Complaint"
+      component={Complaints}
+    />
+
+    <JobStack.Screen
+      name="Rating and Review"
+      component={RatingsAndReviews}
     />
   </JobStack.Navigator>
 );
