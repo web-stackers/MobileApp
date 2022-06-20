@@ -13,11 +13,18 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: 'center'
     },
+    detailField: {
+        padding: 5,
+        marginBottom: 8,
+    },
+    field: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        lineHeight: 20,
+    },
     detail: {
         fontSize: 20,
-        lineHeight: 30,
-        fontWeight: 'bold'
-    }
+    },
 });
 
 export default styles;

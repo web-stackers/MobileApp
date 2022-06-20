@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,20 +6,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     alignItems: 'center',
     width: '100%',
+    justifyContent: 'space-between'
   },
   btngrp: {
     width: '95%',
-    position: 'absolute',
-    bottom: 25,
+    marginBottom: 10
   },
   message: {
     width: '100%',
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 50,
   },
   title: {
     fontSize: 28,
-    marginBottom: 50,
+    marginBottom: 40,
     textAlign: 'center'
   },
   JRefusePic: {

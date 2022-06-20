@@ -17,7 +17,7 @@ const JobStackScreen = () => (
   <JobStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1F2221'
+        backgroundColor: '#3b3d3e'
       },
       headerTintColor: '#fff'
     }}

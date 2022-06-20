@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,11 +8,25 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 5,
-    marginTop: 40,
+    marginTop: 35,
     width: '95%',
     alignSelf: 'center',
+  },
+  detailField: {
+    padding: 10,
+    borderLeftColor: '#652C9E',
+    borderWidth: 5,
+    marginBottom: 8,
+  },
+  field: {
     fontSize: 20,
-    lineHeight: 50
+    fontWeight: 'bold',
+    lineHeight: 40,
+    marginLeft: 5
+  },
+  detail: {
+    fontSize: 20,
+    marginLeft: 5
   },
   btngrp: {
     width: '95%',
@@ -23,14 +37,14 @@ const styles = StyleSheet.create({
   JDetailsPic: {
     height: 180,
     width: 270,
-    marginTop: 50,
+    marginTop: 40,
     alignSelf: 'center',
   },
   map: {
     width: '90%',
     height: 400,
     alignSelf: 'center',
-    marginBottom: 10
+    marginBottom: 40
   },
 });
 

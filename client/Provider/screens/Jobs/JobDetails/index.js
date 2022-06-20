@@ -11,6 +11,15 @@ import Sbutton from '../../../../components/Sbutton';
 import ScheckBox from '../../../../components/ScheckBox';
 import Map from '../../../../components/Map';
 
+const DetailField = ({field, detail}) => {
+  return (
+    <View style={styles.detailField}>
+      <Text style={styles.field}>{field}</Text>
+      <Text style={styles.detail}>{detail}</Text>
+    </View>
+  )
+}
+
 const JobDetails = ({navigation}) => {
   const [read, setRead] = useState(false);
   const [job, setJob] = useState();
@@ -31,16 +40,6 @@ const JobDetails = ({navigation}) => {
       });
   };
 
-  /* const getJob = () => {
-    Job.fetchJob(id)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  }; */
-
   useEffect(() => {
     getJob();
   }, []);
@@ -53,32 +52,29 @@ const JobDetails = ({navigation}) => {
       />
 
       {job && (
-        <Text style={styles.content}>
-          <Text variant="displayLarge">Job Description{'\n'}</Text>
-          <Text>
-            {job.description}
-            {'\n'}
-          </Text>
-          <Text>Photos{'\n'}</Text>
-          <Text>
-            {job.description}
-            {'\n'}
-          </Text>
-          <Text>Required Visit Time{'\n'}</Text>
-          <Text>
-            Date : {dateFormat(job.requestedTime, 'fullDate')}
-            {'\n'}
-          </Text>
-          <Text>
-            Time : {dateFormat(job.requestedTime, 'hh:MM TT')}
-            {'\n'}
-          </Text>
-          <Text>Location</Text>
-        </Text>
+        <View style={styles.content}>
+          <DetailField 
+            field="Job Description"
+            detail={job.description}
+          />
+          <DetailField 
+            field="Photos"
+            detail={job.description}
+          />
+          <DetailField 
+            field="Date"
+            detail={dateFormat(job.requestedTime, 'fullDate')}
+          />
+          <DetailField 
+            field="Time"
+            detail={dateFormat(job.requestedTime, 'hh:MM TT')}
+          />
+        </View>
       )}
 
       {/* Map to show location */}
       <View style={styles.map}>
+        <Text style={styles.field}>Location</Text>
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
       
