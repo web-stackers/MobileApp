@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {View, Text, Image, Alert, ScrollView} from 'react-native';
 

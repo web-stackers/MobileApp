@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 
 import Sacknowledge from '../../../../components/Sacknowledge';
