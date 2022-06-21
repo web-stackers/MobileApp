@@ -13,7 +13,7 @@ const QuotationPreview = ({navigation, route}) => {
 
   // Function to post quotation to the database
   const handleSubmit = () => {
-    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/62136a2d657adfba60a6878a`, {
+    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/${route.params.JAID}`, {
       estimatedTime: route.params.completeTime,
       amount: route.params.amount,
     })

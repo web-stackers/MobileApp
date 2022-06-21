@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {Text} from 'react-native-paper';
+import { useFocusEffect } from '@react-navigation/native';
 import dateFormat from 'dateformat';
 
 import axios from 'axios';
@@ -30,7 +31,7 @@ const JobDetails = ({navigation}) => {
   // Function to get job details
   const getJob = async () => {
     await axios
-      .get('http://10.0.2.2:5000/job/621341023987d49e1f22f7a8')
+      .get(`http://10.0.2.2:5000/job/${id}`)
       .then(response => {
         setJob(response.data);
       })
@@ -39,9 +40,11 @@ const JobDetails = ({navigation}) => {
       });
   };
 
-  useEffect(() => {
-    getJob();
-  }, []);
+  useFocusEffect(
+    useCallback(() =>{
+      getJob();
+    }, [])
+  )
 
   return (
     <ScrollView style={styles.container}>
@@ -97,7 +100,10 @@ const JobDetails = ({navigation}) => {
         <Sbutton
           disabled={!read}
           text="Refuse"
-          onPress={() => navigation.push('Refuse Job')}
+          onPress={() => navigation.push('Refuse Job', {
+            JAID: '62136a2d657adfba60a6878a',
+          })
+        }
         />
       </View>}
 

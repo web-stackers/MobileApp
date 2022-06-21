@@ -25,11 +25,18 @@ const QuotationDetails = ({navigation, route}) => {
         'Amount can contain only numbers. Please enter rounded up amount',
       );
       setAmount('');
-    } else {
+    } else if (date.getTime()===reqDate.getTime()) {
+      Alert.alert(
+        'Invalid Time',
+        'Please enter a valid estimated time when you can complete this job ',
+      );
+      setDate(reqDate);
+    }else {
         navigation.push('Quotation Preview', {
           completeTime:`${date}`,
           amount:`${amount}`,
-          job:{job}
+          job:{job},
+          JAID: '62136a2d657adfba60a6878a'
       })
     }
   }
