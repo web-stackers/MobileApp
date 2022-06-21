@@ -8,11 +8,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   headingContainer: {
-    flex: 4,
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 3,
-    borderBottomColor: 'white',
+  },
+  event: {
+    marginTop: 20,
   },
 
   subContainer: {
@@ -25,9 +26,9 @@ const styles = StyleSheet.create({
   },
   subHeading: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 26,
     marginBottom: 30,
-    paddingTop: 50,
+    paddingTop: 30,
   },
 });
 

@@ -65,9 +65,9 @@ const CategorySelector = ({navigation}) => {
       <View style={styles.subContainer}>
         <Text style={styles.subHeading}>What you are looking for?</Text>
         <StouchableOpacity onPress={ConstructionPress} title="Construction" />
-      </View>
-      <View style={styles.subContainer}>
-        <StouchableOpacity onPress={EventPress} title="Event" />
+        <View style={styles.event}>
+          <StouchableOpacity onPress={EventPress} title="Event" />
+        </View>
       </View>
     </View>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -9,12 +10,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 15,
     marginRight: 15,
-    marginTop: 22,
   },
   buttonText: {
     color: 'white',
     fontSize: 30,
-    fontWeight: 'bold',
   },
 });
 
