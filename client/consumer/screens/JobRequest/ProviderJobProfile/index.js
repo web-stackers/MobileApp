@@ -43,28 +43,26 @@ const ProviderJobProfile = ({navigation, route}) => {
   // mimetype = profilePicture.contentType;
 
   const AlertRequest = () =>
-    Alert.alert(
-      'Sending Request',
-      'Are you sure to send the request for that provider?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => {
-            axios
-              .get(
-                `http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`,
-              )
-              .then(response => {
-                console.log(
-                  'Check whether provider availability is checked..............................................................',
-                );
-                console.log(response.data);
-                if (!response.data) {
+    axios
+      .get(`http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`)
+      .then(response => {
+        console.log(
+          'Check whether provider availability is checked..............................................................',
+        );
+        console.log(response.data);
+        if (!response.data) {
+          Alert.alert(
+            'Sending Request',
+            'Are you sure to send the request for that provider?',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'OK',
+                onPress: () => {
                   axios
                     .post('http://10.0.2.2:5000/job', {
                       jobType: jobType,
@@ -96,28 +94,28 @@ const ProviderJobProfile = ({navigation, route}) => {
                     .catch(function (error) {
                       console.log(error);
                     });
-                } else {
-                  Alert.alert(
-                    'Provider not available',
-                    'We are sorry to inform that, your requested provider will not be available on your requested date. You can able to make schedule on another day',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel',
-                      },
-                      {
-                        text: 'Request another date',
-                        onPress: () => navigation.pop(2),
-                      },
-                    ],
-                  );
-                }
-              });
-          },
-        },
-      ],
-    );
+                },
+              },
+            ],
+          );
+        } else {
+          Alert.alert(
+            'Provider not available',
+            'We are sorry to inform that, your requested provider will not be available on your requested date. You can able to make schedule on another day',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'Request another date',
+                onPress: () => navigation.pop(2),
+              },
+            ],
+          );
+        }
+      });
 
   const handleMap = () => {
     navigation.navigate('ProviderMap', {
