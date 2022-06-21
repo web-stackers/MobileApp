@@ -108,7 +108,7 @@ const ProviderJobProfile = ({navigation, route}) => {
                       },
                       {
                         text: 'Request another date',
-                        onPress: () => navigation.pop(1),
+                        onPress: () => navigation.pop(2),
                       },
                     ],
                   );
