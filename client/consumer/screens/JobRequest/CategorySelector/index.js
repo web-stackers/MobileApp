@@ -59,20 +59,9 @@ const CategorySelector = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
-        <Image
-          style={styles.logo}
-          source={require('../../../../assets/images/logo.png')}
-        />
+        <Image source={require('../../../../assets/images/logo.png')} />
       </View>
 
-      {/* <View style={styles.headingContainer}>
-        <ImageBackground
-          source={require('../../../../assets/images/mobile.jpg')}
-          resizeMode="cover"
-          style={styles.image}>
-          <Text style={styles.test}>Helper</Text>
-        </ImageBackground>
-      </View> */}
       <View style={styles.subContainer}>
         <Text style={styles.subHeading}>What you are looking for?</Text>
         <StouchableOpacity onPress={ConstructionPress} title="Construction" />
