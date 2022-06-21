@@ -16,30 +16,29 @@ const SearchProvider = ({navigation, route}) => {
   // const [documentList, setDocumentList] = useState([]);
 
   const AlertRequest = id =>
-    Alert.alert(
-      'Sending Request',
-      'Are you sure to send the request for that provider?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => {
-            console.log('provider Id');
-            console.log(id);
-            axios
-              .get(
-                `http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`,
-              )
-              .then(response => {
-                console.log(
-                  'Check whether provider availability is checked..............................................................',
-                );
-                console.log(response.data);
-                if (!response.data) {
+    axios
+      .get(`http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`)
+      .then(response => {
+        console.log(
+          'Check whether provider availability is checked..............................................................',
+        );
+        console.log(response.data);
+        if (!response.data) {
+          Alert.alert(
+            'Sending Request',
+            'Are you sure to send the request for that provider?',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'OK',
+                onPress: () => {
+                  console.log('provider Id');
+                  console.log(id);
+
                   axios
                     .post('http://10.0.2.2:5000/job', {
                       jobType: jobType,
@@ -72,28 +71,28 @@ const SearchProvider = ({navigation, route}) => {
                     .catch(function (error) {
                       console.log(error);
                     });
-                } else {
-                  Alert.alert(
-                    'Provider not available',
-                    'We are sorry to inform that, your requested provider will not be available on your requested date. You can able to make schedule on another day',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: () => console.log('Cancel Pressed'),
-                        style: 'cancel',
-                      },
-                      {
-                        text: 'Request another date',
-                        onPress: () => navigation.pop(1),
-                      },
-                    ],
-                  );
-                }
-              });
-          },
-        },
-      ],
-    );
+                },
+              },
+            ],
+          );
+        } else {
+          Alert.alert(
+            'Provider not available',
+            'We are sorry to inform that, your requested provider will not be available on your requested date. You can able to make schedule on another day',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'Request another date',
+                onPress: () => navigation.pop(1),
+              },
+            ],
+          );
+        }
+      });
 
   const handleView = (
     id,
