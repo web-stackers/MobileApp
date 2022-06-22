@@ -1,6 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import JobHistory from '../screens/JobsScreen/JobHistory';
+import CompletedJobsScreen from '../screens/JobsScreen/JobCompleted';
+import PendingJobsScreen from '../screens/JobsScreen/JobPending';
+import RefusedJobsScreen from '../screens/JobsScreen/JobRefuse';
+import WithdrawnJobsScreen from '../screens/JobsScreen/JobWithdrawal';
+import PendingRequestScreen from '../screens/JobsScreen/RequestPending';
 import JobDetails from '../screens/Jobs/JobDetails';
 import QuotationDetails from '../screens/Jobs/QuotationDetails';
 import JobRefuse from '../screens/Jobs/JobRefuse';
@@ -22,6 +28,17 @@ const JobStackScreen = () => (
       headerTintColor: '#fff'
     }}
   >
+    <JobStack.Screen
+      name="Job History"
+      component={JobHistory}
+    />
+
+    <JobStack.Screen name="Completed Jobs" component={CompletedJobsScreen} />
+    <JobStack.Screen name="Refused Jobs" component={RefusedJobsScreen} />
+    <JobStack.Screen name="Pending Jobs" component={PendingJobsScreen} />
+    <JobStack.Screen name="Withdrawn Jobs" component={WithdrawnJobsScreen} />
+    <JobStack.Screen name="Pending Request" component={PendingRequestScreen} />
+
     <JobStack.Screen
       name="Job Details"
       component={JobDetails}
