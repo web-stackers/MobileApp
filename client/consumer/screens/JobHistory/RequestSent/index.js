@@ -1,114 +1,86 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-lone-blocks */
-/* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
-import {View, SafeAreaView} from 'react-native';
-import {
-  Avatar,
-  Title,
-  Caption,
-  Text,
-  TouchableRipple,
-} from 'react-native-paper';
-import {ListItem, Card} from 'react-native-elements';
-import {List} from 'react-native-paper';
-import styles from './styles';
+import React, {useState, useEffect} from 'react';
+import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
 import axios from 'axios';
-import {FlatList} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
-const Separator = () => <View style={styles.separator} />;
+import styles from './styles';
 
 const RequestSent = ({navigation, route}) => {
-  const {fname, lname, rating, description, id, state, jobType, reason, amount} = route.params;
-  const GoBack = () => {
-    navigation.pop(1);
+  /* const {type, CID} =
+    route.params; */
+  let CID = '62132b7bc4afd22e5fc49677';
+  let type = 'consumer';
+
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch job history of a user
+  const fetchJobs = () => {
+    setLoading(true);
+    axios
+      .get(
+        'http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677',
+      )
+      .then(response => {
+        console.log(response.data);
+        setJobs(response.data);
+        setLoading(false);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>
+        {fname} {lname}
+      </Text>
+      <Text style={styles.subtitle}>Description: {description}</Text>
+      <Text style={styles.subtitle}>JobType: {jobType}</Text>
+      <Text style={styles.subtitle}>Status: {state}</Text>
+      <View style={styles.btngrp}>
+        <Sbutton
+          primary={true}
+          text="Cancel"
+          onPress={() => {
+            navigation.navigate('../JobRequest/CategorySelector');
+          }}
+        />
+      </View>
+    </View>
+  );
+
+  const renderItem = ({item}) => {
+    if (item.jobassignment[0].state === 'Request pending') {
+      return (
+        <Item
+          fname={item.provider[0].name.fName}
+          lname={item.provider[0].name.lName}
+          rating={item.provider[0].totalRating / item.provider[0].ratingCount}
+          description={item.description}
+          id={item._id}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+        amount={item.userJobs[0].quotation?.amount|| ''} */
+        />
+      );
+    }
   };
 
   return (
-    <SafeAreaView style={styles.flexContainer}>
-      <View style={styles.userInfoSection}>
-        <View style={{flexDirection: 'row', marginTop: 15}}>
-          <Avatar.Image
-            source={{
-              uri: 'https://avatar.png',
-            }}
-            size={80}
-          />
-          <View style={{marginLeft: 20}}>
-            <Title
-              style={[
-                styles.title,
-                {
-                  marginTop: 15,
-                  marginBottom: 5,
-                  color: '#FFFFFF',
-                },
-              ]}>
-              {/* {user._id} */}
-              {fname}{' '}
-              {lname}
-            </Title>
-            <Caption style={styles.caption}> Service Provider </Caption>
-          </View>
-        </View>
-      </View>
-
-      <View style={styles.infoBoxWrapper}>
-        <View
-          style={[
-            styles.infoBox,
-            {
-              borderRightColor: '#dddddd',
-              borderRightWidth: 1,
-            },
-          ]}>
-          <Title style={{color: '#FFFFFF'}}>
-            {rating} <Icon name="star" color="#652C9E" size={22} />
-            {''}
-          </Title>
-          <Caption style={{fontSize: 16, fontWeight: 'bold', color: '#FFFFFF'}}>
-            Rating
-          </Caption>
-        </View>
-        <View style={styles.infoBox}>
-          <Title style={{color: '#FFFFFF'}}>
-            {' '}
-            13 <Icon name="target" color="#652C9E" size={22} />
-          </Title>
-          <Caption style={{fontSize: 16, fontWeight: 'bold', color: '#FFFFFF'}}>
-            Completed Jobs
-          </Caption>
-        </View>
-      </View>
-
-      <View style={styles.menuWrapper}>
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemSubtitle}>Issue</Text>
-        </View>
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemText}>{description}</Text>
-        </View>
-        <Separator />
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemSubtitle}>State of the work</Text>
-        </View>
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemText}>{state}</Text>
-        </View>
-        <Separator />
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemSubtitle}>Request sent date</Text>
-        </View>
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemText}>Date</Text>
-        </View>
-        <Separator />
-        <View style={styles.btngrp}>
-        <Sbutton primary={true} text="Withdraw Request" />
-        <Sbutton text="Go Back" onPress={GoBack} />
-      </View>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={jobs}
+        renderItem={renderItem}
+        keyExtractor={item => item._id}
+      />
     </SafeAreaView>
   );
 };

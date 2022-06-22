@@ -20,7 +20,6 @@ const CategorySelector = ({navigation}) => {
     axios
       .get('http://10.0.2.2:5000/jobTypeCategory/constructionJobs')
       .then(response => {
-        console.log(response.data);
         setConstructionList(response.data);
       })
       .catch(function (error) {
@@ -33,7 +32,6 @@ const CategorySelector = ({navigation}) => {
     axios
       .get('http://10.0.2.2:5000/jobTypeCategory/eventJobs')
       .then(response => {
-        console.log(response.data);
         setEventList(response.data);
       })
       .catch(function (error) {
