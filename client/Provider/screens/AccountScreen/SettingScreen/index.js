@@ -1,5 +1,6 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable react-native/no-inline-styles */
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import {View, SafeAreaView} from 'react-native';
 import {
@@ -20,6 +21,14 @@ const SettingsScreen = ({navigation, route}) => {
     route.params; */
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
+  const onLogout = async () => {
+    try{
+      await AsyncStorage.removeItem('profile');
+      navigation.navigate('Start')
+    }catch(err){
+      console.log("error in logout, "+err)
+    }
+  };
 
   const getUser = async () => {
     await axios
@@ -127,7 +136,7 @@ const SettingsScreen = ({navigation, route}) => {
           </View>
         </TouchableRipple>
 
-        <TouchableRipple onPress={() => navigation.navigate('Sign Out')}>
+        <TouchableRipple onPress={() => onLogout()}>
           <View style={styles.menuItem}>
             <Icon name="power" color="#652C9E" size={25} />
             <Text style={styles.menuItemText}>Sign Out</Text>

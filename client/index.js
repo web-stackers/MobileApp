@@ -2,9 +2,11 @@
 import {AppRegistry} from 'react-native';
 import Provider from './Provider';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
 import * as React from 'react';
 import Consumer from './Consumer';
 import App from './App';
+import AuthStack from './auth/stacks/AuthStack';
 import {name as appName} from './app.json';
 import {enableLatestRenderer} from 'react-native-maps';
 import Common from './Common';
@@ -28,7 +30,9 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      <Consumer />
+      <NavigationContainer>
+        <AuthStack />
+      </NavigationContainer>
     </PaperProvider>
   );
 }
