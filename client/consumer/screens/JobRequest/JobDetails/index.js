@@ -57,7 +57,6 @@ const JobDetails = ({navigation, route}) => {
     axios
       .get(`http://10.0.2.2:5000/jobTypeCategory/${jobType}`)
       .then(response => {
-        console.log(response.data);
         setJobTypeName(response.data);
       })
       .catch(function (error) {

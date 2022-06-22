@@ -10,10 +10,10 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobCompleted = ({navigation, route}) => {
-   /* const {type, CID} =
+  /* const {type, CID} =
     route.params; */
-    let CID = '62132b7bc4afd22e5fc49677';
-    let type = 'consumer';
+  let CID = '62132b7bc4afd22e5fc49677';
+  let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,6 @@ const JobCompleted = ({navigation, route}) => {
         `http://10.0.2.2:5000/job/user/userassignments/consumer/62132c85c4afd22e5fc49685`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -39,7 +38,17 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType,complaint,ratingAndReview}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    complaint,
+    ratingAndReview,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -48,7 +57,7 @@ const JobCompleted = ({navigation, route}) => {
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
-      <Sbutton
+        <Sbutton
           primary={true}
           text="Complaint"
           onPress={() => {
@@ -58,32 +67,36 @@ const JobCompleted = ({navigation, route}) => {
             });
           }}
         />
-        <Sbutton primary={true} text="Rate and Review" onPress={() => {
+        <Sbutton
+          primary={true}
+          text="Rate and Review"
+          onPress={() => {
             navigation.navigate('Rating and Review', {
               id,
               ratingAndReview,
             });
-          }}/>
+          }}
+        />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job completed") {
-        return (
-          <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
-            description={item.description}
-            id={item._id}
-            state={item.jobassignment[0].state}
-            jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+    if (item.jobassignment[0].state === 'Job completed') {
+      return (
+        <Item
+          fname={item.provider[0].name.fName}
+          lname={item.provider[0].name.lName}
+          rating={item.provider[0].totalRating / item.provider[0].ratingCount}
+          description={item.description}
+          id={item._id}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
-          />
-        );
-      }
+        />
+      );
+    }
   };
 
   return (

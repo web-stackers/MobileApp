@@ -57,7 +57,7 @@ const RequestSent = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-    if (item.jobassignment[0].state === 'Request sent') {
+    if (item.jobassignment[0].state === 'Request pending') {
       return (
         <Item
           fname={item.provider[0].name.fName}
