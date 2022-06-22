@@ -9,7 +9,7 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobWithdrawal = ({navigation, route}) => {
+const RequestRefused = ({navigation, route}) => {
    /* const {type, CID} =
     route.params; */
     let CID = '62132b7bc4afd22e5fc49677';
@@ -50,7 +50,7 @@ const JobWithdrawal = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Search Again"
+          text="Search again"
           onPress={() => {
             navigation.navigate('../JobRequest/CategorySelector');
           }}
@@ -60,7 +60,7 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawed") {
+      if (item.jobassignment[0].state === "Request refused") {
         return (
           <Item
             fname={item.provider[0].name.fName}
@@ -88,4 +88,4 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 };
 
-export default JobWithdrawal;
+export default RequestRefused;

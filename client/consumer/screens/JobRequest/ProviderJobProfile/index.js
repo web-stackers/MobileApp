@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {View, Text, Image, Alert, ScrollView} from 'react-native';
-// import {Buffer} from 'buffer';
+import {Buffer} from 'buffer';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const ProviderJobProfile = ({navigation, route}) => {
   const {
+    // profilePicture,
     jobType,
     description,
     requestedTime,
@@ -47,12 +48,9 @@ const ProviderJobProfile = ({navigation, route}) => {
     navigation.pop(1);
   };
 
-  // let base64String = false;
-  // let mimetype = '';
-
   // let buffer = profilePicture.data;
-  // base64String = Buffer.from(buffer).toString('base64');
-  // mimetype = profilePicture.contentType;
+  // let base64String = Buffer.from(profilePicture.data).toString('base64');
+  // let mimetype = profilePicture.contentType;
 
   const AlertRequest = () => {
     if (distance < 15) {
@@ -96,9 +94,10 @@ const ProviderJobProfile = ({navigation, route}) => {
                           })
                           .then(function (response) {
                             console.log(response.data);
-                            navigation.navigate('PhotoUpload', {
-                              jobId: response.data.jobId,
-                            });
+                            navigation.navigate('JobAcknowledge');
+                            // navigation.navigate('PhotoUpload', {
+                            //   jobId: response.data.jobId,
+                            // });
                           })
                           .catch(function (error) {
                             console.log(error);
@@ -151,6 +150,12 @@ const ProviderJobProfile = ({navigation, route}) => {
         </Text>
         <Image
           style={styles.image}
+          // source={{
+          //   uri: `data:${mimetype};
+          //   base64,
+          //    ${base64String}`,
+          // }}
+
           source={require('../../../../assets/images/profile.jpg')}
         />
       </View>

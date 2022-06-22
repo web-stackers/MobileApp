@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
 
 import axios from 'axios';
@@ -15,7 +15,6 @@ const SearchProvider = ({navigation, route}) => {
 
   const lat1 = lat / 57.29577951;
   const longi1 = longi / 57.29577951;
-  // const [documentList, setDocumentList] = useState([]);
 
   const AlertRequest = (id, providerLat, providerLongi) => {
     let lat2 = providerLat / 57.29577951;
@@ -74,10 +73,10 @@ const SearchProvider = ({navigation, route}) => {
                           })
                           .then(function (response) {
                             console.log(response.data);
-                            navigation.navigate('PhotoUpload', {
-                              jobId: response.data.jobId,
-                            });
-                            // navigation.navigate('JobAcknowledge');
+                            // navigation.navigate('PhotoUpload', {
+                            //   jobId: response.data.jobId,
+                            // });
+                            navigation.navigate('JobAcknowledge');
                           })
                           .catch(function (error) {
                             console.log(error);
@@ -135,12 +134,7 @@ const SearchProvider = ({navigation, route}) => {
     //     console.log(
     //       'Document list......................................................................................................',
     //     );
-    //     console.log(response.data[0]);
-    //     setDocumentList(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+
     navigation.navigate('ProviderJobProfile', {
       jobType: jobType,
       description: description,
@@ -158,7 +152,12 @@ const SearchProvider = ({navigation, route}) => {
       ratingCount: ratingCount,
       providerLat: providerLat,
       providerLongi: providerLongi,
+      // profilePicture: response.data.doc,
     });
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   };
 
   const Item = ({

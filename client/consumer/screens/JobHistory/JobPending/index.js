@@ -9,7 +9,7 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobWithdrawal = ({navigation, route}) => {
+const JobPending = ({navigation, route}) => {
    /* const {type, CID} =
     route.params; */
     let CID = '62132b7bc4afd22e5fc49677';
@@ -39,7 +39,7 @@ const JobWithdrawal = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({fname, lname, rating, description, id, state, jobType,JAID}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -50,17 +50,34 @@ const JobWithdrawal = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Search Again"
+          text="View"
           onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
+            navigation.navigate('../JobRequest/QuotationDetails', {
+              id,
+              JAID,
+            });
           }}
+        />
+        <Sbutton
+          primary={true}
+          text="Message"
+          onPress={() => {
+            navigation.navigate('../JobRequest/QuotationDetails', {
+              JAID,
+              
+            });
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="Withdraw job"
         />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawed") {
+      if (item.jobassignment[0].state === "Job pending") {
         return (
           <Item
             fname={item.provider[0].name.fName}
@@ -68,6 +85,7 @@ const JobWithdrawal = ({navigation, route}) => {
             rating={item.provider[0].totalRating / item.provider[0].ratingCount}
             description={item.description}
             id={item._id}
+            JAID={item.jobassignment[0]._id}
             state={item.jobassignment[0].state}
             jobType={item.jobType}
             /* reason={item.userJobs[0].withdrawn?.reason|| ''}
@@ -88,4 +106,4 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 };
 
-export default JobWithdrawal;
+export default JobPending;

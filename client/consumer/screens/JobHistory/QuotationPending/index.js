@@ -9,7 +9,7 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobWithdrawal = ({navigation, route}) => {
+const QuotationPending = ({navigation, route}) => {
    /* const {type, CID} =
     route.params; */
     let CID = '62132b7bc4afd22e5fc49677';
@@ -50,9 +50,12 @@ const JobWithdrawal = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Search Again"
+          text="View Quotation"
           onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
+            navigation.navigate('../JobRequest/QuotationDetails', {
+              JAID,
+              jobType,
+            });
           }}
         />
       </View>
@@ -60,7 +63,7 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawed") {
+      if (item.jobassignment[0].state === "Quotation pending") {
         return (
           <Item
             fname={item.provider[0].name.fName}
@@ -68,6 +71,7 @@ const JobWithdrawal = ({navigation, route}) => {
             rating={item.provider[0].totalRating / item.provider[0].ratingCount}
             description={item.description}
             id={item._id}
+            JAID={item.jobassignment[0]._id}
             state={item.jobassignment[0].state}
             jobType={item.jobType}
             /* reason={item.userJobs[0].withdrawn?.reason|| ''}
@@ -88,4 +92,4 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 };
 
-export default JobWithdrawal;
+export default QuotationPending;

@@ -31,13 +31,9 @@ const JobDetails = ({navigation, route}) => {
 
   //Fetch consumer address
   const getConsumerLocation = () => {
-    console.log(
-      'Get provider location..................................................',
-    );
     axios
       .get(`http://10.0.2.2:5000/consumer/address/${CID}`)
       .then(response => {
-        console.log(response.data);
         setConsumerLocation(response.data);
       })
       .catch(function (error) {
@@ -46,9 +42,6 @@ const JobDetails = ({navigation, route}) => {
   };
 
   const getProviders = () => {
-    console.log(
-      'Function call..................................................',
-    );
     axios
       .get(`http://10.0.2.2:5000/provider/jobType/${jobType}`)
       .then(response => {
@@ -61,13 +54,9 @@ const JobDetails = ({navigation, route}) => {
   };
 
   const getJobTypeName = () => {
-    console.log(
-      'Function call..................................................',
-    );
     axios
       .get(`http://10.0.2.2:5000/jobTypeCategory/${jobType}`)
       .then(response => {
-        console.log(response.data);
         setJobTypeName(response.data);
       })
       .catch(function (error) {

@@ -9,11 +9,9 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobWithdrawal = ({navigation, route}) => {
-   /* const {type, CID} =
+const JobPending = ({navigation, route}) => {
+  /* const {type, CID} =
     route.params; */
-    let CID = '62132b7bc4afd22e5fc49677';
-    let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,10 +21,9 @@ const JobWithdrawal = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -39,7 +36,18 @@ const JobWithdrawal = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    JAID,
+    amount,
+    time,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -50,9 +58,14 @@ const JobWithdrawal = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Search Again"
+          text="View"
           onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
+            navigation.navigate('Quotation Preview', {
+              id,
+              JAID,
+              amount,
+              time,
+            });
           }}
         />
       </View>
@@ -60,21 +73,24 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawed") {
-        return (
-          <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
-            description={item.description}
-            id={item._id}
-            state={item.jobassignment[0].state}
-            jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+    if (item.jobassignment[0].state === 'Job pending') {
+      return (
+        <Item
+          fname={item.consumer[0].name.fName}
+          lname={item.consumer[0].name.lName}
+          //rating={item.consumer[0].totalRating / item.consumer[0].ratingCount}
+          description={item.description}
+          id={item._id}
+          JAID={item.jobassignment[0]._id}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          amount={item.jobassignment[0].quotation.amount}
+          time={item.jobassignment[0].quotation.estimatedTime}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
-          />
-        );
-      }
+        />
+      );
+    }
   };
 
   return (
@@ -88,4 +104,4 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 };
 
-export default JobWithdrawal;
+export default JobPending;

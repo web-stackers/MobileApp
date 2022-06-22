@@ -9,11 +9,9 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobWithdrawal = ({navigation, route}) => {
-   /* const {type, CID} =
+const JobRefuse = ({navigation, route}) => {
+  /* const {type, CID} =
     route.params; */
-    let CID = '62132b7bc4afd22e5fc49677';
-    let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,10 +21,9 @@ const JobWithdrawal = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -48,24 +45,17 @@ const JobWithdrawal = ({navigation, route}) => {
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
-        <Sbutton
-          primary={true}
-          text="Search Again"
-          onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
-          }}
-        />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawed") {
+      if (item.jobassignment[0].state === "Job refused") {
         return (
           <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
+            fname={item.consumer[0].name.fName}
+            lname={item.consumer[0].name.lName}
+            //rating={item.consumer[0].totalRating / item.consumer[0].ratingCount}
             description={item.description}
             id={item._id}
             state={item.jobassignment[0].state}
@@ -88,4 +78,4 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 };
 
-export default JobWithdrawal;
+export default JobRefuse;
