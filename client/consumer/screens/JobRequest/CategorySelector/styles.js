@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -7,18 +8,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   headingContainer: {
-    flex: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 3,
-    borderBottomColor: 'white',
-  },
-  image: {
-    flex: 1,
-    width: 450,
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  event: {
+    marginTop: 20,
+  },
+
   subContainer: {
     flex: 3,
     alignItems: 'center',
@@ -29,9 +26,9 @@ const styles = StyleSheet.create({
   },
   subHeading: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 26,
     marginBottom: 30,
-    paddingTop: 50,
+    paddingTop: 30,
   },
 });
 

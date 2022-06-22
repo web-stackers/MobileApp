@@ -8,7 +8,7 @@ import Sbutton from '../../../../components/Sbutton';
 import StextBox from '../../../../components/FormComponents/StextBox';
 import SradioButton from '../../../../components/SradioButton';
 
-const JobRefusePage = ({navigation}) => {
+const JobRefusePage = ({navigation, route}) => {
   const [value, setValue] = React.useState('');
   const [reason, setReason] = React.useState('');
   const [otherReason, setOtherReason] = React.useState('');
@@ -28,7 +28,7 @@ const JobRefusePage = ({navigation}) => {
         'Please provide the reason for refusing this job',
       );
     } else {
-        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/62136a2d657adfba60a6878a`, {
+        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/${route.params.JAID}`, {
             reason: value===3? otherReason: reason,
         })
         .then((response) => {

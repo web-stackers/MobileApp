@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {Text, View, ImageBackground} from 'react-native';
+import {Text, View, ImageBackground, Image} from 'react-native';
 
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
@@ -59,19 +59,15 @@ const CategorySelector = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
-        <ImageBackground
-          source={require('../../../../assets/images/mobile.jpg')}
-          resizeMode="cover"
-          style={styles.image}>
-          <Text style={styles.test}>Helper</Text>
-        </ImageBackground>
+        <Image source={require('../../../../assets/images/logo.png')} />
       </View>
+
       <View style={styles.subContainer}>
         <Text style={styles.subHeading}>What you are looking for?</Text>
         <StouchableOpacity onPress={ConstructionPress} title="Construction" />
-      </View>
-      <View style={styles.subContainer}>
-        <StouchableOpacity onPress={EventPress} title="Event" />
+        <View style={styles.event}>
+          <StouchableOpacity onPress={EventPress} title="Event" />
+        </View>
       </View>
     </View>
   );
