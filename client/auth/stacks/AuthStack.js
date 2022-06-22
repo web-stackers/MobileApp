@@ -5,8 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import StartScreen from '../screens/Start';
 import LoginScreen from '../screens/Login';
+import SetLocationScreen from '../screens/SetLocation'
 import ProviderNavigation from '../../Provider/stacks/BottomNavigator';
-import providerStack from '../../Provider/stacks/JobStack';
 import ConsumerNavigation from '../../consumer/stacks/BottomNavigator';
 
 const Stack = createNativeStackNavigator();
@@ -94,6 +94,17 @@ const AuthStack = () => {
         options={{
           header: () => null,
         }}
+      />
+      <Stack.Screen
+        name="SetLocation"
+        // children={props => (
+        //   <LoginScreen setUser={setUser} user={user} {...props} />
+        // )}
+        component={SetLocationScreen}
+        options={{ title: 'Pick your residential location' }}
+        // options={{
+        //   header: () => null,
+        // }}
       />
 
       <Stack.Screen
