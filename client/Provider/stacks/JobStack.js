@@ -15,6 +15,7 @@ import Acknowledge from '../../common/screens/Acknowledge';
 import Withdrawal from '../../common/screens/Withdrawal';
 import Complaints from '../../common/screens/Complaints/Complaints';
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
+import HistoryScreen from '../screens/JobsScreen/HistoryScreen';
 
 const JobStack = createNativeStackNavigator();
 
@@ -23,11 +24,10 @@ const JobStackScreen = () => (
   <JobStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#3b3d3e'
+        backgroundColor: '#3b3d3e',
       },
-      headerTintColor: '#fff'
-    }}
-  >
+      headerTintColor: '#fff',
+    }}>
     <JobStack.Screen
       name="Job History"
       component={JobHistory}
@@ -39,10 +39,7 @@ const JobStackScreen = () => (
     <JobStack.Screen name="Withdrawn Jobs" component={WithdrawnJobsScreen} />
     <JobStack.Screen name="Pending Request" component={PendingRequestScreen} />
 
-    <JobStack.Screen
-      name="Job Details"
-      component={JobDetails}
-    />
+    <JobStack.Screen name="Job Details" component={JobDetails} />
 
     <JobStack.Screen
       name="Quotation Details"
@@ -58,10 +55,7 @@ const JobStackScreen = () => (
       }}
     />
 
-    <JobStack.Screen
-      name="Quotation Preview"
-      component={QuotationPreview}
-    />
+    <JobStack.Screen name="Quotation Preview" component={QuotationPreview} />
 
     <JobStack.Screen
       name="Acknowledgement"
@@ -79,15 +73,9 @@ const JobStackScreen = () => (
       }}
     />
 
-    <JobStack.Screen
-      name="Complaint"
-      component={Complaints}
-    />
+    <JobStack.Screen name="Complaint" component={Complaints} />
 
-    <JobStack.Screen
-      name="Rating and Review"
-      component={RatingsAndReviews}
-    />
+    <JobStack.Screen name="Rating and Review" component={RatingsAndReviews} />
   </JobStack.Navigator>
 );
 

@@ -24,7 +24,6 @@ const JobPending = ({navigation, route}) => {
         `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -37,7 +36,18 @@ const JobPending = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    JAID,
+    amount,
+    time,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -49,40 +59,38 @@ const JobPending = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="View"
-          onPress={() =>
-            handleView(
-              fname,
-              lname,
-              rating,
-              description,
+          onPress={() => {
+            navigation.navigate('Quotation Preview', {
               id,
-              state,
-              jobType,
-              /* reason,
-              amount, */
-            )
-          }
+              JAID,
+              amount,
+              time,
+            });
+          }}
         />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.userJobs[0].state === "Job pending") {
-        return (
-          <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
-            description={item.description}
-            id={item._id}
-            state={item.userJobs[0].state}
-            jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+    if (item.jobassignment[0].state === 'Job pending') {
+      return (
+        <Item
+          fname={item.consumer[0].name.fName}
+          lname={item.consumer[0].name.lName}
+          //rating={item.consumer[0].totalRating / item.consumer[0].ratingCount}
+          description={item.description}
+          id={item._id}
+          JAID={item.jobassignment[0]._id}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          amount={item.jobassignment[0].quotation.amount}
+          time={item.jobassignment[0].quotation.estimatedTime}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
-          />
-        );
-      }
+        />
+      );
+    }
   };
 
   return (

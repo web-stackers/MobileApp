@@ -9,9 +9,11 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobRefuse = ({navigation, route}) => {
-  /* const {type, CID} =
+const JobPending = ({navigation, route}) => {
+   /* const {type, CID} =
     route.params; */
+    let CID = '62132b7bc4afd22e5fc49677';
+    let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,9 +23,10 @@ const JobRefuse = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
+        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
       )
       .then(response => {
+        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -36,7 +39,7 @@ const JobRefuse = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({fname, lname, rating, description, id, state, jobType,JAID}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -45,19 +48,44 @@ const JobRefuse = ({navigation, route}) => {
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
+        <Sbutton
+          primary={true}
+          text="View"
+          onPress={() => {
+            navigation.navigate('../JobRequest/QuotationDetails', {
+              id,
+              JAID,
+            });
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="Message"
+          onPress={() => {
+            navigation.navigate('../JobRequest/QuotationDetails', {
+              JAID,
+              
+            });
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="Withdraw job"
+        />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job refused") {
+      if (item.jobassignment[0].state === "Job pending") {
         return (
           <Item
-            fname={item.consumer[0].name.fName}
-            lname={item.consumer[0].name.lName}
-            //rating={item.consumer[0].totalRating / item.consumer[0].ratingCount}
+            fname={item.provider[0].name.fName}
+            lname={item.provider[0].name.lName}
+            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
             description={item.description}
             id={item._id}
+            JAID={item.jobassignment[0]._id}
             state={item.jobassignment[0].state}
             jobType={item.jobType}
             /* reason={item.userJobs[0].withdrawn?.reason|| ''}
@@ -78,4 +106,4 @@ const JobRefuse = ({navigation, route}) => {
   );
 };
 
-export default JobRefuse;
+export default JobPending;

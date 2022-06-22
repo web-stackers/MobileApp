@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import SettingStack from './SettingStack';
 import JobRequestStackScreen from './JobRequestStack';
-import JobHistoryStackScreen from './JobHistoryStack';
+import JobStackScreen from './JobStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +42,7 @@ const BottomNavigator = () => {
 
       <Tab.Screen
         name="Jobs"
-        component={JobHistoryStackScreen}
+        component={JobStackScreen}
         options={{
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (
@@ -52,7 +52,7 @@ const BottomNavigator = () => {
               size={size}
             />
           ),
-          headerShown: true,
+          headerShown: false,
         }}
       />
       <Tab.Screen

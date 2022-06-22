@@ -24,7 +24,6 @@ const JobWithdrawal = ({navigation, route}) => {
         `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -37,7 +36,7 @@ const JobWithdrawal = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({fname, lname, description, id,reason, state, jobType,initializedDate}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -45,24 +44,24 @@ const JobWithdrawal = ({navigation, route}) => {
       <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
+      <Text style={styles.subtitle}>Reason: {reason}</Text>
       <View style={styles.btngrp}>
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.userJobs[0].state === "Job withdrawal") {
+      if (item.jobassignment[0].state === "Job withdrawal") {
         return (
           <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
+            fname={item.consumer[0].name.fName}
+            lname={item.consumer[0].name.lName}
             description={item.description}
             id={item._id}
-            state={item.userJobs[0].state}
+            state={item.jobassignment[0].state}
             jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+             reason={item.userJobs[0].withdrawn?.reason|| ''}
+        /*amount={item.userJobs[0].quotation?.amount|| ''} */
           />
         );
       }

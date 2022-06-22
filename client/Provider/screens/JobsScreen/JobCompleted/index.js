@@ -24,7 +24,6 @@ const JobCompleted = ({navigation, route}) => {
         `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -37,7 +36,7 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({fname, lname, rating, description, id, state, jobType,complaint,ratingAndReview}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -49,31 +48,41 @@ const JobCompleted = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="Complaint"
+          onPress={() => {
+            navigation.navigate('Complaint', {
+              id,
+              complaint,
+            });
+          }}
         />
-        <Sbutton
-          primary={true}
-          text="Rate and Review"
-        />
+        <Sbutton primary={true} text="Rate and Review" onPress={() => {
+            navigation.navigate('Rating and Review', {
+              id,
+              ratingAndReview,
+            });
+          }}/>
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.userJobs[0].state === "Job completed") {
-        return (
-          <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
-            description={item.description}
-            id={item._id}
-            state={item.userJobs[0].state}
-            jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+    if (item.jobassignment[0].state === 'Job completed') {
+      return (
+        <Item
+          fname={item.consumer[0].name.fName}
+          lname={item.consumer[0].name.lName}
+          description={item.description}
+          id={item._id}
+          JAID={item.jobassignment[0]._id}
+          //complaint={item.complaint[0].by}
+         // ratingAndReview={item.ratingAndReview[0].by}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
-          />
-        );
-      }
+        />
+      );
+    }
   };
 
   return (
