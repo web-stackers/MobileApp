@@ -30,10 +30,10 @@ const theme = {
 export default function Main() {
   return (
     <PaperProvider theme={theme}>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <AuthStack />
-      </NavigationContainer> */}
-      <Common />
+      </NavigationContainer>
+      {/* <Common /> */}
     </PaperProvider>
   );
 }

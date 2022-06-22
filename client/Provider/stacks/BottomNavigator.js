@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as React from 'react';
 import {useTheme} from 'react-native-paper';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -29,9 +30,7 @@ const BottomNavigator = ({route}) => {
       }}>
       <Tab.Screen
         name="Home"
-         children={props => (
-           <HomeScreen userParams={route.params} {...props} />
-         )}
+        children={props => <HomeScreen userParams={route.params} {...props} />}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
@@ -42,9 +41,7 @@ const BottomNavigator = ({route}) => {
       />
       <Tab.Screen
         name="Jobs"
-        children={props => (
-          <JobStack userParams={route.params} {...props} />
-        )}
+        children={props => <JobStack userParams={route.params} {...props} />}
         options={{
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (

@@ -13,12 +13,12 @@ import PhotoUpload from '../screens/JobRequest/PhotoUpload';
 
 const JobRequestStack = createNativeStackNavigator();
 
-const JobRequestStackScreen = ({route}) => (
+const JobRequestStackScreen = ({userParams}) => (
   <JobRequestStack.Navigator>
     <JobRequestStack.Screen
       name="CategorySelector"
       children={props => (
-        <CategorySelector userParams={route.params} {...props} />
+        <CategorySelector userParams={userParams} {...props} />
       )}
       options={{
         header: () => null,

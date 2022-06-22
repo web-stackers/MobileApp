@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {View, Text, Image, Alert} from 'react-native';
 import {Button} from 'react-native-paper';
@@ -34,13 +35,13 @@ const Login = ({navigation, route}) => {
           // });
           if (type === 'consumer') {
             navigation.push('Consumer', {
-              screen: 'Home',
-              params: {
-                _id: res.data.result._id,
-                type: type,
-              },
+              // screen: 'Home',
+              // params: {
+              _id: res.data.result._id,
+              type: type,
+              // },
             });
-          }else{
+          } else {
             navigation.push('Provider', {
               _id: res.data.result._id,
               type: type,

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {View, Text, Image, Alert, SafeAreaView} from 'react-native';
 import {DarkTheme, Surface, ThemeProvider} from 'react-native-paper';
@@ -22,10 +23,9 @@ const Start = ({navigation}) => {
       if (data !== null) {
         if (data !== undefined) {
           return JSON.parse(data);
-        }else{
-          console.log("return null")
+        } else {
+          console.log('return null');
           return null;
-          
         }
       }
     } catch (error) {
@@ -56,24 +56,24 @@ const Start = ({navigation}) => {
       .then(data => data)
       .then(value => {
         // if (!value == undefined) {
-          // return JSON.parse(value);
-          // const parsedProfile = JSON.parse(value);
-          // console.log(parsedProfile)
-          if (value?.result?.NIC) {
-            navigation.navigate('Provider', {
-              _id: value.result._id,
-              type: 'provider',
-            });
-          } else {
-            navigation.navigate('Consumer', {
-              screen: 'Home',
-              params: {
-                _id: value.result._id,
-                type: 'consumer',
-              },
-            });
-          }
-          // setUser(()=>{return JSON.parse(value);});
+        // return JSON.parse(value);
+        // const parsedProfile = JSON.parse(value);
+        // console.log(parsedProfile)
+        if (value?.result?.NIC) {
+          navigation.navigate('Provider', {
+            _id: value.result._id,
+            type: 'provider',
+          });
+        } else {
+          navigation.navigate('Consumer', {
+            // screen: 'Home',
+            // params: {
+            _id: value.result._id,
+            type: 'consumer',
+            // },
+          });
+        }
+        // setUser(()=>{return JSON.parse(value);});
         //}
       })
       .catch(err => console.log('cannot, ' + err));
