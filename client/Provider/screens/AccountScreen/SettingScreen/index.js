@@ -23,10 +23,9 @@ const SettingsScreen = ({navigation, route}) => {
 
   const getUser = async () => {
     await axios
-      .get('http://10.0.2.2:5000/provider/629f77da0d2903e52b176866')
+      .get(`http://10.0.2.2:5000/provider/mobile/62a06e2bafddf297d7b90069`)
       .then(response => {
         setUser(response.data);
-        console.log(response.data);
         setLoading(false);
       })
       .catch(function (error) {
@@ -62,7 +61,7 @@ const SettingsScreen = ({navigation, route}) => {
               {user.name?.fName + ' ' || ''}
               {user.name?.lName || ''}
             </Title>
-            <Caption style={styles.caption}>Service Consumer </Caption>
+            <Caption style={styles.caption}>Service Provider </Caption>
           </View>
         </View>
       </View>

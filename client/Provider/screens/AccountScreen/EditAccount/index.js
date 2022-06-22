@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
-import {useTheme} from 'react-native-paper';
+import {useTheme,TextInput} from 'react-native-paper';
 import styles from './styles';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -20,6 +20,7 @@ const EditProfileScreen = () => {
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(true);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,7 +52,7 @@ const EditProfileScreen = () => {
     setIsLoading(true);
 
     const configurationObject = {
-      url: `http://10.0.2.2:5000/provider/629f77da0d2903e52b176866`,
+      url: `http://10.0.2.2:5000/provider/mobile/629f77da0d2903e52b176866`,
       method: 'put',
       data: {
         firstName,
@@ -81,11 +82,10 @@ const EditProfileScreen = () => {
 
   const getUser = async () => {
     await axios
-      .get('http://10.0.2.2:5000/provider/629f77da0d2903e52b176866')
+      .get('http://10.0.2.2:5000/provider/mobile/629f77da0d2903e52b176866')
       .then(response => {
         setIsLoading(false);
         setUser(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -182,7 +182,7 @@ const EditProfileScreen = () => {
             placeholderTextColor="#666666"
             keyboardType="email-address"
             autoCorrect={false}
-            editable={!isLoading}
+            editable={isLoading}
             defaultValue={user.contact?.email || ''}
             onChangeText={onChangeEmailHandler}
             style={[
@@ -202,7 +202,8 @@ const EditProfileScreen = () => {
             value={user?.password || ''}
             editable={!isLoading}
             onChangeText={onChangePasswordHandler}
-            secureTextEntry
+            secureTextEntry={passwordVisible}
+            right={<TextInput.Icon name={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
             style={[
               styles.textInput,
               {
