@@ -16,9 +16,9 @@ import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SettingsScreen = ({navigation, route}) => {
-  /* const {type, PID} =
-    route.params; */
+const SettingsScreen = ({navigation, userParams}) => {
+  const {type, _id} = userParams;
+  console.log(userParams);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const onLogout = async () => {
@@ -32,7 +32,7 @@ const SettingsScreen = ({navigation, route}) => {
 
   const getUser = async () => {
     await axios
-      .get(`http://10.0.2.2:5000/provider/mobile/62a06e2bafddf297d7b90069`)
+      .get(`http://10.0.2.2:5000/provider/mobile/${_id}`)
       .then(response => {
         setUser(response.data);
         setLoading(false);

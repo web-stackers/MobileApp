@@ -26,10 +26,12 @@ const DetailField = ({detail, icon}) => {
 }
 
 // Home screen
-const HomeScreen = () => {
+const HomeScreen = ({userParams}) => {
+  //console.log(userParams);
+
   const completeJobs = async () => {
     await axios
-      .get('http://10.0.2.2:5000/jobAssignment/state/completeJobs/consumer/62132c85c4afd22e5fc49685')
+      .get(`http://10.0.2.2:5000/jobAssignment/state/completeJobs/provider/${userParams._id}`)
       /*.then(response => {
         setJob(response.data);
       })*/

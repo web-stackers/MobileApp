@@ -3,6 +3,7 @@ import React from 'react';
 import { View, SafeAreaView, TouchableWithoutFeedback  } from 'react-native';
 import { Text } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './styles';
 
@@ -22,7 +23,9 @@ const JobState = ({state, onPress}) => {
     )
 }
 
-const JobHistory = ({navigation}) => {
+const JobHistory = ({navigation, userParams}) => {
+  const {type, _id} = userParams;
+
   return (
     <SafeAreaView style={styles.container}>
         <JobState
@@ -43,7 +46,10 @@ const JobHistory = ({navigation}) => {
         />
         <JobState
             state="Completed Jobs" 
-            onPress={() => navigation.navigate('Completed Jobs')}
+            onPress={() => navigation.navigate('Completed Jobs', {
+                id:`${_id}`,
+                type: 'provider'
+            })}
         />
     </SafeAreaView>
   );

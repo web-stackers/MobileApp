@@ -20,7 +20,7 @@ import HistoryScreen from '../screens/JobsScreen/HistoryScreen';
 const JobStack = createNativeStackNavigator();
 
 // Stack for job related pages
-const JobStackScreen = () => (
+const JobStackScreen = ({userParams}) => (
   <JobStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -30,7 +30,9 @@ const JobStackScreen = () => (
     }}>
     <JobStack.Screen
       name="Job History"
-      component={JobHistory}
+      children={props => (
+        <JobHistory userParams={userParams} {...props} />
+      )}
     />
 
     <JobStack.Screen name="Completed Jobs" component={CompletedJobsScreen} />

@@ -7,13 +7,24 @@ import styles from './styles';
 
 import axios from 'axios';
 
-const CategorySelector = ({navigation}) => {
+const CategorySelector = ({userParams, navigation}) => {
   //consumerID->62132b7bc4afd22e5fc49677
   //consumerID->62132c85c4afd22e5fc49685
-  let consumerID = '62132c85c4afd22e5fc49685';
+  let consumerID = userParams._id;
 
   const [constructionList, setConstructionList] = useState([]);
   const [eventList, setEventList] = useState([]);
+
+  const completeJobs = async () => {
+    await axios
+      .get(`http://10.0.2.2:5000/jobAssignment/state/completeJobs/consumer/${consumerID}`)
+      /*.then(response => {
+        setJob(response.data);
+      })*/
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   //Get all jobtypes and their ids under construction category
   const getConstructionJobTYpes = () => {
@@ -42,6 +53,7 @@ const CategorySelector = ({navigation}) => {
   useEffect(() => {
     getConstructionJobTYpes();
     getEventJobTYpes();
+    completeJobs();
   }, []);
 
   const ConstructionPress = () =>

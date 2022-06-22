@@ -10,8 +10,8 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobCompleted = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
+  const {id} = route.params;
+  console.log(id);
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const JobCompleted = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
         setJobs(response.data);

@@ -55,8 +55,6 @@ const Start = ({navigation}) => {
     getData('profile')
       .then(data => data)
       .then(value => {
-        console.log('profile is ');
-        console.log(value);
         // if (!value == undefined) {
           // return JSON.parse(value);
           // const parsedProfile = JSON.parse(value);
@@ -67,10 +65,12 @@ const Start = ({navigation}) => {
               type: 'provider',
             });
           } else {
-            console.log(value?.result?.NIC);
             navigation.navigate('Consumer', {
-              _id: value.result._id,
-              type: 'consumer',
+              screen: 'Home',
+              params: {
+                _id: value.result._id,
+                type: 'consumer',
+              },
             });
           }
           // setUser(()=>{return JSON.parse(value);});
