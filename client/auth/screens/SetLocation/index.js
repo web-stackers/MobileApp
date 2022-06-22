@@ -15,36 +15,36 @@ const SetLocation = ({navigation, route}) => {
   let initialLat;
   let initialLongi;
   let newLat = initialLat;
-  let newLongi = initialLongi;//inital must be the geolocation
+  let newLongi = initialLongi; //inital must be the geolocation
 
   const reqLocPermission_getGeolocation = async () => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         {
-          title: "Location Permission",
+          title: 'Location Permission',
           message:
-            "Helper needs access to your camera " +
-            "so you can pick your residential location.",
+            'Helper needs access to your camera ' +
+            'so you can pick your residential location.',
           // buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK"
-        }
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the map");
+        console.log('You can use the map');
         Geolocation.getCurrentPosition(
-          (position) => {
+          position => {
             console.log(position);
           },
-          (error) => {
+          error => {
             // See error code charts below.
             console.log(error.code, error.message);
           },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-      );
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+        );
       } else {
-        console.log("Location permission denied");
+        console.log('Location permission denied');
       }
     } catch (err) {
       console.warn(err);
@@ -64,22 +64,25 @@ const SetLocation = ({navigation, route}) => {
         {
           text: 'OK',
           onPress: () => {
-            axios.patch(`http://10.0.2.2:5000/${type}/addressUpdate/${user_id}`, {
-              longitude: newLongi,
-              latitude: newLat,
-            });
-            await AsyncStorage.setItem('profile', JSON.stringify(toAsycnStore));
-          if (type === 'consumer') {
-            navigation.navigate('Consumer', {
-              _id: user_id,
-              type: type,
-            });
-          } else {
-            navigation.navigate('Provider', {
-              _id: user_id,
-              type: type,
-            });
-          }
+            axios.patch(
+              `http://10.0.2.2:5000/${type}/addressUpdate/${user_id}`,
+              {
+                longitude: newLongi,
+                latitude: newLat,
+              },
+            );
+            AsyncStorage.setItem('profile', JSON.stringify(toAsycnStore));
+            if (type === 'consumer') {
+              navigation.navigate('Consumer', {
+                _id: user_id,
+                type: type,
+              });
+            } else {
+              navigation.navigate('Provider', {
+                _id: user_id,
+                type: type,
+              });
+            }
           },
         },
       ],
