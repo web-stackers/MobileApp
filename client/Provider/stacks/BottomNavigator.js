@@ -9,7 +9,7 @@ import SettingStack from './SettingStack';
 
 const Tab = createBottomTabNavigator();
 
-const BottomNavigator = () => {
+const BottomNavigator = ({route}) => {
   const {colors} = useTheme();
 
   return (
@@ -29,7 +29,9 @@ const BottomNavigator = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+         children={props => (
+           <HomeScreen userParams={route.params} {...props} />
+         )}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
@@ -40,7 +42,9 @@ const BottomNavigator = () => {
       />
       <Tab.Screen
         name="Jobs"
-        component={JobStack}
+        children={props => (
+          <JobStack userParams={route.params} {...props} />
+        )}
         options={{
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (
@@ -56,7 +60,9 @@ const BottomNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={SettingStack}
+        children={props => (
+          <SettingStack userParams={route.params} {...props} />
+        )}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({color, size}) => (

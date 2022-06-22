@@ -34,12 +34,15 @@ const Login = ({navigation, route}) => {
           // });
           if (type === 'consumer') {
             navigation.push('Consumer', {
-              _id: res.data._id,
-              type: type,
+              screen: 'Home',
+              params: {
+                _id: res.data.result._id,
+                type: type,
+              },
             });
           }else{
             navigation.push('Provider', {
-              _id: res.data._id,
+              _id: res.data.result._id,
               type: type,
             });
           }

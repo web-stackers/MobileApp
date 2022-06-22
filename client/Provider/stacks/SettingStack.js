@@ -17,10 +17,16 @@ const screenOptionStyle = {
   headerTintColor: '#fff'
 };
 
-const SettingStackScreen = () => {
+const SettingStackScreen = ({userParams}) => {
   return (
     <SettingStack.Navigator screenOptions={screenOptionStyle}>
-      <SettingStack.Screen name="Settings" component={SettingsScreen} options={{ tabBarLabel: 'Settings' }}/>
+      <SettingStack.Screen 
+        name="Settings" 
+        children={props => (
+          <SettingsScreen userParams={userParams} {...props} />
+        )}
+        options={{ tabBarLabel: 'Settings' }}
+      />
       <SettingStack.Screen name="Edit Account" component={EditAccount} />
       <SettingStack.Screen name="Sign Out" component={SignOut} />
     </SettingStack.Navigator>
