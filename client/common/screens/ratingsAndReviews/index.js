@@ -6,8 +6,7 @@ import {TextInput} from 'react-native-paper';
 import {Rating} from 'react-native-ratings';
 
 const RatingsAndReviews = ({navigation}) => {
-  //   const jobId = navigation.getParam('jobId');
-  //   const ratingsBy = navigation.getParam('by');
+  // const {id, ratingsBy} = route.params;
 
   const ratingsBy = 'Consumer';
   const jobId = '621341023987d49e1f22f7a8';
@@ -85,7 +84,6 @@ const RatingsAndReviews = ({navigation}) => {
         .patch(`http://10.0.2.2:5000/job/ratingAndReview/${jobId}`, {
           by: ratingsBy,
           review: reviews,
-         
         })
         .then(function (response) {
           navigation.navigate('JobScreen');
@@ -112,9 +110,7 @@ const RatingsAndReviews = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.outBox}>
-        <Text style={styles.topContent}>
-          Please Rate {name.fName}
-        </Text>
+        <Text style={styles.topContent}>Please Rate {name.fName}</Text>
         <View style={styles.inBox}>
           <Text style={styles.middleContent}>How was the service?</Text>
           <View style={styles.starView}>
@@ -132,6 +128,9 @@ const RatingsAndReviews = ({navigation}) => {
             <TextInput
               style={styles.textInput}
               label="Enter Reviews Here"
+              multiline={true}
+              keyboardType="default"
+              returnKeyType="done"
               value={reviews}
               onChangeText={reviews => setReviews(reviews)}
             />

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     width: '90%',
   },
 
-  textInputView: {alignItems: 'center', marginTop:30},
+  textInputView: {alignItems: 'center', marginTop: 30},
 
   textInput: {width: '90%', height: 120},
 
