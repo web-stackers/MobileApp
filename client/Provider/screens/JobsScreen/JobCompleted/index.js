@@ -11,7 +11,6 @@ import styles from './styles';
 
 const JobCompleted = ({navigation, route}) => {
   const {id} = route.params;
-  console.log(id);
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);

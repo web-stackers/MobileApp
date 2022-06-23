@@ -1,15 +1,32 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {Text, View, ImageBackground, Image} from 'react-native';
-
+import {Text, View, Image, ScrollView} from 'react-native';
+import {useTheme} from 'react-native-paper';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
 
 import axios from 'axios';
 
+const DetailField = ({detail, icon}) => {
+  const {colors} = useTheme();
+
+  return (
+    <View style={styles.detailField}>
+      <MaterialCommunityIcons
+        name={icon}
+        color="#fff"
+        size={40}
+        style={styles.icon}
+      />
+      <View style={styles.detailView}>
+        <Text style={styles.detail}>{detail}</Text>
+      </View>
+    </View>
+  );
+};
+
 const CategorySelector = ({userParams, navigation}) => {
-  //consumerID->62132b7bc4afd22e5fc49677
-  //consumerID->62132c85c4afd22e5fc49685
   let consumerID = userParams._id;
 
   const [constructionList, setConstructionList] = useState([]);
@@ -17,14 +34,13 @@ const CategorySelector = ({userParams, navigation}) => {
 
   const completeJobs = async () => {
     await axios
-      .get(`http://10.0.2.2:5000/jobAssignment/state/completeJobs/consumer/${consumerID}`)
-      /*.then(response => {
-        setJob(response.data);
-      })*/
+      .get(
+        `http://10.0.2.2:5000/jobAssignment/state/completeJobs/consumer/${consumerID}`,
+      )
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 
   //Get all jobtypes and their ids under construction category
   const getConstructionJobTYpes = () => {
@@ -67,7 +83,7 @@ const CategorySelector = ({userParams, navigation}) => {
       CID: consumerID,
     });
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.headingContainer}>
         <Image source={require('../../../../assets/images/logo.png')} />
       </View>
@@ -79,7 +95,20 @@ const CategorySelector = ({userParams, navigation}) => {
           <StouchableOpacity onPress={EventPress} title="Event" />
         </View>
       </View>
-    </View>
+
+      <View style={styles.points}>
+        <DetailField detail="Get jobs from skilled providers" icon="toolbox" />
+
+        <DetailField
+          detail="Get your work done at the requested time"
+          icon="timer-sand"
+        />
+        <DetailField
+          detail="Unnecessary withdrawals and serious complaints from providers may lead to blocking your account"
+          icon="account-alert"
+        />
+      </View>
+    </ScrollView>
   );
 };
 

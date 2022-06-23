@@ -33,10 +33,6 @@ const SearchProvider = ({navigation, route}) => {
       axios
         .get(`http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`)
         .then(response => {
-          console.log(
-            'Check whether provider availability is checked..............................................................',
-          );
-          console.log(response.data);
           if (!response.data) {
             Alert.alert(
               'Sending Request',
@@ -50,9 +46,6 @@ const SearchProvider = ({navigation, route}) => {
                 {
                   text: 'OK',
                   onPress: () => {
-                    console.log('provider Id');
-                    console.log(id);
-
                     axios
                       .post('http://10.0.2.2:5000/job', {
                         jobType: jobType,
@@ -64,8 +57,6 @@ const SearchProvider = ({navigation, route}) => {
                         consumerId: CID,
                       })
                       .then(function (response) {
-                        console.log(response.data);
-                        console.log(response.data._id);
                         axios
                           .post('http://10.0.2.2:5000/jobAssignment', {
                             jobId: response.data._id,
@@ -126,8 +117,6 @@ const SearchProvider = ({navigation, route}) => {
     providerLat,
     providerLongi,
   ) => {
-    console.log('Dob');
-    console.log(dob);
     // axios
     //   .get(`http://10.0.2.2:5000/provider/pic/${id}`)
     //   .then(response => {

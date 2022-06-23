@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -26,7 +27,7 @@ import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
 
 const JobStack = createNativeStackNavigator();
 
-const JobStackScreen = () => (
+const JobStackScreen = ({userParams}) => (
   <JobStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -36,7 +37,9 @@ const JobStackScreen = () => (
     }}>
     <JobStack.Screen
       name="JobHistoryScreen"
-      component={JobHistoryScreen}
+      children={props => (
+        <JobHistoryScreen userParams={userParams} {...props} />
+      )}
       options={{
         header: () => null,
       }}

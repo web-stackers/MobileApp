@@ -12,6 +12,7 @@ const JobRefusePage = ({navigation, route}) => {
   const [value, setValue] = React.useState('');
   const [reason, setReason] = React.useState('');
   const [otherReason, setOtherReason] = React.useState('');
+  const {JAID} = route.params;
 
   const texts = [
     'Requested for wrong skill set',
@@ -28,14 +29,14 @@ const JobRefusePage = ({navigation, route}) => {
         'Please provide the reason for refusing this job',
       );
     } else {
-        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/${route.params.JAID}`, {
+        axios.patch(`http://10.0.2.2:5000/jobAssignment/requestRejected/${JAID}`, {
             reason: value===3? otherReason: reason,
         })
         .then((response) => {
             navigation.push('Acknowledgement', {
               title: 'Informed the customer !',
               subtitle: 'Customer has been informed about the refusal of job request.',
-              routeTo: "Job Details"
+              routeTo: "Job History"
             })
         })
         .catch(function (error) {
@@ -94,7 +95,7 @@ const JobRefusePage = ({navigation, route}) => {
         />
         <Sbutton
           text="Cancel"
-          onPress={() => navigation.navigate('Job Details')}
+          onPress={() => navigation.pop(1)}
         />
       </View>
     </View>

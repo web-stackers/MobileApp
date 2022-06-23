@@ -57,10 +57,6 @@ const ProviderJobProfile = ({navigation, route}) => {
       axios
         .get(`http://10.0.2.2:5000/job/availability/${requestedTime}/${id}`)
         .then(response => {
-          console.log(
-            'Check whether provider availability is checked..............................................................',
-          );
-          console.log(response.data);
           if (!response.data) {
             Alert.alert(
               'Sending Request',
@@ -85,15 +81,12 @@ const ProviderJobProfile = ({navigation, route}) => {
                         consumerId: CID,
                       })
                       .then(function (response) {
-                        console.log(response.data);
-                        console.log(response.data._id);
                         axios
                           .post('http://10.0.2.2:5000/jobAssignment', {
                             jobId: response.data._id,
                             providerId: id,
                           })
                           .then(function (response) {
-                            console.log(response.data);
                             navigation.navigate('JobAcknowledge');
                             // navigation.navigate('PhotoUpload', {
                             //   jobId: response.data.jobId,

@@ -10,8 +10,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobPending = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +20,7 @@ const JobPending = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
         setJobs(response.data);
@@ -58,11 +57,12 @@ const JobPending = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="View"
+          text="View Job"
           onPress={() => {
-            navigation.navigate('Quotation Preview', {
+            navigation.navigate('Job Details', {
               id,
               JAID,
+              state,
               amount,
               time,
             });

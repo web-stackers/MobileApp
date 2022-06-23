@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -6,7 +7,7 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#121212',
     justifyContent: 'space-between',
-    width: '100%'
+    width: '100%',
   },
   logo: {
     marginTop: 100,
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
   icon: {
     width: '20%',
     alignSelf: 'center',
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   detailView: {
     width: '80%',

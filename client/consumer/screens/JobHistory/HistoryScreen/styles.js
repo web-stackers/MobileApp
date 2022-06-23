@@ -1,35 +1,30 @@
+/* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '90%',
-    alignSelf: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#121212',
+    width: '100%',
+    padding: 15,
   },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-
-  item: {
-    backgroundColor: '#424447',
-    padding: 20,
-    marginVertical: 15,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-    color: 'white',
-    textAlign: 'center',
-    marginTop: 2,
+  stateField: {
+    padding: 10,
     marginBottom: 10,
+    height: 80,
+    backgroundColor: '#606465',
+    borderColor: '#3b3d3e',
+    borderWidth: 2,
+    borderRadius: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  subtitle: {
+  state: {
     fontSize: 20,
-    color: 'white',
-    marginBottom: 20,
+    fontWeight: 'bold',
+    lineHeight: 40,
+    marginLeft: 5,
   },
 });
 

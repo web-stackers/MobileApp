@@ -10,7 +10,7 @@ import JobStackScreen from './JobStack';
 
 const Tab = createBottomTabNavigator();
 
-const BottomNavigator = () => {
+const BottomNavigator = ({route}) => {
   const {colors} = useTheme();
 
   return (
@@ -30,7 +30,9 @@ const BottomNavigator = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={JobRequestStackScreen}
+        children={props => (
+          <JobRequestStackScreen userParams={route.params} {...props} />
+        )}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
@@ -42,7 +44,9 @@ const BottomNavigator = () => {
 
       <Tab.Screen
         name="Jobs"
-        component={JobStackScreen}
+        children={props => (
+          <JobStackScreen userParams={route.params} {...props} />
+        )}
         options={{
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color, size}) => (
@@ -57,7 +61,9 @@ const BottomNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={SettingStack}
+        children={props => (
+          <SettingStack userParams={route.params} {...props} />
+        )}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({color, size}) => (

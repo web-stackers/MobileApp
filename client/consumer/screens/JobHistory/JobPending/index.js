@@ -10,10 +10,9 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobPending = ({navigation, route}) => {
-   /* const {type, CID} =
+  /* const {type, CID} =
     route.params; */
-    let CID = '62132b7bc4afd22e5fc49677';
-    let type = 'consumer';
+  let CID = route.params.id;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,11 +21,8 @@ const JobPending = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -39,7 +35,16 @@ const JobPending = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType,JAID}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    JAID,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -64,35 +69,39 @@ const JobPending = ({navigation, route}) => {
           onPress={() => {
             navigation.navigate('../JobRequest/QuotationDetails', {
               JAID,
-              
             });
           }}
         />
         <Sbutton
           primary={true}
           text="Withdraw job"
+          onPress={() =>
+            navigation.navigate('JobWithdrawal', {
+              JAID: JAID,
+            })
+          }
         />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job pending") {
-        return (
-          <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
-            description={item.description}
-            id={item._id}
-            JAID={item.jobassignment[0]._id}
-            state={item.jobassignment[0].state}
-            jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+    if (item.jobassignment[0].state === 'Job Pending') {
+      return (
+        <Item
+          fname={item.provider[0].name.fName}
+          lname={item.provider[0].name.lName}
+          rating={item.provider[0].totalRating / item.provider[0].ratingCount}
+          description={item.description}
+          id={item._id}
+          JAID={item.jobassignment[0]._id}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
-          />
-        );
-      }
+        />
+      );
+    }
   };
 
   return (
