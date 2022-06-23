@@ -29,15 +29,30 @@ const JobHistory = ({navigation, userParams}) => {
     <SafeAreaView style={styles.container}>
       <JobState
         state="Request Sent"
-        onPress={() => navigation.navigate('Request Sent')}
+        onPress={() =>
+          navigation.navigate('Request Sent', {
+            id: `${_id}`,
+            type: 'provider',
+          })
+        }
       />
       <JobState
         state="Pending Quotation"
-        onPress={() => navigation.navigate('Pending Quotation')}
+        onPress={() =>
+          navigation.navigate('Pending Quotation', {
+            id: `${_id}`,
+            type: 'provider',
+          })
+        }
       />
       <JobState
         state="Pending Jobs"
-        onPress={() => navigation.navigate('Pending Jobs')}
+        onPress={() =>
+          navigation.navigate('Pending Jobs', {
+            id: `${_id}`,
+            type: 'provider',
+          })
+        }
       />
       <JobState
         state="Completed Jobs"
@@ -50,15 +65,30 @@ const JobHistory = ({navigation, userParams}) => {
       />
       <JobState
         state="Refused Request"
-        onPress={() => navigation.navigate('Refused Request')}
+        onPress={() =>
+          navigation.navigate('Refused Request', {
+            id: `${_id}`,
+            type: 'provider',
+          })
+        }
       />
       <JobState
         state="Quotation Rejected"
-        onPress={() => navigation.navigate('Quotation Rejected')}
+        onPress={() =>
+          navigation.navigate('Quotation Rejected', {
+            id: `${_id}`,
+            type: 'provider',
+          })
+        }
       />
       <JobState
         state="Withdrawn Jobs"
-        onPress={() => navigation.navigate('Withdrawn Jobs')}
+        onPress={() =>
+          navigation.navigate('Withdrawn Jobs', {
+            id: `${_id}`,
+            type: 'provider',
+          })
+        }
       />
     </SafeAreaView>
   );
