@@ -12,7 +12,7 @@ import styles from './styles';
 const QuotationPending = ({navigation, route}) => {
   /* const {type, CID} =
     route.params; */
-  let CID = '62132b7bc4afd22e5fc49677';
+  let CID = route.params.id;
   let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
@@ -22,9 +22,7 @@ const QuotationPending = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -43,8 +41,8 @@ const QuotationPending = ({navigation, route}) => {
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
+      <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
         <Sbutton

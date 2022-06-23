@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {Text, View, ImageBackground, Image, ScrollView} from 'react-native';
+import {Text, View, Image, ScrollView} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import StouchableOpacity from '../../../../components/StouchableOpacity';
@@ -27,9 +27,6 @@ const DetailField = ({detail, icon}) => {
 };
 
 const CategorySelector = ({userParams, navigation}) => {
-  //consumerID->62132b7bc4afd22e5fc49677
-  //consumerID->62132c85c4afd22e5fc49685
-  // console.log(userParams._id);
   let consumerID = userParams._id;
 
   const [constructionList, setConstructionList] = useState([]);
@@ -40,9 +37,6 @@ const CategorySelector = ({userParams, navigation}) => {
       .get(
         `http://10.0.2.2:5000/jobAssignment/state/completeJobs/consumer/${consumerID}`,
       )
-      /*.then(response => {
-        setJob(response.data);
-      })*/
       .catch(function (error) {
         console.log(error);
       });
