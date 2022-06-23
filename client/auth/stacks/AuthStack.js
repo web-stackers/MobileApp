@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import StartScreen from '../screens/Start';
 import LoginScreen from '../screens/Login';
+import ConfirmOTPscreen from '../screens/ConfirmOTP'
+import ChangePasswordScreen from '../screens/ChangePassword'
 import SetLocationScreen from '../screens/SetLocation'
 import ProviderNavigation from '../../Provider/stacks/BottomNavigator';
 import ConsumerNavigation from '../../consumer/stacks/BottomNavigator';
@@ -58,10 +60,6 @@ const AuthStack = () => {
   //     }).catch(err => console.log("cannot, "+err))
   // }, []);
   return (
-    // <NavigationContainer>
-    // {user?.result ? (
-    //   user?.result?.NIC ? (
-
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
@@ -79,16 +77,9 @@ const AuthStack = () => {
           header: () => null,
         }}
       />
-      {/* <Stack.Screen name="Home" options={{
-              header: () => null,
-            }}>
-            {props => <HomeScreen {...props} setUser={setUser} user={user} />}
-          </Stack.Screen> */}
+    
       <Stack.Screen
         name="Login"
-        // children={props => (
-        //   <LoginScreen setUser={setUser} user={user} {...props} />
-        // )}
         component={LoginScreen}
         // options={({route}) => ({title: 'Login as ' + route.params.type})}
         options={{
@@ -96,22 +87,27 @@ const AuthStack = () => {
         }}
       />
       <Stack.Screen
+        name="ConfirmOTP"
+        component={ConfirmOTPscreen}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePasswordScreen}
+        options={{
+          header: () => null,
+        }}
+      />
+      <Stack.Screen
         name="SetLocation"
-        // children={props => (
-        //   <LoginScreen setUser={setUser} user={user} {...props} />
-        // )}
         component={SetLocationScreen}
         options={{ title: 'Pick your residential location' }}
-        // options={{
-        //   header: () => null,
-        // }}
       />
 
       <Stack.Screen
         name="Provider"
-        // children={props => (
-        //   <ProviderNavigation user={user} setUser={setUser} {...props} />
-        // )}
         component={ProviderNavigation}
         options={{
           header: () => null,
@@ -120,16 +116,12 @@ const AuthStack = () => {
 
       <Stack.Screen
         name="Consumer"
-        // children={props => (
-        //   <ConsumerNavigation user={user} setUser={setUser} {...props} />
-        // )}
         component={ConsumerNavigation}
         options={{
           header: () => null,
         }}
       />
     </Stack.Navigator>
-    // </NavigationContainer>
   );
 };
 export default AuthStack;

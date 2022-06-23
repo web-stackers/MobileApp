@@ -27,7 +27,7 @@ const Login = ({navigation, route}) => {
           email,
           password,
         });
-        
+
         console.log(res.data);
         if (res.data.result?.address?.longitude) {
           // setUser(() => {
@@ -55,7 +55,8 @@ const Login = ({navigation, route}) => {
             [
               {
                 text: 'Cancel',
-                onPress: () => console.log('canceled the first time location pick'),
+                onPress: () =>
+                  console.log('canceled the first time location pick'),
                 style: 'cancel',
               },
               {
@@ -69,7 +70,6 @@ const Login = ({navigation, route}) => {
               },
             ],
           );
-          
         }
       } catch (err) {
         console.log(err);
@@ -106,6 +106,47 @@ const Login = ({navigation, route}) => {
     }
   };
 
+  const onForgotPass = async () => {
+    try {
+      // const res = await SecondaryUser.signIn(form);
+      const res = await axios.post(
+        `http://10.0.2.2:5000/${type}/forgotPassword`,
+        {
+          email,
+        },
+      );
+      console.log(res.data);
+      navigation.push('ConfirmOTP', {
+        toResendOTP: res.data,
+        type: type,
+      });
+    } catch (err) {
+      console.log(err);
+      if (err.response.status === 500) {
+        Alert.alert(
+          'Something went wrong',
+          'There was a problem with the server, Could not proceed to forgot password',
+        );
+      } else {
+        const errorMsg = err.response.data.message;
+        if (errorMsg === "User doesn't exist") {
+          Alert.alert("User doesn't exist", 'You are not a registered user');
+        }
+        if (errorMsg === 'Cannot login now') {
+          Alert.alert(
+            'Cannot login now',
+            'You have to wait until your documents get verified and then only you can change the password',
+          );
+        }
+        if (errorMsg === 'Incomplete registration') {
+          Alert.alert(
+            'Incomplete registration',
+            'You can try again the registration process after some time',
+          );
+        }
+      }
+    }
+  };
   return (
     <View style={styles.container}>
       {/* <Image
@@ -139,7 +180,7 @@ const Login = ({navigation, route}) => {
         />
         {isEmailValid && !password ? (
           <Button
-            // onPress={onPress}
+            onPress={() => onForgotPass()}
             // style={styles.forgotPass}
             // disabled={disabled}
             color={colors.primary}>
