@@ -117,8 +117,6 @@ const SearchProvider = ({navigation, route}) => {
     providerLat,
     providerLongi,
   ) => {
-    console.log('Dob');
-    console.log(dob);
     // axios
     //   .get(`http://10.0.2.2:5000/provider/pic/${id}`)
     //   .then(response => {
