@@ -4,9 +4,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import JobHistory from '../screens/JobsScreen/JobHistory';
 import CompletedJobsScreen from '../screens/JobsScreen/JobCompleted';
 import PendingJobsScreen from '../screens/JobsScreen/JobPending';
+import QuotationSent from '../screens/JobsScreen/Quotation Sent';
 import QuotationRejected from '../screens/JobsScreen/QuotationRejected';
 import WithdrawnJobsScreen from '../screens/JobsScreen/JobWithdrawal';
 import PendingRequestScreen from '../screens/JobsScreen/RequestPending';
+import RefusedJobs from '../screens/JobsScreen/RefusedJobs';
 import JobDetails from '../screens/Jobs/JobDetails';
 import QuotationDetails from '../screens/Jobs/QuotationDetails';
 import JobRefuse from '../screens/Jobs/JobRefuse';
@@ -15,6 +17,7 @@ import Acknowledge from '../../common/screens/Acknowledge';
 import Withdrawal from '../../common/screens/Withdrawal';
 import Complaints from '../../common/screens/Complaints/Complaints';
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
+import Chat from '../../common/screens/Chat';
 
 const JobStack = createNativeStackNavigator();
 
@@ -34,13 +37,45 @@ const JobStackScreen = ({userParams}) => (
       )}
     />
 
-    <JobStack.Screen name="Completed Jobs" component={CompletedJobsScreen} />
-    <JobStack.Screen name="Quotation Rejected" component={QuotationRejected} />
-    <JobStack.Screen name="Pending Jobs" component={PendingJobsScreen} />
-    <JobStack.Screen name="Withdrawn Jobs" component={WithdrawnJobsScreen} />
-    <JobStack.Screen name="Pending Request" component={PendingRequestScreen} />
+    <JobStack.Screen 
+      name="Completed Jobs" 
+      component={CompletedJobsScreen} 
+    />
 
-    <JobStack.Screen name="Job Details" component={JobDetails} />
+    <JobStack.Screen 
+      name="Quotation Sent" 
+      component={QuotationSent} 
+    />
+
+    <JobStack.Screen 
+      name="Quotation Rejected" 
+      component={QuotationRejected} 
+    />
+
+    <JobStack.Screen 
+      name="Pending Jobs" 
+      component={PendingJobsScreen} 
+    />
+
+    <JobStack.Screen 
+      name="Withdrawn Jobs" 
+      component={WithdrawnJobsScreen} 
+    />
+
+    <JobStack.Screen 
+      name="Pending Request" 
+      component={PendingRequestScreen} 
+    />
+    
+    <JobStack.Screen 
+      name="Refused Jobs" 
+      component={RefusedJobs} 
+    />
+
+    <JobStack.Screen 
+      name="Job Details" 
+      component={JobDetails} 
+    />
 
     <JobStack.Screen
       name="Quotation Details"
@@ -56,7 +91,15 @@ const JobStackScreen = ({userParams}) => (
       }}
     />
 
-    <JobStack.Screen name="Quotation Preview" component={QuotationPreview} />
+    <JobStack.Screen 
+      name="Quotation Preview" 
+      component={QuotationPreview} 
+    />
+
+    <JobStack.Screen 
+      name="Chat" 
+      component={Chat} 
+    />
 
     <JobStack.Screen
       name="Acknowledgement"

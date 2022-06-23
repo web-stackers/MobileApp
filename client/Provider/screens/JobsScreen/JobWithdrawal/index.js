@@ -2,7 +2,8 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
+import {SafeAreaView, View, FlatList, Alert} from 'react-native';
+import { Text } from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -50,7 +51,7 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawal") {
+      if (item.jobassignment[0].state === "Job withdrawn" || item.jobassignment[0].state === "Withdrawal pending") {
         return (
           <Item
             fname={item.consumer[0].name.fName}
