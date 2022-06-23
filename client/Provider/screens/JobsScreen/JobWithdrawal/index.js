@@ -10,8 +10,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobWithdrawal = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +20,7 @@ const JobWithdrawal = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
         setJobs(response.data);

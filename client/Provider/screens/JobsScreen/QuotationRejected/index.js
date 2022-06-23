@@ -9,9 +9,8 @@ import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
-const JobRefuse = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
+const QuotationRejected = ({navigation, route}) => {
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +20,7 @@ const JobRefuse = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
         setJobs(response.data);
@@ -78,4 +77,4 @@ const JobRefuse = ({navigation, route}) => {
   );
 };
 
-export default JobRefuse;
+export default QuotationRejected;

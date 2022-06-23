@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import JobHistory from '../screens/JobsScreen/JobHistory';
 import CompletedJobsScreen from '../screens/JobsScreen/JobCompleted';
 import PendingJobsScreen from '../screens/JobsScreen/JobPending';
-import RefusedJobsScreen from '../screens/JobsScreen/JobRefuse';
+import QuotationRejected from '../screens/JobsScreen/QuotationRejected';
 import WithdrawnJobsScreen from '../screens/JobsScreen/JobWithdrawal';
 import PendingRequestScreen from '../screens/JobsScreen/RequestPending';
 import JobDetails from '../screens/Jobs/JobDetails';
@@ -15,7 +15,6 @@ import Acknowledge from '../../common/screens/Acknowledge';
 import Withdrawal from '../../common/screens/Withdrawal';
 import Complaints from '../../common/screens/Complaints/Complaints';
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
-import HistoryScreen from '../screens/JobsScreen/HistoryScreen';
 
 const JobStack = createNativeStackNavigator();
 
@@ -36,7 +35,7 @@ const JobStackScreen = ({userParams}) => (
     />
 
     <JobStack.Screen name="Completed Jobs" component={CompletedJobsScreen} />
-    <JobStack.Screen name="Refused Jobs" component={RefusedJobsScreen} />
+    <JobStack.Screen name="Quotation Rejected" component={QuotationRejected} />
     <JobStack.Screen name="Pending Jobs" component={PendingJobsScreen} />
     <JobStack.Screen name="Withdrawn Jobs" component={WithdrawnJobsScreen} />
     <JobStack.Screen name="Pending Request" component={PendingRequestScreen} />

@@ -12,6 +12,7 @@ const Withdrawal = ({navigation, route}) => {
     const [value, setValue] = React.useState('');
     const [reason, setReason] = React.useState('');
     const [otherReason, setOtherReason] = React.useState('');
+    const {JAID} = route.params;
 
     const texts = [
         'Need more than the estimated time' ,
@@ -28,7 +29,7 @@ const Withdrawal = ({navigation, route}) => {
             'Please provide the reason for withdrawing from this job',
           );
         } else {
-            axios.patch(`http://10.0.2.2:5000/jobAssignment/withdrawlPending/${route.params.JAID}`, {
+            axios.patch(`http://10.0.2.2:5000/jobAssignment/withdrawlPending/${JAID}`, {
                 arisedBy: route.params.arisedBy,
                 reason: value===3? otherReason: reason,
             })
@@ -36,7 +37,7 @@ const Withdrawal = ({navigation, route}) => {
                 navigation.push('Acknowledgement', {
                   title: 'Withdrawal request sent !',
                   subtitle: 'Withdrawal request under review. You will receive an email of the results.',
-                  routeTo: 'Job Details'
+                  routeTo: 'Job History'
                 })
             })
             .catch(function (error) {
@@ -95,7 +96,7 @@ const Withdrawal = ({navigation, route}) => {
                 />
                 <Sbutton
                     text="Cancel"
-                    onPress={() => navigation.navigate(route.params.routeTo)}
+                    onPress={() => navigation.pop(1)}
                 />
             </View>
         </View>
