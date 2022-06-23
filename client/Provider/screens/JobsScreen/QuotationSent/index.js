@@ -10,7 +10,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const QuotationSent = ({navigation, route}) => {
-  let CID = route.params.id;
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
