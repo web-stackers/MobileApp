@@ -9,22 +9,14 @@ const styles = StyleSheet.create({
 
   content: {
     color: '#fff',
-    fontSize: 22,
-    marginTop: 40,
+    fontSize: 23,
     alignSelf: 'center',
   },
 
   box: {
     backgroundColor: '#652C9E',
     marginTop: 25,
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 20,
-  },
-
-  boxText: {
-    fontSize: 18,
-    color: 'white',
+    padding:20
   },
 
   list: {
