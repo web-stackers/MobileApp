@@ -29,6 +29,21 @@ const styles = StyleSheet.create({
     marginTop: 30,
     alignSelf: 'center',
   },
+
+  touchable: {
+    marginTop: 20,
+    backgroundColor: '#652C9E',
+    borderRadius: 50,
+  },
+
+  overlay: {
+    position: 'absolute',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+  },
 });
 
 export default styles;

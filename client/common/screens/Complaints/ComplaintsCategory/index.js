@@ -1,23 +1,43 @@
 import React, {useState} from 'react';
 import {Text} from 'react-native-paper';
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Alert} from 'react-native';
 import styles from './styles';
 import StextInput from '../../../../components/FormComponents/StextInput';
 import Sbutton from '../../../../components/Sbutton';
 import axios from 'axios';
 
-// const OtherReasons = ({categories}) => {
-//   const names = categories.map(item => {
-//     return item.name;
-//   });
-//   return (
-//     <View>
-//       <Text>
-//         {names}
-//       </Text>
-//     </View>
-//   );
-// };
+const OtherReasons = ({categories}) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleOnPress = item => {
+    if (selectedItems.includes(item)) {
+      const newListItem = selectedItems.filter(name => name !== item);
+      return setSelectedItems(newListItem);
+    }
+    setSelectedItems([...selectedItems, item]);
+  };
+
+  const getSelected = item => {
+    return selectedItems.includes(item);
+  };
+
+  return categories.map((category, index) => {
+    if (category.name !== 'Other issues') {
+      return (
+        <TouchableOpacity
+          key={index}
+          style={styles.touchable}
+          onPress={() => handleOnPress(category.name)}>
+          <View style={{padding: 10}}>
+            <Text style={styles.content}>{category.name}</Text>
+          </View>
+
+          <View style={[getSelected(category.name) && styles.overlay]} />
+        </TouchableOpacity>
+      );
+    }
+  });
+};
 
 const ComplaintsCategory = ({route, navigation}) => {
   const complaintBy = route.params.by;
@@ -47,7 +67,7 @@ const ComplaintsCategory = ({route, navigation}) => {
     {
       id: 3,
       details:
-        'This category is to provide any additional complaints which are not included in the provided complaints categories. You can mention all your issues here.',
+        'This category is to provide any additional complaints which are not included in the provided complaints categories. You can select more than one complaint category from the below options or can mention all your issues in the below provided space.',
     },
   ];
   const consumerCategoryDescription = [
@@ -74,7 +94,7 @@ const ComplaintsCategory = ({route, navigation}) => {
     {
       id: 4,
       details:
-        'This category is to provide any additional complaints which are not included in the provided complaints categories. You can mention all your issues here.',
+        'This category is to provide any additional complaints which are not included in the provided complaints categories. You can select more than one complaint category from the below options or can mention all your issues in the below provided space.',
     },
   ];
 
@@ -96,7 +116,11 @@ const ComplaintsCategory = ({route, navigation}) => {
       <View style={styles.description}>
         <Text style={styles.content}>{categoryDescription.details}</Text>
       </View>
-      {/* <OtherReasons categories={categories} /> */}
+      {title === 'Other issues' ? (
+        <OtherReasons categories={categories} />
+      ) : (
+        <View></View>
+      )}
       <View style={styles.box}>
         <StextInput
           label="You may enter your specific queries here"
@@ -123,6 +147,7 @@ const ComplaintsCategory = ({route, navigation}) => {
               .catch(function (error) {
                 console.log(error);
               });
+            // Alert.alert(selectedItems);
           }}
         />
       </View>
