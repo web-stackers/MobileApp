@@ -27,12 +27,13 @@ const Login = ({navigation, route}) => {
           email,
           password,
         });
-        await AsyncStorage.setItem('profile', JSON.stringify(res.data));
+        
         console.log(res.data);
-        if (res.data.result.address) {
+        if (res.data.result?.address?.longitude) {
           // setUser(() => {
           //   return JSON.parse(AsyncStorage.getItem('profile'));
           // });
+          AsyncStorage.setItem('profile', JSON.stringify(res.data));
           if (type === 'consumer') {
             navigation.push('Consumer', {
               // screen: 'Home',
@@ -48,10 +49,27 @@ const Login = ({navigation, route}) => {
             });
           }
         } else {
-          navigation.push('LocationPick', {
-            _id: res.data.result._id,
-            type: type,
-          });
+          Alert.alert(
+            'Set residential location',
+            'Since this is the first time you loged into the system, you have to pick your residential location to continue the login process',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('canceled the first time location pick'),
+                style: 'cancel',
+              },
+              {
+                text: 'OK',
+                onPress: () => {
+                  navigation.push('SetLocation', {
+                    toAsycnStore: res.data,
+                    type: type,
+                  });
+                },
+              },
+            ],
+          );
+          
         }
       } catch (err) {
         console.log(err);
@@ -85,15 +103,6 @@ const Login = ({navigation, route}) => {
           }
         }
       }
-      //     navigation.push('Quotation Preview', {
-      //       completeTime:`${date}`,
-      //       amount:`${amount}`,
-      //       job:{job}
-      //   })
-      // navigation.navigate('Consumer', {
-      //   screen: 'Settings',
-      //   params: { user: 'jane' },
-      // })
     }
   };
 

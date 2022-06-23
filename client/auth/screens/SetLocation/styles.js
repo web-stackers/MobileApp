@@ -6,19 +6,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121212',
     width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   text: {
     color: 'white',
   },
   map: {
     width: '100%',
-    height: '67%',
+    height: '90%',
   },
-  btngrp: {
+  btn: {
     width: '95%',
-    marginBottom: 1,
-    marginTop: 20,
-    alignSelf: 'center',
+    marginBottom: 7,
+    // marginTop: 20,
+    // alignSelf: 'center',
   },
 });
 

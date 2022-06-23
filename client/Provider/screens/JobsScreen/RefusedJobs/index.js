@@ -11,10 +11,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const RefusedJobs = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
-  let CID = '62132b7bc4afd22e5fc49677';
-  let type = 'consumer';
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);

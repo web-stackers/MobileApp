@@ -10,7 +10,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const QuotationSent = ({navigation, route}) => {
-  let CID = route.params.id;
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -18,8 +18,7 @@ const QuotationSent = ({navigation, route}) => {
   // Fetch job history of a user
   const fetchJobs = () => {
     setLoading(true);
-    axios
-      .get(
+    axios.get(
         `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
