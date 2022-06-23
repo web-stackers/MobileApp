@@ -4,7 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import JobHistory from '../screens/JobsScreen/JobHistory';
 import CompletedJobsScreen from '../screens/JobsScreen/JobCompleted';
 import PendingJobsScreen from '../screens/JobsScreen/JobPending';
-import QuotationSent from '../screens/JobsScreen/Quotation Sent';
+import QuotationSent from '../screens/JobsScreen/QuotationSent';
 import QuotationRejected from '../screens/JobsScreen/QuotationRejected';
 import WithdrawnJobsScreen from '../screens/JobsScreen/JobWithdrawal';
 import PendingRequestScreen from '../screens/JobsScreen/RequestPending';

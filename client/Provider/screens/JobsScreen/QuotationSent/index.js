@@ -18,8 +18,7 @@ const QuotationSent = ({navigation, route}) => {
   // Fetch job history of a user
   const fetchJobs = () => {
     setLoading(true);
-    axios
-      .get(
+    axios.get(
         `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
