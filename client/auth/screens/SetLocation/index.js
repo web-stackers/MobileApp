@@ -12,8 +12,11 @@ import Geolocation from 'react-native-geolocation-service';
 const SetLocation = ({navigation, route}) => {
   const {type, toAsycnStore} = route.params;
   const user_id = toAsycnStore.result._id;
-  let initialLat;
-  let initialLongi;
+  const [isGeoSet, setIsGeoSet] = useState(false);
+  //defalut location is colombo
+  //my location is 9.671839180109167, 80.01724467315677 (lat,long)
+  const [initialLat, setInitialLat] = useState(6.9271);
+  const [initialLongi, setInitialLongi] = useState(79.8612);
   let newLat = initialLat;
   let newLongi = initialLongi;//inital must be the geolocation
 
@@ -24,7 +27,7 @@ const SetLocation = ({navigation, route}) => {
         {
           title: "Location Permission",
           message:
-            "Helper needs access to your camera " +
+            "Helper needs access to your location " +
             "so you can pick your residential location.",
           // buttonNeutral: "Ask Me Later",
           buttonNegative: "Cancel",
@@ -35,7 +38,9 @@ const SetLocation = ({navigation, route}) => {
         console.log("You can use the map");
         Geolocation.getCurrentPosition(
           (position) => {
-            console.log(position);
+            setInitialLat(position.coords.latitude);
+            setInitialLongi(position.coords.longitude);
+            setIsGeoSet(true);
           },
           (error) => {
             // See error code charts below.
@@ -44,7 +49,8 @@ const SetLocation = ({navigation, route}) => {
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
       );
       } else {
-        console.log("Location permission denied");
+        Alert.alert('Location permission denied', 'You cannot continue the login process');
+        navigation.pop(1);
       }
     } catch (err) {
       console.warn(err);
@@ -68,7 +74,7 @@ const SetLocation = ({navigation, route}) => {
               longitude: newLongi,
               latitude: newLat,
             });
-            await AsyncStorage.setItem('profile', JSON.stringify(toAsycnStore));
+          AsyncStorage.setItem('profile', JSON.stringify(toAsycnStore));
           if (type === 'consumer') {
             navigation.navigate('Consumer', {
               _id: user_id,
@@ -92,10 +98,14 @@ const SetLocation = ({navigation, route}) => {
   useEffect(() => {
     reqLocPermission_getGeolocation();
   }, []);
-
+  useEffect(() => {
+     newLat = initialLat;
+   newLongi = initialLongi;
+   console.log(newLat,newLongi);
+  }, [isGeoSet]);
   return (
     <View style={styles.container}>
-      <MapView
+      {isGeoSet ? <MapView
         style={styles.map}
         initialRegion={{
           latitude: initialLat,
@@ -112,12 +122,12 @@ const SetLocation = ({navigation, route}) => {
             onMarkerDragEnd(e.nativeEvent.coordinate);
           }}
         />
-      </MapView>
-
-      <View style={{width: '95%'}}>
+      </MapView> : null}
+      <View style={styles.btn}>
         <Sbutton
           primary={true}
           text="Set Location"
+          disabled={!isGeoSet}
           onPress={handleSetLocation}
         />
         {/* <Sbutton text="Go Back" onPress={() => navigation.pop(1)} /> */}
