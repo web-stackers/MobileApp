@@ -75,13 +75,21 @@ const JobPending = ({navigation, route}) => {
             });
           }}
         />
-        <Sbutton primary={true} text="Withdraw job" />
+        <Sbutton
+          primary={true}
+          text="Withdraw job"
+          onPress={() =>
+            navigation.navigate('JobWithdrawal', {
+              JAID: JAID,
+            })
+          }
+        />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-    if (item.jobassignment[0].state === 'Job pending') {
+    if (item.jobassignment[0].state === 'Job Pending') {
       return (
         <Item
           fname={item.provider[0].name.fName}

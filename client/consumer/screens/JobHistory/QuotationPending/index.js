@@ -44,7 +44,7 @@ const QuotationPending = ({navigation, route}) => {
     axios
       .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })

@@ -14,7 +14,7 @@ const QuotationDetails = ({navigation, route}) => {
     'Check JA is passed....................................................................',
   );
   const {JA, JobType, JAID, amount} = route.params;
-  console.log(JA);
+  console.log(JA.providerId);
   console.log(JA.quotation);
   // const JAID = JA._id;
   console.log(JAID);
