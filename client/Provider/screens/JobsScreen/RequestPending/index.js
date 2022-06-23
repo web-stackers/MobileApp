@@ -2,10 +2,11 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
+import {SafeAreaView, View, FlatList, Alert} from 'react-native';
+import { Text } from 'react-native-paper';
+import dateFormat from 'dateformat';
 import axios from 'axios';
 
-import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
@@ -39,10 +40,8 @@ const RequestPending = ({navigation, route}) => {
     fname,
     lname,
     rating,
-    description,
     id,
     state,
-    jobType,
     initializedDate,
     JAID,
   }) => (
@@ -50,11 +49,10 @@ const RequestPending = ({navigation, route}) => {
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
-      <Text style={styles.subtitle}>JobType: {jobType}</Text>
-      <Text style={styles.subtitle}>Status: {state}</Text>
+      <Text style={styles.subtitle}>Rating : {rating}</Text>
       <Text style={styles.subtitle}>
-        Job Initialized Date: {initializedDate}
+        Job Initialized Date:{"\n"}
+        {dateFormat(initializedDate, "dddd, mmmm dS, yyyy, h:MM TT")}
       </Text>
       <View style={styles.btngrp}>
         <Sbutton
@@ -78,15 +76,11 @@ const RequestPending = ({navigation, route}) => {
         <Item
           fname={item.consumer[0].name.fName}
           lname={item.consumer[0].name.lName}
-          //rating={item.consumer[0].totalRating / item.consumer[0].ratingCount}
-          description={item.description}
+          rating={parseFloat((item.consumer[0].totalRating / item.consumer[0].ratingCount).toFixed(2))}
           id={item._id}
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
-          jobType={item.jobType}
           initializedDate={item.initializedDate}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
         />
       );
     }

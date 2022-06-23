@@ -86,7 +86,7 @@ const JobPending = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-    if (item.jobassignment[0].state === 'Job Pending') {
+    if (item.jobassignment[0].state === 'Job pending') {
       return (
         <Item
           fname={item.provider[0].name.fName}

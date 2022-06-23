@@ -76,6 +76,19 @@ const JobDetails = ({navigation, route}) => {
         <Text style={styles.field}>Location</Text>
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
+
+      {job && state==='Job pending' && (
+        <View style={styles.content}>
+          <DetailField
+            field="Estimated time to complete"
+            detail={dateFormat(time, "dddd, mmmm dS, yyyy, h:MM TT")}
+          />
+          <DetailField
+            field="Amount"
+            detail={amount}
+          />
+        </View>
+      )}
       
       {state==='Request pending' && <View style={styles.btngrp}>
         <ScheckBox
@@ -119,6 +132,15 @@ const JobDetails = ({navigation, route}) => {
           onPress={() => navigation.push('Job Withdrawal', {
             arisedBy: 'provider',
             routeTo: 'Job Details',
+            JAID: JAID,
+          })}
+        />
+
+        <Sbutton
+          primary={true}
+          text="Message Consumer"
+          onPress={() => navigation.push('Chat', {
+            sendBy: 'provider',
             JAID: JAID,
           })}
         />

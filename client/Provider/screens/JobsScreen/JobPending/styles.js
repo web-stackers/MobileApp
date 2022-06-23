@@ -4,8 +4,9 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '90%',
-    alignSelf: 'center',
+    width: '100%',
+    backgroundColor: '#121212',
+    justifyContent: 'space-between',
   },
   item: {
     backgroundColor: '#424447',
@@ -15,14 +16,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    color: 'white',
     textAlign: 'center',
     marginTop: 2,
     marginBottom: 10,
   },
   subtitle: {
     fontSize: 20,
-    color: 'white',
     marginBottom: 20,
   },
 });

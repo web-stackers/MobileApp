@@ -42,6 +42,13 @@ const JobHistory = ({navigation, userParams}) => {
         })}
       />
       <JobState
+        state="Quotation Sent"
+        onPress={() => navigation.navigate('Quotation Sent', {
+          id: `${_id}`,
+          type: 'provider',
+        })}
+      />
+      <JobState
         state="Quotation Rejected"
         onPress={() => navigation.navigate('Quotation Rejected', {
           id: `${_id}`,
@@ -51,6 +58,13 @@ const JobHistory = ({navigation, userParams}) => {
       <JobState
         state="Withdrawn Jobs"
         onPress={() => navigation.navigate('Withdrawn Jobs', {
+          id: `${_id}`,
+          type: 'provider',
+        })}
+      />
+      <JobState
+        state="Refused Jobs"
+        onPress={() => navigation.navigate('Refused Jobs', {
           id: `${_id}`,
           type: 'provider',
         })}

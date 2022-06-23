@@ -77,7 +77,7 @@ const QuotationPending = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-    if (item.jobassignment[0].state === 'Quotation pending') {
+    if (item.jobassignment[0].state === 'Quotation sent') {
       return (
         <Item
           fname={item.provider[0].name.fName}
