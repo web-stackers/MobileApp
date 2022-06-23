@@ -23,7 +23,6 @@ const RequestSent = ({navigation, route}) => {
         'http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677',
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })

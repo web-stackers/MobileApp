@@ -10,10 +10,10 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const RequestRefused = ({navigation, route}) => {
-   /* const {type, CID} =
+  /* const {type, CID} =
     route.params; */
-    let CID = '62132b7bc4afd22e5fc49677';
-    let type = 'consumer';
+  let CID = '62132b7bc4afd22e5fc49677';
+  let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,7 +26,6 @@ const RequestRefused = ({navigation, route}) => {
         `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
       )
       .then(response => {
-        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -60,21 +59,21 @@ const RequestRefused = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Request refused") {
-        return (
-          <Item
-            fname={item.provider[0].name.fName}
-            lname={item.provider[0].name.lName}
-            rating={item.provider[0].totalRating / item.provider[0].ratingCount}
-            description={item.description}
-            id={item._id}
-            state={item.jobassignment[0].state}
-            jobType={item.jobType}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
+    if (item.jobassignment[0].state === 'Request refused') {
+      return (
+        <Item
+          fname={item.provider[0].name.fName}
+          lname={item.provider[0].name.lName}
+          rating={item.provider[0].totalRating / item.provider[0].ratingCount}
+          description={item.description}
+          id={item._id}
+          state={item.jobassignment[0].state}
+          jobType={item.jobType}
+          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
-          />
-        );
-      }
+        />
+      );
+    }
   };
 
   return (
