@@ -13,9 +13,11 @@ const QuotationDetails = ({navigation, route}) => {
   console.log(
     'Check JA is passed....................................................................',
   );
-  const {JA, JobType} = route.params;
+  const {JA, JobType, JAID, amount} = route.params;
   console.log(JA);
-  const JAID = JA._id;
+  console.log(JA.quotation);
+  // const JAID = JA._id;
+  console.log(JAID);
 
   const [checked, setChecked] = useState(false);
 
@@ -101,13 +103,14 @@ const QuotationDetails = ({navigation, route}) => {
       </Text>
 
       <Text style={styles.subContent}>
-        Quotation Amount: {JA.quotation.amount}
+        Quotation Amount:{amount}
+        {/* {JA.quotation.amount} */}
       </Text>
       <Text style={styles.subContent}>
         Estimated Time: {'  '}
-        {JA.quotation.estimatedTime.substring(11, 16)}
+        {/* {JA.quotation.estimatedTime.substring(11, 16)}
         {'         '}
-        {JA.quotation.estimatedTime.substring(0, 10)}
+        {JA.quotation.estimatedTime.substring(0, 10)} */}
         {/* {JA.quotation.estimatedTime} */}
       </Text>
       <View style={styles.checkBox}>

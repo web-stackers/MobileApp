@@ -13,10 +13,30 @@ const QuotationPending = ({navigation, route}) => {
   /* const {type, CID} =
     route.params; */
   let CID = route.params.id;
-  let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [quotations, setQuotations] = useState([]);
+
+  const viewQuotation = (JAID, jobType, qAmount) => {
+    console.log('button pressed');
+    axios
+      .get(`http://10.0.2.2:5000/jobAssignment/${JAID}`)
+      .then(response => {
+        // console.log(response.data);
+        setQuotations(response.data);
+        console.log(quotations);
+        navigation.navigate('QuotationDetails', {
+          JobType: jobType,
+          JAID: JAID,
+          JA: response.data,
+          amount: qAmount,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   // Fetch job history of a user
   const fetchJobs = () => {
@@ -24,6 +44,7 @@ const QuotationPending = ({navigation, route}) => {
     axios
       .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
+        console.log(response.data);
         setJobs(response.data);
         setLoading(false);
       })
@@ -36,7 +57,17 @@ const QuotationPending = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    JAID,
+    qAmount,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -48,12 +79,7 @@ const QuotationPending = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="View Quotation"
-          onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
-              JAID,
-              jobType,
-            });
-          }}
+          onPress={() => viewQuotation(JAID, jobType, qAmount)}
         />
       </View>
     </View>
@@ -70,6 +96,8 @@ const QuotationPending = ({navigation, route}) => {
           id={item._id}
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
+          qAmount="123"
+          // qAmount={item.jobassignment[0].quotation.amount}
           jobType={item.jobType}
           /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
