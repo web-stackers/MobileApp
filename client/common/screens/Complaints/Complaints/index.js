@@ -9,9 +9,6 @@ const Complaints = ({navigation, route}) => {
   const complaintBy = 'Consumer';
   const jobId = '621341023987d49e1f22f7a8';
 
-  const [job, setJob] = useState([]);
-  const [complaintTo, setComplaintTo] = useState('Provider');
-
   const providerComplaintCategory = [
     {
       id: 0,
@@ -27,7 +24,7 @@ const Complaints = ({navigation, route}) => {
     },
     {
       id: 3,
-      name: 'Other',
+      name: 'Other issues',
     },
   ];
 
@@ -58,28 +55,11 @@ const Complaints = ({navigation, route}) => {
     if (complaintBy === 'Consumer') {
       return consumerComplaintCategory;
     } else {
-      setComplaintTo('Consumer');
       return providerComplaintCategory;
     }
   };
 
   const categories = displayList();
-
-  // Fetch particular job
-  const getJob = () => {
-    axios
-      .get(`http://10.0.2.2:5000/job/${jobId}`)
-      .then(response => {
-        setJob(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    getJob();
-  }, []);
 
   return (
     <ScrollView style={styles.container}>
