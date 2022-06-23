@@ -6,11 +6,25 @@ import StextInput from '../../../../components/FormComponents/StextInput';
 import Sbutton from '../../../../components/Sbutton';
 import axios from 'axios';
 
+// const OtherReasons = ({categories}) => {
+//   const names = categories.map(item => {
+//     return item.name;
+//   });
+//   return (
+//     <View>
+//       <Text>
+//         {names}
+//       </Text>
+//     </View>
+//   );
+// };
+
 const ComplaintsCategory = ({route, navigation}) => {
   const complaintBy = route.params.by;
   const id = route.params.id;
   const title = route.params.title;
   const jobId = route.params.jobId; //621341023987d49e1f22f7a8
+  const categories = route.params.categories;
 
   const [complaintDescription, setComplaintDescription] = useState('');
 
@@ -82,6 +96,7 @@ const ComplaintsCategory = ({route, navigation}) => {
       <View style={styles.description}>
         <Text style={styles.content}>{categoryDescription.details}</Text>
       </View>
+      {/* <OtherReasons categories={categories} /> */}
       <View style={styles.box}>
         <StextInput
           label="You may enter your specific queries here"

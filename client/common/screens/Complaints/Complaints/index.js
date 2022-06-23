@@ -3,15 +3,13 @@ import {Text, ScrollView, View, Pressable} from 'react-native';
 import styles from './styles';
 import axios from 'axios';
 
-const Complaints = ({navigation}) => {
-  //   const jobId = navigation.getParam('jobId');
-  //   const complaintBy = navigation.getParam('by');
+const Complaints = ({navigation, route}) => {
+  // const {id, complaintBy} = route.params;
 
   const complaintBy = 'Consumer';
   const jobId = '621341023987d49e1f22f7a8';
 
   const [job, setJob] = useState([]);
-  const [name, setName] = useState([]);
   const [complaintTo, setComplaintTo] = useState('Provider');
 
   const providerComplaintCategory = [
@@ -79,48 +77,15 @@ const Complaints = ({navigation}) => {
       });
   };
 
-  // Fetch user name
-  const getName = () => {
-    if (complaintBy === 'Consumer') {
-      // const id = job.providerId;
-      const id = '62a06e2bafddf297d7b90069';
-
-      axios
-        .get(`http://10.0.2.2:5000/provider/get/provider/name/${id}`)
-        .then(response => {
-          setName(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else {
-      // const id = job.consumerId;
-      const id = '62132b7bc4afd22e5fc49677';
-      axios
-        .get(`http://10.0.2.2:5000/consumer/get/consumer/name/${id}`)
-        .then(response => {
-          setName(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  };
-
   useEffect(() => {
     getJob();
-    getName();
   }, []);
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.box}>
-        <Text style={styles.boxText}>
-          Job Type - {job.jobType} {'\n\n'}
-          {complaintTo} Name - {name.fName}
-        </Text>
+        <Text style={styles.content}>Choose the complaint category</Text>
       </View>
-      <Text style={styles.content}>Choose the category</Text>
 
       <View>
         {categories.map(category => (
@@ -133,6 +98,7 @@ const Complaints = ({navigation}) => {
                 title: category.name,
                 id: category.id,
                 jobId: jobId,
+                categories: categories,
               })
             }>
             <Text style={styles.text}>{category.name}</Text>
