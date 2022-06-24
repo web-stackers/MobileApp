@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -68,8 +68,10 @@ const JobPending = ({navigation, route}) => {
           primary={true}
           text="Message"
           onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
-              JAID,
+            navigation.navigate('Chat', {
+              JAID: JAID,
+              sendBy: 'consumer',
+              state: state,
             });
           }}
         />
