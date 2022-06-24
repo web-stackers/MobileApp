@@ -95,8 +95,10 @@ const JobPending = ({navigation, route}) => {
           primary={true}
           text="Message"
           onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
-              JAID,
+            navigation.navigate('Chat', {
+              JAID: JAID,
+              sendBy: 'consumer',
+              state: state,
             });
           }}
         />

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useCallback} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {Text} from 'react-native-paper';
@@ -71,13 +72,13 @@ const JobDetails = ({navigation, route}) => {
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
 
-      {job && state === 'Job pending' && (
+      {job && (state === 'Job pending' || state === 'Quotation sent') && (
         <View style={styles.content}>
           <DetailField
             field="Estimated time to complete"
             detail={dateFormat(time, 'dddd, mmmm dS, yyyy, h:MM TT')}
           />
-          <DetailField field="Amount" detail={amount} />
+          <DetailField field="Amount" detail={'Rs ' + amount} />
         </View>
       )}
 
@@ -105,6 +106,29 @@ const JobDetails = ({navigation, route}) => {
             text="Refuse"
             onPress={() =>
               navigation.push('Refuse Job', {
+                JAID: JAID,
+              })
+            }
+          />
+        </View>
+      )}
+
+      {state === 'Quotation sent' && (
+        <View style={styles.btngrp}>
+          <ScheckBox
+            checked={read}
+            setChecked={setRead}
+            text="I wish to withdraw from this job"
+          />
+
+          <Sbutton
+            primary={true}
+            disabled={!read}
+            text="Withdraw"
+            onPress={() =>
+              navigation.push('Job Withdrawal', {
+                arisedBy: 'provider',
+                routeTo: 'Job Details',
                 JAID: JAID,
               })
             }
@@ -140,6 +164,7 @@ const JobDetails = ({navigation, route}) => {
               navigation.push('Chat', {
                 sendBy: 'provider',
                 JAID: JAID,
+                state: state,
               })
             }
           />

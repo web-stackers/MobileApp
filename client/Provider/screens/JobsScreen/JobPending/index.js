@@ -18,9 +18,9 @@ const JobPending = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
 
   // Fetch job history of a user
-  const fetchJobs = () => {
+  const fetchJobs = async () => {
     setLoading(true);
-    axios
+    await axios
       .get(
         `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
@@ -45,6 +45,8 @@ const JobPending = ({navigation, route}) => {
     state,
     initializedDate,
     JAID,
+    amount,
+    time
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -59,15 +61,15 @@ const JobPending = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="View Job"
-          onPress={() => {
-            navigation.navigate('Job Details', {
-              id,
-              JAID,
-              state,
-              amount,
-              time,
-            });
-          }}
+          onPress={() =>
+            navigation.push('Job Details', {
+              id:id,
+              JAID: JAID,
+              state:state,
+              amount:amount,
+              time:time
+            })
+          }
         />
       </View>
     </View>
@@ -85,6 +87,7 @@ const JobPending = ({navigation, route}) => {
           state={item.jobassignment[0].state}
           amount={item.jobassignment[0].quotation.amount}
           time={item.jobassignment[0].quotation.estimatedTime}
+          initializedDate={item.initializedDate}
         />
       );
     }

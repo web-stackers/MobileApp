@@ -26,6 +26,8 @@ import Acknowledge from '../../common/screens/Complaints/Acknowledge';
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
 
 import JobDetail from '../screens/JobRequest/JobDetail';
+// Chat
+import Chat from '../../common/screens/Chat';
 
 const JobStack = createNativeStackNavigator();
 
@@ -123,6 +125,14 @@ const JobStackScreen = ({userParams}) => (
     <JobStack.Screen
       name="Ratings and Reviews"
       component={RatingsAndReviews}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobStack.Screen
+      name="Chat"
+      component={Chat}
       options={{
         header: () => null,
       }}

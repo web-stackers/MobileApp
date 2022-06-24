@@ -36,7 +36,7 @@ const Quotation = ({completeTime, amount, job}) => {
             />
             <DetailField
                 field="Estimated amount"
-                detail={amount}
+                detail={"Rs "+amount}
             />
         </ScrollView>
     )

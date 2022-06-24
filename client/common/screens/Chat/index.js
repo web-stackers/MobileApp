@@ -6,12 +6,7 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Chat = ({route}) => {
-  // const {JAID, sendBy, state} = route.params;
-
-  const JAID = '62b5040441de127304ee7c55';
-  const sendBy = 'Consumer';
-  const state = 'Request Pending';
-  // const state = 'Job completed';
+  const {JAID, sendBy, state} = route.params;
 
   const [messages, setMessages] = useState([]);
   const [newMsg, setNewMsg] = useState('');
