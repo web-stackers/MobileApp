@@ -16,6 +16,7 @@ import QuotationPreview from '../screens/Jobs/QuotationPreview';
 import Acknowledge from '../../common/screens/Acknowledge';
 import Withdrawal from '../../common/screens/Withdrawal';
 import Complaints from '../../common/screens/Complaints/Complaints';
+import ComplaintsCategory from '../../common/screens/Complaints/ComplaintsCategory';
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
 import Chat from '../../common/screens/Chat';
 
@@ -117,9 +118,20 @@ const JobStackScreen = ({userParams}) => (
       }}
     />
 
-    <JobStack.Screen name="Complaint" component={Complaints} />
+    <JobStack.Screen 
+      name="Complaint" 
+      component={Complaints} 
+    />
 
-    <JobStack.Screen name="Rating and Review" component={RatingsAndReviews} />
+    <JobStack.Screen 
+      name="Complaint Category" 
+      component={ComplaintsCategory} 
+    />
+
+    <JobStack.Screen 
+      name="Rating and Review" 
+      component={RatingsAndReviews} 
+    />
   </JobStack.Navigator>
 );
 

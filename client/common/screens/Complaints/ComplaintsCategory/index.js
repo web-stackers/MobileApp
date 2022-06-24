@@ -22,7 +22,7 @@ const OtherReasons = ({categories, selectedItems, setSelectedItems}) => {
   return categories.map((category, index) => {
     if (category.name !== 'Other issues') {
       return (
-        <View key={index}>
+        <View key={index} style={styles.categories}>
           <TouchableOpacity
             style={styles.touchable}
             onPress={() => handleOnPress(category.name)}>
@@ -109,7 +109,7 @@ const ComplaintsCategory = ({route, navigation}) => {
   const categoryDescription = displayDescription()[id];
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View>
         <Text style={styles.header}>{title}</Text>
       </View>
@@ -250,7 +250,7 @@ const ComplaintsCategory = ({route, navigation}) => {
           }}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

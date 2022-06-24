@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 
   messageReceiver: {
     position: 'relative',
-    borderRadius: 30,
+    borderRadius: 18,
     padding: 12,
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
     marginBottom: 30,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
   messageSender: {
     backgroundColor: '#652C9E',
-    borderRadius: 30,
+    borderRadius: 18,
     padding: 12,
     marginBottom: 30,
     alignSelf: 'flex-end',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderBottomColor: 'white',
-    borderRadius: 40,
+    borderRadius: 15,
     padding: 4,
   },
 
@@ -50,13 +50,14 @@ const styles = StyleSheet.create({
     color: 'green',
     backgroundColor: 'white',
     color: 'black',
-    borderRadius: 40,
+    borderRadius: 15,
     fontSize: 16,
+    paddingLeft: 12
   },
 
   buttonView: {
     justifyContent: 'center',
-    borderRadius: 40,
+    borderRadius: 15,
   },
 });
 
