@@ -33,16 +33,49 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
+  const viewAddress = (
+    fname,
+    jobType,
+    description,
+    state,
+    amount,
+    time,
+    requestedTime,
+    id,
+    JAID,
+  ) => {
+    axios
+      .get(`http://10.0.2.2:5000/job/${id}`)
+      .then(response => {
+        navigation.navigate('Job Detail', {
+          fname,
+          jobType,
+          description,
+          state,
+          amount,
+          time,
+          requestedTime,
+          id,
+          JAID,
+          job: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const Item = ({
     fname,
     lname,
-    rating,
     description,
     id,
     state,
+    amount,
+    time,
+    requestedTime,
     jobType,
-    complaint,
-    ratingAndReview,
+    JAID,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -54,23 +87,20 @@ const JobCompleted = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Complaint"
-          onPress={() => {
-            navigation.navigate('complaint', {
+          text="View"
+          onPress={() =>
+            viewAddress(
+              fname,
+              jobType,
+              description,
+              state,
+              amount,
+              time,
+              requestedTime,
               id,
-              complaint,
-            });
-          }}
-        />
-        <Sbutton
-          primary={true}
-          text="Rate and Review"
-          onPress={() => {
-            navigation.navigate('Rating and Review', {
-              id,
-              ratingAndReview,
-            });
-          }}
+              JAID,
+            )
+          }
         />
       </View>
     </View>
@@ -85,10 +115,12 @@ const JobCompleted = ({navigation, route}) => {
           rating={item.provider[0].totalRating / item.provider[0].ratingCount}
           description={item.description}
           id={item._id}
+          requestedTime={item.requestedTime}
+          JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+          amount={item.jobassignment[0].quotation.amount}
+          time={item.jobassignment[0].quotation.estimatedTime}
         />
       );
     }
