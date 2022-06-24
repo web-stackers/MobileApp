@@ -1,26 +1,70 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput,ImageBackground} from 'react-native';
+import  AsyncStorage  from '@react-native-async-storage/async-storage';
 
-import {useTheme,TextInput} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import styles from './styles';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-
+import ImagePicker from 'react-native-image-crop-picker';
 import Animated from 'react-native-reanimated';
 import axios from 'axios';
+import BottomSheet from 'reanimated-bottom-sheet';
+import * as Yup from 'yup';
+import {Formik} from 'formik';
 
-const EditProfileScreen = () => {
+const ProfileSchema = Yup.object().shape({
+  fName: Yup.string()
+    .required('First name is required')
+    .max(30, 'First name is Too Long!')
+    .min(2, 'First name is Too Short!'),
+  lName: Yup.string()
+    .required('Last name is required')
+    .max(30, 'Last name is Too Long!')
+    .min(2, 'Last name is Too Short!'),
+  mobile: Yup.number('Phone number is use only number')
+    .min(10, 'Phone number must be 10 characters!')
+    .required('Phone number is Required')
+    .max(10, 'Should be 10 chars maximum'),
+  password: Yup.string()
+    .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
+    .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
+    .matches(/\d/, 'Password must have a number')
+    .matches(
+      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
+      'Password must have a special character',
+    )
+    .required('Password is required')
+    .min(8, 'Password is too short - should be 8 chars minimum'),
+});
+
+const EditProfileScreen = ({navigation}) => {
   const {colors} = useTheme();
   const [user, setUser] = useState([]);
+  const getUser = async () => {
+    await axios
+      .get('http://10.0.2.2:5000/provider/mobile/629f77da0d2903e52b176866')
+      .then(response => {
+        setIsLoading(false);
+        setUser(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const [image, setImage] = useState(
+    'https://api.adorable.io/avatars/80/abott@adorable.png',
+  );
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordVisible, setPasswordVisible] = useState(true);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,74 +76,48 @@ const EditProfileScreen = () => {
     setLastName(lastName);
   };
 
-  const onChangeEmailHandler = email => {
-    setEmail(email);
-  };
-
   const onChangeNumberHandler = number => {
     setNumber(number);
   };
 
-  const onChangePasswordHandler = password => {
+   const onChangePasswordHandler = password => {
     setPassword(password);
   };
 
-  const onSubmitFormHandler = event => {
+
+  const updateAPIData = async () => {
     if (!firstName.trim() || !lastName.trim()) {
       alert('First Name or Last Name is invalid');
       return;
     }
     setIsLoading(true);
-
-    const configurationObject = {
-      url: `http://10.0.2.2:5000/provider/mobile/629f77da0d2903e52b176866`,
-      method: 'put',
-      data: {
-        firstName,
-        email,
-        lastName,
-        number,
-        password,
+    await axios.patch(
+      `http://10.0.2.2:5000/provider/profileUpdate/629f77da0d2903e52b176866`,
+      {
+        fName: firstName,
+        lName: lastName,
+        mobile: number,
+        password: password,
       },
-    };
-
-    axios(configurationObject)
-      .then(response => {
-        if (response.status === 304) {
-          alert(` You have updated: ${JSON.stringify(response.data)}`);
-          setIsLoading(false);
-          setFirstName('');
-          setEmail('');
-        } else {
-          throw new Error('An error has occurr');
-        }
-      })
-      .catch(error => {
-        alert('An error has occurring');
+    )
+    .then(response => {
+      if (response.status) {
+        alert(` You have updated successfully`);
         setIsLoading(false);
-      });
-  };
+       // setFirstName(firstName);
+       // setEmail('');
+        AsyncStorage.removeItem('profile');
+       navigation.navigate('Start');
+      } else {
+        throw new Error('An error has occurred');
+      }
+    })
+    .catch(error => {
+      alert('An error has occurring');
+      setIsLoading(false);
+  });
+};
 
-  const getUser = async () => {
-    await axios
-      .get('http://10.0.2.2:5000/provider/mobile/629f77da0d2903e52b176866')
-      .then(response => {
-        setIsLoading(false);
-        setUser(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  const updateAPIData = async () => {
-    await axios.put(`http://10.0.2.2:5000/provider/629f77da0d2903e52b176866`, {
-      firstName,
-      lastName,
-      email,
-      number,
-      password,
-    });
-  };
   useEffect(() => {
     getUser();
   }, []);
@@ -130,7 +148,7 @@ const EditProfileScreen = () => {
             placeholderTextColor="#666666"
             autoCorrect={false}
             editable={!isLoading}
-            defaultValue={user.name?.fName || ''}
+            //defaultValue={user.name?.fName || ''}
             onChangeText={onChangeFirstNameHandler}
             style={[
               styles.textInput,
@@ -146,7 +164,7 @@ const EditProfileScreen = () => {
             placeholder="Last Name"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            defaultValue={user.name?.lName || ''}
+           // defaultValue={user.name?.lName || ''}
             editable={!isLoading}
             onChangeText={onChangeLastNameHandler}
             style={[
@@ -164,7 +182,7 @@ const EditProfileScreen = () => {
             placeholderTextColor="#666666"
             keyboardType="number-pad"
             autoCorrect={false}
-            defaultValue={user.contact?.mobile || ''}
+            //defaultValue={user.contact?.mobile || ''}
             editable={!isLoading}
             onChangeText={onChangeNumberHandler}
             style={[
@@ -175,35 +193,16 @@ const EditProfileScreen = () => {
             ]}
           />
         </View>
-        <View style={styles.action}>
-          <FontAwesome name="envelope-o" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="#666666"
-            keyboardType="email-address"
-            autoCorrect={false}
-            editable={isLoading}
-            defaultValue={user.contact?.email || ''}
-            onChangeText={onChangeEmailHandler}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
+         <View style={styles.action}>
           <FontAwesome name="lock" color={colors.text} size={20} />
           <TextInput
             placeholder="Password"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            value={user?.password || ''}
+            //value={user?.password || ''}
             editable={!isLoading}
             onChangeText={onChangePasswordHandler}
-            secureTextEntry={passwordVisible}
-            right={<TextInput.Icon name={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
+            secureTextEntry
             style={[
               styles.textInput,
               {
@@ -214,9 +213,9 @@ const EditProfileScreen = () => {
         </View>
         <TouchableOpacity
           style={styles.commandButton}
-          disabled={!isLoading}
+          disabled={isLoading}
           onPress={updateAPIData}>
-          <Text style={styles.panelButtonTitle}>Save</Text>
+          <Text style={styles.panelButtonTitle}>Update</Text>
         </TouchableOpacity>
       </Animated.View>
     </View>

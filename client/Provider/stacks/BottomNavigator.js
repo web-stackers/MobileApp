@@ -52,7 +52,7 @@ const BottomNavigator = ({route}) => {
             />
           ),
           headerShown: false,
-          tabBarBadge: 3,
+          //tabBarBadge: 3,
         }}
       />
       <Tab.Screen
