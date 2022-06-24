@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
 import { Text } from 'react-native-paper';
 import axios from 'axios';
+import dateFormat from 'dateformat';
 
 import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
@@ -36,13 +37,16 @@ const JobWithdrawal = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, description, id,reason, state, jobType,initializedDate}) => (
+  const Item = ({fname, lname, description, id,reason, state, initializedDate}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
       <Text style={styles.subtitle}>Description: {description}</Text>
-      <Text style={styles.subtitle}>JobType: {jobType}</Text>
+      <Text style={styles.subtitle}>
+        Job Initialized Date:{"\n"}
+        {dateFormat(initializedDate, "dddd, mmmm dS, yyyy, h:MM TT")}
+      </Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <Text style={styles.subtitle}>Reason: {reason}</Text>
       <View style={styles.btngrp}>
@@ -60,7 +64,8 @@ const JobWithdrawal = ({navigation, route}) => {
             id={item._id}
             state={item.jobassignment[0].state}
             jobType={item.jobType}
-             reason={item.userJobs[0].withdrawn?.reason|| ''}
+            reason={item.jobassignment[0].withdrawn?.reason|| ''}
+            initializedDate={item.initializedDate}
         /*amount={item.userJobs[0].quotation?.amount|| ''} */
           />
         );

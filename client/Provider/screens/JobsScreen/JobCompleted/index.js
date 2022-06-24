@@ -36,13 +36,12 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType,complaint,ratingAndReview}) => (
+  const Item = ({fname, lname, rating, description, id, state, complaint,ratingAndReview}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
       <Text style={styles.subtitle}>Description: {description}</Text>
-      <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
         <Sbutton
