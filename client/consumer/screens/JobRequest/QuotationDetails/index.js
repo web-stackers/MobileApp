@@ -102,24 +102,17 @@ const QuotationDetails = ({navigation, route}) => {
 
       <View style={styles.content}>
         <DetailField field="Job Type" detail={JobType} />
+        <DetailField field="Quotation Amount" detail={JA.quotation.amount} />
+        <DetailField
+          field="Work Finish Date"
+          detail={dateFormat(JA.quotation.estimatedTime, 'fullDate')}
+        />
+        <DetailField
+          field="Work Finish Time"
+          detail={dateFormat(JA.quotation.estimatedTime, 'hh:MM TT')}
+        />
       </View>
 
-      <Text style={styles.subContent}>
-        Job Type: {JobType}
-        {/* {jobTypeSelect}  */}
-      </Text>
-
-      <Text style={styles.subContent}>
-        Quotation Amount:
-        {JA.quotation.amount}
-      </Text>
-      <Text style={styles.subContent}>
-        Estimated Time: {'  '}
-        {JA.quotation.estimatedTime.substring(11, 16)}
-        {'         '}
-        {JA.quotation.estimatedTime.substring(0, 10)}
-        {/* {JA.quotation.estimatedTime} */}
-      </Text>
       <View style={styles.checkBox}>
         <ScheckBox
           // style={styles.checkBox}
