@@ -37,7 +37,7 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, requestDate, time, amount, complaint,ratingAndReview}) => (
+  const Item = ({fname, lname, rating, description, id, requestDate, state, time, amount, JAID, complaint, ratingAndReview}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -68,6 +68,13 @@ const JobCompleted = ({navigation, route}) => {
             navigation.navigate('Rating and Review', {
               id,
               ratingAndReview,
+            });
+          }}/>
+        <Sbutton primary={true} text="View Chat" onPress={() => {
+            navigation.navigate('Chat', {
+              JAID,
+              state,
+              sendBy:'provider'
             });
           }}/>
       </View>
