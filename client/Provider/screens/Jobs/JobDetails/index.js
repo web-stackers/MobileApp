@@ -85,7 +85,7 @@ const JobDetails = ({navigation, route}) => {
           />
           <DetailField
             field="Amount"
-            detail={amount}
+            detail={"Rs " + amount}
           />
         </View>
       )}

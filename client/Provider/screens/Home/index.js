@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useTheme} from 'react-native-paper';
 import {View, Image} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import {Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -43,9 +44,11 @@ const HomeScreen = ({userParams}) => {
       });
   };
 
-  useEffect(() => {
-    completeJobs();
-  }, []);
+  useFocusEffect(
+    useCallback(() =>{
+      completeJobs();
+    }, [])
+  )
 
   return (
     <View style={styles.container}>

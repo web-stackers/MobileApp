@@ -37,16 +37,18 @@ const RefusedJobs = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, initializedDate}) => (
+  const Item = ({fname, lname, rating, description, id, reason, initializedDate}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
+      <Text style={styles.subtitle}>Rating : {rating}</Text>
       <Text style={styles.subtitle}>
         Job Initialized Date:{"\n"}
         {dateFormat(initializedDate, "dddd, mmmm dS, yyyy, h:MM TT")}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
+      <Text style={styles.subtitle}>Description:{"\n"}{description}</Text>
+      <Text style={styles.subtitle}>Reason:{"\n"}{reason}</Text>
       <View style={styles.btngrp}>
       </View>
     </View>
@@ -63,8 +65,7 @@ const RefusedJobs = ({navigation, route}) => {
           id={item._id}
           state={item.jobassignment[0].state}
           initializedDate={item.initializedDate}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+          reason={item.jobassignment[0].reason}
         />
       );
     }

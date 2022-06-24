@@ -37,17 +37,23 @@ const QuotationRejected = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, initializedDate}) => (
+  const Item = ({fname, lname, rating, description, amount, time, reason, requestDate}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
       <Text style={styles.subtitle}>Rating : {rating}</Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
+      <Text style={styles.subtitle}>Description: {"\n"}{description}</Text>
       <Text style={styles.subtitle}>
-        Job Initialized Date:{"\n"}
-        {dateFormat(initializedDate, "dddd, mmmm dS, yyyy, h:MM TT")}
+        Job Requested Date:{"\n"}
+        {dateFormat(requestDate, "dddd, mmmm dS, yyyy, h:MM TT")}
       </Text>
+      <Text style={styles.subtitle}>
+        Estimated complete date:{"\n"}
+        {dateFormat(time, "dddd, mmmm dS, yyyy, h:MM TT")}
+      </Text>
+      <Text style={styles.subtitle}>Estimated amount :{"\nRs "}{amount}</Text>
+      <Text style={styles.subtitle}>Reason :{"\n"}{reason}</Text>
       <View style={styles.btngrp}>
       </View>
     </View>
@@ -63,11 +69,10 @@ const QuotationRejected = ({navigation, route}) => {
             description={item.description}
             id={item._id}
             state={item.jobassignment[0].state}
-            jobType={item.jobType}
             amount={item.jobassignment[0].quotation.amount}
+            requestDate={item.requestedTime}
             time={item.jobassignment[0].quotation.estimatedTime}
-            /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+            reason={item.jobassignment[0].reason}
           />
         );
       }
