@@ -33,38 +33,6 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const viewAddress = (
-    fname,
-    jobType,
-    description,
-    state,
-    amount,
-    time,
-    requestedTime,
-    id,
-    JAID,
-  ) => {
-    axios
-      .get(`http://10.0.2.2:5000/job/${id}`)
-      .then(response => {
-        navigation.navigate('Job Detail', {
-          fname,
-          jobType,
-          description,
-          state,
-          amount,
-          time,
-          requestedTime,
-          id,
-          JAID,
-          job: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   const Item = ({
     fname,
     lname,
@@ -76,6 +44,8 @@ const JobCompleted = ({navigation, route}) => {
     requestedTime,
     jobType,
     JAID,
+    complaint,
+    ratingAndReview,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -87,20 +57,34 @@ const JobCompleted = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="View"
-          onPress={() =>
-            viewAddress(
-              fname,
-              jobType,
-              description,
-              state,
-              amount,
-              time,
-              requestedTime,
+          text="Complaint"
+          onPress={() => {
+            navigation.navigate('Complaint', {
               id,
+              complaint,
+            });
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="Rate and Review"
+          onPress={() => {
+            navigation.navigate('Rating and Review', {
+              id,
+              ratingAndReview,
+            });
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="View Chat"
+          onPress={() => {
+            navigation.navigate('Chat', {
               JAID,
-            )
-          }
+              state,
+              sendBy: 'provider',
+            });
+          }}
         />
       </View>
     </View>
