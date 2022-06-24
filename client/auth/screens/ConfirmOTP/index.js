@@ -7,7 +7,7 @@ import StextBox from '../../../components/FormComponents/StextBox';
 import Sbutton from '../../../components/Sbutton';
 import {useTheme} from 'react-native-paper';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StackActions } from '@react-navigation/native';
 
 const ConfirmOTP = ({navigation, route}) => {
   const {colors} = useTheme();
@@ -22,29 +22,40 @@ const ConfirmOTP = ({navigation, route}) => {
       const res = await axios.post(
         `http://10.0.2.2:5000/${type}/register/verifyOTP`,
         {
-          userId, otp
+          userId,
+          otp,
         },
       );
       console.log(res.data);
-      navigation.push('ChangePassword', {
-        id: userId,
-        type: type,
-        fName:toResendOTP.fName,
-      });
+      if (toResendOTP.isEmailVerification) {
+        navigation.dispatch(
+          StackActions.replace('RegistrationSucceed')
+        );
+        // navigation.push('RegistrationSucceed');
+      } else {
+        navigation.dispatch(
+          StackActions.replace('ChangePassword', {
+            id: userId,
+            type: type,
+            fName: toResendOTP.fName,
+          })
+        );
+        // navigation.push('ChangePassword', {
+        //   id: userId,
+        //   type: type,
+        //   fName: toResendOTP.fName,
+        // });
+      }
     } catch (err) {
       console.log(err);
       if (err.response.status === 500) {
         Alert.alert(
           'Something went wrong',
-          'There was a problem with the server, Could not proceed to forgot password',
+          'There was a problem with the server, Could not proceed',
         );
       } else {
         const errorMsg = err.response.data.message;
-        Alert.alert(
-          'Failed to verify',
-          errorMsg,
-        );
-        
+        Alert.alert('Failed to verify', errorMsg);
       }
     }
   };
@@ -64,63 +75,32 @@ const ConfirmOTP = ({navigation, route}) => {
       if (err.response.status === 500) {
         Alert.alert(
           'Something went wrong',
-          'There was a problem with the server, Could not proceed to forgot password',
+          'There was a problem with the server, Could not proceed',
         );
       } else {
         const errorMsg = err.response.data.message;
-        Alert.alert(
-          'Failed to resend OTP',
-          errorMsg,
-        );
-        
+        Alert.alert('Failed to resend OTP', errorMsg);
       }
     }
   };
 
-  
-
   return (
     <View style={styles.container}>
-      {/* <Image
-        style={styles.QPic}
-        source={require('../../../../assets/images/QPic.png')}
-      /> */}
-
       <View style={styles.quotationForm}>
         <Text style={styles.title}>Confirm OTP</Text>
-        <View style={{width: '90%'}}><Text style={styles.caption}>
-        Verification code has been sent to the following email address
-        </Text></View>
-        
-        <Text style={styles.caption}>
-        {toResendOTP.email}
-        </Text>
+        <View style={{width: '90%'}}>
+          <Text style={styles.caption}>
+            Verification code has been sent to the following email address
+          </Text>
+        </View>
 
-        {/* <StextBox
-          placeholder="Enter an email address"
-          value={email}
-          onChangeText={value => {
-            setEmail(value);
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-              setIsEmailValid(true);
-            } else {
-              setIsEmailValid(false);
-            }
-          }}
-        /> */}
+        <Text style={styles.caption}>{toResendOTP.email}</Text>
         <StextBox
           placeholder="Enter the verification code"
           value={otp}
           // secureTextEntry={true}
           onChangeText={value => setOtp(value)}
         />
-          {/* <Button
-            // onPress={onPress}
-            // style={styles.forgotPass}
-            // disabled={disabled}
-            color={colors.primary}>
-            <Text style={styles.forgotPassText}>Forgot Password ?</Text>
-          </Button> */}
         <View style={{width: '96.5%'}}>
           <Sbutton
             disabled={!otp}
@@ -129,13 +109,12 @@ const ConfirmOTP = ({navigation, route}) => {
             onPress={() => onVerify()}
           />
         </View>
-          <Button
-            onPress={() => onResendOtp()}
-            style={styles.button}
-            color={colors.primary}>
-            <Text style={styles.text}>Resend OTP</Text>
-          </Button>
-       
+        <Button
+          onPress={() => onResendOtp()}
+          style={styles.button}
+          color={colors.primary}>
+          <Text style={styles.text}>Resend OTP</Text>
+        </Button>
       </View>
     </View>
   );
