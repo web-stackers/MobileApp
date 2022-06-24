@@ -167,7 +167,7 @@ const SearchProvider = ({navigation, route}) => {
       </Text>
       <Text style={styles.subtitle}>Qualification: {qualification}</Text>
       <Text style={styles.subtitle}>
-        Rating: {rating ? rating : 'No ratings yet'}
+        Rating: {rating ? parseFloat(rating.toFixed(2)) : 'No ratings yet'}
       </Text>
 
       <View style={styles.btngrp}>

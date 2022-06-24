@@ -92,31 +92,6 @@ const JobDetail = ({navigation, route}) => {
           />
         </View>
       )}
-
-      {state === 'Job completed' && (
-        <View style={styles.btngrp}>
-          <Sbutton
-            primary={true}
-            text="Complaint"
-            onPress={() => {
-              navigation.navigate('Complaint Category', {
-                id,
-                complaint: job.complaint,
-              });
-            }}
-          />
-          <Sbutton
-            primary={true}
-            text="Rate and Review"
-            onPress={() => {
-              navigation.navigate('Ratings and Reviews', {
-                id,
-                ratingAndReview: job.ratingAndReview,
-              });
-            }}
-          />
-        </View>
-      )}
     </ScrollView>
   );
 };

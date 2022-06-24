@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {View, ScrollView, Text, Image, Alert} from 'react-native';
+import dateFormat from 'dateformat';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
@@ -9,13 +10,17 @@ import Sheader from '../../../../components/Sheader';
 
 import axios from 'axios';
 
-const QuotationDetails = ({navigation, route}) => {
-  console.log(
-    'Check JA is passed....................................................................',
+const DetailField = ({field, detail}) => {
+  return (
+    <View style={styles.detailField}>
+      <Text style={styles.field}>{field}</Text>
+      <Text style={styles.detail}>{detail}</Text>
+    </View>
   );
+};
+
+const QuotationDetails = ({navigation, route}) => {
   const {JA, JobType, JAID} = route.params;
-  console.log(JA.quotation);
-  console.log(JAID);
 
   const [checked, setChecked] = useState(false);
 
@@ -94,6 +99,10 @@ const QuotationDetails = ({navigation, route}) => {
         style={styles.JDetailsPic}
         source={require('../../../../assets/images/JDetails.png')}
       />
+
+      <View style={styles.content}>
+        <DetailField field="Job Type" detail={JobType} />
+      </View>
 
       <Text style={styles.subContent}>
         Job Type: {JobType}

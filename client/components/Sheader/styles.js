@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   header: {
     height: 55,
     padding: 15,
-    backgroundColor: '#652C9E',
+    backgroundColor: '#3b3d3e',
     marginBottom: 35,
   },
   text: {
