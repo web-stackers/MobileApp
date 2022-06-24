@@ -36,22 +36,37 @@ const JobPending = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  // const viewAddress = (JAID, jobType) => {
-  //   console.log('button pressed');
-  //   axios
-  //     .get(`http://10.0.2.2:5000/job/${id}`)
-  //     .then(response => {
-  //       console.log(response.data);
-  //       navigation.navigate('QuotationDetails', {
-  //         JobType: jobType,
-  //         JAID: JAID,
-  //         JA: response.data,
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
+  const viewAddress = (
+    fname,
+    jobType,
+    description,
+    state,
+    amount,
+    time,
+    requestedTime,
+    id,
+    JAID,
+  ) => {
+    axios
+      .get(`http://10.0.2.2:5000/job/${id}`)
+      .then(response => {
+        navigation.navigate('Job Detail', {
+          fname,
+          jobType,
+          description,
+          state,
+          amount,
+          time,
+          requestedTime,
+          id,
+          JAID,
+          job: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const Item = ({
     fname,
@@ -76,9 +91,8 @@ const JobPending = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="View"
-          onPress={() => {
-            console.log(fname);
-            navigation.navigate('Job Detail', {
+          onPress={() =>
+            viewAddress(
               fname,
               jobType,
               description,
@@ -88,27 +102,7 @@ const JobPending = ({navigation, route}) => {
               requestedTime,
               id,
               JAID,
-            });
-          }}
-        />
-        <Sbutton
-          primary={true}
-          text="Message"
-          onPress={() => {
-            navigation.navigate('Chat', {
-              JAID: JAID,
-              sendBy: 'consumer',
-              state: state,
-            });
-          }}
-        />
-        <Sbutton
-          primary={true}
-          text="Withdraw job"
-          onPress={() =>
-            navigation.navigate('JobWithdrawal', {
-              JAID: JAID,
-            })
+            )
           }
         />
       </View>

@@ -22,12 +22,17 @@ const DetailField = ({field, detail}) => {
 };
 
 const JobDetail = ({navigation, route}) => {
-  const [read, setRead] = useState(false);
-  const [job, setJob] = useState();
-  const {fname, jobType, description, state, amount, time, requestedTime} =
-    route.params;
-  console.log(fname);
-  //   const {id, state, JAID, amount, time} = route.params;
+  const {
+    fname,
+    jobType,
+    description,
+    state,
+    amount,
+    time,
+    requestedTime,
+    job,
+    JAID,
+  } = route.params;
 
   return (
     <ScrollView style={styles.container}>
@@ -63,74 +68,33 @@ const JobDetail = ({navigation, route}) => {
       {/* Map to show location */}
       <View style={styles.map}>
         <Text style={styles.field}>Location</Text>
-        <Map lat={6.920319058452148} long={79.87668603658676} />
-        {/* <Map lat={job.address.latitude} long={job.address.longitude} /> */}
+        <Map lat={job.address.latitude} long={job.address.longitude} />
       </View>
 
-      {/* {state === 'Request pending' && (
+      {state === 'Job pending' && (
         <View style={styles.btngrp}>
-          <ScheckBox
-            checked={read}
-            setChecked={setRead}
-            text="I have read and understood the problem and requirements of above request"
-          />
-
           <Sbutton
             primary={true}
-            disabled={!read}
-            text="Accept"
-            onPress={() =>
-              navigation.push('Quotation Details', {
-                job: {job},
+            text="Message Provider"
+            onPress={() => {
+              navigation.navigate('Chat', {
                 JAID: JAID,
-              })
-            }
+                sendBy: 'consumer',
+                state: state,
+              });
+            }}
           />
-          <Sbutton
-            disabled={!read}
-            text="Refuse"
-            onPress={() =>
-              navigation.push('Refuse Job', {
-                JAID: JAID,
-              })
-            }
-          />
-      </View>
-      )} */}
-
-      {/* {state === 'Job pending' && (
-        <View style={styles.btngrp}>
-          <ScheckBox
-            checked={read}
-            setChecked={setRead}
-            text="I wish to withdraw from this job"
-          />
-
           <Sbutton
             primary={true}
-            disabled={!read}
-            text="Withdraw"
+            text="Withdraw job"
             onPress={() =>
-              navigation.push('Job Withdrawal', {
-                arisedBy: 'provider',
-                routeTo: 'Job Details',
-                JAID: JAID,
-              })
-            }
-          />
-
-          <Sbutton
-            primary={true}
-            text="Message Consumer"
-            onPress={() =>
-              navigation.push('Chat', {
-                sendBy: 'provider',
+              navigation.navigate('JobWithdrawal', {
                 JAID: JAID,
               })
             }
           />
         </View>
-      )} */}
+      )}
     </ScrollView>
   );
 };

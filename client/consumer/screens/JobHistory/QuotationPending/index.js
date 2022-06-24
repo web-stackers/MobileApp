@@ -16,7 +16,6 @@ const QuotationPending = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
 
   const viewQuotation = (JAID, jobType) => {
-    console.log('button pressed');
     axios
       .get(`http://10.0.2.2:5000/jobAssignment/${JAID}`)
       .then(response => {
@@ -88,10 +87,6 @@ const QuotationPending = ({navigation, route}) => {
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          // qAmount={item.jobassignment[0].quotation.amount}
-
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
         />
       );
     }
