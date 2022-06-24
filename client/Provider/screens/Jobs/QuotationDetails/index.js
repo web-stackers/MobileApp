@@ -8,6 +8,7 @@ import Sbutton from '../../../../components/Sbutton';
 
 const QuotationDetails = ({navigation, route}) => {
   const {job} = route.params.job;
+  const JAID = route.params.JAID;
   const [date, setDate] = React.useState(new Date(job.requestedTime));
   const reqDate = new Date(job.requestedTime);
   const [amount, setAmount] = React.useState('');
@@ -36,7 +37,7 @@ const QuotationDetails = ({navigation, route}) => {
           completeTime:`${date}`,
           amount:`${amount}`,
           job:{job},
-          JAID: '62136a2d657adfba60a6878a'
+          JAID: JAID
       })
     }
   }

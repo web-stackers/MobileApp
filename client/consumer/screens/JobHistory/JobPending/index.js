@@ -2,7 +2,8 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
+import {SafeAreaView, View, FlatList, Alert} from 'react-native';
+import { Text } from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -12,8 +13,7 @@ import styles from './styles';
 const JobPending = ({navigation, route}) => {
   /* const {type, CID} =
     route.params; */
-  let CID = '62132b7bc4afd22e5fc49677';
-  let type = 'consumer';
+  let CID = route.params.id;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,9 +22,7 @@ const JobPending = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132b7bc4afd22e5fc49677`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -75,7 +73,15 @@ const JobPending = ({navigation, route}) => {
             });
           }}
         />
-        <Sbutton primary={true} text="Withdraw job" />
+        <Sbutton
+          primary={true}
+          text="Withdraw job"
+          onPress={() =>
+            navigation.navigate('JobWithdrawal', {
+              JAID: JAID,
+            })
+          }
+        />
       </View>
     </View>
   );

@@ -27,12 +27,13 @@ const Login = ({navigation, route}) => {
           email,
           password,
         });
-        await AsyncStorage.setItem('profile', JSON.stringify(res.data));
+
         console.log(res.data);
-        if (res.data.result.address) {
+        if (res.data.result?.address?.longitude) {
           // setUser(() => {
           //   return JSON.parse(AsyncStorage.getItem('profile'));
           // });
+          AsyncStorage.setItem('profile', JSON.stringify(res.data));
           if (type === 'consumer') {
             navigation.push('Consumer', {
               // screen: 'Home',
@@ -48,10 +49,27 @@ const Login = ({navigation, route}) => {
             });
           }
         } else {
-          navigation.push('LocationPick', {
-            _id: res.data.result._id,
-            type: type,
-          });
+          Alert.alert(
+            'Set residential location',
+            'Since this is the first time you loged into the system, you have to pick your residential location to continue the login process',
+            [
+              {
+                text: 'Cancel',
+                onPress: () =>
+                  console.log('canceled the first time location pick'),
+                style: 'cancel',
+              },
+              {
+                text: 'OK',
+                onPress: () => {
+                  navigation.push('SetLocation', {
+                    toAsycnStore: res.data,
+                    type: type,
+                  });
+                },
+              },
+            ],
+          );
         }
       } catch (err) {
         console.log(err);
@@ -85,18 +103,50 @@ const Login = ({navigation, route}) => {
           }
         }
       }
-      //     navigation.push('Quotation Preview', {
-      //       completeTime:`${date}`,
-      //       amount:`${amount}`,
-      //       job:{job}
-      //   })
-      // navigation.navigate('Consumer', {
-      //   screen: 'Settings',
-      //   params: { user: 'jane' },
-      // })
     }
   };
 
+  const onForgotPass = async () => {
+    try {
+      // const res = await SecondaryUser.signIn(form);
+      const res = await axios.post(
+        `http://10.0.2.2:5000/${type}/forgotPassword`,
+        {
+          email,
+        },
+      );
+      console.log(res.data);
+      navigation.push('ConfirmOTP', {
+        toResendOTP: res.data,
+        type: type,
+      });
+    } catch (err) {
+      console.log(err);
+      if (err.response.status === 500) {
+        Alert.alert(
+          'Something went wrong',
+          'There was a problem with the server, Could not proceed to forgot password',
+        );
+      } else {
+        const errorMsg = err.response.data.message;
+        if (errorMsg === "User doesn't exist") {
+          Alert.alert("User doesn't exist", 'You are not a registered user');
+        }
+        if (errorMsg === 'Cannot login now') {
+          Alert.alert(
+            'Cannot login now',
+            'You have to wait until your documents get verified and then only you can change the password',
+          );
+        }
+        if (errorMsg === 'Incomplete registration') {
+          Alert.alert(
+            'Incomplete registration',
+            'You can try again the registration process after some time',
+          );
+        }
+      }
+    }
+  };
   return (
     <View style={styles.container}>
       {/* <Image
@@ -130,7 +180,7 @@ const Login = ({navigation, route}) => {
         />
         {isEmailValid && !password ? (
           <Button
-            // onPress={onPress}
+            onPress={() => onForgotPass()}
             // style={styles.forgotPass}
             // disabled={disabled}
             color={colors.primary}>

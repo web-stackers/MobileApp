@@ -37,7 +37,7 @@ const QuotationRefuse = ({navigation, route}) => {
                 )
                 .then(response => {
                   console.log(response.data);
-                  navigation.navigate('JobScreen');
+                  navigation.navigate('JobHistoryScreen');
                 })
                 .catch(function (error) {
                   console.log(error);
@@ -73,7 +73,7 @@ const QuotationRefuse = ({navigation, route}) => {
         <Sbutton primary={true} text="Submit" onPress={handleSubmit} />
         <Sbutton
           text="Cancel"
-          onPress={() => navigation.navigate('JobScreen')}
+          onPress={() => navigation.navigate('JobHistoryScreen')}
         />
       </View>
     </ScrollView>

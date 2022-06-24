@@ -2,21 +2,35 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
+import {SafeAreaView, View, FlatList, Alert} from 'react-native';
+import { Text } from 'react-native-paper';
 import axios from 'axios';
 
-import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const QuotationPending = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
   let CID = route.params.id;
-  let type = 'consumer';
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const viewQuotation = (JAID, jobType) => {
+    console.log('button pressed');
+    axios
+      .get(`http://10.0.2.2:5000/jobAssignment/${JAID}`)
+      .then(response => {
+        console.log(response.data);
+        navigation.navigate('QuotationDetails', {
+          JobType: jobType,
+          JAID: JAID,
+          JA: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   // Fetch job history of a user
   const fetchJobs = () => {
@@ -36,7 +50,16 @@ const QuotationPending = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    JAID,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -48,19 +71,14 @@ const QuotationPending = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="View Quotation"
-          onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
-              JAID,
-              jobType,
-            });
-          }}
+          onPress={() => viewQuotation(JAID, jobType)}
         />
       </View>
     </View>
   );
 
   const renderItem = ({item}) => {
-    if (item.jobassignment[0].state === 'Quotation pending') {
+    if (item.jobassignment[0].state === 'Quotation sent') {
       return (
         <Item
           fname={item.provider[0].name.fName}
@@ -71,6 +89,8 @@ const QuotationPending = ({navigation, route}) => {
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
+          // qAmount={item.jobassignment[0].quotation.amount}
+
           /* reason={item.userJobs[0].withdrawn?.reason|| ''}
         amount={item.userJobs[0].quotation?.amount|| ''} */
         />

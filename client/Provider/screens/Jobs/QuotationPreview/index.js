@@ -10,10 +10,11 @@ import Quotation from '../../../../components/Quotation';
 const QuotationPreview = ({navigation, route}) => {
   const [checked, setChecked] = React.useState(false);
   const {job} = route.params.job;
+  const JAID = route.params.JAID;
 
   // Function to post quotation to the database
   const handleSubmit = () => {
-    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/${route.params.JAID}`, {
+    axios.patch(`http://10.0.2.2:5000/jobAssignment/quotation/${JAID}`, {
       estimatedTime: route.params.completeTime,
       amount: route.params.amount,
     })
@@ -21,7 +22,7 @@ const QuotationPreview = ({navigation, route}) => {
       navigation.push('Acknowledgement', {
         title: 'Quotation Sent !',
         subtitle: "Please wait for the customer's response",
-        routeTo: "Job Details"
+        routeTo: "Job History"
       })
     })
     .catch(function (error) {
@@ -54,7 +55,7 @@ const QuotationPreview = ({navigation, route}) => {
         <Sbutton
           disabled={!checked}
           text="Cancel"
-          onPress={() => navigation.navigate('Job Details')}
+          onPress={() => navigation.pop(2)}
         />
       </View>
     </View>

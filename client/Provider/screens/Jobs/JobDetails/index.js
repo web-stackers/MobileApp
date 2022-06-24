@@ -20,13 +20,10 @@ const DetailField = ({field, detail}) => {
   )
 }
 
-const JobDetails = ({navigation}) => {
+const JobDetails = ({navigation, route}) => {
   const [read, setRead] = useState(false);
   const [job, setJob] = useState();
-
-  const [state, setState] = useState("Request pending");
-
-  const id = '621341023987d49e1f22f7a8';
+  const {id, state, JAID, amount, time} = route.params;
 
   // Function to get job details
   const getJob = async () => {
@@ -79,6 +76,19 @@ const JobDetails = ({navigation}) => {
         <Text style={styles.field}>Location</Text>
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
+
+      {job && state==='Job pending' && (
+        <View style={styles.content}>
+          <DetailField
+            field="Estimated time to complete"
+            detail={dateFormat(time, "dddd, mmmm dS, yyyy, h:MM TT")}
+          />
+          <DetailField
+            field="Amount"
+            detail={amount}
+          />
+        </View>
+      )}
       
       {state==='Request pending' && <View style={styles.btngrp}>
         <ScheckBox
@@ -94,6 +104,7 @@ const JobDetails = ({navigation}) => {
           onPress={() =>
             navigation.push('Quotation Details', {
               job: {job},
+              JAID: JAID,
             })
           }
         />
@@ -101,13 +112,13 @@ const JobDetails = ({navigation}) => {
           disabled={!read}
           text="Refuse"
           onPress={() => navigation.push('Refuse Job', {
-            JAID: '62136a2d657adfba60a6878a',
+            JAID: JAID,
           })
         }
         />
       </View>}
 
-      {state==='Job Pending' && <View style={styles.btngrp}>
+      {state==='Job pending' && <View style={styles.btngrp}>
         <ScheckBox
           checked={read}
           setChecked={setRead}
@@ -120,7 +131,17 @@ const JobDetails = ({navigation}) => {
           text="Withdraw"
           onPress={() => navigation.push('Job Withdrawal', {
             arisedBy: 'provider',
-            routeTo: 'Job Details'
+            routeTo: 'Job Details',
+            JAID: JAID,
+          })}
+        />
+
+        <Sbutton
+          primary={true}
+          text="Message Consumer"
+          onPress={() => navigation.push('Chat', {
+            sendBy: 'provider',
+            JAID: JAID,
           })}
         />
       </View>}

@@ -2,7 +2,8 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Text, Alert} from 'react-native';
+import {SafeAreaView, View, FlatList, Alert} from 'react-native';
+import { Text } from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -10,8 +11,7 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobWithdrawal = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
+  const {id} = route.params;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const JobWithdrawal = ({navigation, route}) => {
     setLoading(true);
     axios
       .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/629f77da0d2903e52b176866`,
+        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )
       .then(response => {
         setJobs(response.data);
@@ -51,7 +51,7 @@ const JobWithdrawal = ({navigation, route}) => {
   );
 
   const renderItem = ({item}) => {
-      if (item.jobassignment[0].state === "Job withdrawal") {
+      if (item.jobassignment[0].state === "Job withdrawn" || item.jobassignment[0].state === "Withdrawal pending") {
         return (
           <Item
             fname={item.consumer[0].name.fName}
