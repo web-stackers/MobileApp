@@ -8,6 +8,7 @@ import Sbutton from '../../../components/Sbutton';
 import {useTheme} from 'react-native-paper';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StackActions } from '@react-navigation/native';
 
 const Login = ({navigation, route}) => {
   const {colors} = useTheme();
@@ -30,23 +31,29 @@ const Login = ({navigation, route}) => {
 
         console.log(res.data);
         if (res.data.result?.address?.longitude) {
-          // setUser(() => {
-          //   return JSON.parse(AsyncStorage.getItem('profile'));
-          // });
           AsyncStorage.setItem('profile', JSON.stringify(res.data));
           if (type === 'consumer') {
-            navigation.push('Consumer', {
-              // screen: 'Home',
-              // params: {
-              _id: res.data.result._id,
-              type: type,
-              // },
-            });
+            navigation.dispatch(
+              StackActions.replace('Consumer', {
+                _id: res.data.result._id,
+                 type: type,
+              })
+            );
+            // navigation.push('Consumer', {
+            //   _id: res.data.result._id,
+            //   type: type,
+            // });
           } else {
-            navigation.push('Provider', {
-              _id: res.data.result._id,
-              type: type,
-            });
+            navigation.dispatch(
+              StackActions.replace('Provider', {
+                _id: res.data.result._id,
+                 type: type,
+              })
+            );
+            // navigation.push('Provider', {
+            //   _id: res.data.result._id,
+            //   type: type,
+            // });
           }
         } else {
           Alert.alert(
@@ -62,10 +69,16 @@ const Login = ({navigation, route}) => {
               {
                 text: 'OK',
                 onPress: () => {
-                  navigation.push('SetLocation', {
-                    toAsycnStore: res.data,
-                    type: type,
-                  });
+                  navigation.dispatch(
+                    StackActions.replace('SetLocation', {
+                      toAsycnStore: res.data,
+                      type: type,
+                    })
+                  );
+                  // navigation.push('SetLocation', {
+                  //   toAsycnStore: res.data,
+                  //   type: type,
+                  // });
                 },
               },
             ],
@@ -187,7 +200,7 @@ const Login = ({navigation, route}) => {
             <Text style={styles.forgotPassText}>Forgot Password ?</Text>
           </Button>
         ) : null}
-        <View style={{width: '96.5%'}}>
+        <View style={{width: '96.5%', marginTop:5}}>
           <Sbutton
             disabled={!email || !password}
             primary={true}
@@ -197,7 +210,7 @@ const Login = ({navigation, route}) => {
         </View>
         {type === 'consumer' ? (
           <Button
-            // onPress={onPress}
+            onPress={() => navigation.push('ConsumerRegister')}
             style={styles.button}
             // disabled={disabled}
             color={colors.primary}>

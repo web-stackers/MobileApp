@@ -30,7 +30,7 @@ const ChangePassword = ({navigation, route}) => {
           'Done',
           'Your new password has been updated successfully',
         );
-        navigation.pop(2);
+        navigation.pop(1);
       } catch (err) {
         console.log(err);
         if (err.response.status === 500) {

@@ -8,6 +8,7 @@ import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Geolocation from 'react-native-geolocation-service';
+import { StackActions } from '@react-navigation/native';
 
 const SetLocation = ({navigation, route}) => {
   const {type, toAsycnStore} = route.params;
@@ -75,16 +76,31 @@ const SetLocation = ({navigation, route}) => {
               latitude: newLat,
             });
           AsyncStorage.setItem('profile', JSON.stringify(toAsycnStore));
+          // if (type === 'consumer') {
+          //   navigation.navigate('Consumer', {
+          //     _id: user_id,
+          //     type: type,
+          //   });
+          // } else {
+          //   navigation.navigate('Provider', {
+          //     _id: user_id,
+          //     type: type,
+          //   });
+          // }
           if (type === 'consumer') {
-            navigation.navigate('Consumer', {
-              _id: user_id,
-              type: type,
-            });
+            navigation.dispatch(
+              StackActions.replace('Consumer', {
+                _id: user_id,
+                 type: type,
+              })
+            );
           } else {
-            navigation.navigate('Provider', {
-              _id: user_id,
-              type: type,
-            });
+            navigation.dispatch(
+              StackActions.replace('Provider', {
+                _id: user_id,
+                 type: type,
+              })
+            );
           }
           },
         },
