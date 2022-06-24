@@ -3,7 +3,8 @@ import {View, Text, Image} from 'react-native';
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
 
-const Acknowledge = ({navigation}) => {
+const Acknowledge = ({navigation, route}) => {
+  const complaintBy = route.params.by;
   return (
     <View style={styles.container}>
       <View style={styles.message}>
@@ -22,7 +23,15 @@ const Acknowledge = ({navigation}) => {
         <Sbutton
           primary={true}
           text="Done"
-          onPress={() => navigation.navigate('JobScreen')}
+          // onPress={() => navigation.navigate('Home')}
+          onPress={() => {
+            if(complaintBy === 'Consumer') {
+              navigation.navigate('Job Completed Consumer');
+            }
+            else {
+              navigation.navigate('Job Completed Provider');
+            }
+          }}
         />
       </View>
     </View>

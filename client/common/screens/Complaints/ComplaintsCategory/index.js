@@ -24,16 +24,17 @@ const OtherReasons = ({categories}) => {
   return categories.map((category, index) => {
     if (category.name !== 'Other issues') {
       return (
-        <TouchableOpacity
-          key={index}
-          style={styles.touchable}
-          onPress={() => handleOnPress(category.name)}>
-          <View style={{padding: 10}}>
-            <Text style={styles.content}>{category.name}</Text>
-          </View>
+        <View key={index}>
+          <TouchableOpacity
+            style={styles.touchable}
+            onPress={() => handleOnPress(category.name)}>
+            <View style={{padding: 10}}>
+              <Text style={styles.content}>{category.name}</Text>
+            </View>
 
-          <View style={[getSelected(category.name) && styles.overlay]} />
-        </TouchableOpacity>
+            <View style={[getSelected(category.name) && styles.overlay]} />
+          </TouchableOpacity>
+        </View>
       );
     }
   });
@@ -135,6 +136,22 @@ const ComplaintsCategory = ({route, navigation}) => {
           primary={true}
           text="Submit"
           onPress={() => {
+            if(complaintDescription === '') {
+              axios
+                .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                  by: complaintBy,
+                  category: title,
+                })
+                .then(function (response) {
+                  navigation.navigate('Acknowledge', {
+                    by:complaintBy
+                  });
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+            }
+            else {
             axios
               .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
                 by: complaintBy,
@@ -142,11 +159,15 @@ const ComplaintsCategory = ({route, navigation}) => {
                 description: complaintDescription,
               })
               .then(function (response) {
-                navigation.navigate('Acknowledge');
+                navigation.navigate('Acknowledge', {
+                  by: complaintBy,
+                });
               })
               .catch(function (error) {
                 console.log(error);
               });
+
+            }
             // Alert.alert(selectedItems);
           }}
         />
