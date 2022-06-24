@@ -1,15 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {Text} from 'react-native-paper';
-import {useFocusEffect} from '@react-navigation/native';
 import dateFormat from 'dateformat';
-
-import axios from 'axios';
 
 import styles from './styles';
 import Sbutton from '../../../../components/Sbutton';
-import ScheckBox from '../../../../components/ScheckBox';
 import Map from '../../../../components/Map';
 
 const DetailField = ({field, detail}) => {

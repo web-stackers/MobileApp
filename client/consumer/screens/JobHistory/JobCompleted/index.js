@@ -2,19 +2,15 @@
 /* eslint-disable prettier/prettier */
 
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {SafeAreaView, View, FlatList} from 'react-native';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
-import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobCompleted = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
-  let CID = '62132b7bc4afd22e5fc49677';
-  let type = 'consumer';
+  let CID = route.params.id;
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,9 +19,7 @@ const JobCompleted = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132c85c4afd22e5fc49685`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -54,8 +48,8 @@ const JobCompleted = ({navigation, route}) => {
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
+      <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
         <Sbutton

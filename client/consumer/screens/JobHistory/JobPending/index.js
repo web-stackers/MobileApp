@@ -11,8 +11,6 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobPending = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
   let CID = route.params.id;
 
   const [jobs, setJobs] = useState([]);
@@ -84,9 +82,8 @@ const JobPending = ({navigation, route}) => {
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
-      <Text style={styles.subtitle}>Status: {state}</Text>
+      <Text style={styles.subtitle}>Description: {description}</Text>
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
