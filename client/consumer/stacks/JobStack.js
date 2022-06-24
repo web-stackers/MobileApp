@@ -25,6 +25,8 @@ import Acknowledge from '../../common/screens/Complaints/Acknowledge';
 // Ratings and reviews
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
 
+import JobDetail from '../screens/JobRequest/JobDetail';
+
 const JobStack = createNativeStackNavigator();
 
 const JobStackScreen = ({userParams}) => (
@@ -57,6 +59,8 @@ const JobStackScreen = ({userParams}) => (
     <JobStack.Screen name="Quotation Rejected" component={QuotationRejected} />
 
     <JobStack.Screen name="Request Sent" component={RequestSent} />
+
+    <JobStack.Screen name="Job Detail" component={JobDetail} />
 
     <JobStack.Screen
       name="JobWithdrawal"

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useCallback} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {Text} from 'react-native-paper';
@@ -20,28 +21,13 @@ const DetailField = ({field, detail}) => {
   );
 };
 
-const JobDetails = ({navigation, route}) => {
+const JobDetail = ({navigation, route}) => {
   const [read, setRead] = useState(false);
   const [job, setJob] = useState();
-  const {id, state, JAID, amount, time} = route.params;
-
-  // Function to get job details
-  const getJob = async () => {
-    await axios
-      .get(`http://10.0.2.2:5000/job/${id}`)
-      .then(response => {
-        setJob(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  useFocusEffect(
-    useCallback(() => {
-      getJob();
-    }, []),
-  );
+  const {fname, jobType, description, state, amount, time, requestedTime} =
+    route.params;
+  console.log(fname);
+  //   const {id, state, JAID, amount, time} = route.params;
 
   return (
     <ScrollView style={styles.container}>
@@ -50,38 +36,38 @@ const JobDetails = ({navigation, route}) => {
         source={require('../../../../assets/images/JDetails.png')}
       />
 
-      {job && (
-        <View style={styles.content}>
-          <DetailField field="Job Description" detail={job.description} />
-          <DetailField field="Photos" detail={job.description} />
-          <DetailField
-            field="Date"
-            detail={dateFormat(job.requestedTime, 'fullDate')}
-          />
-          <DetailField
-            field="Time"
-            detail={dateFormat(job.requestedTime, 'hh:MM TT')}
-          />
-        </View>
-      )}
+      <View style={styles.content}>
+        <DetailField field="Provider Name" detail={fname} />
+        <DetailField field="Job Type" detail={jobType} />
+        <DetailField field="Job Description" detail={description} />
+        <DetailField
+          field="Requested Date"
+          detail={dateFormat(requestedTime, 'fullDate')}
+        />
+        <DetailField
+          field="Requested Time"
+          detail={dateFormat(requestedTime, 'hh:MM TT')}
+        />
+        <DetailField field="Job Status" detail={state} />
+        <DetailField field="Quotation Amount" detail={amount} />
+        <DetailField
+          field="Work Finish Date"
+          detail={dateFormat(time, 'fullDate')}
+        />
+        <DetailField
+          field="Work Finish Time"
+          detail={dateFormat(time, 'hh:MM TT')}
+        />
+      </View>
 
       {/* Map to show location */}
       <View style={styles.map}>
         <Text style={styles.field}>Location</Text>
-        {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
+        <Map lat={6.920319058452148} long={79.87668603658676} />
+        {/* <Map lat={job.address.latitude} long={job.address.longitude} /> */}
       </View>
 
-      {job && state === 'Job pending' && (
-        <View style={styles.content}>
-          <DetailField
-            field="Estimated time to complete"
-            detail={dateFormat(time, 'dddd, mmmm dS, yyyy, h:MM TT')}
-          />
-          <DetailField field="Amount" detail={amount} />
-        </View>
-      )}
-
-      {state === 'Request pending' && (
+      {/* {state === 'Request pending' && (
         <View style={styles.btngrp}>
           <ScheckBox
             checked={read}
@@ -109,10 +95,10 @@ const JobDetails = ({navigation, route}) => {
               })
             }
           />
-        </View>
-      )}
+      </View>
+      )} */}
 
-      {state === 'Job pending' && (
+      {/* {state === 'Job pending' && (
         <View style={styles.btngrp}>
           <ScheckBox
             checked={read}
@@ -144,9 +130,9 @@ const JobDetails = ({navigation, route}) => {
             }
           />
         </View>
-      )}
+      )} */}
     </ScrollView>
   );
 };
 
-export default JobDetails;
+export default JobDetail;

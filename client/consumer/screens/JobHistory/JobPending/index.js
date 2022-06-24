@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -36,13 +36,32 @@ const JobPending = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
+  // const viewAddress = (JAID, jobType) => {
+  //   console.log('button pressed');
+  //   axios
+  //     .get(`http://10.0.2.2:5000/job/${id}`)
+  //     .then(response => {
+  //       console.log(response.data);
+  //       navigation.navigate('QuotationDetails', {
+  //         JobType: jobType,
+  //         JAID: JAID,
+  //         JA: response.data,
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
+
   const Item = ({
     fname,
     lname,
-    rating,
     description,
     id,
     state,
+    amount,
+    time,
+    requestedTime,
     jobType,
     JAID,
   }) => (
@@ -58,7 +77,15 @@ const JobPending = ({navigation, route}) => {
           primary={true}
           text="View"
           onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
+            console.log(fname);
+            navigation.navigate('Job Detail', {
+              fname,
+              jobType,
+              description,
+              state,
+              amount,
+              time,
+              requestedTime,
               id,
               JAID,
             });
@@ -95,11 +122,12 @@ const JobPending = ({navigation, route}) => {
           rating={item.provider[0].totalRating / item.provider[0].ratingCount}
           description={item.description}
           id={item._id}
+          requestedTime={item.requestedTime}
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+          amount={item.jobassignment[0].quotation.amount}
+          time={item.jobassignment[0].quotation.estimatedTime}
         />
       );
     }
