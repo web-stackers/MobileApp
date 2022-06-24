@@ -7,7 +7,7 @@ const Complaints = ({navigation, route}) => {
   // const {id, complaintBy} = route.params;
 
   const complaintBy = 'Consumer';
-  const jobId = '621341023987d49e1f22f7a8';
+  const jobId = '62b5040441de127304ee7c53';
 
   const providerComplaintCategory = [
     {

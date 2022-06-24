@@ -7,9 +7,9 @@ import ChatStackScreen from './common/stacks/ChatStack';
 const Common = () => {
   return (
     <NavigationContainer>
-      <ComplaintStackScreen />
+      {/* <ComplaintStackScreen /> */}
       {/* <RatingsAndReviewsStackScreen /> */}
-      {/* <ChatStackScreen /> */}
+      <ChatStackScreen />
     </NavigationContainer>
   );
 };

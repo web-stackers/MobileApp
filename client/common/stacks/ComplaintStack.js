@@ -4,6 +4,8 @@ import Complaints from '../screens/Complaints/Complaints/index';
 import ComplaintsCategory from '../screens/Complaints/ComplaintsCategory/index';
 import Acknowledge from '../screens/Complaints/Acknowledge';
 import HomeScreen from '../screens/HomeScreen';
+import PJobCompleted from '../../Provider/screens/JobsScreen/JobCompleted';
+import CJobCompleted from '../../consumer/screens/JobHistory/JobCompleted';
 
 const ComplaintStack = createNativeStackNavigator();
 
@@ -33,6 +35,22 @@ const ComplaintStackScreen = () => (
     <ComplaintStack.Screen
       name="Home"
       component={HomeScreen}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <ComplaintStack.Screen
+      name="Job Completed Provider"
+      component={PJobCompleted}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <ComplaintStack.Screen
+      name="Job Completed Consumer"
+      component={CJobCompleted}
       options={{
         header: () => null,
       }}
