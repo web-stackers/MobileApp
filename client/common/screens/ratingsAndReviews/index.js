@@ -9,57 +9,10 @@ const RatingsAndReviews = ({navigation}) => {
   // const {id, ratingsBy} = route.params;
 
   const ratingsBy = 'Consumer';
-  const jobId = '621341023987d49e1f22f7a8';
+  const jobId = '62b5040441de127304ee7c53';
 
-  const [job, setJob] = useState([]);
-  const [name, setName] = useState([]);
   const [reviews, setReviews] = useState('');
   const [starRating, setStarRating] = useState(0);
-
-  // Fetch particular job
-  const getJob = () => {
-    axios
-      .get(`http://10.0.2.2:5000/job/${jobId}`)
-      .then(response => {
-        setJob(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  // Fetch user name
-  const getName = () => {
-    if (ratingsBy === 'Consumer') {
-      // const id = job.providerId;
-      const id = '62a06e2bafddf297d7b90069';
-
-      axios
-        .get(`http://10.0.2.2:5000/provider/get/provider/name/${id}`)
-        .then(response => {
-          setName(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else {
-      // const id = job.consumerId;
-      const id = '62132b7bc4afd22e5fc49677';
-      axios
-        .get(`http://10.0.2.2:5000/consumer/get/consumer/name/${id}`)
-        .then(response => {
-          setName(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  };
-
-  useEffect(() => {
-    getJob();
-    getName();
-  }, []);
 
   const handleSubmit = () => {
     if (starRating === 0 && reviews === '') {
@@ -74,7 +27,11 @@ const RatingsAndReviews = ({navigation}) => {
           rating: starRating,
         })
         .then(function (response) {
-          navigation.navigate('JobScreen');
+          if (ratingsBy === 'Consumer') {
+            navigation.navigate('Job Completed Consumer');
+          } else {
+            navigation.navigate('Job Completed Provider');
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -86,7 +43,11 @@ const RatingsAndReviews = ({navigation}) => {
           review: reviews,
         })
         .then(function (response) {
-          navigation.navigate('JobScreen');
+          if (ratingsBy === 'Consumer') {
+            navigation.navigate('Job Completed Consumer');
+          } else {
+            navigation.navigate('Job Completed Provider');
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -99,7 +60,11 @@ const RatingsAndReviews = ({navigation}) => {
           review: reviews,
         })
         .then(function (response) {
-          navigation.navigate('JobScreen');
+          if (ratingsBy === 'Consumer') {
+            navigation.navigate('Job Completed Consumer');
+          } else {
+            navigation.navigate('Job Completed Provider');
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -110,7 +75,9 @@ const RatingsAndReviews = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.outBox}>
-        <Text style={styles.topContent}>Please Rate {name.fName}</Text>
+        <Text style={styles.topContent}>
+          Please Rate the {ratingsBy === 'Consumer' ? 'Provider' : 'Consumer'}
+        </Text>
         <View style={styles.inBox}>
           <Text style={styles.middleContent}>How was the service?</Text>
           <View style={styles.starView}>
@@ -148,7 +115,13 @@ const RatingsAndReviews = ({navigation}) => {
           <Button
             title=" May be later "
             color="rgba(52, 52, 52, 0.8)"
-            onPress={() => navigation.push('JobScreen')}
+            onPress={() => {
+              if (ratingsBy === 'Consumer') {
+                navigation.navigate('Job Completed Consumer');
+              } else {
+                navigation.navigate('Job Completed Provider');
+              }
+            }}
           />
         </View>
       </View>
