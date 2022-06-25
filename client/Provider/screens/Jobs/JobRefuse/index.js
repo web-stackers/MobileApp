@@ -63,6 +63,18 @@ const JobRefusePage = ({navigation, route}) => {
           onValueChange={newValue => {setValue(newValue); setReason(texts[newValue]);}}
           value={value}
         >
+          {value===3 && <TextInput
+            value={otherReason}
+            onChangeText={(value) => setOtherReason(value)}
+            mode="outlined"
+            multiline={true}
+            theme={{ roundness: 6 }} 
+            outlineColor="#797D7F"
+            activeOutlineColor={colors.primary}
+            style={styles.input}
+            placeholder="Enter the reason" 
+            disabled={!(value===3)}
+          />}
           <SradioButton
             value={0}
             text={texts[0]}
@@ -80,18 +92,6 @@ const JobRefusePage = ({navigation, route}) => {
             text={texts[3]}
           />
         </RadioButton.Group>
-        {value===3 && <TextInput
-          value={otherReason}
-          onChangeText={(value) => setOtherReason(value)}
-          mode="outlined"
-          multiline={true}
-          theme={{ roundness: 6 }} 
-          outlineColor="#797D7F"
-          activeOutlineColor={colors.primary}
-          style={styles.input}
-          placeholder="Enter the reason" 
-          disabled={!(value===3)}
-        />}
       </View>
 
       <View style={styles.btngrp}>

@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     },
     reasons: {
         padding: 5,
-        width: '95%'
+        width: '95%',
+        marginBottom: 10
     },
     radioButton: {
         display:'flex',
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 2,
         color: 'white',
+        marginBottom: 10
     },
 });
 
