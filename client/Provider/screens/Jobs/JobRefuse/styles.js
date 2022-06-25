@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   JRefusePic: {
     height: 150,
     width: 150,
-    marginBottom: 50
+    marginBottom: 25
   },
   reasons: {
     padding: 5,
@@ -35,7 +35,15 @@ const styles = StyleSheet.create({
     display:'flex',
     flexDirection:'row',
     alignItems: 'center',
-  }
+  },
+  input: {
+    height: 75,
+    width: '95%',
+    margin: 5,
+    borderWidth: 1,
+    padding: 2,
+    color: 'white',
+  },
 });
 
 export default styles;
