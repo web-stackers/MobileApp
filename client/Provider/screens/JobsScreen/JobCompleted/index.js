@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 import dateFormat from 'dateformat';
 
@@ -21,9 +21,7 @@ const JobCompleted = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/provider/${id}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -37,22 +35,41 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, requestDate, state, time, amount, JAID, complaint, ratingAndReview}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    requestDate,
+    state,
+    time,
+    amount,
+    JAID,
+    complaint,
+    ratingAndReview,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
       <Text style={styles.subtitle}>Rating : {rating}</Text>
-      <Text style={styles.subtitle}>Description:{"\n"}{description}</Text>
       <Text style={styles.subtitle}>
-        Job Requested Date:{"\n"}
-        {dateFormat(requestDate, "dddd, mmmm dS, yyyy, h:MM TT")}
+        Description:{'\n'}
+        {description}
       </Text>
       <Text style={styles.subtitle}>
-        Estimated complete date:{"\n"}
-        {dateFormat(time, "dddd, mmmm dS, yyyy, h:MM TT")}
+        Job Requested Date:{'\n'}
+        {dateFormat(requestDate, 'dddd, mmmm dS, yyyy, h:MM TT')}
       </Text>
-      <Text style={styles.subtitle}>Estimated amount :{"\nRs "}{amount}</Text>
+      <Text style={styles.subtitle}>
+        Estimated complete date:{'\n'}
+        {dateFormat(time, 'dddd, mmmm dS, yyyy, h:MM TT')}
+      </Text>
+      <Text style={styles.subtitle}>
+        Estimated amount :{'\nRs '}
+        {amount}
+      </Text>
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
@@ -60,23 +77,31 @@ const JobCompleted = ({navigation, route}) => {
           onPress={() => {
             navigation.navigate('Complaint', {
               id,
-              complaint,
+              complaint: 'provider',
             });
           }}
         />
-        <Sbutton primary={true} text="Rate and Review" onPress={() => {
+        <Sbutton
+          primary={true}
+          text="Rate and Review"
+          onPress={() => {
             navigation.navigate('Rating and Review', {
               id,
               ratingAndReview,
             });
-          }}/>
-        <Sbutton primary={true} text="View Chat" onPress={() => {
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="View Chat"
+          onPress={() => {
             navigation.navigate('Chat', {
               JAID,
               state,
-              sendBy:'provider'
+              sendBy: 'provider',
             });
-          }}/>
+          }}
+        />
       </View>
     </View>
   );
@@ -90,9 +115,13 @@ const JobCompleted = ({navigation, route}) => {
           description={item.description}
           id={item._id}
           JAID={item.jobassignment[0]._id}
-          //complaint={item.complaint[0].by}
-         // ratingAndReview={item.ratingAndReview[0].by}
-          rating={parseFloat((item.consumer[0].totalRating / item.consumer[0].ratingCount).toFixed(2))}
+          // complaint={item.complaint[0].by}
+          // ratingAndReview={item.ratingAndReview[0].by}
+          rating={parseFloat(
+            (
+              item.consumer[0].totalRating / item.consumer[0].ratingCount
+            ).toFixed(2),
+          )}
           state={item.jobassignment[0].state}
           requestDate={item.requestedTime}
           time={item.jobassignment[0].quotation.estimatedTime}

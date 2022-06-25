@@ -25,11 +25,11 @@ const Acknowledge = ({navigation, route}) => {
           text="Done"
           // onPress={() => navigation.navigate('Home')}
           onPress={() => {
-            if(complaintBy === 'Consumer') {
+            if(complaintBy === 'consumer') {
               navigation.navigate('Job Completed Consumer');
             }
             else {
-              navigation.navigate('Job Completed Provider');
+              navigation.navigate('Job History');
             }
           }}
         />

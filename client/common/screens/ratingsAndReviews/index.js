@@ -5,11 +5,8 @@ import axios from 'axios';
 import {TextInput} from 'react-native-paper';
 import {Rating} from 'react-native-ratings';
 
-const RatingsAndReviews = ({navigation}) => {
-  // const {id, ratingsBy} = route.params;
-
-  const ratingsBy = 'Consumer';
-  const jobId = '62b5040441de127304ee7c53';
+const RatingsAndReviews = ({navigation, route}) => {
+  const {id, ratingAndReview} = route.params;
 
   const [reviews, setReviews] = useState('');
   const [starRating, setStarRating] = useState(0);
@@ -22,15 +19,15 @@ const RatingsAndReviews = ({navigation}) => {
       );
     } else if (reviews === '') {
       axios
-        .patch(`http://10.0.2.2:5000/job/ratingAndReview/${jobId}`, {
-          by: ratingsBy,
+        .patch(`http://10.0.2.2:5000/job/ratingAndReview/${id}`, {
+          by: ratingAndReview,
           rating: starRating,
         })
         .then(function (response) {
-          if (ratingsBy === 'Consumer') {
+          if (ratingAndReview === 'consumer') {
             navigation.navigate('Job Completed Consumer');
           } else {
-            navigation.navigate('Job Completed Provider');
+            navigation.navigate('Job History');
           }
         })
         .catch(function (error) {
@@ -38,15 +35,15 @@ const RatingsAndReviews = ({navigation}) => {
         });
     } else if (starRating === 0) {
       axios
-        .patch(`http://10.0.2.2:5000/job/ratingAndReview/${jobId}`, {
-          by: ratingsBy,
+        .patch(`http://10.0.2.2:5000/job/ratingAndReview/${id}`, {
+          by: ratingAndReview,
           review: reviews,
         })
         .then(function (response) {
-          if (ratingsBy === 'Consumer') {
+          if (ratingAndReview === 'consumer') {
             navigation.navigate('Job Completed Consumer');
           } else {
-            navigation.navigate('Job Completed Provider');
+            navigation.navigate('Job History');
           }
         })
         .catch(function (error) {
@@ -54,16 +51,16 @@ const RatingsAndReviews = ({navigation}) => {
         });
     } else {
       axios
-        .patch(`http://10.0.2.2:5000/job/ratingAndReview/${jobId}`, {
-          by: ratingsBy,
+        .patch(`http://10.0.2.2:5000/job/ratingAndReview/${id}`, {
+          by: ratingAndReview,
           rating: starRating,
           review: reviews,
         })
         .then(function (response) {
-          if (ratingsBy === 'Consumer') {
+          if (ratingAndReview === 'consumer') {
             navigation.navigate('Job Completed Consumer');
           } else {
-            navigation.navigate('Job Completed Provider');
+            navigation.navigate('Job History');
           }
         })
         .catch(function (error) {
@@ -76,7 +73,8 @@ const RatingsAndReviews = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.outBox}>
         <Text style={styles.topContent}>
-          Please Rate the {ratingsBy === 'Consumer' ? 'Provider' : 'Consumer'}
+          Please Rate the{' '}
+          {ratingAndReview === 'consumer' ? 'Provider' : 'Consumer'}
         </Text>
         <View style={styles.inBox}>
           <Text style={styles.middleContent}>How was the service?</Text>
@@ -116,10 +114,10 @@ const RatingsAndReviews = ({navigation}) => {
             title=" May be later "
             color="rgba(52, 52, 52, 0.8)"
             onPress={() => {
-              if (ratingsBy === 'Consumer') {
+              if (ratingAndReview === 'consumer') {
                 navigation.navigate('Job Completed Consumer');
               } else {
-                navigation.navigate('Job Completed Provider');
+                navigation.navigate('Job History');
               }
             }}
           />

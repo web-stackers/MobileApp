@@ -20,14 +20,14 @@ const OtherReasons = ({categories, selectedItems, setSelectedItems}) => {
   };
 
   return categories.map((category, index) => {
-    if (category.name !== 'Other issues') {
+    if (category.name !== 'Other issues' && category.id !== 0) {
       return (
         <View key={index} style={styles.categories}>
           <TouchableOpacity
             style={styles.touchable}
             onPress={() => handleOnPress(category.name)}>
             <View style={{padding: 10}}>
-              <Text style={styles.content}>{category.name}</Text>
+              <Text style={styles.touchableContent}>{category.name}</Text>
             </View>
 
             <View style={[getSelected(category.name) && styles.overlay]} />
@@ -99,7 +99,7 @@ const ComplaintsCategory = ({route, navigation}) => {
   ];
 
   const displayDescription = () => {
-    if (complaintBy === 'Consumer') {
+    if (complaintBy === 'consumer') {
       return consumerCategoryDescription;
     } else {
       return providerCategoryDescription;
@@ -109,7 +109,7 @@ const ComplaintsCategory = ({route, navigation}) => {
   const categoryDescription = displayDescription()[id];
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View>
         <Text style={styles.header}>{title}</Text>
       </View>
@@ -122,9 +122,7 @@ const ComplaintsCategory = ({route, navigation}) => {
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
         />
-      ) : (
-        <View></View>
-      )}
+      ) : null}
       <View style={styles.box}>
         <StextInput
           label="You may enter your specific queries here"
@@ -134,7 +132,7 @@ const ComplaintsCategory = ({route, navigation}) => {
           }
         />
       </View>
-      <View style={styles.btngrp}>
+      <View style={styles.btn}>
         <Sbutton
           primary={true}
           text="Submit"
@@ -147,7 +145,7 @@ const ComplaintsCategory = ({route, navigation}) => {
                     category: title,
                   })
                   .then(function (response) {
-                    navigation.navigate('Acknowledge', {
+                    navigation.navigate('Complaint acknowledge', {
                       by: complaintBy,
                     });
                   })
@@ -162,7 +160,7 @@ const ComplaintsCategory = ({route, navigation}) => {
                     description: complaintDescription,
                   })
                   .then(function (response) {
-                    navigation.navigate('Acknowledge', {
+                    navigation.navigate('Complaint acknowledge', {
                       by: complaintBy,
                     });
                   })
@@ -179,7 +177,7 @@ const ComplaintsCategory = ({route, navigation}) => {
                       category: title,
                     })
                     .then(function (response) {
-                      navigation.navigate('Acknowledge', {
+                      navigation.navigate('Complaint acknowledge', {
                         by: complaintBy,
                       });
                     })
@@ -194,7 +192,7 @@ const ComplaintsCategory = ({route, navigation}) => {
                       description: complaintDescription,
                     })
                     .then(function (response) {
-                      navigation.navigate('Acknowledge', {
+                      navigation.navigate('Complaint acknowledge', {
                         by: complaintBy,
                       });
                     })
@@ -211,7 +209,7 @@ const ComplaintsCategory = ({route, navigation}) => {
                       othercategory: selectedItems.toString(),
                     })
                     .then(function (response) {
-                      navigation.navigate('Acknowledge', {
+                      navigation.navigate('Complaint acknowledge', {
                         by: complaintBy,
                       });
                     })
@@ -227,7 +225,7 @@ const ComplaintsCategory = ({route, navigation}) => {
                       description: complaintDescription,
                     })
                     .then(function (response) {
-                      navigation.navigate('Acknowledge', {
+                      navigation.navigate('Complaint acknowledge', {
                         by: complaintBy,
                       });
                     })
@@ -237,20 +235,10 @@ const ComplaintsCategory = ({route, navigation}) => {
                 }
               }
             }
-            // console.log(selectedItems);
-            // if (Object.keys(selectedItems).length === 0) {
-            //   console.log('Yesss');
-            // }
-            // if(selectedItems === []) {
-            //   console.log('Yesss');
-            // }
-            // else {
-            //   console.log('Noo');
-            // }
           }}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

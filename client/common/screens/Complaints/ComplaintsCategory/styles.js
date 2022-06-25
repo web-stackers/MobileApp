@@ -5,8 +5,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121212',
     width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between'
   },
 
   header: {
@@ -16,27 +14,25 @@ const styles = StyleSheet.create({
   },
 
   description: {
-    marginTop: 15,
-    marginBottom: -15,
+    marginTop: 20,
     width: '95%',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 
   content: {
     fontSize: 18,
     textAlign: 'justify',
-    lineHeight: 23
+    lineHeight: 23,
   },
 
   box: {
-    marginTop: 10, 
-    marginBottom: 5,
-    alignItems: 'center'
+    marginTop: 15,
+    alignItems: 'center',
   },
 
-  btngrp: {
+  btn: {
     width: '95%',
-    marginBottom: 15,
+    marginTop: 20,
     alignSelf: 'center',
   },
 
@@ -49,8 +45,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: '#652C9E',
     borderRadius: 8,
-    paddingLeft: 10
   },
+
+  touchableContent: {fontSize: 18, paddingLeft: 10},
 
   overlay: {
     position: 'absolute',

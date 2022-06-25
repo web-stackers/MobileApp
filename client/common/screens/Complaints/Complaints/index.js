@@ -1,13 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Text, ScrollView, View, Pressable} from 'react-native';
 import styles from './styles';
-import axios from 'axios';
 
 const Complaints = ({navigation, route}) => {
-  // const {id, complaintBy} = route.params;
-
-  const complaintBy = 'Consumer';
-  const jobId = '62b5040441de127304ee7c53';
+  const {id, complaint} = route.params;
 
   const providerComplaintCategory = [
     {
@@ -52,7 +48,7 @@ const Complaints = ({navigation, route}) => {
   ];
 
   const displayList = () => {
-    if (complaintBy === 'Consumer') {
+    if (complaint === 'consumer') {
       return consumerComplaintCategory;
     } else {
       return providerComplaintCategory;
@@ -74,10 +70,10 @@ const Complaints = ({navigation, route}) => {
             style={styles.list}
             onPress={() =>
               navigation.push('Complaint Category', {
-                by: complaintBy,
+                by: complaint,
                 title: category.name,
                 id: category.id,
-                jobId: jobId,
+                jobId: id,
                 categories: categories,
               })
             }>

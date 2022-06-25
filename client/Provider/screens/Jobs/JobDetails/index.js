@@ -54,7 +54,7 @@ const JobDetails = ({navigation, route}) => {
       {job && (
         <View style={styles.content}>
           <DetailField field="Job Description" detail={job.description} />
-          <DetailField field="Photos" detail={job.description} />
+          {/* <DetailField field="Photos" detail={job.description} /> */}
           <DetailField
             field="Date"
             detail={dateFormat(job.requestedTime, 'fullDate')}
