@@ -64,12 +64,12 @@ const JobStackScreen = ({userParams}) => (
     />
 
     <JobStack.Screen 
-      name="Pending Request" 
+      name="Pending Requests" 
       component={PendingRequestScreen} 
     />
     
     <JobStack.Screen 
-      name="Refused Jobs" 
+      name="Refused Requests" 
       component={RefusedJobs} 
     />
 

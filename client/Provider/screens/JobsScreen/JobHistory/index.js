@@ -1,8 +1,10 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, SafeAreaView, TouchableWithoutFeedback} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import {Text} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
 import styles from './styles';
 
@@ -25,11 +27,30 @@ const JobState = ({state, onPress}) => {
 const JobHistory = ({navigation, userParams}) => {
   const {type, _id} = userParams;
 
+  const completeJobs = async () => {
+    await axios
+      .get(
+        `http://10.0.2.2:5000/jobAssignment/state/completeJobs/provider/${_id}`,
+      )
+      /*.then(response => {
+        setJob(response.data);
+      })*/
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  useFocusEffect(
+    useCallback(() =>{
+      completeJobs();
+    }, [])
+  )
+
   return (
     <SafeAreaView style={styles.container}>
       <JobState
-        state="Pending Request"
-        onPress={() => navigation.navigate('Pending Request', {
+        state="Pending Requests"
+        onPress={() => navigation.navigate('Pending Requests', {
           id: `${_id}`,
           type: 'provider',
         })}
@@ -63,8 +84,8 @@ const JobHistory = ({navigation, userParams}) => {
         })}
       />
       <JobState
-        state="Refused Jobs"
-        onPress={() => navigation.navigate('Refused Jobs', {
+        state="Refused Requests"
+        onPress={() => navigation.navigate('Refused Requests', {
           id: `${_id}`,
           type: 'provider',
         })}
