@@ -1,7 +1,7 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable no-lone-blocks */
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -9,8 +9,6 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const RequestSent = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
   let CID = route.params.id;
 
   const [jobs, setJobs] = useState([]);
@@ -34,6 +32,21 @@ const RequestSent = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
+  const cancel = () =>
+    Alert.alert('Are you want to resend the request ?', [
+      {
+        text: 'Cancel',
+        onPress: () => navigation.navigate('JobHistoryScreen'),
+        style: 'cancel',
+      },
+      {
+        text: 'Ok',
+        onPress: () => {
+          navigation.navigate('CategorySelector');
+        },
+      },
+    ]);
+
   const Item = ({fname, lname, rating, description, id, state, jobType}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -47,7 +60,19 @@ const RequestSent = ({navigation, route}) => {
           primary={true}
           text="Cancel"
           onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
+            Alert.alert('Are you want to resend the request ?', [
+              {
+                text: 'Cancel',
+                onPress: () => navigation.navigate('JobHistoryScreen'),
+                style: 'cancel',
+              },
+              {
+                text: 'Ok',
+                onPress: () => {
+                  navigation.navigate('CategorySelector');
+                },
+              },
+            ]);
           }}
         />
       </View>
@@ -65,8 +90,6 @@ const RequestSent = ({navigation, route}) => {
           id={item._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
         />
       );
     }

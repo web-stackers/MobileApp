@@ -49,7 +49,7 @@ const RefusedJobs = ({navigation, route}) => {
           primary={true}
           text="Search again"
           onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
+            navigation.navigate('CategorySelector');
           }}
         />
       </View>

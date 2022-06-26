@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sbutton from '../../../../components/Sbutton';
@@ -18,9 +18,8 @@ const QuotationSent = ({navigation, route}) => {
   // Fetch job history of a user
   const fetchJobs = () => {
     setLoading(true);
-    axios.get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
-      )
+    axios
+      .get(`http://10.0.2.2:5000/job/user/userassignments/provider/${id}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -43,6 +42,8 @@ const QuotationSent = ({navigation, route}) => {
     state,
     jobType,
     JAID,
+    amount,
+    time,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -57,13 +58,13 @@ const QuotationSent = ({navigation, route}) => {
           text="View Job"
           onPress={() => {
             navigation.navigate('Job Details', {
-                id,
-                JAID,
-                state,
-                amount,
-                time,
+              id,
+              JAID,
+              state,
+              amount,
+              time,
             });
-            }}
+          }}
         />
       </View>
     </View>

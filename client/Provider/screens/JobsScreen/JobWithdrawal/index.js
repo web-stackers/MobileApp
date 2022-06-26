@@ -60,8 +60,7 @@ const JobWithdrawal = ({navigation, route}) => {
             id={item._id}
             state={item.jobassignment[0].state}
             jobType={item.jobType}
-             reason={item.userJobs[0].withdrawn?.reason|| ''}
-        /*amount={item.userJobs[0].quotation?.amount|| ''} */
+            reason={item.jobassignment[0].withdrawn?.reason|| ''}
           />
         );
       }

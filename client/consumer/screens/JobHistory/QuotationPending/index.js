@@ -89,10 +89,6 @@ const QuotationPending = ({navigation, route}) => {
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          // qAmount={item.jobassignment[0].quotation.amount}
-
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
         />
       );
     }

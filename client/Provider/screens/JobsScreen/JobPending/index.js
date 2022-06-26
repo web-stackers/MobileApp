@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import dateFormat from 'dateformat';
 import axios from 'axios';
 
@@ -21,9 +21,7 @@ const JobPending = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/provider/${id}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -44,7 +42,9 @@ const JobPending = ({navigation, route}) => {
     id,
     state,
     initializedDate,
+    amount,
     JAID,
+    time,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -52,13 +52,13 @@ const JobPending = ({navigation, route}) => {
       </Text>
       <Text style={styles.subtitle}>Rating : {rating}</Text>
       <Text style={styles.subtitle}>
-        Job Initialized Date:{"\n"}
-        {dateFormat(initializedDate, "dddd, mmmm dS, yyyy, h:MM TT")}
+        Job Initialized Date:{'\n'}
+        {dateFormat(initializedDate, 'dddd, mmmm dS, yyyy, h:MM TT')}
       </Text>
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="View Job"
+          text="Withdraw Job"
           onPress={() => {
             navigation.navigate('Job Details', {
               id,
@@ -68,6 +68,17 @@ const JobPending = ({navigation, route}) => {
               time,
             });
           }}
+        />
+        <Sbutton
+          primary={true}
+          text="Message Consumer"
+          onPress={() =>
+            navigation.push('Chat', {
+              state,
+              sendBy: 'provider',
+              JAID,
+            })
+          }
         />
       </View>
     </View>
@@ -79,7 +90,11 @@ const JobPending = ({navigation, route}) => {
         <Item
           fname={item.consumer[0].name.fName}
           lname={item.consumer[0].name.lName}
-          rating={parseFloat((item.consumer[0].totalRating / item.consumer[0].ratingCount).toFixed(2))}
+          rating={parseFloat(
+            (
+              item.consumer[0].totalRating / item.consumer[0].ratingCount
+            ).toFixed(2),
+          )}
           id={item._id}
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}

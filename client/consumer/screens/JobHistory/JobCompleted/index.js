@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -11,21 +11,16 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobCompleted = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
-  let CID = '62132b7bc4afd22e5fc49677';
-  let type = 'consumer';
-
+  /* let CID = '62132b7bc4afd22e5fc49677';*/
+  let CID = route.params.id;
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [isDisabled, setIsDisabled] = useState(false);
   // Fetch job history of a user
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/consumer/62132c85c4afd22e5fc49685`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -58,25 +53,28 @@ const JobCompleted = ({navigation, route}) => {
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
-        <Sbutton
+      <Sbutton
+          disabled={isDisabled}
           primary={true}
           text="Complaint"
-          onPress={() => {
-            navigation.navigate('complaint', {
+          onPress={()=>{
+            setIsDisabled(true);
+            navigation.navigate('Let us know your issues', {
               id,
-              complaint,
+              complaintBy: 'consumer',
             });
+
           }}
         />
         <Sbutton
           primary={true}
           text="Rate and Review"
-          onPress={() => {
-            navigation.navigate('Rating and Review', {
+          onPress={()=>{
+            setIsDisabled(true);
+            navigation.navigate('Ratings and Reviews', {
               id,
-              ratingAndReview,
-            });
-          }}
+              sendBy: 'consumer',
+            });}}
         />
       </View>
     </View>
@@ -93,8 +91,6 @@ const JobCompleted = ({navigation, route}) => {
           id={item._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
         />
       );
     }

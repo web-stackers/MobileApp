@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -39,6 +39,19 @@ const QuotationRejected = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
+  const cancel = () =>
+    Alert.alert('Are you want to resend the request ?', [
+      {
+        text: 'Cancel',
+        onPress: () => navigation.navigate('JobHistoryScreen'),
+        style: 'cancel',
+      },
+      {
+        text: 'Ok',
+        onPress: () => navigation.navigate('CategorySelector'),
+      },
+    ],);
+
   const Item = ({fname, lname, rating, description, id, state, jobType}) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -48,13 +61,7 @@ const QuotationRejected = ({navigation, route}) => {
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
-        <Sbutton
-          primary={true}
-          text="Search again"
-          onPress={() => {
-            navigation.navigate('../JobRequest/CategorySelector');
-          }}
-        />
+        <Sbutton primary={true} text="Search again" onPress={cancel} />
       </View>
     </View>
   );
@@ -70,8 +77,6 @@ const QuotationRejected = ({navigation, route}) => {
           id={item._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
         />
       );
     }

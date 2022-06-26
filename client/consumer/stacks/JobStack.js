@@ -44,9 +44,9 @@ const JobStackScreen = ({userParams}) => (
         header: () => null,
       }}
     />
-    <JobStack.Screen name="Completed Jobs" component={JobCompleted} />
-
     <JobStack.Screen name="Pending Jobs" component={JobPending} />
+
+    <JobStack.Screen name="Completed Jobs" component={JobCompleted} />
 
     <JobStack.Screen name="Pending Quotation" component={QuotationPending} />
 

@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -20,9 +20,7 @@ const JobCompleted = ({navigation, route}) => {
   const fetchJobs = () => {
     setLoading(true);
     axios
-      .get(
-        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
-      )
+      .get(`http://10.0.2.2:5000/job/user/userassignments/provider/${id}`)
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -36,7 +34,33 @@ const JobCompleted = ({navigation, route}) => {
     fetchJobs();
   }, []);
 
-  const Item = ({fname, lname, rating, description, id, state, jobType,complaint,ratingAndReview}) => (
+  const Complaint = () => {
+    setIsDisabled(true);
+    navigation.navigate('Complaint', {
+      id,
+      sendBy: 'provider',
+    });
+  };
+
+  const RateAndReview = () => {
+    setIsDisabled(true);
+    navigation.navigate('Rating and Review', {
+      id,
+      sendBy: 'provider',
+    });
+  };
+
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    complaint,
+    ratingAndReview,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
@@ -48,19 +72,13 @@ const JobCompleted = ({navigation, route}) => {
         <Sbutton
           primary={true}
           text="Complaint"
-          onPress={() => {
-            navigation.navigate('Complaint', {
-              id,
-              complaint,
-            });
-          }}
+          onPress={() => {Complaint}}
         />
-        <Sbutton primary={true} text="Rate and Review" onPress={() => {
-            navigation.navigate('Rating and Review', {
-              id,
-              ratingAndReview,
-            });
-          }}/>
+        <Sbutton
+          primary={true}
+          text="Rate and Review"
+          onPress={() => {RateAndReview}}
+        />
       </View>
     </View>
   );
@@ -75,7 +93,7 @@ const JobCompleted = ({navigation, route}) => {
           id={item._id}
           JAID={item.jobassignment[0]._id}
           //complaint={item.complaint[0].by}
-         // ratingAndReview={item.ratingAndReview[0].by}
+          // ratingAndReview={item.ratingAndReview[0].by}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
           /* reason={item.userJobs[0].withdrawn?.reason|| ''}

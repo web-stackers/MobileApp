@@ -89,7 +89,7 @@ const JobDetails = ({navigation, route}) => {
           />
         </View>
       )}
-      
+
       {state==='Request pending' && <View style={styles.btngrp}>
         <ScheckBox
           checked={read}
@@ -132,15 +132,6 @@ const JobDetails = ({navigation, route}) => {
           onPress={() => navigation.push('Job Withdrawal', {
             arisedBy: 'provider',
             routeTo: 'Job Details',
-            JAID: JAID,
-          })}
-        />
-
-        <Sbutton
-          primary={true}
-          text="Message Consumer"
-          onPress={() => navigation.push('Chat', {
-            sendBy: 'provider',
             JAID: JAID,
           })}
         />

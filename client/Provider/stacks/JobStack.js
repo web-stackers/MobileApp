@@ -37,44 +37,44 @@ const JobStackScreen = ({userParams}) => (
       )}
     />
 
-    <JobStack.Screen 
-      name="Completed Jobs" 
-      component={CompletedJobsScreen} 
+    <JobStack.Screen
+      name="Completed Jobs"
+      component={CompletedJobsScreen}
     />
 
-    <JobStack.Screen 
-      name="Quotation Sent" 
-      component={QuotationSent} 
+    <JobStack.Screen
+      name="Quotation Sent"
+      component={QuotationSent}
     />
 
-    <JobStack.Screen 
-      name="Quotation Rejected" 
-      component={QuotationRejected} 
+    <JobStack.Screen
+      name="Quotation Rejected"
+      component={QuotationRejected}
     />
 
-    <JobStack.Screen 
-      name="Pending Jobs" 
-      component={PendingJobsScreen} 
+    <JobStack.Screen
+      name="Pending Jobs"
+      component={PendingJobsScreen}
     />
 
-    <JobStack.Screen 
-      name="Withdrawn Jobs" 
-      component={WithdrawnJobsScreen} 
+    <JobStack.Screen
+      name="Withdrawn Jobs"
+      component={WithdrawnJobsScreen}
     />
 
-    <JobStack.Screen 
-      name="Pending Request" 
-      component={PendingRequestScreen} 
-    />
-    
-    <JobStack.Screen 
-      name="Refused Jobs" 
-      component={RefusedJobs} 
+    <JobStack.Screen
+      name="Pending Request"
+      component={PendingRequestScreen}
     />
 
-    <JobStack.Screen 
-      name="Job Details" 
-      component={JobDetails} 
+    <JobStack.Screen
+      name="Refused Jobs"
+      component={RefusedJobs}
+    />
+
+    <JobStack.Screen
+      name="Job Details"
+      component={JobDetails}
     />
 
     <JobStack.Screen
@@ -91,14 +91,14 @@ const JobStackScreen = ({userParams}) => (
       }}
     />
 
-    <JobStack.Screen 
-      name="Quotation Preview" 
-      component={QuotationPreview} 
+    <JobStack.Screen
+      name="Quotation Preview"
+      component={QuotationPreview}
     />
 
-    <JobStack.Screen 
-      name="Chat" 
-      component={Chat} 
+    <JobStack.Screen
+      name="Chat"
+      component={Chat}
     />
 
     <JobStack.Screen

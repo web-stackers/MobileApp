@@ -4,10 +4,10 @@ import styles from './styles';
 import axios from 'axios';
 
 const Complaints = ({navigation, route}) => {
-  // const {id, complaintBy} = route.params;
+   const {Jid, complaintBy} = route.params;
 
-  const complaintBy = 'Consumer';
-  const jobId = '621341023987d49e1f22f7a8';
+  /* const complaintBy = 'Consumer';
+  const jobId = '621341023987d49e1f22f7a8'; */
 
   const providerComplaintCategory = [
     {
@@ -52,7 +52,7 @@ const Complaints = ({navigation, route}) => {
   ];
 
   const displayList = () => {
-    if (complaintBy === 'Consumer') {
+    if (complaintBy === 'consumer') {
       return consumerComplaintCategory;
     } else {
       return providerComplaintCategory;

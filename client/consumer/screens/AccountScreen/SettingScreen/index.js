@@ -1,6 +1,4 @@
-/* eslint-disable no-lone-blocks */
-/* eslint-disable react-native/no-inline-styles */
-import  AsyncStorage  from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import {View, SafeAreaView} from 'react-native';
 import {
@@ -16,27 +14,62 @@ import axios from 'axios';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SettingsScreen = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
+const SettingsScreen = ({navigation, userParams}) => {
+  let CID = userParams._id;
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [consumerLocation, setConsumerLocation] = useState([]);
+  const [count, setCount] = useState('0');
 
   const onLogout = async () => {
-    try{
+    try {
       await AsyncStorage.removeItem('profile');
-      navigation.navigate('Start')
-    }catch(err){
-      console.log("error in logout, "+err)
+      navigation.navigate('Start');
+    } catch (err) {
+      console.log('error in logout, ' + err);
     }
   };
+  //Fetch consumer address
+  const getConsumerLocation = () => {
+    axios
+      .get(`http://10.0.2.2:5000/consumer/address/${CID}`)
+      .then(response => {
+        setConsumerLocation(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const getCompletedJobCount = () => {
+    axios
+      .get(`http://10.0.2.2:5000/jobAssignment/completed/consumer/count/${CID}`)
+      .then(response => {
+        setCount(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getConsumerLocation();
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+
+  useEffect(() => {
+    getConsumerLocation();
+    getCompletedJobCount();
+  }, []);
 
   const getUser = async () => {
     await axios
-      .get('http://10.0.2.2:5000/consumer/62132b7bc4afd22e5fc49677')
+      .get(`http://10.0.2.2:5000/consumer/${CID}`)
       .then(response => {
         setUser(response.data);
-        console.log(response.data);
         setLoading(false);
       })
       .catch(function (error) {
@@ -72,18 +105,12 @@ const SettingsScreen = ({navigation, route}) => {
               {user.name?.fName + ' ' || ''}
               {user.name?.lName || ''}
             </Title>
-            <Caption style={styles.caption}>Service Consumer </Caption>
+            <Caption style={styles.caption}>Service Consumer</Caption>
           </View>
         </View>
       </View>
 
       <View style={styles.userInfoSection}>
-        <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#652C9E" size={20} />
-          <Text style={{color: '#FFF777', marginLeft: 20}}>
-            Jaffna,SriLanka
-          </Text>
-        </View>
         <View style={styles.row}>
           <Icon name="phone" color="#652C9E" size={20} />
           <Text style={{color: '#FFF777', marginLeft: 20}}>
@@ -118,7 +145,7 @@ const SettingsScreen = ({navigation, route}) => {
         <View style={styles.infoBox}>
           <Title style={{color: '#FFFFFF'}}>
             {' '}
-            13 <Icon name="target" color="#652C9E" size={22} />
+            {count} <Icon name="target" color="#652C9E" size={22} />
           </Title>
           <Caption style={{fontSize: 16, fontWeight: 'bold', color: '#FFFFFF'}}>
             Completed Jobs
@@ -129,14 +156,41 @@ const SettingsScreen = ({navigation, route}) => {
       <View style={styles.menuWrapper}>
         <TouchableRipple
           onPress={() => {
-            navigation.navigate('Edit Account');
+            navigation.navigate('Edit Account', {
+              id: CID,
+              type: 'consumer',
+            });
           }}>
           <View style={styles.menuItem}>
             <Icon name="pencil" color="#652C9E" size={25} />
             <Text style={styles.menuItemText}>Edit Account</Text>
           </View>
         </TouchableRipple>
-
+        <TouchableRipple
+          onPress={() => {
+            navigation.navigate('Change Location', {
+              lat: consumerLocation.address.latitude,
+              longi: consumerLocation.address.longitude,
+              CID: CID,
+            });
+          }}>
+          <View style={styles.menuItem}>
+            <Icon name="map-marker-radius" color="#652C9E" size={25} />
+            <Text style={styles.menuItemText}>Change Location</Text>
+          </View>
+        </TouchableRipple>
+        <TouchableRipple
+          onPress={() => {
+            navigation.navigate('Change Password', {
+              id: CID,
+              type: 'consumer',
+            });
+          }}>
+          <View style={styles.menuItem}>
+            <Icon name="lock" color="#652C9E" size={25} />
+            <Text style={styles.menuItemText}>Change Password</Text>
+          </View>
+        </TouchableRipple>
         <TouchableRipple onPress={() => onLogout()}>
           <View style={styles.menuItem}>
             <Icon name="power" color="#652C9E" size={25} />

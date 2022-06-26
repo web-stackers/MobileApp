@@ -45,6 +45,7 @@ const JobPending = ({navigation, route}) => {
     state,
     jobType,
     JAID,
+    JA,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -58,18 +59,21 @@ const JobPending = ({navigation, route}) => {
           primary={true}
           text="View"
           onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
-              id,
+            navigation.navigate('QuotationDetails', {
               JAID,
+              JA,
+              jobType,
             });
           }}
         />
         <Sbutton
           primary={true}
-          text="Message"
+          text="Message Provider"
           onPress={() => {
-            navigation.navigate('../JobRequest/QuotationDetails', {
+            navigation.navigate('Chat', {
               JAID,
+              state,
+              sendBy:'consumer',
             });
           }}
         />
@@ -98,8 +102,7 @@ const JobPending = ({navigation, route}) => {
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+          JA={item.jobassignment[0]}
         />
       );
     }

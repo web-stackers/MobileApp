@@ -1,6 +1,6 @@
-// CustomInput.js
 import React from 'react';
-import {Text, TextInput, StyleSheet} from 'react-native';
+import {Text, TextInput} from 'react-native';
+import styles from './styles';
 
 const CustomInput = props => {
   const {
@@ -28,23 +28,5 @@ const CustomInput = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  textInput: {
-    height: 40,
-    width: '100%',
-    margin: 10,
-    backgroundColor: 'white',
-    borderColor: 'gray',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 10,
-  },
-  errorText: {
-    fontSize: 10,
-    color: 'red',
-  },
-  errorInput: {
-    borderColor: 'red',
-  },
-});
 
 export default CustomInput;
