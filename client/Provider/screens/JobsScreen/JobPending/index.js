@@ -18,10 +18,12 @@ const JobPending = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
 
   // Fetch job history of a user
-  const fetchJobs = () => {
+  const fetchJobs = async () => {
     setLoading(true);
-    axios
-      .get(`http://10.0.2.2:5000/job/user/userassignments/provider/${id}`)
+    await axios
+      .get(
+        `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
+      )
       .then(response => {
         setJobs(response.data);
         setLoading(false);
@@ -44,7 +46,8 @@ const JobPending = ({navigation, route}) => {
     initializedDate,
     amount,
     JAID,
-    time,
+    amount,
+    time
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
@@ -58,16 +61,16 @@ const JobPending = ({navigation, route}) => {
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Withdraw Job"
-          onPress={() => {
-            navigation.navigate('Job Details', {
-              id,
-              JAID,
-              state,
-              amount,
-              time,
-            });
-          }}
+          text="View Job"
+          onPress={() =>
+            navigation.push('Job Details', {
+              id:id,
+              JAID: JAID,
+              state:state,
+              amount:amount,
+              time:time
+            })
+          }
         />
         <Sbutton
           primary={true}
@@ -100,6 +103,7 @@ const JobPending = ({navigation, route}) => {
           state={item.jobassignment[0].state}
           amount={item.jobassignment[0].quotation.amount}
           time={item.jobassignment[0].quotation.estimatedTime}
+          initializedDate={item.initializedDate}
         />
       );
     }

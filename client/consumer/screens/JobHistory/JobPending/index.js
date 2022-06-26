@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sheader from '../../../../components/Sheader';
@@ -11,8 +11,6 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobPending = ({navigation, route}) => {
-  /* const {type, CID} =
-    route.params; */
   let CID = route.params.id;
 
   const [jobs, setJobs] = useState([]);
@@ -39,10 +37,10 @@ const JobPending = ({navigation, route}) => {
   const Item = ({
     fname,
     lname,
-    rating,
     description,
     id,
     state,
+    requestedTime,
     jobType,
     JAID,
     JA,
@@ -51,9 +49,8 @@ const JobPending = ({navigation, route}) => {
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
-      <Text style={styles.subtitle}>Status: {state}</Text>
+      <Text style={styles.subtitle}>Description: {description}</Text>
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
@@ -99,6 +96,7 @@ const JobPending = ({navigation, route}) => {
           rating={item.provider[0].totalRating / item.provider[0].ratingCount}
           description={item.description}
           id={item._id}
+          requestedTime={item.requestedTime}
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}

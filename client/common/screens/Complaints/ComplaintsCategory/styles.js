@@ -15,26 +15,39 @@ const styles = StyleSheet.create({
 
   description: {
     marginTop: 20,
-    marginLeft: 10,
+    width: '95%',
+    alignSelf: 'center',
   },
 
   content: {
     fontSize: 18,
+    textAlign: 'justify',
+    lineHeight: 23,
   },
 
-  box: {marginTop: 30, alignItems: 'center'},
+  box: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
 
-  btngrp: {
+  btn: {
     width: '95%',
-    marginTop: 30,
+    marginTop: 20,
+    alignSelf: 'center',
+  },
+
+  categories: {
+    width: '92%',
     alignSelf: 'center',
   },
 
   touchable: {
     marginTop: 20,
     backgroundColor: '#652C9E',
-    borderRadius: 50,
+    borderRadius: 8,
   },
+
+  touchableContent: {fontSize: 18, paddingLeft: 10},
 
   overlay: {
     position: 'absolute',

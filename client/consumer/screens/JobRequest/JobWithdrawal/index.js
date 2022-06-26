@@ -66,7 +66,7 @@ const JobWithdrawal = ({navigation, route}) => {
         {
           text: 'OK',
           onPress: () => {
-            navigation.navigate('JobHistoryScreen');
+            navigation.pop(1);
           },
         },
       ],

@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Image, Alert } from 'react-native';
-import {RadioButton, Text} from 'react-native-paper';
+import {RadioButton, Text, TextInput} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import axios from 'axios';
 
 import styles from './styles';
 import Sbutton from '../../../components/Sbutton';
-import StextBox from '../../../components/FormComponents/StextBox';
 import SradioButton from '../../../components/SradioButton';
 
 const Withdrawal = ({navigation, route}) => {
+    const {colors} = useTheme();
     const [value, setValue] = React.useState('');
     const [reason, setReason] = React.useState('');
     const [otherReason, setOtherReason] = React.useState('');
@@ -63,6 +64,18 @@ const Withdrawal = ({navigation, route}) => {
                     onValueChange={newValue => {setValue(newValue); setReason(texts[newValue]);}}
                     value={value}
                 >
+                    {value===3 && <TextInput
+                        value={otherReason}
+                        onChangeText={(value) => setOtherReason(value)}
+                        mode="outlined"
+                        multiline={true}
+                        theme={{ roundness: 6 }} 
+                        outlineColor="#797D7F"
+                        activeOutlineColor={colors.primary}
+                        style={styles.input}
+                        placeholder="Enter the reason" 
+                        disabled={!(value===3)}
+                    />}
                     <SradioButton
                         value={0}
                         text={texts[0]}
@@ -80,12 +93,7 @@ const Withdrawal = ({navigation, route}) => {
                         text={texts[3]} 
                     />
                 </RadioButton.Group>
-                <StextBox
-                    value={otherReason}
-                    onChangeText={(value) => setOtherReason(value)}
-                    disabled={!(value===3)}
-                    placeholder="Enter the reason" 
-                />
+                
             </View>
 
             <View style={styles.btngrp}>

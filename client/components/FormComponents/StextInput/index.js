@@ -20,6 +20,7 @@ const StextInput = ({label, multiline, error, value, onChangeText}) => {
       multiline={true}
       error={error}
       onChangeText={onChangeText}
+      theme={{ roundness: 8 }}
     />
   );
 };

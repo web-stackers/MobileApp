@@ -19,6 +19,7 @@ const BottomNavigator = ({route}) => {
       screenOptions={{
         tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: '#B295CE',
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: colors.primary,
           height: 55,

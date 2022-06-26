@@ -17,9 +17,9 @@ const RequestPending = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
 
   // Fetch job history of a user
-  const fetchJobs = () => {
+  const fetchJobs = async () => {
     setLoading(true);
-    axios
+    await axios
       .get(
         `http://10.0.2.2:5000/job/user/userassignments/provider/${id}`,
       )

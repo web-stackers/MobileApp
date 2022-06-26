@@ -3,7 +3,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
-import { Text } from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import axios from 'axios';
 
 import Sbutton from '../../../../components/Sbutton';
@@ -16,11 +16,9 @@ const QuotationPending = ({navigation, route}) => {
   const [loading, setLoading] = useState(false);
 
   const viewQuotation = (JAID, jobType) => {
-    console.log('button pressed');
     axios
       .get(`http://10.0.2.2:5000/jobAssignment/${JAID}`)
       .then(response => {
-        console.log(response.data);
         navigation.navigate('QuotationDetails', {
           JobType: jobType,
           JAID: JAID,

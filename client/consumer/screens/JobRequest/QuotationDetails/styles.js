@@ -8,13 +8,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: Dimensions.get('window').height,
   },
-  content: {
-    color: '#fff',
-    fontSize: 30,
-    marginTop: 40,
-    marginBottom: 30,
-    alignSelf: 'center',
-  },
+
   subContent: {
     color: '#fff',
     fontSize: 20,
@@ -41,6 +35,30 @@ const styles = StyleSheet.create({
     width: 270,
     marginTop: 50,
     marginBottom: 50,
+    alignSelf: 'center',
+  },
+  detailField: {
+    padding: 10,
+    borderLeftColor: '#652C9E',
+    borderWidth: 5,
+    marginBottom: 8,
+  },
+  field: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    lineHeight: 40,
+    marginLeft: 5,
+    color: 'white',
+  },
+  detail: {
+    fontSize: 20,
+    marginLeft: 5,
+    color: 'white',
+  },
+  content: {
+    padding: 5,
+    marginTop: 35,
+    width: '95%',
     alignSelf: 'center',
   },
 });

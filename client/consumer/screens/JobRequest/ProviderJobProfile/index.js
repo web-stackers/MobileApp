@@ -161,7 +161,7 @@ const ProviderJobProfile = ({navigation, route}) => {
         </Text>
         <Text style={styles.subtitle}>Qualification: {qualification}</Text>
         <Text style={styles.subtitle}>
-          Rating: {rating ? rating : 'No ratings yet'}
+          Rating: {rating ? parseFloat(rating.toFixed(2)) : 'No ratings yet'}
         </Text>
         <Text style={styles.subtitle}>Rating Count: {ratingCount}</Text>
       </View>

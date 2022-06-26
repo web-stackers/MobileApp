@@ -6,9 +6,7 @@ import StextInput from '../../../../components/FormComponents/StextInput';
 import Sbutton from '../../../../components/Sbutton';
 import axios from 'axios';
 
-const OtherReasons = ({categories}) => {
-  const [selectedItems, setSelectedItems] = useState([]);
-
+const OtherReasons = ({categories, selectedItems, setSelectedItems}) => {
   const handleOnPress = item => {
     if (selectedItems.includes(item)) {
       const newListItem = selectedItems.filter(name => name !== item);
@@ -22,18 +20,19 @@ const OtherReasons = ({categories}) => {
   };
 
   return categories.map((category, index) => {
-    if (category.name !== 'Other issues') {
+    if (category.name !== 'Other issues' && category.id !== 0) {
       return (
-        <TouchableOpacity
-          key={index}
-          style={styles.touchable}
-          onPress={() => handleOnPress(category.name)}>
-          <View style={{padding: 10}}>
-            <Text style={styles.content}>{category.name}</Text>
-          </View>
+        <View key={index} style={styles.categories}>
+          <TouchableOpacity
+            style={styles.touchable}
+            onPress={() => handleOnPress(category.name)}>
+            <View style={{padding: 10}}>
+              <Text style={styles.touchableContent}>{category.name}</Text>
+            </View>
 
-          <View style={[getSelected(category.name) && styles.overlay]} />
-        </TouchableOpacity>
+            <View style={[getSelected(category.name) && styles.overlay]} />
+          </TouchableOpacity>
+        </View>
       );
     }
   });
@@ -43,10 +42,11 @@ const ComplaintsCategory = ({route, navigation}) => {
   const complaintBy = route.params.by;
   const id = route.params.id;
   const title = route.params.title;
-  const jobId = route.params.jobId; //621341023987d49e1f22f7a8
+  const jobId = route.params.jobId;
   const categories = route.params.categories;
 
   const [complaintDescription, setComplaintDescription] = useState('');
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const providerCategoryDescription = [
     {
@@ -99,7 +99,7 @@ const ComplaintsCategory = ({route, navigation}) => {
   ];
 
   const displayDescription = () => {
-    if (complaintBy === 'Consumer') {
+    if (complaintBy === 'consumer') {
       return consumerCategoryDescription;
     } else {
       return providerCategoryDescription;
@@ -117,10 +117,12 @@ const ComplaintsCategory = ({route, navigation}) => {
         <Text style={styles.content}>{categoryDescription.details}</Text>
       </View>
       {title === 'Other issues' ? (
-        <OtherReasons categories={categories} />
-      ) : (
-        <View></View>
-      )}
+        <OtherReasons
+          categories={categories}
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
+        />
+      ) : null}
       <View style={styles.box}>
         <StextInput
           label="You may enter your specific queries here"
@@ -130,24 +132,109 @@ const ComplaintsCategory = ({route, navigation}) => {
           }
         />
       </View>
-      <View style={styles.btngrp}>
+      <View style={styles.btn}>
         <Sbutton
           primary={true}
           text="Submit"
           onPress={() => {
-            axios
-              .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
-                by: complaintBy,
-                category: title,
-                description: complaintDescription,
-              })
-              .then(function (response) {
-                navigation.navigate('Acknowledge');
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-            // Alert.alert(selectedItems);
+            if (title !== 'Other issues') {
+              if (complaintDescription === '') {
+                axios
+                  .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                    by: complaintBy,
+                    category: title,
+                  })
+                  .then(function (response) {
+                    navigation.navigate('Complaint acknowledge', {
+                      by: complaintBy,
+                    });
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+              } else {
+                axios
+                  .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                    by: complaintBy,
+                    category: title,
+                    description: complaintDescription,
+                  })
+                  .then(function (response) {
+                    navigation.navigate('Complaint acknowledge', {
+                      by: complaintBy,
+                    });
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+              }
+            } else {
+              if (Object.keys(selectedItems).length === 0) {
+                if (complaintDescription === '') {
+                  axios
+                    .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                      by: complaintBy,
+                      category: title,
+                    })
+                    .then(function (response) {
+                      navigation.navigate('Complaint acknowledge', {
+                        by: complaintBy,
+                      });
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+                } else {
+                  axios
+                    .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                      by: complaintBy,
+                      category: title,
+                      description: complaintDescription,
+                    })
+                    .then(function (response) {
+                      navigation.navigate('Complaint acknowledge', {
+                        by: complaintBy,
+                      });
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+                }
+              } else {
+                if (complaintDescription === '') {
+                  axios
+                    .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                      by: complaintBy,
+                      category: title,
+                      othercategory: selectedItems.toString(),
+                    })
+                    .then(function (response) {
+                      navigation.navigate('Complaint acknowledge', {
+                        by: complaintBy,
+                      });
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+                } else {
+                  axios
+                    .patch(`http://10.0.2.2:5000/job/complaint/${jobId}`, {
+                      by: complaintBy,
+                      category: title,
+                      othercategory: selectedItems.toString(),
+                      description: complaintDescription,
+                    })
+                    .then(function (response) {
+                      navigation.navigate('Complaint acknowledge', {
+                        by: complaintBy,
+                      });
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+                }
+              }
+            }
           }}
         />
       </View>

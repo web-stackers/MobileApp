@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, FlatList, Alert} from 'react-native';
 import {Text} from 'react-native-paper';
 import axios from 'axios';
+import dateFormat from 'dateformat';
 
 import Sheader from '../../../../components/Sheader';
 import Sbutton from '../../../../components/Sbutton';
@@ -56,8 +57,11 @@ const JobCompleted = ({navigation, route}) => {
     rating,
     description,
     id,
+    requestDate,
     state,
-    jobType,
+    time,
+    amount,
+    JAID,
     complaint,
     ratingAndReview,
   }) => (
@@ -65,19 +69,54 @@ const JobCompleted = ({navigation, route}) => {
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
-      <Text style={styles.subtitle}>Description: {description}</Text>
-      <Text style={styles.subtitle}>JobType: {jobType}</Text>
-      <Text style={styles.subtitle}>Status: {state}</Text>
+      <Text style={styles.subtitle}>Rating : {rating}</Text>
+      <Text style={styles.subtitle}>
+        Description:{'\n'}
+        {description}
+      </Text>
+      <Text style={styles.subtitle}>
+        Job Requested Date:{'\n'}
+        {dateFormat(requestDate, 'dddd, mmmm dS, yyyy, h:MM TT')}
+      </Text>
+      <Text style={styles.subtitle}>
+        Estimated complete date:{'\n'}
+        {dateFormat(time, 'dddd, mmmm dS, yyyy, h:MM TT')}
+      </Text>
+      <Text style={styles.subtitle}>
+        Estimated amount :{'\nRs '}
+        {amount}
+      </Text>
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
           text="Complaint"
-          onPress={() => {Complaint}}
+          onPress={() => {
+            navigation.navigate('Complaint', {
+              id,
+              complaint: 'provider',
+            });
+          }}
         />
         <Sbutton
           primary={true}
           text="Rate and Review"
-          onPress={() => {RateAndReview}}
+          onPress={() => {
+            navigation.navigate('Rating and Review', {
+              id,
+              ratingAndReview,
+            });
+          }}
+        />
+        <Sbutton
+          primary={true}
+          text="View Chat"
+          onPress={() => {
+            navigation.navigate('Chat', {
+              JAID,
+              state,
+              sendBy: 'provider',
+            });
+          }}
         />
       </View>
     </View>
@@ -92,12 +131,17 @@ const JobCompleted = ({navigation, route}) => {
           description={item.description}
           id={item._id}
           JAID={item.jobassignment[0]._id}
-          //complaint={item.complaint[0].by}
+          // complaint={item.complaint[0].by}
           // ratingAndReview={item.ratingAndReview[0].by}
+          rating={parseFloat(
+            (
+              item.consumer[0].totalRating / item.consumer[0].ratingCount
+            ).toFixed(2),
+          )}
           state={item.jobassignment[0].state}
-          jobType={item.jobType}
-          /* reason={item.userJobs[0].withdrawn?.reason|| ''}
-        amount={item.userJobs[0].quotation?.amount|| ''} */
+          requestDate={item.requestedTime}
+          time={item.jobassignment[0].quotation.estimatedTime}
+          amount={item.jobassignment[0].quotation.amount}
         />
       );
     }

@@ -15,9 +15,13 @@ import JobRefuse from '../screens/Jobs/JobRefuse';
 import QuotationPreview from '../screens/Jobs/QuotationPreview';
 import Acknowledge from '../../common/screens/Acknowledge';
 import Withdrawal from '../../common/screens/Withdrawal';
+
 import Complaints from '../../common/screens/Complaints/Complaints';
+import ComplaintsCategory from '../../common/screens/Complaints/ComplaintsCategory';
 import RatingsAndReviews from '../../common/screens/RatingsAndReviews';
 import Chat from '../../common/screens/Chat';
+import ComplaintAcknowledge from '../../common/screens/Complaints/Acknowledge';
+
 
 const JobStack = createNativeStackNavigator();
 
@@ -32,50 +36,24 @@ const JobStackScreen = ({userParams}) => (
     }}>
     <JobStack.Screen
       name="Job History"
-      children={props => (
-        <JobHistory userParams={userParams} {...props} />
-      )}
+      children={props => <JobHistory userParams={userParams} {...props} />}
     />
 
-    <JobStack.Screen
-      name="Completed Jobs"
-      component={CompletedJobsScreen}
-    />
+    <JobStack.Screen name="Completed Jobs" component={CompletedJobsScreen} />
 
-    <JobStack.Screen
-      name="Quotation Sent"
-      component={QuotationSent}
-    />
+    <JobStack.Screen name="Quotation Sent" component={QuotationSent} />
 
-    <JobStack.Screen
-      name="Quotation Rejected"
-      component={QuotationRejected}
-    />
+    <JobStack.Screen name="Quotation Rejected" component={QuotationRejected} />
 
-    <JobStack.Screen
-      name="Pending Jobs"
-      component={PendingJobsScreen}
-    />
+    <JobStack.Screen name="Pending Jobs" component={PendingJobsScreen} />
 
-    <JobStack.Screen
-      name="Withdrawn Jobs"
-      component={WithdrawnJobsScreen}
-    />
+    <JobStack.Screen name="Withdrawn Jobs" component={WithdrawnJobsScreen} />
 
-    <JobStack.Screen
-      name="Pending Request"
-      component={PendingRequestScreen}
-    />
+    <JobStack.Screen name="Pending Requests" component={PendingRequestScreen} />
 
-    <JobStack.Screen
-      name="Refused Jobs"
-      component={RefusedJobs}
-    />
+    <JobStack.Screen name="Refused Requests" component={RefusedJobs} />
 
-    <JobStack.Screen
-      name="Job Details"
-      component={JobDetails}
-    />
+    <JobStack.Screen name="Job Details" component={JobDetails} />
 
     <JobStack.Screen
       name="Quotation Details"
@@ -91,15 +69,9 @@ const JobStackScreen = ({userParams}) => (
       }}
     />
 
-    <JobStack.Screen
-      name="Quotation Preview"
-      component={QuotationPreview}
-    />
+    <JobStack.Screen name="Quotation Preview" component={QuotationPreview} />
 
-    <JobStack.Screen
-      name="Chat"
-      component={Chat}
-    />
+    <JobStack.Screen name="Chat" component={Chat} />
 
     <JobStack.Screen
       name="Acknowledgement"
@@ -118,6 +90,22 @@ const JobStackScreen = ({userParams}) => (
     />
 
     <JobStack.Screen name="Complaint" component={Complaints} />
+
+    <JobStack.Screen
+      name="Complaint Category"
+      component={ComplaintsCategory}
+      options={{
+        header: () => null,
+      }}
+    />
+
+    <JobStack.Screen
+      name="Complaint acknowledge"
+      component={ComplaintAcknowledge}
+      options={{
+        header: () => null,
+      }}
+    />
 
     <JobStack.Screen name="Rating and Review" component={RatingsAndReviews} />
   </JobStack.Navigator>

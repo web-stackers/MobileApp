@@ -2,10 +2,12 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#121212',
     alignItems: 'center',
     width: '100%',
+  },
+  scroll: {
+    flex: 1,
+    backgroundColor: '#121212',
   },
   quotationForm: {
     // padding: 5,
@@ -23,15 +25,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 25,
-    marginTop: 110,
-    marginBottom: 6,
+    fontSize: 36,
+    marginTop: 70,
     // margin: 20,
     textAlign: 'center',
   },
   caption: {
     color: '#aaa',
-    fontSize: 17,
+    fontSize: 18,
     marginTop: 3,
     marginBottom: 10,
     // margin: 20,

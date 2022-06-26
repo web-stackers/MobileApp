@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import React, {useState, useCallback} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {Text} from 'react-native-paper';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import dateFormat from 'dateformat';
 
 import axios from 'axios';
@@ -17,8 +18,8 @@ const DetailField = ({field, detail}) => {
       <Text style={styles.field}>{field}</Text>
       <Text style={styles.detail}>{detail}</Text>
     </View>
-  )
-}
+  );
+};
 
 const JobDetails = ({navigation, route}) => {
   const [read, setRead] = useState(false);
@@ -38,10 +39,10 @@ const JobDetails = ({navigation, route}) => {
   };
 
   useFocusEffect(
-    useCallback(() =>{
+    useCallback(() => {
       getJob();
-    }, [])
-  )
+    }, []),
+  );
 
   return (
     <ScrollView style={styles.container}>
@@ -52,14 +53,8 @@ const JobDetails = ({navigation, route}) => {
 
       {job && (
         <View style={styles.content}>
-          <DetailField
-            field="Job Description"
-            detail={job.description}
-          />
-          <DetailField
-            field="Photos"
-            detail={job.description}
-          />
+          <DetailField field="Job Description" detail={job.description} />
+          {/* <DetailField field="Photos" detail={job.description} /> */}
           <DetailField
             field="Date"
             detail={dateFormat(job.requestedTime, 'fullDate')}
@@ -77,15 +72,43 @@ const JobDetails = ({navigation, route}) => {
         {job && <Map lat={job.address.latitude} long={job.address.longitude} />}
       </View>
 
-      {job && state==='Job pending' && (
+      {job && (state === 'Job pending' || state === 'Quotation sent') && (
         <View style={styles.content}>
           <DetailField
             field="Estimated time to complete"
-            detail={dateFormat(time, "dddd, mmmm dS, yyyy, h:MM TT")}
+            detail={dateFormat(time, 'dddd, mmmm dS, yyyy, h:MM TT')}
           />
-          <DetailField
-            field="Amount"
-            detail={amount}
+          <DetailField field="Amount" detail={'Rs ' + amount} />
+        </View>
+      )}
+
+      {state === 'Request pending' && (
+        <View style={styles.btngrp}>
+          <ScheckBox
+            checked={read}
+            setChecked={setRead}
+            text="I have read and understood the problem and requirements of above request"
+          />
+
+          <Sbutton
+            primary={true}
+            disabled={!read}
+            text="Accept"
+            onPress={() =>
+              navigation.push('Quotation Details', {
+                job: {job},
+                JAID: JAID,
+              })
+            }
+          />
+          <Sbutton
+            disabled={!read}
+            text="Refuse"
+            onPress={() =>
+              navigation.push('Refuse Job', {
+                JAID: JAID,
+              })
+            }
           />
         </View>
       )}
@@ -97,45 +120,63 @@ const JobDetails = ({navigation, route}) => {
           text="I have read and understood the problem and requirements of above request"
         />
 
-        <Sbutton
-          primary={true}
-          disabled={!read}
-          text="Accept"
-          onPress={() =>
-            navigation.push('Quotation Details', {
-              job: {job},
-              JAID: JAID,
-            })
-          }
-        />
-        <Sbutton
-          disabled={!read}
-          text="Refuse"
-          onPress={() => navigation.push('Refuse Job', {
-            JAID: JAID,
-          })
-        }
-        />
-      </View>}
+      {state === 'Quotation sent' && (
+        <View style={styles.btngrp}>
+          <ScheckBox
+            checked={read}
+            setChecked={setRead}
+            text="I wish to withdraw from this job"
+          />
 
-      {state==='Job pending' && <View style={styles.btngrp}>
-        <ScheckBox
-          checked={read}
-          setChecked={setRead}
-          text="I wish to withdraw from this job"
-        />
+          <Sbutton
+            primary={true}
+            disabled={!read}
+            text="Withdraw"
+            onPress={() =>
+              navigation.push('Job Withdrawal', {
+                arisedBy: 'provider',
+                routeTo: 'Job Details',
+                JAID: JAID,
+              })
+            }
+          />
+        </View>
+      )}
 
-        <Sbutton
-          primary={true}
-          disabled={!read}
-          text="Withdraw"
-          onPress={() => navigation.push('Job Withdrawal', {
-            arisedBy: 'provider',
-            routeTo: 'Job Details',
-            JAID: JAID,
-          })}
-        />
-      </View>}
+      {state === 'Job pending' && (
+        <View style={styles.btngrp}>
+          <ScheckBox
+            checked={read}
+            setChecked={setRead}
+            text="I wish to withdraw from this job"
+          />
+
+          <Sbutton
+            primary={true}
+            disabled={!read}
+            text="Withdraw"
+            onPress={() =>
+              navigation.push('Job Withdrawal', {
+                arisedBy: 'provider',
+                routeTo: 'Job Details',
+                JAID: JAID,
+              })
+            }
+          />
+
+          <Sbutton
+            primary={true}
+            text="Message Consumer"
+            onPress={() =>
+              navigation.push('Chat', {
+                sendBy: 'provider',
+                JAID: JAID,
+                state: state,
+              })
+            }
+          />
+        </View>
+      )}
     </ScrollView>
   );
 };

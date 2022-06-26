@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Text, View, Image, ScrollView} from 'react-native';
 import {useTheme} from 'react-native-paper';
+import { useFocusEffect } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import StouchableOpacity from '../../../../components/StouchableOpacity';
 import styles from './styles';
@@ -69,8 +70,13 @@ const CategorySelector = ({userParams, navigation}) => {
   useEffect(() => {
     getConstructionJobTYpes();
     getEventJobTYpes();
-    completeJobs();
   }, []);
+
+  useFocusEffect(
+    useCallback(() =>{
+      completeJobs();
+    }, [])
+  )
 
   const ConstructionPress = () =>
     navigation.navigate('JobDetails', {
