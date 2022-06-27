@@ -33,7 +33,7 @@ const EditProfileScreen = ({navigation, route}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const updateAPIData = async values => {
-    Alert.alert('Are you sure to update the profile?', [
+    Alert.alert('Edit account','Are you sure to update the profile?', [
       {
         text: 'Cancel',
         onPress: () => console.log('Cancel Pressed'),

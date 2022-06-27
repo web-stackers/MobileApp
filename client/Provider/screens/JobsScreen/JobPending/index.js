@@ -46,7 +46,6 @@ const JobPending = ({navigation, route}) => {
     initializedDate,
     amount,
     JAID,
-    amount,
     time
   }) => (
     <View style={styles.item}>

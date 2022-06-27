@@ -56,7 +56,7 @@ const JobStackScreen = ({userParams}) => (
     <JobStack.Screen name="Job Details" component={JobDetails} />
 
     <JobStack.Screen
-      name="Quotation Details"
+      name="QuotationDetails"
       component={QuotationDetails}
       title="Job Quotation"
     />

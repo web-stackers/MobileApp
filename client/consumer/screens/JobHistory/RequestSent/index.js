@@ -33,47 +33,57 @@ const RequestSent = ({navigation, route}) => {
   }, []);
 
   const cancel = () =>
-    Alert.alert('Are you want to resend the request ?', [
-      {
-        text: 'Cancel',
-        onPress: () => navigation.navigate('JobHistoryScreen'),
-        style: 'cancel',
-      },
-      {
-        text: 'Ok',
-        onPress: () => {
-          navigation.navigate('CategorySelector');
+    Alert.alert(
+      'Cancel Request',
+      'Are you want to cancel and resend the request?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => navigation.navigate('JobHistoryScreen'),
+          style: 'cancel',
         },
-      },
-    ]);
+        {
+          text: 'Ok',
+          onPress: () => {
+            axios
+              .delete(
+                `http://10.0.2.2:5000/jobAssignment/cancelled/consumer/${JAID}`,
+              )
+              .then(response => {
+                navigation.navigate('CategorySelector');
+                setJobs(response.data);
+                setLoading(false);
+              })
+              .catch(e => {
+                console.log(e);
+              });
+          },
+        },
+      ],
+    );
 
-  const Item = ({fname, lname, rating, description, id, state, jobType}) => (
+  const Item = ({
+    fname,
+    lname,
+    rating,
+    description,
+    id,
+    state,
+    jobType,
+    JAID,
+  }) => (
     <View style={styles.item}>
       <Text style={styles.title}>
         {fname} {lname}
       </Text>
       <Text style={styles.subtitle}>Description: {description}</Text>
       <Text style={styles.subtitle}>JobType: {jobType}</Text>
-      <Text style={styles.subtitle}>Status: {state}</Text>
+      <Text style={styles.subtitle}>Status: {JAID}</Text>
       <View style={styles.btngrp}>
         <Sbutton
           primary={true}
-          text="Cancel"
-          onPress={() => {
-            Alert.alert('Are you want to resend the request ?', [
-              {
-                text: 'Cancel',
-                onPress: () => navigation.navigate('JobHistoryScreen'),
-                style: 'cancel',
-              },
-              {
-                text: 'Ok',
-                onPress: () => {
-                  navigation.navigate('CategorySelector');
-                },
-              },
-            ]);
-          }}
+          text="Resend request"
+          onPress={() => navigation.navigate('CategorySelector') }
         />
       </View>
     </View>
@@ -89,6 +99,7 @@ const RequestSent = ({navigation, route}) => {
           description={item.description}
           id={item._id}
           state={item.jobassignment[0].state}
+          JAID={item.jobassignment[0]._id}
           jobType={item.jobType}
         />
       );

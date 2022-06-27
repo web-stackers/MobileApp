@@ -43,6 +43,7 @@ const QuotationSent = ({navigation, route}) => {
     JAID,
     amount,
     time,
+    initializedDate,
   }) => (
     <View style={styles.item}>
       <Text style={styles.title}>

@@ -113,13 +113,14 @@ const JobDetails = ({navigation, route}) => {
         </View>
       )}
 
-      {state==='Request pending' && <View style={styles.btngrp}>
+      {state==='Request pending' && (<View style={styles.btngrp}>
         <ScheckBox
           checked={read}
           setChecked={setRead}
           text="I have read and understood the problem and requirements of above request"
         />
-
+ </View>
+      )}
       {state === 'Quotation sent' && (
         <View style={styles.btngrp}>
           <ScheckBox

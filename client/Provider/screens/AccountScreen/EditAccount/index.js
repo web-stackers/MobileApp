@@ -22,25 +22,35 @@ const EditProfileScreen = ({navigation,route}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const updateAPIData = async values => {
-    await axios
-      .patch(
-        `http://10.0.2.2:5000/provider/profileUpdate/${CID}`,
-        values
-      )
-      .then(response => {
-        if (response.status) {
-          alert('You have updated profile successfully');
-          setIsLoading(true);
-          navigation.navigate('Start');
-        } else {
-          throw new Error('An error has occurred');
-        }
-      })
-      .catch(error => {
-        alert('An error has occurring');
-        setIsLoading(false);
-      });
+    Alert.alert('Edit account','Are you sure to update the profile?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: () => {
+          axios
+            .patch(`http://10.0.2.2:5000/provider/profileUpdate/${CID}`, values)
+            .then(response => {
+              if (response.status) {
+                alert('You have updated profile successfully');
+                setIsLoading(true);
+                navigation.navigate('Settings');
+              } else {
+                throw new Error('An error has occurred');
+              }
+            })
+            .catch(error => {
+              alert('An error has occurring');
+              setIsLoading(false);
+            });
+        },
+      },
+    ]);
   };
+
   return (
     <>
       <StatusBar barStyle="dark-content" />

@@ -40,7 +40,7 @@ const RequestRefused = ({navigation, route}) => {
   }, []);
 
   const click = () =>
-    Alert.alert('Are you want to resend the request ?', [
+    Alert.alert('Request refused','Are you want to resend the request ?', [
       {
         text: 'Cancel',
         onPress: () => navigation.navigate('JobHistoryScreen'),

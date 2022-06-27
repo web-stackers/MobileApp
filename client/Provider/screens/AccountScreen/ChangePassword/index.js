@@ -40,23 +40,39 @@ const ChangePassword = ({navigation, route}) => {
   let CID = route.params.id;
   const [isLoading, setIsLoading] = useState(false);
 
-  const updateAPIData = async values => {
-    await axios
-      .patch(`http://10.0.2.2:5000/provider/changePassword/${CID}`, values)
-      .then(response => {
-        if (response.status) {
-          alert('You have updated password successfully');
-          setIsLoading(false);
-          navigation.navigate('Start');
-        } else {
-          throw new Error('An error has occurred');
-        }
-      })
-      .catch(error => {
-        alert('An error has occurring');
-        setIsLoading(false);
-      });
-  };
+  const updateAPIData = async values =>
+    Alert.alert('Change Password','Are you sure to change the password?', [
+      {
+        text: 'No',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: () => {
+          axios
+            .patch(
+              `http://10.0.2.2:5000/provider/changePassword/${CID}`,
+              values,
+            )
+            .then(response => {
+              if (response.status) {
+                setIsLoading(false);
+                alert('You have updated password successfully');
+                //setIsLoading(false);
+                navigation.navigate('CategorySelector');
+              } else {
+                throw new Error('An error has occurred');
+              }
+            })
+            .catch(error => {
+              alert('An error has occurring');
+              setIsLoading(false);
+            });
+        },
+      },
+    ]);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />

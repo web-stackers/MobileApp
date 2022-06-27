@@ -17,9 +17,10 @@ const DetailField = ({field, detail}) => {
       <Text style={styles.detail}>{detail}</Text>
     </View>
   );
+};
+
+const QuotationDetails = ({navigation, route}) => {
   const {JA, jobType, JAID} = route.params;
-  console.log(JA.quotation);
-  console.log(JAID);
 
   const [checked, setChecked] = useState(false);
 
@@ -100,7 +101,7 @@ const DetailField = ({field, detail}) => {
       />
 
       <View style={styles.content}>
-        <DetailField field="Job Type" detail={JobType} />
+        <DetailField field="Job Type" detail={jobType} />
         <DetailField field="Quotation Amount" detail={JA.quotation.amount} />
         <DetailField
           field="Work Finish Date"

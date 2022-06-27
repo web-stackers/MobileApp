@@ -10,18 +10,30 @@ import Sbutton from '../../../../components/Sbutton';
 import styles from './styles';
 
 const JobCompleted = ({navigation, route}) => {
-<<<<<<< HEAD
+
   /* let CID = '62132b7bc4afd22e5fc49677';*/
   let CID = route.params.id;
-=======
-  const fetchJobs = () => {
-        setJobs(response.data);
-      });
-  };
 
-  useEffect(() => {
-    fetchJobs();
-  }, []);
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+ // Fetch job history of a user
+ const fetchJobs = () => {
+  setLoading(true);
+  axios
+    .get(`http://10.0.2.2:5000/job/user/userassignments/consumer/${CID}`)
+    .then(response => {
+      setJobs(response.data);
+      setLoading(false);
+    })
+    .catch(e => {
+      console.log(e);
+    });
+};
+
+useEffect(() => {
+  fetchJobs();
+}, []);
 
   const Item = ({
     fname,
@@ -46,28 +58,22 @@ const JobCompleted = ({navigation, route}) => {
       <Text style={styles.subtitle}>Status: {state}</Text>
       <View style={styles.btngrp}>
       <Sbutton
-          disabled={isDisabled}
+
           primary={true}
           text="Complaint"
-<<<<<<< HEAD
           onPress={()=>{
-            setIsDisabled(true);
+
             navigation.navigate('Let us know your issues', {
-=======
-          onPress={() => {
-            navigation.navigate('Complaint', {
->>>>>>> e400f5c3bb0f9c9134a2105da123060945f0d6ce
               id,
               complaintBy: 'consumer',
             });
-
           }}
         />
         <Sbutton
           primary={true}
           text="Rate and Review"
           onPress={()=>{
-            setIsDisabled(true);
+            
             navigation.navigate('Ratings and Reviews', {
               id,
               sendBy: 'consumer',
@@ -101,11 +107,8 @@ const JobCompleted = ({navigation, route}) => {
           JAID={item.jobassignment[0]._id}
           state={item.jobassignment[0].state}
           jobType={item.jobType}
-<<<<<<< HEAD
-=======
           amount={item.jobassignment[0].quotation.amount}
           time={item.jobassignment[0].quotation.estimatedTime}
->>>>>>> e400f5c3bb0f9c9134a2105da123060945f0d6ce
         />
       );
     }

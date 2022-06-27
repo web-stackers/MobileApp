@@ -40,15 +40,15 @@ const ChangePassword = ({navigation, route}) => {
   let CID = route.params.id;
   const [isLoading, setIsLoading] = useState(false);
 
-  const updateAPIData = async values => {
-    Alert.alert('Are you sure to change the password?', [
+  const updateAPIData = async values =>
+    Alert.alert('Change Password','Are you sure to change the password?', [
       {
-        text: 'Cancel',
+        text: 'No',
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
       {
-        text: 'OK',
+        text: 'Yes',
         onPress: () => {
           axios
             .patch(
@@ -57,8 +57,9 @@ const ChangePassword = ({navigation, route}) => {
             )
             .then(response => {
               if (response.status) {
-                alert('You have updated password successfully');
                 setIsLoading(false);
+                alert('You have updated password successfully');
+                //setIsLoading(false);
                 navigation.navigate('Start');
               } else {
                 throw new Error('An error has occurred');
@@ -71,7 +72,7 @@ const ChangePassword = ({navigation, route}) => {
         },
       },
     ]);
-  };
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
